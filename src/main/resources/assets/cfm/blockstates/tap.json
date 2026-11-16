@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cfm:block/tap_pre",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cfm:block/tap_pre"
+    },
+    "facing=south": {
+      "model": "cfm:block/tap_pre",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cfm:block/tap_pre",
+      "y": 180
+    }
+  }
+}

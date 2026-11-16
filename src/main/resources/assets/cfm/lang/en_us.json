@@ -558,5 +558,16 @@
     "block.cfm.brown_lamp": "Brown Lamp",
     "block.cfm.green_lamp": "Green Lamp",
     "block.cfm.red_lamp": "Red Lamp",
-    "block.cfm.black_lamp": "Black Lamp"
+    "block.cfm.black_lamp": "Black Lamp",
+    "block.cfm.basin": "Basin",
+    "block.cfm.tap": "Tap",
+    "block.cfm.shower": "Shower",
+    "block.cfm.shower_head": "Shower Head",
+    "block.cfm.bath": "Bath",
+    "subtitle.cfm.tap": "Tap runs",
+    "subtitle.cfm.shower": "Shower runs",
+    "message.cfm.basin": "You need a water source under the block the basin is on to fill it. You can also fill it with a water bucket.",
+    "message.cfm.bath": "You need a water source under the block the tap end of the bath is on to fill it. You can also fill it with a water bucket.",
+    "message.cfm.tap_blocked": "Something is blocking the tap.",
+    "message.cfm.tap_no_water": "You need a water source under the block the tap is on to use it."
 }

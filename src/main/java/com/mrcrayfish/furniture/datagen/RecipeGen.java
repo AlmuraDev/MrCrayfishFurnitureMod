@@ -464,6 +464,49 @@ public class RecipeGen extends RecipeProvider
         this.lamp(ModBlocks.LAMP_RED.get(), Blocks.WOOL.pick(DyeColor.RED));
         this.lamp(ModBlocks.LAMP_BLACK.get(), Blocks.WOOL.pick(DyeColor.BLACK));
 
+        // Bathroom (1.12.2)
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.BASIN.get())
+                .pattern("BIB")
+                .pattern("QQQ")
+                .pattern(" Q ")
+                .define('B', Blocks.STONE_BUTTON)
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.TAP.get())
+                .pattern(" I ")
+                .pattern("SSS")
+                .pattern("  S")
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('S', Blocks.STONE)
+                .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.SHOWER.get())
+                .pattern("QGQ")
+                .pattern("QGQ")
+                .pattern("QGQ")
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .define('G', Blocks.GLASS)
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.SHOWER_HEAD.get())
+                .pattern("II ")
+                .pattern(" I ")
+                .pattern("SSS")
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('S', Blocks.STONE)
+                .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.BATH.get())
+                .pattern("B  ")
+                .pattern("Q Q")
+                .pattern("QQQ")
+                .define('B', Blocks.STONE_BUTTON)
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+
         // Cooking Recipes
         this.cookingRecipesForMethod("grill_cooking", GrillCookingRecipe::new, 600);
 

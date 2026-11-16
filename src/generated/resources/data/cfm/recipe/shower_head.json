@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": "#c:ingots/iron",
+    "S": "minecraft:stone"
+  },
+  "pattern": [
+    "II ",
+    " I ",
+    "SSS"
+  ],
+  "result": {
+    "id": "cfm:shower_head"
+  }
+}

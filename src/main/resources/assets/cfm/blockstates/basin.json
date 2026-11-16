@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,filled=false": {
+      "model": "cfm:block/basin_pre",
+      "y": 270
+    },
+    "facing=north,filled=true": {
+      "model": "cfm:block/basin_filled_pre",
+      "y": 270
+    },
+    "facing=east,filled=false": {
+      "model": "cfm:block/basin_pre"
+    },
+    "facing=east,filled=true": {
+      "model": "cfm:block/basin_filled_pre"
+    },
+    "facing=south,filled=false": {
+      "model": "cfm:block/basin_pre",
+      "y": 90
+    },
+    "facing=south,filled=true": {
+      "model": "cfm:block/basin_filled_pre",
+      "y": 90
+    },
+    "facing=west,filled=false": {
+      "model": "cfm:block/basin_pre",
+      "y": 180
+    },
+    "facing=west,filled=true": {
+      "model": "cfm:block/basin_filled_pre",
+      "y": 180
+    }
+  }
+}

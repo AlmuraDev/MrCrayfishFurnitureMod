@@ -1,4 +1,4 @@
-// 26.3	2026-11-15T22:43:56.5541006	Registries for Reloadable (cfm[1]): [minecraft, cfm]
+// 26.3	2026-11-15T22:53:03.8589018	Registries for Reloadable (cfm[1]): [minecraft, cfm]
 dd0a2505af6c271c4aaed3044f7fbfe6e4bacced data/cfm/advancement/recipes/decorations/acacia_bedside_cabinet.json
 1cd0a209bffd9841144595ffb77fd264935ddb6c data/cfm/advancement/recipes/decorations/acacia_blinds.json
 dd9cd67af70567bcf0ef4ec395036616ee7cf39c data/cfm/advancement/recipes/decorations/acacia_cabinet.json
@@ -18,6 +18,8 @@ a3af51a57617383eb46e469686fdaa5d85304e93 data/cfm/advancement/recipes/decoration
 e9381cdb457e436e9a67f1088ddc28a7caa35783 data/cfm/advancement/recipes/decorations/acacia_upgraded_fence.json
 e5ee774076d294f7e76c16f15c1ec3b7c508a89c data/cfm/advancement/recipes/decorations/acacia_upgraded_gate.json
 6c1d3c7171764b3d7205265f759bba692b0e3aaa data/cfm/advancement/recipes/decorations/azalea_hedge.json
+ee2f88f8067b6f57d96a06158498720cbc729472 data/cfm/advancement/recipes/decorations/basin.json
+7e71a9fa08744b58577bf980e82379776a0cbd71 data/cfm/advancement/recipes/decorations/bath.json
 259bd04763957a27e4d7002c8b4b898ec7367600 data/cfm/advancement/recipes/decorations/birch_bedside_cabinet.json
 067e0bebfee0dd543ff1a3a56fee5bb3bce71079 data/cfm/advancement/recipes/decorations/birch_blinds.json
 f33a4c5f5787af9d29f8077c6061777aa4fe0953 data/cfm/advancement/recipes/decorations/birch_cabinet.json
@@ -324,6 +326,8 @@ e9299dae60be6ca0a55d0b1b37f9c3217e990198 data/cfm/advancement/recipes/decoration
 abbe7cc05094d60a814fab1efa617425ef1e821c data/cfm/advancement/recipes/decorations/red_sofa.json
 4db557e9957d5c27498fe2b874d8233ed6446a2c data/cfm/advancement/recipes/decorations/red_trampoline.json
 832691cce960ae52c1bd8be29e0fe3674e67652d data/cfm/advancement/recipes/decorations/rock_path.json
+003773b3dc289e47a7f21cddb65770bee2babea5 data/cfm/advancement/recipes/decorations/shower.json
+4aab47bcbe492bc745c39d51ab4d1019794c4ca3 data/cfm/advancement/recipes/decorations/shower_head.json
 bc6986de5c74e992616b674d206b491df91cb964 data/cfm/advancement/recipes/decorations/spruce_bedside_cabinet.json
 097130a978c0a7d73b2ff73167aac7dd5be69b44 data/cfm/advancement/recipes/decorations/spruce_blinds.json
 29ffbee5c21942c99594e64e54855dedf945a191 data/cfm/advancement/recipes/decorations/spruce_cabinet.json
@@ -495,6 +499,7 @@ c31e47890bfaa782fe707b5a134ae9fde88cdea1 data/cfm/advancement/recipes/decoration
 48670ede63409ff4515a00de5507b0c6731b28b0 data/cfm/advancement/recipes/decorations/stripped_warped_table.json
 f065c3b4c4cbefb8713d53828599d0fedf8e0a11 data/cfm/advancement/recipes/decorations/stripped_warped_upgraded_fence.json
 2c861b12fdf57311e282ebe657af5823137a052a data/cfm/advancement/recipes/decorations/stripped_warped_upgraded_gate.json
+3dc0bc500781e7448028c73a107429688669ae83 data/cfm/advancement/recipes/decorations/tap.json
 3163c23ebec2ffc2baf5311fe42aaeaffd4bd557 data/cfm/advancement/recipes/decorations/toilet.json
 b0e5e4c7a01d123d5bc9cf537b13301a231f2cf8 data/cfm/advancement/recipes/decorations/warped_bedside_cabinet.json
 21c012dc8656246fc206d61907d8e4caf48986d8 data/cfm/advancement/recipes/decorations/warped_blinds.json
@@ -557,6 +562,8 @@ c3ae6e968ef7da5a2b26b23906d6cb98d3c42300 data/cfm/loot_table/blocks/acacia_table
 97b7c678cabff57ae8eb2373cd9df5aab2482fb0 data/cfm/loot_table/blocks/acacia_upgraded_fence.json
 2edd1bc464317502ebcc1a21cc8a16e6713ae9cd data/cfm/loot_table/blocks/acacia_upgraded_gate.json
 5935e40f5385bd6e88a040dc0b0aa480893432ae data/cfm/loot_table/blocks/azalea_hedge.json
+c6abdd36abff872c6f92621126732751b6d36e67 data/cfm/loot_table/blocks/basin.json
+0b9081c1d303b6968f5bbdf84c3094bee3c023be data/cfm/loot_table/blocks/bath.json
 d702afefa40e554c1c53e5d0b359dffb72a70e82 data/cfm/loot_table/blocks/birch_bedside_cabinet.json
 b7749579a2541d86b0d63ff65453886346dd28a7 data/cfm/loot_table/blocks/birch_blinds.json
 299319fc8d952f0e8566b85aba6fc94f3f7fe738 data/cfm/loot_table/blocks/birch_cabinet.json
@@ -824,6 +831,8 @@ e143d926cdff622ee2e52bf79e78dda7ccf56830 data/cfm/loot_table/blocks/red_picket_f
 763874721db25646f4cb946bcd1d8ed4d30e08c5 data/cfm/loot_table/blocks/red_picket_gate.json
 b4138a719b4f6297f27db9097b98bf4f67efc837 data/cfm/loot_table/blocks/red_sofa.json
 ddd20aa8a77e7cfbc4f310673e763f3b7c8e903b data/cfm/loot_table/blocks/rock_path.json
+1ae51ba702bba3a04a0b2c3a8b7eeb29b2cdf2aa data/cfm/loot_table/blocks/shower.json
+e1078da8d2f8007553e7a3c8a1f9461236834e56 data/cfm/loot_table/blocks/shower_head.json
 59f4ea4433832db5ec80dcb68d5497d908dc33a7 data/cfm/loot_table/blocks/spruce_bedside_cabinet.json
 f2d352dc024d1c300b3114889dadba926f2ef86a data/cfm/loot_table/blocks/spruce_blinds.json
 8d21859f653397c3744d4e70ed635c2dc92eb45e data/cfm/loot_table/blocks/spruce_cabinet.json
@@ -995,6 +1004,7 @@ a506b6b7befdbbe51b65abafc19341b2f09e3e30 data/cfm/loot_table/blocks/stripped_war
 8854a19251c6895b05626d5dc1c574d10505252b data/cfm/loot_table/blocks/stripped_warped_table.json
 6d3e034ba8a94c8a2719cfa5333ebc2baae6c58b data/cfm/loot_table/blocks/stripped_warped_upgraded_fence.json
 8c41a44eaa74ba17f1feb537ff192fc7113edbca data/cfm/loot_table/blocks/stripped_warped_upgraded_gate.json
+16fccaacd044f57800ae69b55ce7144c02f8092f data/cfm/loot_table/blocks/tap.json
 f4e7d99f53f4f67b9a59428c961db25b53595b7d data/cfm/loot_table/blocks/toilet.json
 6a66d259c41400a7ff8a08e47241e9c5b687f34d data/cfm/loot_table/blocks/trampoline.json
 341c1559fa8dbd1efbe42f1d75981e4e4c055b57 data/cfm/loot_table/blocks/warped_bedside_cabinet.json
@@ -1054,6 +1064,8 @@ bf49a9b887ce6335d088eaf0949a8fa874564288 data/cfm/recipe/acacia_table.json
 b3e914a63c8823711b929d25cf8315b127092eb5 data/cfm/recipe/acacia_upgraded_fence.json
 3e081d7d40b24a20ef6cdf82b03ba54537d51744 data/cfm/recipe/acacia_upgraded_gate.json
 0b160f6d94f7b4244fe78f6144010fd8eb4df282 data/cfm/recipe/azalea_hedge.json
+66e92c926bda3d861dc0cec3f599f377295e9ed4 data/cfm/recipe/basin.json
+6046e2ae8a226fb1807a4b6f0369563ca9ecde4e data/cfm/recipe/bath.json
 f9b3e799ee2ba0e699dddc5196037589fff9f7b2 data/cfm/recipe/birch_bedside_cabinet.json
 c45edd382a85c579ef437e5d29bad523c7beb3d5 data/cfm/recipe/birch_blinds.json
 82bacbe084f3e228e17cbde081a274f94fc2a679 data/cfm/recipe/birch_cabinet.json
@@ -1362,6 +1374,8 @@ e5c0b00d8eeffa5a958586086ce28e4bb510d8ea data/cfm/recipe/red_picket_gate.json
 7810e140bee362fb0217b45d5958a88c3aabd46a data/cfm/recipe/red_sofa.json
 649c91f2c32589ea4009aaae39942ff50f35fe8d data/cfm/recipe/red_trampoline.json
 a195a75fb1fe6a30a064cb89b679ca0560cf2657 data/cfm/recipe/rock_path.json
+583b99bda1e5a3da1e06f674814f54218bda4058 data/cfm/recipe/shower.json
+c30ddaf4443fb0de0324c8cab8b6964f7e0603bf data/cfm/recipe/shower_head.json
 ea8bebab1bec37d7eed341c2cafa4e2c5d185278 data/cfm/recipe/spatula.json
 c1ded449251cd143bbb2cd5bec7c7f76bac48c60 data/cfm/recipe/spruce_bedside_cabinet.json
 1cd0579b5578947e1b69edbd30959385967299e6 data/cfm/recipe/spruce_blinds.json
@@ -1534,6 +1548,7 @@ a34f11b5a49baab45c336f07fda8fefc98e2f4ba data/cfm/recipe/stripped_warped_mail_bo
 8bc5361646ce8d8918a65b6b4712e8fc67a03670 data/cfm/recipe/stripped_warped_table.json
 b073351cbe3a3b13547b4fadeed42335ac76753e data/cfm/recipe/stripped_warped_upgraded_fence.json
 a1d4e2df4e6aef6f133991f801bfd7a7393a8043 data/cfm/recipe/stripped_warped_upgraded_gate.json
+04a7ee8558ad05f3f9814c5c60a071fe51bc109d data/cfm/recipe/tap.json
 b38b6220728d02a0070dc1398e1941806d61f389 data/cfm/recipe/toilet.json
 cc642b445237225ef526e8395b0049628dd53862 data/cfm/recipe/warped_bedside_cabinet.json
 71795d806285cd9b642ca123581e8cf3d4bbdc18 data/cfm/recipe/warped_blinds.json

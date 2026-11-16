@@ -54,5 +54,13 @@
     "block.light_switch.click": {
         "subtitle": "subtitle.cfm.light_switch",
         "sounds": [ "cfm:block/light_switch/click" ]
+    },
+    "block.tap.run": {
+        "subtitle": "subtitle.cfm.tap",
+        "sounds": [ "cfm:block/tap/run" ]
+    },
+    "block.shower.run": {
+        "subtitle": "subtitle.cfm.shower",
+        "sounds": [ "cfm:block/shower/run" ]
     }
 }

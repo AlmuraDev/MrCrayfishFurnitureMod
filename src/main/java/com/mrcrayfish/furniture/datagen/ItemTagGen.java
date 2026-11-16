@@ -99,6 +99,13 @@ public class ItemTagGen extends BlockTagCopyingItemTagProvider
                 .add(item(ModBlocks.LAMP_BLACK));
         this.tag(ModTags.Items.KITCHEN)
                 .add(item(ModBlocks.RANGE_HOOD));
+        this.tag(ModTags.Items.GENERAL)
+                .add(item(ModBlocks.BASIN))
+                .add(item(ModBlocks.SHOWER))
+                .add(item(ModBlocks.SHOWER_HEAD))
+                .add(item(ModBlocks.BATH));
+        this.tag(ModTags.Items.OUTDOORS)
+                .add(item(ModBlocks.TAP));
 
         this.tag(ModTags.Items.KITCHEN)
                 // Kitchen Counters

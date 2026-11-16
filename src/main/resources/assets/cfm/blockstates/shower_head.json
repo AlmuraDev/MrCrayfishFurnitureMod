@@ -1,0 +1,34 @@
+{
+  "variants": {
+    "facing=north,running=false": {
+      "model": "cfm:block/shower_head_pre",
+      "y": 270
+    },
+    "facing=north,running=true": {
+      "model": "cfm:block/shower_head_pre",
+      "y": 270
+    },
+    "facing=east,running=false": {
+      "model": "cfm:block/shower_head_pre"
+    },
+    "facing=east,running=true": {
+      "model": "cfm:block/shower_head_pre"
+    },
+    "facing=south,running=false": {
+      "model": "cfm:block/shower_head_pre",
+      "y": 90
+    },
+    "facing=south,running=true": {
+      "model": "cfm:block/shower_head_pre",
+      "y": 90
+    },
+    "facing=west,running=false": {
+      "model": "cfm:block/shower_head_pre",
+      "y": 180
+    },
+    "facing=west,running=true": {
+      "model": "cfm:block/shower_head_pre",
+      "y": 180
+    }
+  }
+}

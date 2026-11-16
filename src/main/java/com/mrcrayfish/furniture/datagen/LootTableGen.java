@@ -1,6 +1,10 @@
 package com.mrcrayfish.furniture.datagen;
 
+import com.mrcrayfish.furniture.block.BathBlock;
 import com.mrcrayfish.furniture.block.CoffeeTableBlock;
+import com.mrcrayfish.furniture.block.ShowerBlock;
+import net.minecraft.world.level.block.state.properties.BedPart;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import com.mrcrayfish.furniture.block.FirePitBlock;
 import com.mrcrayfish.furniture.core.ModDataComponents;
 import com.mrcrayfish.furniture.core.ModItems;
@@ -136,6 +140,11 @@ public class LootTableGen extends LootTableProvider
             this.dropSelf(ModBlocks.LAMP_RED.get());
             this.dropSelf(ModBlocks.LAMP_BLACK.get());
             this.registerLightSwitch(ModBlocks.LIGHT_SWITCH.get());
+            this.dropSelf(ModBlocks.BASIN.get());
+            this.dropSelf(ModBlocks.TAP.get());
+            this.dropSelf(ModBlocks.SHOWER_HEAD.get());
+            this.add(ModBlocks.SHOWER.get(), block -> this.createSinglePropConditionTable(block, ShowerBlock.HALF, DoubleBlockHalf.LOWER));
+            this.add(ModBlocks.BATH.get(), block -> this.createSinglePropConditionTable(block, BathBlock.PART, BedPart.HEAD));
             this.registerFirePit(ModBlocks.FIRE_PIT.get());
             this.dropSelf(ModBlocks.BAR_STOOL_WHITE.get());
             this.dropSelf(ModBlocks.BAR_STOOL_ORANGE.get());

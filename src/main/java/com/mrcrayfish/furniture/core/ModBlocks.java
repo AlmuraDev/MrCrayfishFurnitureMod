@@ -531,6 +531,13 @@ public class ModBlocks
     public static final DeferredBlock<Block> LAMP_RED = register("red_lamp", p -> new LampBlock(p, DyeColor.RED), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.RED.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
     public static final DeferredBlock<Block> LAMP_BLACK = register("black_lamp", p -> new LampBlock(p, DyeColor.BLACK), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
 
+    // Bathroom (1.12.2)
+    public static final DeferredBlock<Block> BASIN = register("basin", p -> new BasinBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).instrument(NoteBlockInstrument.BASEDRUM).strength(1.0F).sound(SoundType.STONE).noOcclusion());
+    public static final DeferredBlock<Block> TAP = register("tap", p -> new TapBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(0.5F).sound(SoundType.STONE).noOcclusion());
+    public static final DeferredBlock<Block> SHOWER = register("shower", p -> new ShowerBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).instrument(NoteBlockInstrument.BASEDRUM).strength(1.0F).sound(SoundType.STONE).noOcclusion());
+    public static final DeferredBlock<Block> SHOWER_HEAD = register("shower_head", p -> new ShowerHeadBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.BASEDRUM).strength(1.0F).sound(SoundType.STONE).noOcclusion());
+    public static final DeferredBlock<Block> BATH = register("bath", p -> new BathBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).instrument(NoteBlockInstrument.BASEDRUM).strength(1.0F).sound(SoundType.STONE).noOcclusion());
+
     private static DeferredBlock<Block> register(String name, Function<BlockBehaviour.Properties, Block> factory, Supplier<BlockBehaviour.Properties> properties)
     {
         DeferredBlock<Block> block = REGISTER.registerBlock(name, factory, properties);

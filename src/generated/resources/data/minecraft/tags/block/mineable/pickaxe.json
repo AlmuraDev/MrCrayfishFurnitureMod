@@ -71,6 +71,11 @@
     "cfm:chimney",
     "cfm:mantel_piece",
     "cfm:toilet",
-    "cfm:range_hood"
+    "cfm:range_hood",
+    "cfm:basin",
+    "cfm:tap",
+    "cfm:shower",
+    "cfm:shower_head",
+    "cfm:bath"
   ]
 }

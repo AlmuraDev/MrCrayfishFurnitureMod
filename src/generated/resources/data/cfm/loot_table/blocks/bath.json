@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:match_block",
+            "blocks": "cfm:bath",
+            "state": {
+              "part": "head"
+            }
+          },
+          "name": "cfm:bath"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "cfm:blocks/bath"
+}

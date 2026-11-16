@@ -1,0 +1,9 @@
+{
+  "parent": "cfm:block/bath_top_8",
+  "textures": {
+    "1": "minecraft:block/water_still",
+    "2": "minecraft:block/white_concrete",
+    "3": "minecraft:block/cyan_terracotta",
+    "4": "minecraft:block/stone"
+  }
+}
