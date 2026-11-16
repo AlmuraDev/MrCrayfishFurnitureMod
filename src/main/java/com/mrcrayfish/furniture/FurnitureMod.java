@@ -6,6 +6,7 @@ import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import com.mrcrayfish.furniture.core.ModCreativeTabs;
+import com.mrcrayfish.furniture.core.ModDataComponents;
 import com.mrcrayfish.furniture.core.ModEntities;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
@@ -35,6 +36,7 @@ public class FurnitureMod
     {
         ModBlocks.REGISTER.register(modBus);
         ModItems.REGISTER.register(modBus);
+        ModDataComponents.REGISTER.register(modBus);
         ModEntities.REGISTER.register(modBus);
         ModBlockEntities.REGISTER.register(modBus);
         ModContainers.REGISTER.register(modBus);

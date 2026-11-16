@@ -33,6 +33,7 @@ public class ModBlockEntities
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<KitchenSinkBlockEntity>> KITCHEN_SINK = register("kitchen_sink", KitchenSinkBlockEntity::new, KitchenSinkBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FridgeBlockEntity>> FRIDGE = register("fridge", FridgeBlockEntity::new, FridgeBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FreezerBlockEntity>> FREEZER = register("freezer", FreezerBlockEntity::new, FreezerBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<LightSwitchBlockEntity>> LIGHT_SWITCH = register("light_switch", LightSwitchBlockEntity::new, LightSwitchBlock.class);
 
     /**
      * Registers a block entity type that is valid for every furniture block of the given class (every wood and colour of it). Blocks

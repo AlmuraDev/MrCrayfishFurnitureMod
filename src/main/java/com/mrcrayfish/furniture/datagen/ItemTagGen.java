@@ -75,7 +75,30 @@ public class ItemTagGen extends BlockTagCopyingItemTagProvider
                 .add(item(ModBlocks.BAR_STOOL_RED))
                 .add(item(ModBlocks.BAR_STOOL_BLACK));
         this.tag(ModTags.Items.OUTDOORS)
-                .add(item(ModBlocks.BIRD_BATH));
+                .add(item(ModBlocks.BIRD_BATH))
+                .add(ResourceKey.create(Registries.ITEM, ModItems.FIREWOOD.getId()));
+        this.tag(ModTags.Items.GENERAL)
+                .add(item(ModBlocks.CEILING_LIGHT))
+                .add(item(ModBlocks.MODERN_LIGHT))
+                .add(item(ModBlocks.LIGHT_SWITCH))
+                .add(item(ModBlocks.LAMP_WHITE))
+                .add(item(ModBlocks.LAMP_ORANGE))
+                .add(item(ModBlocks.LAMP_MAGENTA))
+                .add(item(ModBlocks.LAMP_LIGHT_BLUE))
+                .add(item(ModBlocks.LAMP_YELLOW))
+                .add(item(ModBlocks.LAMP_LIME))
+                .add(item(ModBlocks.LAMP_PINK))
+                .add(item(ModBlocks.LAMP_GRAY))
+                .add(item(ModBlocks.LAMP_LIGHT_GRAY))
+                .add(item(ModBlocks.LAMP_CYAN))
+                .add(item(ModBlocks.LAMP_PURPLE))
+                .add(item(ModBlocks.LAMP_BLUE))
+                .add(item(ModBlocks.LAMP_BROWN))
+                .add(item(ModBlocks.LAMP_GREEN))
+                .add(item(ModBlocks.LAMP_RED))
+                .add(item(ModBlocks.LAMP_BLACK));
+        this.tag(ModTags.Items.KITCHEN)
+                .add(item(ModBlocks.RANGE_HOOD));
 
         this.tag(ModTags.Items.KITCHEN)
                 // Kitchen Counters

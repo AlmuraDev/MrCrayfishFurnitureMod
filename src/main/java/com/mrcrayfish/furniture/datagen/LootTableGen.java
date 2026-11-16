@@ -1,6 +1,11 @@
 package com.mrcrayfish.furniture.datagen;
 
 import com.mrcrayfish.furniture.block.CoffeeTableBlock;
+import com.mrcrayfish.furniture.block.FirePitBlock;
+import com.mrcrayfish.furniture.core.ModDataComponents;
+import com.mrcrayfish.furniture.core.ModItems;
+import net.minecraft.world.level.storage.loot.entries.UniformContainerBase;
+import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import net.minecraft.advancements.predicates.StatePropertiesPredicate;
 import net.minecraft.core.component.DataComponents;
@@ -111,6 +116,27 @@ public class LootTableGen extends LootTableProvider
             this.dropSelf(ModBlocks.WREATH.get());
             this.dropSelf(ModBlocks.FAIRY_LIGHT.get());
             this.dropSelf(ModBlocks.TOILET.get());
+            this.dropSelf(ModBlocks.CEILING_LIGHT.get());
+            this.dropSelf(ModBlocks.MODERN_LIGHT.get());
+            this.dropSelf(ModBlocks.RANGE_HOOD.get());
+            this.dropSelf(ModBlocks.LAMP_WHITE.get());
+            this.dropSelf(ModBlocks.LAMP_ORANGE.get());
+            this.dropSelf(ModBlocks.LAMP_MAGENTA.get());
+            this.dropSelf(ModBlocks.LAMP_LIGHT_BLUE.get());
+            this.dropSelf(ModBlocks.LAMP_YELLOW.get());
+            this.dropSelf(ModBlocks.LAMP_LIME.get());
+            this.dropSelf(ModBlocks.LAMP_PINK.get());
+            this.dropSelf(ModBlocks.LAMP_GRAY.get());
+            this.dropSelf(ModBlocks.LAMP_LIGHT_GRAY.get());
+            this.dropSelf(ModBlocks.LAMP_CYAN.get());
+            this.dropSelf(ModBlocks.LAMP_PURPLE.get());
+            this.dropSelf(ModBlocks.LAMP_BLUE.get());
+            this.dropSelf(ModBlocks.LAMP_BROWN.get());
+            this.dropSelf(ModBlocks.LAMP_GREEN.get());
+            this.dropSelf(ModBlocks.LAMP_RED.get());
+            this.dropSelf(ModBlocks.LAMP_BLACK.get());
+            this.registerLightSwitch(ModBlocks.LIGHT_SWITCH.get());
+            this.registerFirePit(ModBlocks.FIRE_PIT.get());
             this.dropSelf(ModBlocks.BAR_STOOL_WHITE.get());
             this.dropSelf(ModBlocks.BAR_STOOL_ORANGE.get());
             this.dropSelf(ModBlocks.BAR_STOOL_MAGENTA.get());
@@ -233,6 +259,23 @@ public class LootTableGen extends LootTableProvider
         public void registerCoffeeTable(Block block)
         {
             this.add(block, coffeeTable -> LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ContextIntProviders.exactly(1)).add(this.applyExplosionCondition(coffeeTable, LootItem.lootTableItem(coffeeTable).apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(2)).when(MatchBlock.blockMatches(this.blocks, coffeeTable, StatePropertiesPredicate.Builder.properties().hasProperty(CoffeeTableBlock.TALL, true))))))));
+        }
+
+        public void registerLightSwitch(Block block)
+        {
+            // Keeps the switch's linked lights on the dropped item
+            this.add(block, lightSwitch -> LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ContextIntProviders.exactly(1)).add(this.applyExplosionCondition(lightSwitch, LootItem.lootTableItem(lightSwitch).apply(CopyComponentsFunction.copyComponentsFromBlockEntity(LootContextParams.BLOCK_ENTITY).include(ModDataComponents.LINKED_LIGHTS.get()))))));
+        }
+
+        public void registerFirePit(Block block)
+        {
+            // A fire pit gives back its firewood: one log for each stage it was built up to
+            UniformContainerBase.Builder<?> firewood = LootItem.lootTableItem(ModItems.FIREWOOD.get());
+            for(int stage = 1; stage <= FirePitBlock.MAX_STAGE; stage++)
+            {
+                firewood.apply(SetItemCountFunction.setCount(ContextIntProviders.exactly(stage + 1)).when(MatchBlock.blockMatches(this.blocks, block, StatePropertiesPredicate.Builder.properties().hasProperty(FirePitBlock.STAGE, stage))));
+            }
+            this.add(block, LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ContextIntProviders.exactly(1)).add(firewood).when(ExplosionCondition.survivesExplosion())));
         }
 
         public void registerTrampoline(Block block)

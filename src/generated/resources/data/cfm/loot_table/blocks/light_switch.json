@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:survives_explosion"
+          },
+          "modifier": {
+            "type": "minecraft:copy_components",
+            "include": [
+              "cfm:linked_lights"
+            ],
+            "source": "block_entity"
+          },
+          "name": "cfm:light_switch"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "cfm:blocks/light_switch"
+}

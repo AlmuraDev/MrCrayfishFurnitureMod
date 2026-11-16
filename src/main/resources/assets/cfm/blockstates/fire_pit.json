@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "lit=false,stage=0": {
+      "model": "cfm:block/fire_pit_0"
+    },
+    "lit=false,stage=1": {
+      "model": "cfm:block/fire_pit_1"
+    },
+    "lit=false,stage=2": {
+      "model": "cfm:block/fire_pit_2"
+    },
+    "lit=false,stage=3": {
+      "model": "cfm:block/fire_pit_3"
+    },
+    "lit=true,stage=0": {
+      "model": "cfm:block/fire_pit"
+    },
+    "lit=true,stage=1": {
+      "model": "cfm:block/fire_pit"
+    },
+    "lit=true,stage=2": {
+      "model": "cfm:block/fire_pit"
+    },
+    "lit=true,stage=3": {
+      "model": "cfm:block/fire_pit"
+    }
+  }
+}

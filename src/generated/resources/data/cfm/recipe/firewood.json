@@ -1,0 +1,11 @@
+{
+  "type": "cfm:cutting",
+  "ingredients": [
+    "#minecraft:axes",
+    "#minecraft:logs_that_burn"
+  ],
+  "result": {
+    "count": 8,
+    "id": "cfm:firewood"
+  }
+}

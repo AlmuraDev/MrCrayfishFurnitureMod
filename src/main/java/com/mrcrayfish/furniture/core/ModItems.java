@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.item.FirewoodItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ToolMaterial;
 import net.neoforged.neoforge.registries.DeferredItem;
@@ -14,4 +15,7 @@ public class ModItems
     public static final DeferredRegister.Items REGISTER = DeferredRegister.createItems(Reference.MOD_ID);
 
     public static final DeferredItem<Item> SPATULA = REGISTER.registerItem("spatula", Item::new, () -> new Item.Properties().sword(ToolMaterial.IRON, 3, -1.4F));
+
+    // Places and builds up a fire pit (the 1.12.2 log item)
+    public static final DeferredItem<FirewoodItem> FIREWOOD = REGISTER.registerItem("firewood", props -> new FirewoodItem(ModBlocks.FIRE_PIT.get(), props), () -> new Item.Properties().stacksTo(16));
 }

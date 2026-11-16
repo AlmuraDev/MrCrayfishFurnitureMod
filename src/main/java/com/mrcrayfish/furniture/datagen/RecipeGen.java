@@ -3,7 +3,11 @@ package com.mrcrayfish.furniture.datagen;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
+import com.mrcrayfish.furniture.item.crafting.CuttingRecipe;
 import com.mrcrayfish.furniture.item.crafting.FreezerSolidifyRecipe;
+import net.minecraft.world.item.crafting.CraftingBookCategory;
+import net.minecraft.world.item.crafting.CraftingRecipe;
+import java.util.List;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.core.component.DataComponentPatch;
@@ -405,6 +409,60 @@ public class RecipeGen extends RecipeProvider
         this.barStool(ModBlocks.BAR_STOOL_GREEN.get(), Blocks.WOOL.pick(DyeColor.GREEN));
         this.barStool(ModBlocks.BAR_STOOL_RED.get(), Blocks.WOOL.pick(DyeColor.RED));
         this.barStool(ModBlocks.BAR_STOOL_BLACK.get(), Blocks.WOOL.pick(DyeColor.BLACK));
+        // Lights (1.12.2)
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CEILING_LIGHT.get(), 4)
+                .pattern("O")
+                .pattern("S")
+                .pattern("G")
+                .define('O', Blocks.CONCRETE.pick(DyeColor.GRAY))
+                .define('S', Blocks.CONCRETE.pick(DyeColor.LIGHT_GRAY))
+                .define('G', Blocks.GLOWSTONE)
+                .unlockedBy("has_glowstone", this.has(Blocks.GLOWSTONE))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.MODERN_LIGHT.get(), 4)
+                .pattern("CGC")
+                .pattern("PPP")
+                .define('C', Blocks.CONCRETE.pick(DyeColor.GRAY))
+                .define('G', Blocks.GLOWSTONE)
+                .define('P', Blocks.GLASS_PANE)
+                .unlockedBy("has_glowstone", this.has(Blocks.GLOWSTONE))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.RANGE_HOOD.get())
+                .pattern(" I ")
+                .pattern(" I ")
+                .pattern("ISI")
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('S', Blocks.SEA_LANTERN)
+                .unlockedBy("has_sea_lantern", this.has(Blocks.SEA_LANTERN))
+                .save(this.output);
+        this.shaped(RecipeCategory.REDSTONE, ModBlocks.LIGHT_SWITCH.get())
+                .pattern("CCC")
+                .pattern("CLC")
+                .pattern("CCC")
+                .define('C', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('L', Blocks.LEVER)
+                .unlockedBy("has_lever", this.has(Blocks.LEVER))
+                .save(this.output);
+        // An axe and a log make eight firewood; the axe takes one use of damage
+        CuttingRecipe firewood = new CuttingRecipe(new Recipe.CommonInfo(true), new CraftingRecipe.CraftingBookInfo(CraftingBookCategory.MISC, ""),
+                new ItemStackTemplate(ModItems.FIREWOOD.get(), 8), List.of(this.tag(ItemTags.AXES), this.tag(ItemTags.LOGS_THAT_BURN)));
+        this.output.accept(recipeKey(Identifier.fromNamespaceAndPath(Reference.MOD_ID, "firewood")), firewood, null);
+        this.lamp(ModBlocks.LAMP_WHITE.get(), Blocks.WOOL.pick(DyeColor.WHITE));
+        this.lamp(ModBlocks.LAMP_ORANGE.get(), Blocks.WOOL.pick(DyeColor.ORANGE));
+        this.lamp(ModBlocks.LAMP_MAGENTA.get(), Blocks.WOOL.pick(DyeColor.MAGENTA));
+        this.lamp(ModBlocks.LAMP_LIGHT_BLUE.get(), Blocks.WOOL.pick(DyeColor.LIGHT_BLUE));
+        this.lamp(ModBlocks.LAMP_YELLOW.get(), Blocks.WOOL.pick(DyeColor.YELLOW));
+        this.lamp(ModBlocks.LAMP_LIME.get(), Blocks.WOOL.pick(DyeColor.LIME));
+        this.lamp(ModBlocks.LAMP_PINK.get(), Blocks.WOOL.pick(DyeColor.PINK));
+        this.lamp(ModBlocks.LAMP_GRAY.get(), Blocks.WOOL.pick(DyeColor.GRAY));
+        this.lamp(ModBlocks.LAMP_LIGHT_GRAY.get(), Blocks.WOOL.pick(DyeColor.LIGHT_GRAY));
+        this.lamp(ModBlocks.LAMP_CYAN.get(), Blocks.WOOL.pick(DyeColor.CYAN));
+        this.lamp(ModBlocks.LAMP_PURPLE.get(), Blocks.WOOL.pick(DyeColor.PURPLE));
+        this.lamp(ModBlocks.LAMP_BLUE.get(), Blocks.WOOL.pick(DyeColor.BLUE));
+        this.lamp(ModBlocks.LAMP_BROWN.get(), Blocks.WOOL.pick(DyeColor.BROWN));
+        this.lamp(ModBlocks.LAMP_GREEN.get(), Blocks.WOOL.pick(DyeColor.GREEN));
+        this.lamp(ModBlocks.LAMP_RED.get(), Blocks.WOOL.pick(DyeColor.RED));
+        this.lamp(ModBlocks.LAMP_BLACK.get(), Blocks.WOOL.pick(DyeColor.BLACK));
 
         // Cooking Recipes
         this.cookingRecipesForMethod("grill_cooking", GrillCookingRecipe::new, 600);
@@ -413,6 +471,20 @@ public class RecipeGen extends RecipeProvider
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.WATER_BUCKET), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.ICE, 1, 1000, FreezerSolidifyRecipe::new).unlockedBy("has_water", this.has(Items.WATER_BUCKET)).save(this.output, "ice_from_freezing");
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.ICE), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.PACKED_ICE, 1, 2000, FreezerSolidifyRecipe::new).unlockedBy("has_ice", this.has(Items.ICE)).save(this.output, "packed_ice_from_freezing");
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.PACKED_ICE), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.BLUE_ICE, 1, 4000, FreezerSolidifyRecipe::new).unlockedBy("has_packed_ice", this.has(Items.PACKED_ICE)).save(this.output, "blue_ice_from_freezing");
+    }
+
+    private void lamp(ItemLike lamp, ItemLike wool)
+    {
+        this.shaped(RecipeCategory.DECORATIONS, lamp, 2)
+                .pattern("WWW")
+                .pattern("WGW")
+                .pattern(" O ")
+                .define('W', wool)
+                .define('G', Blocks.GLOWSTONE)
+                .define('O', Blocks.OBSIDIAN)
+                .group("lamp")
+                .unlockedBy("has_glowstone", this.has(Blocks.GLOWSTONE))
+                .save(this.output);
     }
 
     private void barStool(ItemLike stool, ItemLike wool)

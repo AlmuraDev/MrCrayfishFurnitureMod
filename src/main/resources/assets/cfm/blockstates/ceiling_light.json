@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "lit=false,mode=right_click": {
+      "model": "cfm:block/ceiling_light_off_pre"
+    },
+    "lit=false,mode=redstone": {
+      "model": "cfm:block/ceiling_light_off_pre"
+    },
+    "lit=true,mode=right_click": {
+      "model": "cfm:block/ceiling_light_pre"
+    },
+    "lit=true,mode=redstone": {
+      "model": "cfm:block/ceiling_light_pre"
+    }
+  }
+}

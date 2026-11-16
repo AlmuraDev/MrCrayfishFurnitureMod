@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "down=false,lit=false,up=false": {
+      "model": "cfm:block/light_blue_lamp"
+    },
+    "down=false,lit=false,up=true": {
+      "model": "cfm:block/lamp_bottom"
+    },
+    "down=true,lit=false,up=false": {
+      "model": "cfm:block/light_blue_lamp_top"
+    },
+    "down=true,lit=false,up=true": {
+      "model": "cfm:block/lamp_middle"
+    },
+    "down=false,lit=true,up=false": {
+      "model": "cfm:block/light_blue_lamp"
+    },
+    "down=false,lit=true,up=true": {
+      "model": "cfm:block/lamp_bottom"
+    },
+    "down=true,lit=true,up=false": {
+      "model": "cfm:block/light_blue_lamp_top"
+    },
+    "down=true,lit=true,up=true": {
+      "model": "cfm:block/lamp_middle"
+    }
+  }
+}

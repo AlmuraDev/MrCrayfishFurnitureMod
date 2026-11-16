@@ -50,5 +50,9 @@
     "block.toilet.flush": {
         "subtitle": "subtitle.cfm.toilet_flush",
         "sounds": [ "cfm:block/toilet/flush" ]
+    },
+    "block.light_switch.click": {
+        "subtitle": "subtitle.cfm.light_switch",
+        "sounds": [ "cfm:block/light_switch/click" ]
     }
 }

@@ -70,6 +70,7 @@
     "cfm:candle",
     "cfm:chimney",
     "cfm:mantel_piece",
-    "cfm:toilet"
+    "cfm:toilet",
+    "cfm:range_hood"
   ]
 }

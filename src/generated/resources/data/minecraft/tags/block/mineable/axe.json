@@ -323,6 +323,8 @@
     "cfm:brown_bar_stool",
     "cfm:green_bar_stool",
     "cfm:red_bar_stool",
-    "cfm:black_bar_stool"
+    "cfm:black_bar_stool",
+    "cfm:fire_pit",
+    "cfm:light_switch"
   ]
 }

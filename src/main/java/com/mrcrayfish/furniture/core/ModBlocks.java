@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.block.*;
 import com.mrcrayfish.furniture.item.BlockSupplierItem;
+import com.mrcrayfish.furniture.item.LightSwitchItem;
 import com.mrcrayfish.furniture.item.TrampolineItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.DyeColor;
@@ -11,6 +12,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -505,6 +507,29 @@ public class ModBlocks
     public static final DeferredBlock<Block> BAR_STOOL_GREEN = register("green_bar_stool", p -> new BarStoolBlock(p, DyeColor.GREEN), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.GREEN.getMapColor()).instrument(NoteBlockInstrument.BASS).strength(0.5F).sound(SoundType.WOOD).noOcclusion());
     public static final DeferredBlock<Block> BAR_STOOL_RED = register("red_bar_stool", p -> new BarStoolBlock(p, DyeColor.RED), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.RED.getMapColor()).instrument(NoteBlockInstrument.BASS).strength(0.5F).sound(SoundType.WOOD).noOcclusion());
     public static final DeferredBlock<Block> BAR_STOOL_BLACK = register("black_bar_stool", p -> new BarStoolBlock(p, DyeColor.BLACK), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK.getMapColor()).instrument(NoteBlockInstrument.BASS).strength(0.5F).sound(SoundType.WOOD).noOcclusion());
+
+    // Lights (1.12.2)
+    public static final DeferredBlock<Block> CEILING_LIGHT = register("ceiling_light", p -> new CeilingLightBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).strength(0.5F).sound(SoundType.GLASS).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> MODERN_LIGHT = register("modern_light", p -> new ModernLightBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).strength(0.5F).sound(SoundType.GLASS).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> RANGE_HOOD = register("range_hood", p -> new RangeHoodBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0.5F).sound(SoundType.METAL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 7 : 0).noOcclusion());
+    public static final DeferredBlock<Block> FIRE_PIT = registerNoItem("fire_pit", p -> new FirePitBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(1.0F).sound(SoundType.WOOD).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LIGHT_SWITCH = register("light_switch", p -> new LightSwitchBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion(), (block, props) -> new LightSwitchItem(block.get(), props));
+    public static final DeferredBlock<Block> LAMP_WHITE = register("white_lamp", p -> new LampBlock(p, DyeColor.WHITE), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.WHITE.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_ORANGE = register("orange_lamp", p -> new LampBlock(p, DyeColor.ORANGE), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.ORANGE.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_MAGENTA = register("magenta_lamp", p -> new LampBlock(p, DyeColor.MAGENTA), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.MAGENTA.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_LIGHT_BLUE = register("light_blue_lamp", p -> new LampBlock(p, DyeColor.LIGHT_BLUE), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.LIGHT_BLUE.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_YELLOW = register("yellow_lamp", p -> new LampBlock(p, DyeColor.YELLOW), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.YELLOW.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_LIME = register("lime_lamp", p -> new LampBlock(p, DyeColor.LIME), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.LIME.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_PINK = register("pink_lamp", p -> new LampBlock(p, DyeColor.PINK), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.PINK.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_GRAY = register("gray_lamp", p -> new LampBlock(p, DyeColor.GRAY), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.GRAY.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_LIGHT_GRAY = register("light_gray_lamp", p -> new LampBlock(p, DyeColor.LIGHT_GRAY), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.LIGHT_GRAY.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_CYAN = register("cyan_lamp", p -> new LampBlock(p, DyeColor.CYAN), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.CYAN.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_PURPLE = register("purple_lamp", p -> new LampBlock(p, DyeColor.PURPLE), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.PURPLE.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_BLUE = register("blue_lamp", p -> new LampBlock(p, DyeColor.BLUE), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLUE.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_BROWN = register("brown_lamp", p -> new LampBlock(p, DyeColor.BROWN), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BROWN.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_GREEN = register("green_lamp", p -> new LampBlock(p, DyeColor.GREEN), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.GREEN.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_RED = register("red_lamp", p -> new LampBlock(p, DyeColor.RED), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.RED.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
+    public static final DeferredBlock<Block> LAMP_BLACK = register("black_lamp", p -> new LampBlock(p, DyeColor.BLACK), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK.getMapColor()).strength(0.75F).sound(SoundType.WOOL).lightLevel(state -> state.getValue(BlockStateProperties.LIT) ? 15 : 0).noOcclusion());
 
     private static DeferredBlock<Block> register(String name, Function<BlockBehaviour.Properties, Block> factory, Supplier<BlockBehaviour.Properties> properties)
     {

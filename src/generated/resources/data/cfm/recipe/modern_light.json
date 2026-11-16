@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:gray_concrete",
+    "G": "minecraft:glowstone",
+    "P": "minecraft:glass_pane"
+  },
+  "pattern": [
+    "CGC",
+    "PPP"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:modern_light"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "minecraft:glowstone",
+    "O": "minecraft:gray_concrete",
+    "S": "minecraft:light_gray_concrete"
+  },
+  "pattern": [
+    "O",
+    "S",
+    "G"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:ceiling_light"
+  }
+}

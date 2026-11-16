@@ -1,0 +1,54 @@
+{
+  "variants": {
+    "facing=north,lit=false": {
+      "model": "cfm:block/modern_light_off",
+      "x": 90
+    },
+    "facing=north,lit=true": {
+      "model": "cfm:block/modern_light_on",
+      "x": 90
+    },
+    "facing=east,lit=false": {
+      "model": "cfm:block/modern_light_off",
+      "x": 270,
+      "y": 270
+    },
+    "facing=east,lit=true": {
+      "model": "cfm:block/modern_light_on",
+      "x": 270,
+      "y": 270
+    },
+    "facing=south,lit=false": {
+      "model": "cfm:block/modern_light_off",
+      "x": 270
+    },
+    "facing=south,lit=true": {
+      "model": "cfm:block/modern_light_on",
+      "x": 270
+    },
+    "facing=west,lit=false": {
+      "model": "cfm:block/modern_light_off",
+      "x": 270,
+      "y": 90
+    },
+    "facing=west,lit=true": {
+      "model": "cfm:block/modern_light_on",
+      "x": 270,
+      "y": 90
+    },
+    "facing=up,lit=false": {
+      "model": "cfm:block/modern_light_off"
+    },
+    "facing=up,lit=true": {
+      "model": "cfm:block/modern_light_on"
+    },
+    "facing=down,lit=false": {
+      "model": "cfm:block/modern_light_off",
+      "x": 180
+    },
+    "facing=down,lit=true": {
+      "model": "cfm:block/modern_light_on",
+      "x": 180
+    }
+  }
+}
