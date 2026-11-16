@@ -1,47 +1,30 @@
 package com.mrcrayfish.furniture.network.message;
 
-import com.mrcrayfish.furniture.network.play.ServerPlayHandler;
+import com.mrcrayfish.furniture.Reference;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
-
-import java.util.function.Supplier;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.Identifier;
 
 /**
+ * Opens a mail box's inventory again (from its settings screen).
+ *
  * Author: MrCrayfish
  */
-public class C2SMessageOpenMailBox implements IMessage<C2SMessageOpenMailBox>
+public record C2SMessageOpenMailBox(BlockPos pos) implements CustomPacketPayload
 {
-    private BlockPos pos;
-
-    public C2SMessageOpenMailBox() {}
-
-    public C2SMessageOpenMailBox(BlockPos pos)
-    {
-        this.pos = pos;
-    }
-
-    @Override
-    public void encode(C2SMessageOpenMailBox message, FriendlyByteBuf buffer)
-    {
-        buffer.writeBlockPos(message.pos);
-    }
-
-    @Override
-    public C2SMessageOpenMailBox decode(FriendlyByteBuf buffer)
-    {
-        return new C2SMessageOpenMailBox(buffer.readBlockPos());
-    }
-
-    @Override
-    public void handle(C2SMessageOpenMailBox message, Supplier<NetworkEvent.Context> supplier)
-    {
-        supplier.get().enqueueWork(() -> IMessage.callServerConsumer(message, supplier, ServerPlayHandler::handleOpenMailBoxMessage));
-        supplier.get().setPacketHandled(true);
-    }
+    public static final CustomPacketPayload.Type<C2SMessageOpenMailBox> TYPE = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(Reference.MOD_ID, "open_mail_box"));
+    public static final StreamCodec<ByteBuf, C2SMessageOpenMailBox> STREAM_CODEC = BlockPos.STREAM_CODEC.map(C2SMessageOpenMailBox::new, C2SMessageOpenMailBox::pos);
 
     public BlockPos getPos()
     {
         return this.pos;
+    }
+
+    @Override
+    public Type<C2SMessageOpenMailBox> type()
+    {
+        return TYPE;
     }
 }

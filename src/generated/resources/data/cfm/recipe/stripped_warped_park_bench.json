@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "park_bench",
+  "key": {
+    "L": "minecraft:warped_stem",
+    "P": "minecraft:stripped_warped_stem"
+  },
+  "pattern": [
+    "PPP",
+    "PPP",
+    "L L"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:stripped_warped_park_bench"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "mail_box",
+  "key": {
+    "C": "#c:chests/wooden",
+    "F": "cfm:stripped_jungle_upgraded_fence"
+  },
+  "pattern": [
+    "C",
+    "F",
+    "F"
+  ],
+  "result": {
+    "id": "cfm:stripped_jungle_mail_box"
+  }
+}

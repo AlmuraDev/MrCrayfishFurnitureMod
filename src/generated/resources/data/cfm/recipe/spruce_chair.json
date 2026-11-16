@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chair",
+  "key": {
+    "L": "minecraft:spruce_log",
+    "P": "minecraft:spruce_planks"
+  },
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:spruce_chair"
+  }
+}

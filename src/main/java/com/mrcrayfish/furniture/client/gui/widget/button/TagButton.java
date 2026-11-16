@@ -1,36 +1,35 @@
 package com.mrcrayfish.furniture.client.gui.widget.button;
 
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.BufferBuilder;
-import com.mojang.blaze3d.vertex.BufferUploader;
-import com.mojang.blaze3d.vertex.DefaultVertexFormat;
-import com.mojang.blaze3d.vertex.PoseStack;
-import com.mojang.blaze3d.vertex.Tesselator;
-import com.mojang.blaze3d.vertex.VertexFormat;
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
-import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.client.renderer.entity.ItemRenderer;
+import net.minecraft.client.input.InputWithModifiers;
+import net.minecraft.client.renderer.texture.TextureAtlasSprite;
+import net.minecraft.client.resources.model.sprite.SpriteId;
+import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.CommonComponents;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.world.item.ItemStack;
-import org.joml.Matrix4f;
+import org.joml.Matrix3x2f;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Author: MrCrayfish
  */
 public class TagButton extends Button
 {
-    private static final ResourceLocation TABS = new ResourceLocation("textures/gui/container/creative_inventory/tabs.png");
+    private static final Identifier TAB_SELECTED = Identifier.withDefaultNamespace("container/creative_inventory/tab_top_selected_2");
+    private static final Identifier TAB_UNSELECTED = Identifier.withDefaultNamespace("container/creative_inventory/tab_top_unselected_2");
+    private static final int TAB_WIDTH = 26;
+    private static final int TAB_HEIGHT = 32;
 
     private final CreativeScreenEvents.TagFilter category;
     private final ItemStack stack;
     private boolean toggled;
+    private @Nullable Tooltip tooltip;
 
     public TagButton(int x, int y, CreativeScreenEvents.TagFilter category, OnPress onPress)
     {
@@ -47,37 +46,39 @@ public class TagButton extends Button
     }
 
     @Override
-    public void onPress()
+    public void onPress(InputWithModifiers input)
     {
         this.toggled = !this.toggled;
         this.category.setEnabled(this.toggled);
-        super.onPress();
+        super.onPress(input);
     }
 
     @Override
-    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks)
+    protected void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks)
     {
         int width = this.toggled ? 32 : 28;
-        int textureX = 26;
-        int textureY = this.toggled ? 32 : 0;
-        RenderSystem.setShaderTexture(0, TABS);
-        RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, this.alpha);
-        this.drawRotatedTexture(graphics.pose().last().pose(), this.getX(), this.getY(), textureX, textureY, width, 26);
-        graphics.renderItem(this.stack, this.getX() + 8, this.getY() + 5);
+        this.drawRotatedTab(graphics, this.toggled ? TAB_SELECTED : TAB_UNSELECTED, this.getX(), this.getY(), width, 26);
+        graphics.item(this.stack, this.getX() + 8, this.getY() + 5);
     }
 
-    private void drawRotatedTexture(Matrix4f matrix4f, int x, int y, int textureX, int textureY, int width, int height)
+    /**
+     * Draws a creative tab on its side with its open end facing right: the sprite's horizontal axis runs down the
+     * screen and its vertical axis runs across it, like the quad MrCrayfish drew in 1.20.
+     */
+    private void drawRotatedTab(GuiGraphicsExtractor graphics, Identifier spriteId, int x, int y, int width, int height)
     {
-        float scaleX = 0.00390625F;
-        float scaleY = 0.00390625F;
-        RenderSystem.setShader(GameRenderer::getPositionTexShader);
-        BufferBuilder builder = Tesselator.getInstance().getBuilder();
-        builder.begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX);
-        builder.vertex(matrix4f, x, y + height, 0.0F).uv(((float) (textureX + height) * scaleX), ((float) (textureY) * scaleY)).endVertex();
-        builder.vertex(matrix4f, x + width, y + height, 0.0F).uv(((float) (textureX + height) * scaleX), ((float) (textureY + width) * scaleY)).endVertex();
-        builder.vertex(matrix4f, x + width, y, 0.0F).uv(((float) (textureX) * scaleX), ((float) (textureY + width) * scaleY)).endVertex();
-        builder.vertex(matrix4f, x, y, 0.0F).uv(((float) (textureX) * scaleX), ((float) (textureY) * scaleY)).endVertex();
-        BufferUploader.drawWithShader(builder.end());
+        TextureAtlasSprite sprite = graphics.getSprite(new SpriteId(AtlasIds.GUI, spriteId));
+        graphics.pose().pushMatrix();
+        graphics.pose().translate(x, y);
+        // A quarter turn (screen x = local y, screen y = -local x) with the u range reversed below gives the
+        // transposed sprite while keeping the quad's winding, which the culled GUI pipeline needs
+        graphics.pose().mul(new Matrix3x2f(0.0F, -1.0F, 1.0F, 0.0F, 0.0F, 0.0F));
+        float u0 = sprite.getU((float) height / TAB_WIDTH);
+        float u1 = sprite.getU(0.0F);
+        float v0 = sprite.getV(0.0F);
+        float v1 = sprite.getV((float) width / TAB_HEIGHT);
+        graphics.blit(sprite.atlasLocation(), -height, 0, 0, width, u0, u1, v0, v1);
+        graphics.pose().popMatrix();
     }
 
     public void updateState()
@@ -86,8 +87,23 @@ public class TagButton extends Button
     }
 
     @Override
-    protected ClientTooltipPositioner createTooltipPositioner()
+    public void setTooltip(@Nullable Tooltip tooltip)
     {
-        return DefaultTooltipPositioner.INSTANCE;
+        super.setTooltip(tooltip);
+        this.tooltip = tooltip;
+    }
+
+    /**
+     * Shows the tooltip at the mouse rather than beside the button
+     */
+    @Override
+    protected void extractTooltipForNextRenderPass(GuiGraphicsExtractor graphics, int mouseX, int mouseY)
+    {
+        if(this.tooltip != null && this.isHovered())
+        {
+            graphics.setTooltipForNextFrame(Minecraft.getInstance().font, this.tooltip.toCharSequence(Minecraft.getInstance()), DefaultTooltipPositioner.INSTANCE, mouseX, mouseY, false);
+            return;
+        }
+        super.extractTooltipForNextRenderPass(graphics, mouseX, mouseY);
     }
 }

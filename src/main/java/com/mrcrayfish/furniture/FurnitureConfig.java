@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture;
 
-import net.minecraftforge.common.ForgeConfigSpec;
+import net.neoforged.neoforge.common.ModConfigSpec;
 import org.apache.commons.lang3.tuple.Pair;
 
 /**
@@ -8,27 +8,12 @@ import org.apache.commons.lang3.tuple.Pair;
  */
 public class FurnitureConfig
 {
-    public static class Client
-    {
-        public final ForgeConfigSpec.BooleanValue drawCollisionShapes;
-
-        Client(ForgeConfigSpec.Builder builder)
-        {
-            builder.comment("Client configuration settings").push("client");
-            this.drawCollisionShapes = builder
-                    .comment("Draws the collision shape rather than the selection shape when hovering blocks. Used for debugging collisions.")
-                    .translation("cfm.configgui.drawCollisionShapes")
-                    .define("drawCollisionShapes", false);
-            builder.pop();
-        }
-    }
-
     public static class Common
     {
-        public final ForgeConfigSpec.IntValue maxMailQueue;
-        public final ForgeConfigSpec.IntValue pullMailInterval;
+        public final ModConfigSpec.IntValue maxMailQueue;
+        public final ModConfigSpec.IntValue pullMailInterval;
 
-        Common(ForgeConfigSpec.Builder builder)
+        Common(ModConfigSpec.Builder builder)
         {
             builder.comment("Mail configuration settings").push("mail");
             this.maxMailQueue = builder
@@ -43,19 +28,12 @@ public class FurnitureConfig
         }
     }
 
-    static final ForgeConfigSpec clientSpec;
-    public static final FurnitureConfig.Client CLIENT;
-
-    static final ForgeConfigSpec commonSpec;
+    static final ModConfigSpec commonSpec;
     public static final FurnitureConfig.Common COMMON;
 
     static
     {
-        final Pair<FurnitureConfig.Client, ForgeConfigSpec> clientSpecPair = new ForgeConfigSpec.Builder().configure(FurnitureConfig.Client::new);
-        clientSpec = clientSpecPair.getRight();
-        CLIENT = clientSpecPair.getLeft();
-
-        final Pair<FurnitureConfig.Common, ForgeConfigSpec> commonSpecPair = new ForgeConfigSpec.Builder().configure(FurnitureConfig.Common::new);
+        final Pair<FurnitureConfig.Common, ModConfigSpec> commonSpecPair = new ModConfigSpec.Builder().configure(FurnitureConfig.Common::new);
         commonSpec = commonSpecPair.getRight();
         COMMON = commonSpecPair.getLeft();
     }

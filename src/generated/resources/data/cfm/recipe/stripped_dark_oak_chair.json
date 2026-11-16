@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chair",
+  "key": {
+    "L": "minecraft:stripped_dark_oak_log",
+    "P": "minecraft:dark_oak_log"
+  },
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:stripped_dark_oak_chair"
+  }
+}

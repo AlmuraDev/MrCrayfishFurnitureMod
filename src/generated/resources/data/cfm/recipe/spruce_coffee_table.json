@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "coffee_table",
+  "key": {
+    "L": "minecraft:spruce_log",
+    "P": "minecraft:spruce_planks"
+  },
+  "pattern": [
+    "LLL",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:spruce_coffee_table"
+  }
+}

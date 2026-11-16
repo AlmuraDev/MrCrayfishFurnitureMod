@@ -1,10 +1,9 @@
 package com.mrcrayfish.furniture.datagen;
 
 import com.mrcrayfish.furniture.core.ModBlocks;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraftforge.registries.RegistryObject;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import javax.annotation.Nullable;
 import java.util.function.Supplier;
@@ -48,14 +47,13 @@ public class GeneratorData
     public record Variant(String id, Supplier<Block> planks, Supplier<Block> log, @Nullable Supplier<Block> strippedLog, boolean stem) {}
 
     @SuppressWarnings("unchecked")
-    public static ResourceLocation getResultBlock(FurnitureType type, Variant variant, boolean stripped)
+    public static DeferredBlock<Block> getResultBlock(FurnitureType type, Variant variant, boolean stripped)
     {
         try
         {
             String fieldFormat = stripped ? "%s_STRIPPED_%s" : "%s_%s";
             String fieldName = String.format(fieldFormat, type.id().toUpperCase(), variant.id().toUpperCase());
-            RegistryObject<Block> block = (RegistryObject<Block>) ModBlocks.class.getField(fieldName).get(null);
-            return block.getId();
+            return (DeferredBlock<Block>) ModBlocks.class.getField(fieldName).get(null);
         }
         catch(NoSuchFieldException | IllegalAccessException e)
         {
@@ -64,14 +62,13 @@ public class GeneratorData
     }
 
     @SuppressWarnings("unchecked")
-    public static ResourceLocation getUpgradedFence(Variant variant, boolean stripped)
+    public static DeferredBlock<Block> getUpgradedFence(Variant variant, boolean stripped)
     {
         try
         {
             String fieldFormat = stripped ? "UPGRADED_FENCE_STRIPPED_%s" : "UPGRADED_FENCE_%s";
             String fieldName = String.format(fieldFormat, variant.id().toUpperCase());
-            RegistryObject<Block> block = (RegistryObject<Block>) ModBlocks.class.getField(fieldName).get(null);
-            return block.getId();
+            return (DeferredBlock<Block>) ModBlocks.class.getField(fieldName).get(null);
         }
         catch(NoSuchFieldException | IllegalAccessException e)
         {

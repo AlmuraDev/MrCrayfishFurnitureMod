@@ -1,28 +1,24 @@
 package com.mrcrayfish.furniture.network.message;
 
-import com.mrcrayfish.furniture.network.play.ServerPlayHandler;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
-
-import java.util.function.Supplier;
+import com.mrcrayfish.furniture.Reference;
+import io.netty.buffer.ByteBuf;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.Identifier;
 
 /**
+ * Locks or unlocks the crate the player has open.
+ *
  * Author: MrCrayfish
  */
-public class C2SMessageLockCrate implements IMessage<C2SMessageLockCrate>
+public record C2SMessageLockCrate() implements CustomPacketPayload
 {
-    @Override
-    public void encode(C2SMessageLockCrate message, FriendlyByteBuf buffer) {}
-
-    public C2SMessageLockCrate decode(FriendlyByteBuf buffer)
-    {
-        return new C2SMessageLockCrate();
-    }
+    public static final CustomPacketPayload.Type<C2SMessageLockCrate> TYPE = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(Reference.MOD_ID, "lock_crate"));
+    public static final StreamCodec<ByteBuf, C2SMessageLockCrate> STREAM_CODEC = StreamCodec.unit(new C2SMessageLockCrate());
 
     @Override
-    public void handle(C2SMessageLockCrate message, Supplier<NetworkEvent.Context> supplier)
+    public Type<C2SMessageLockCrate> type()
     {
-        supplier.get().enqueueWork(() -> IMessage.callServerConsumer(message, supplier, ServerPlayHandler::handleLockCrateMessage));
-        supplier.get().setPacketHandled(true);
+        return TYPE;
     }
 }

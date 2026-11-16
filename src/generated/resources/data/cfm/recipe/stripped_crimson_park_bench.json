@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "park_bench",
+  "key": {
+    "L": "minecraft:crimson_stem",
+    "P": "minecraft:stripped_crimson_stem"
+  },
+  "pattern": [
+    "PPP",
+    "PPP",
+    "L L"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:stripped_crimson_park_bench"
+  }
+}

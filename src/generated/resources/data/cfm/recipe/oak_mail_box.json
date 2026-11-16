@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "mail_box",
+  "key": {
+    "C": "#c:chests/wooden",
+    "F": "cfm:oak_upgraded_fence"
+  },
+  "pattern": [
+    "C",
+    "F",
+    "F"
+  ],
+  "result": {
+    "id": "cfm:oak_mail_box"
+  }
+}

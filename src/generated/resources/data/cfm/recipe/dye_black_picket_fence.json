@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "picket_fence",
+  "key": {
+    "D": "#c:dyes/black",
+    "F": "cfm:white_picket_fence"
+  },
+  "pattern": [
+    "FFF",
+    "FDF",
+    "FFF"
+  ],
+  "result": {
+    "count": 8,
+    "id": "cfm:black_picket_fence"
+  }
+}

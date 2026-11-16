@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.block;
 
+import org.jspecify.annotations.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
@@ -28,9 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -78,13 +77,13 @@ public class CrateBlock extends FurnitureHorizontalBlock implements IPortableInv
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
@@ -103,13 +102,13 @@ public class CrateBlock extends FurnitureHorizontalBlock implements IPortableInv
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         if(!level.isClientSide())
         {
             if(level.getBlockEntity(pos) instanceof CrateBlockEntity blockEntity)
             {
-                NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
+                player.openMenu(blockEntity, pos);
             }
         }
         return InteractionResult.SUCCESS;

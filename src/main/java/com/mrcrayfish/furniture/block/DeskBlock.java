@@ -1,5 +1,8 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
@@ -7,7 +10,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -70,19 +72,19 @@ public class DeskBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos newPos, BlockState newState, RandomSource random)
     {
         Direction dir = state.getValue(DIRECTION);
         boolean left = this.isDesk(level, pos, dir.getCounterClockWise(), dir);
@@ -102,7 +104,7 @@ public class DeskBlock extends FurnitureHorizontalBlock
         return state.setValue(TYPE, Type.SINGLE);
     }
 
-    private boolean isDesk(LevelAccessor level, BlockPos source, Direction checkDirection, Direction tableDirection)
+    private boolean isDesk(LevelReader level, BlockPos source, Direction checkDirection, Direction tableDirection)
     {
         BlockState state = level.getBlockState(source.relative(checkDirection));
         return state.getBlock() instanceof DeskBlock && ((DeskBlock) state.getBlock()).materialType == materialType && state.getValue(DIRECTION) == tableDirection;

@@ -2,16 +2,18 @@ package com.mrcrayfish.furniture.client.renderer;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mrcrayfish.furniture.entity.SeatEntity;
-import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.SubmitNodeCollector;
 import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.client.renderer.entity.state.EntityRenderState;
+import net.minecraft.client.renderer.state.level.CameraRenderState;
 
 /**
+ * The seat is invisible: it renders nothing, not even a name tag.
+ *
  * Author: MrCrayfish
  */
-public class SeatRenderer extends EntityRenderer<SeatEntity>
+public class SeatRenderer extends EntityRenderer<SeatEntity, EntityRenderState>
 {
     public SeatRenderer(EntityRendererProvider.Context context)
     {
@@ -19,11 +21,11 @@ public class SeatRenderer extends EntityRenderer<SeatEntity>
     }
 
     @Override
-    public ResourceLocation getTextureLocation(SeatEntity seatEntity)
+    public EntityRenderState createRenderState()
     {
-        return null;
+        return new EntityRenderState();
     }
 
     @Override
-    protected void renderNameTag(SeatEntity entity, Component component, PoseStack stack, MultiBufferSource source, int light) {}
+    public void submit(EntityRenderState state, PoseStack poseStack, SubmitNodeCollector submitNodeCollector, CameraRenderState camera) {}
 }

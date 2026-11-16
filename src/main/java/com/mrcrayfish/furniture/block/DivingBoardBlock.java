@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.block;
 
+import com.mrcrayfish.furniture.util.BounceHelper;
+import net.minecraft.core.particles.ColorParticleOption;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.core.ModSounds;
@@ -65,19 +67,19 @@ public class DivingBoardBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
     {
         Direction direction = state.getValue(DIRECTION);
         DivingBoardPart part = state.getValue(PART);
@@ -88,7 +90,7 @@ public class DivingBoardBlock extends FurnitureHorizontalBlock
             level.setBlock(otherPos, Blocks.AIR.defaultBlockState(), 35);
             level.levelEvent(player, 2001, otherPos, Block.getId(otherBlockState));
         }
-        super.playerWillDestroy(level, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
@@ -104,7 +106,7 @@ public class DivingBoardBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entityIn, float fallDistance)
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entityIn, double fallDistance)
     {
         if(level.getBlockState(pos).getValue(PART) != DivingBoardPart.BOARD)
         {
@@ -115,31 +117,32 @@ public class DivingBoardBlock extends FurnitureHorizontalBlock
         {
             float strength = 5.0F;
             float maxHeight = 8F;
-            float height = entityIn.fallDistance * strength;
+            float height = (float) entityIn.fallDistance * strength;
             if(height > 0 && !entityIn.isShiftKeyDown())
             {
                 if(height > maxHeight - 0.25F) height = maxHeight - 0.25F;
-                entityIn.setDeltaMovement(entityIn.getDeltaMovement().multiply(1.0, 0.0, 1.0));
-                entityIn.push(0, Math.sqrt(0.22 * (height + 0.25F)), 0);
-                if(level.isClientSide)
+                BounceHelper.prepareBounce(entityIn, Math.sqrt(0.22 * (height + 0.25F)));
+                if(level.isClientSide())
                 {
                     for(int i = 0; i < 5; i++)
                     {
-                        level.addParticle(ParticleTypes.ENTITY_EFFECT, entityIn.xo, entityIn.yo, entityIn.zo, 1.0, 1.0, 1.0);
+                        level.addParticle(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, 1.0F, 1.0F, 1.0F), entityIn.xo, entityIn.yo, entityIn.zo, 1.0, 1.0, 1.0);
                     }
                 }
                 else
                 {
-                    level.playSound(null, pos, ModSounds.BLOCK_DIVING_BOARD_BOUNCE.get(), SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.1F + 1.0F);
+                    level.playSound(null, pos, ModSounds.BLOCK_DIVING_BOARD_BOUNCE.get(), SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.1F + 1.0F);
                 }
             }
             entityIn.fallDistance = 0;
         }
     }
 
+    // Throws the entity up at the speed fallOn worked out (see BounceHelper)
     @Override
-    public void updateEntityAfterFallOn(BlockGetter worldIn, Entity entityIn)
+    public float getBounceRestitution(Level level, BlockPos pos, BlockState state, Entity entity)
     {
+        return BounceHelper.takeRestitution(entity);
     }
 
     @Override

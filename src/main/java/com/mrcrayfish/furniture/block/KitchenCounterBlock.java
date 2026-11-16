@@ -1,5 +1,8 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
@@ -8,7 +11,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -77,13 +79,13 @@ public class KitchenCounterBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
@@ -95,12 +97,12 @@ public class KitchenCounterBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos newPos, BlockState newState, RandomSource random)
     {
         return this.getKitchenCounterState(state, level, pos);
     }
 
-    private BlockState getKitchenCounterState(BlockState state, LevelAccessor level, BlockPos pos)
+    private BlockState getKitchenCounterState(BlockState state, LevelReader level, BlockPos pos)
     {
         Direction direction = state.getValue(DIRECTION);
         BlockState frontState = level.getBlockState(pos.relative(direction.getOpposite()));

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chair",
+  "key": {
+    "L": "minecraft:warped_stem",
+    "P": "minecraft:warped_planks"
+  },
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:warped_chair"
+  }
+}

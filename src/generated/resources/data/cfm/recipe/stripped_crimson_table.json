@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "table",
+  "key": {
+    "L": "minecraft:stripped_crimson_stem",
+    "P": "minecraft:crimson_stem"
+  },
+  "pattern": [
+    "LLL",
+    " P ",
+    " P "
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:stripped_crimson_table"
+  }
+}

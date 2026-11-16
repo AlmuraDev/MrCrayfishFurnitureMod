@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.world.item.crafting.RecipeHolder;
+import org.jspecify.annotations.Nullable;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
@@ -28,7 +30,6 @@ import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
 import java.util.Arrays;
 import java.util.Optional;
 
@@ -46,32 +47,19 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
     {
         return SHAPE;
     }
 
-    public float getShadeBrightness(BlockState state, BlockGetter worldIn, BlockPos pos)
+    @Override
+    protected float getShadeBrightness(BlockState state, BlockGetter worldIn, BlockPos pos)
     {
         return 1.0F;
     }
 
     @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
-    {
-        if(state.getBlock() != newState.getBlock())
-        {
-            if(level.getBlockEntity(pos) instanceof GrillBlockEntity blockEntity)
-            {
-                Containers.dropContents(level, pos, blockEntity.getGrill());
-                Containers.dropContents(level, pos, blockEntity.getFuel());
-            }
-            super.onRemove(state, level, pos, newState, isMoving);
-        }
-    }
-
-    @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         if(!level.isClientSide() && result.getDirection() == Direction.UP)
         {
@@ -92,11 +80,11 @@ public class GrillBlock extends FurnitureWaterloggedBlock implements EntityBlock
                 }
                 else if(!stack.isEmpty())
                 {
-                    Optional<GrillCookingRecipe> optional = blockEntity.findMatchingRecipe(stack);
+                    Optional<RecipeHolder<GrillCookingRecipe>> optional = blockEntity.findMatchingRecipe(stack);
                     if(optional.isPresent())
                     {
-                        GrillCookingRecipe recipe = optional.get();
-                        if(blockEntity.addItem(stack, this.getPosition(result, pos), recipe.getCookingTime(), recipe.getExperience(), (byte) player.getDirection().get2DDataValue()))
+                        GrillCookingRecipe recipe = optional.get().value();
+                        if(blockEntity.addItem(stack, this.getPosition(result, pos), recipe.cookingTime(), recipe.experience(), (byte) player.getDirection().get2DDataValue()))
                         {
                             if(!player.getAbilities().instabuild)
                             {

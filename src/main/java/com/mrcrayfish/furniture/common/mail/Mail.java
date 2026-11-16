@@ -1,29 +1,21 @@
 package com.mrcrayfish.furniture.common.mail;
 
-import net.minecraft.nbt.CompoundTag;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.util.INBTSerializable;
 
 /**
+ * An item sent to a mail box, waiting in the post office until the mail box pulls it.
+ *
  * Author: MrCrayfish
  */
-public class Mail implements INBTSerializable<CompoundTag>
+public record Mail(String note, ItemStack stack, String sender)
 {
-    private String note;
-    private ItemStack stack;
-    private String sender;
-
-    public Mail(String note, ItemStack stack, String sender)
-    {
-        this.note = note;
-        this.stack = stack;
-        this.sender = sender;
-    }
-
-    public Mail(CompoundTag compound)
-    {
-        this.deserializeNBT(compound);
-    }
+    public static final Codec<Mail> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            Codec.STRING.optionalFieldOf("Note", "").forGetter(Mail::note),
+            ItemStack.OPTIONAL_CODEC.fieldOf("Item").forGetter(Mail::stack),
+            Codec.STRING.optionalFieldOf("Sender", "").forGetter(Mail::sender)
+    ).apply(instance, Mail::new));
 
     public String getNote()
     {
@@ -38,23 +30,5 @@ public class Mail implements INBTSerializable<CompoundTag>
     public String getSender()
     {
         return this.sender;
-    }
-
-    @Override
-    public CompoundTag serializeNBT()
-    {
-        CompoundTag compound = new CompoundTag();
-        compound.putString("Note", this.note);
-        compound.put("Item", this.stack.save(new CompoundTag()));
-        compound.putString("Sender", this.sender);
-        return compound;
-    }
-
-    @Override
-    public void deserializeNBT(CompoundTag compound)
-    {
-        this.note = compound.getString("Note");
-        this.stack = ItemStack.of(compound.getCompound("Item"));
-        this.sender = compound.getString("Sender");
     }
 }

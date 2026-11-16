@@ -1,9 +1,7 @@
 package com.mrcrayfish.furniture.client.event;
 
 import com.google.common.collect.Lists;
-import com.mrcrayfish.furniture.FurnitureMod;
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.client.ClientHandler;
 import com.mrcrayfish.furniture.client.gui.widget.button.IconButton;
 import com.mrcrayfish.furniture.client.gui.widget.button.TagButton;
 import com.mrcrayfish.furniture.common.ModTags;
@@ -17,33 +15,31 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.CreativeModeInventoryScreen;
 import net.minecraft.core.NonNullList;
+import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
-import net.minecraftforge.client.event.ScreenEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.registries.ForgeRegistries;
-import org.lwjgl.glfw.GLFW;
+import net.neoforged.bus.api.SubscribeEvent;
+import net.neoforged.neoforge.client.event.ClientPlayerNetworkEvent;
+import net.neoforged.neoforge.client.event.ScreenEvent;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Objects;
 
 /**
  * Author: MrCrayfish
  */
 public class CreativeScreenEvents
 {
-    private static final ResourceLocation ICONS = new ResourceLocation(Reference.MOD_ID, "textures/gui/icons.png");
+    private static final Identifier ICONS = Identifier.fromNamespaceAndPath(Reference.MOD_ID, "textures/gui/icons.png");
     private static int startIndex;
     private static CreativeModeTab lastTab = CreativeModeTabs.getDefaultTab();
 
@@ -72,8 +68,8 @@ public class CreativeScreenEvents
                 this.compileItems();
             }
 
-            this.guiCenterX = creativeScreen.getGuiLeft();
-            this.guiCenterY = creativeScreen.getGuiTop();
+            this.guiCenterX = creativeScreen.getLeftPos();
+            this.guiCenterY = creativeScreen.getTopPos();
             this.buttons = this.createTagButtons();
             this.buttons.forEach(event::addListener);
 
@@ -90,7 +86,7 @@ public class CreativeScreenEvents
             event.addListener(this.btnEnableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 10, button -> {
                 this.filters.forEach(filters -> filters.setEnabled(true));
                 this.buttons.forEach(TagButton::updateState);
-                Screen screen = Minecraft.getInstance().screen;
+                Screen screen = Minecraft.getInstance().gui.screen();
                 if(screen instanceof CreativeModeInventoryScreen)
                 {
                     this.updateItems((CreativeModeInventoryScreen) screen);
@@ -101,7 +97,7 @@ public class CreativeScreenEvents
             event.addListener(this.btnDisableAll = new IconButton(this.guiCenterX - 50, this.guiCenterY + 32, button -> {
                 this.filters.forEach(filters -> filters.setEnabled(false));
                 this.buttons.forEach(TagButton::updateState);
-                Screen screen = Minecraft.getInstance().screen;
+                Screen screen = Minecraft.getInstance().gui.screen();
                 if(screen instanceof CreativeModeInventoryScreen)
                 {
                     this.updateItems((CreativeModeInventoryScreen) screen);
@@ -118,8 +114,8 @@ public class CreativeScreenEvents
     {
         if(event.getScreen() instanceof CreativeModeInventoryScreen creativeScreen)
         {
-            this.guiCenterX = creativeScreen.getGuiLeft();
-            this.guiCenterY = creativeScreen.getGuiTop();
+            this.guiCenterX = creativeScreen.getLeftPos();
+            this.guiCenterY = creativeScreen.getTopPos();
 
             CreativeModeTab tab = CreativeModeInventoryScreen.selectedTab;
             if(lastTab != tab)
@@ -157,7 +153,7 @@ public class CreativeScreenEvents
         for(TagFilter filter : this.filters)
         {
             TagButton tagButton = new TagButton(this.guiCenterX - 28, this.guiCenterY, filter, button -> {
-                Screen screen = Minecraft.getInstance().screen;
+                Screen screen = Minecraft.getInstance().gui.screen();
                 if(screen instanceof CreativeModeInventoryScreen creativeScreen)
                 {
                     this.updateItems(creativeScreen);
@@ -224,17 +220,15 @@ public class CreativeScreenEvents
             new TagFilter(ModTags.Items.ITEMS, new ItemStack(ModItems.SPATULA.get()))
         };
 
-        ForgeRegistries.ITEMS.getValues().stream()
-            .filter(item -> Objects.requireNonNull(ForgeRegistries.ITEMS.getKey(item)).getNamespace().equals(Reference.MOD_ID))
+        BuiltInRegistries.ITEM.stream()
+            .filter(item -> BuiltInRegistries.ITEM.getKey(item).getNamespace().equals(Reference.MOD_ID))
             .forEach(item -> {
-                ForgeRegistries.ITEMS.getHolder(item).ifPresent(holder -> {
-                    holder.tags().forEach(tagKey -> {
-                        for(TagFilter filter : filters) {
-                            if(tagKey == filter.getTag()) {
-                                filter.add(item);
-                            }
+                item.builtInRegistryHolder().tags().forEach(tagKey -> {
+                    for(TagFilter filter : filters) {
+                        if(tagKey.equals(filter.getTag())) {
+                            filter.add(item);
                         }
-                    });
+                    }
                 });
         });
 

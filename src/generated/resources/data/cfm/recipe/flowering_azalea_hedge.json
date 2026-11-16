@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "hedge",
+  "key": {
+    "L": "minecraft:flowering_azalea_leaves"
+  },
+  "pattern": [
+    "LLL",
+    "LLL"
+  ],
+  "result": {
+    "count": 12,
+    "id": "cfm:flowering_azalea_hedge"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_counter",
+  "key": {
+    "L": "minecraft:dark_oak_log",
+    "P": "minecraft:stripped_dark_oak_log"
+  },
+  "pattern": [
+    "LLL",
+    "PPP",
+    "PPP"
+  ],
+  "result": {
+    "count": 8,
+    "id": "cfm:stripped_dark_oak_kitchen_counter"
+  }
+}

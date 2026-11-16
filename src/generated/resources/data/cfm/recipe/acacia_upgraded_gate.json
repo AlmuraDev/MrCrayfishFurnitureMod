@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "upgraded_gate",
+  "key": {
+    "G": "#c:fence_gates/wooden",
+    "L": "minecraft:acacia_log"
+  },
+  "pattern": [
+    "LGL"
+  ],
+  "result": {
+    "count": 2,
+    "id": "cfm:acacia_upgraded_gate"
+  }
+}

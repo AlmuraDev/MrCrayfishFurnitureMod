@@ -1,0 +1,29 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:survives_explosion"
+          },
+          "modifier": {
+            "type": "minecraft:set_count",
+            "condition": {
+              "type": "minecraft:match_block",
+              "blocks": "cfm:mangrove_coffee_table",
+              "state": {
+                "tall": "true"
+              }
+            },
+            "count": 2
+          },
+          "name": "cfm:mangrove_coffee_table"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "cfm:blocks/mangrove_coffee_table"
+}

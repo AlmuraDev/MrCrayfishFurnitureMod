@@ -1,5 +1,8 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.core.ModBlocks;
@@ -16,7 +19,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -100,13 +102,13 @@ public class SofaBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
@@ -119,7 +121,7 @@ public class SofaBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result)
+    protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result)
     {
         if(!level.isClientSide())
         {
@@ -139,12 +141,12 @@ public class SofaBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos newPos, BlockState newState, RandomSource random)
     {
         return this.getSofaState(state, level, pos, state.getValue(DIRECTION));
     }
 
-    private BlockState getSofaState(BlockState state, LevelAccessor level, BlockPos pos, Direction dir)
+    private BlockState getSofaState(BlockState state, LevelReader level, BlockPos pos, Direction dir)
     {
         boolean left = this.isSofa(level, pos, dir.getCounterClockWise(), dir) || this.isSofa(level, pos, dir.getCounterClockWise(), dir.getCounterClockWise());
         boolean right = this.isSofa(level, pos, dir.getClockWise(), dir) || this.isSofa(level, pos, dir.getClockWise(), dir.getClockWise());
@@ -174,7 +176,7 @@ public class SofaBlock extends FurnitureHorizontalBlock
         return state.setValue(TYPE, Type.SINGLE);
     }
 
-    private boolean isSofa(LevelAccessor level, BlockPos source, Direction direction, Direction targetDirection)
+    private boolean isSofa(LevelReader level, BlockPos source, Direction direction, Direction targetDirection)
     {
         BlockState state = level.getBlockState(source.relative(direction));
         if(state.getBlock() == this)

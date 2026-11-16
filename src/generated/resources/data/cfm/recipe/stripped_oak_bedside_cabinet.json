@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bedside_cabinet",
+  "key": {
+    "L": "minecraft:stripped_oak_log",
+    "P": "minecraft:oak_log"
+  },
+  "pattern": [
+    "LLL",
+    "P P",
+    "PPP"
+  ],
+  "result": {
+    "count": 2,
+    "id": "cfm:stripped_oak_bedside_cabinet"
+  }
+}

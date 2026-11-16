@@ -1,7 +1,10 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.world.item.ItemStack;
+import org.jspecify.annotations.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.mrcrayfish.furniture.common.mail.MailBox;
+import com.mrcrayfish.furniture.common.mail.MailBoxEntry;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
@@ -24,9 +27,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -58,31 +59,25 @@ public class PostBoxBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPE;
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPE;
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         if(player instanceof ServerPlayer serverPlayer)
         {
-            NetworkHooks.openScreen(serverPlayer, this.getMenuProvider(state, level, pos), buffer -> {
-                // Send the mailbox data when the player opens the post box
-                List<MailBox> mailBoxes = PostOffice.getMailBoxes(serverPlayer);
-                CompoundTag compound = new CompoundTag();
-                ListTag mailBoxList = new ListTag();
-                mailBoxes.forEach(mailBox -> mailBoxList.add(mailBox.serializeDetails()));
-                compound.put("MailBoxes", mailBoxList);
-                buffer.writeNbt(compound);
-            });
+            // Sends the mail boxes the player can send to when the post box opens
+            List<MailBoxEntry> mailBoxes = PostOffice.getMailBoxes(serverPlayer).stream().map(MailBox::toEntry).toList();
+            serverPlayer.openMenu(this.getMenuProvider(state, level, pos), buffer -> MailBoxEntry.LIST_STREAM_CODEC.encode(buffer, mailBoxes));
         }
         return InteractionResult.SUCCESS;
     }

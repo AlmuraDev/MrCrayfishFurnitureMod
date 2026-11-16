@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "grill",
+  "key": {
+    "B": "minecraft:iron_bars",
+    "I": "#c:ingots/iron",
+    "T": "minecraft:cyan_terracotta"
+  },
+  "pattern": [
+    "TBT",
+    "I I",
+    "I I"
+  ],
+  "result": {
+    "id": "cfm:cyan_grill"
+  }
+}

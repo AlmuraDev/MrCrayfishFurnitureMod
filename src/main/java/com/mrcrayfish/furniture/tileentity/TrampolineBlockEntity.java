@@ -4,20 +4,26 @@ import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.util.BlockEntityUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.component.DataComponentGetter;
+import net.minecraft.core.component.DataComponentMap;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
-import javax.annotation.Nullable;
 import java.util.HashSet;
 import java.util.Set;
 
 /**
+ * A trampoline. Joined trampolines bounce higher; the count is how many are joined. Its colour comes from the item it was placed from
+ * ({@link DataComponents#BASE_COLOR}) and goes back onto the item it drops.
+ *
  * Author: MrCrayfish
  */
 public class TrampolineBlockEntity extends BlockEntity
@@ -44,6 +50,7 @@ public class TrampolineBlockEntity extends BlockEntity
     public void setCount(int count)
     {
         this.count = count;
+        this.setChanged();
         BlockEntityUtil.sendUpdatePacket(this);
     }
 
@@ -60,6 +67,7 @@ public class TrampolineBlockEntity extends BlockEntity
     public void setColour(DyeColor colour)
     {
         this.colour = colour;
+        this.setChanged();
     }
 
     public void updateCount()
@@ -74,13 +82,12 @@ public class TrampolineBlockEntity extends BlockEntity
         if(this.level == null)
             return;
 
-        BlockEntity tileEntity = this.level.getBlockEntity(pos);
-        if(tileEntity instanceof TrampolineBlockEntity)
+        if(this.level.getBlockEntity(pos) instanceof TrampolineBlockEntity trampoline)
         {
-            if(trampolines.contains(tileEntity))
+            if(trampolines.contains(trampoline))
                 return;
 
-            trampolines.add((TrampolineBlockEntity) tileEntity);
+            trampolines.add(trampoline);
             this.isTrampoline(trampolines, pos.relative(Direction.NORTH));
             this.isTrampoline(trampolines, pos.relative(Direction.EAST));
             this.isTrampoline(trampolines, pos.relative(Direction.SOUTH));
@@ -89,55 +96,51 @@ public class TrampolineBlockEntity extends BlockEntity
     }
 
     @Override
-    public void load(CompoundTag compound)
+    protected void applyImplicitComponents(DataComponentGetter components)
     {
-        super.load(compound);
-        this.readData(compound);
+        super.applyImplicitComponents(components);
+        this.colour = components.getOrDefault(DataComponents.BASE_COLOR, DyeColor.WHITE);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag)
+    protected void collectImplicitComponents(DataComponentMap.Builder components)
     {
-        super.saveAdditional(tag);
-        this.writeData(tag);
+        super.collectImplicitComponents(components);
+        components.set(DataComponents.BASE_COLOR, this.colour);
     }
 
     @Override
-    public CompoundTag getUpdateTag()
+    public void removeComponentsFromTag(ValueOutput output)
     {
-        return this.saveWithFullMetadata();
+        super.removeComponentsFromTag(output);
+        output.discard("Color");
     }
 
-    @Nullable
+    @Override
+    protected void loadAdditional(ValueInput input)
+    {
+        super.loadAdditional(input);
+        this.count = input.getIntOr("Count", this.count);
+        input.read("Color", DyeColor.CODEC).ifPresent(colour -> this.colour = colour);
+    }
+
+    @Override
+    protected void saveAdditional(ValueOutput output)
+    {
+        super.saveAdditional(output);
+        output.putInt("Count", this.count);
+        output.store("Color", DyeColor.CODEC, this.colour);
+    }
+
+    @Override
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries)
+    {
+        return this.saveWithoutMetadata(registries);
+    }
+
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
         return ClientboundBlockEntityDataPacket.create(this);
-    }
-
-    @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
-    {
-        CompoundTag compound = pkt.getTag();
-        this.readData(compound);
-    }
-
-    private void readData(CompoundTag compound)
-    {
-        if(compound.contains("Count", Tag.TAG_INT))
-        {
-            this.count = compound.getInt("Count");
-        }
-        if(compound.contains("Color", Tag.TAG_INT))
-        {
-            this.colour = DyeColor.byId(compound.getInt("Color"));
-        }
-    }
-
-    private CompoundTag writeData(CompoundTag compound)
-    {
-        compound.putInt("Count", this.count);
-        compound.putInt("Color", this.colour.getId());
-        return compound;
     }
 }

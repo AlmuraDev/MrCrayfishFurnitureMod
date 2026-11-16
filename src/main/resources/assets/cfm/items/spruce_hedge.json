@@ -1,0 +1,16 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "cfm:item/spruce_hedge",
+    "tints": [
+      {
+        "type": "minecraft:constant",
+        "value": -10380959
+      },
+      {
+        "type": "minecraft:constant",
+        "value": -10380959
+      }
+    ]
+  }
+}

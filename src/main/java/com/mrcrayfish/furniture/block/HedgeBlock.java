@@ -1,5 +1,8 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.common.ModTags;
@@ -8,7 +11,6 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -87,26 +89,27 @@ public class HedgeBlock extends FurnitureWaterloggedBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return COLLISION_SHAPES.get(state);
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos newPos, BlockState newState, RandomSource random)
     {
+        state = super.updateShape(state, level, ticks, pos, direction, newPos, newState, random);
         return this.getHedgeState(state, level, pos);
     }
 
@@ -116,7 +119,7 @@ public class HedgeBlock extends FurnitureWaterloggedBlock
         return this.getHedgeState(super.getStateForPlacement(context), context.getLevel(), context.getClickedPos());
     }
 
-    private BlockState getHedgeState(BlockState state, LevelAccessor level, BlockPos pos)
+    private BlockState getHedgeState(BlockState state, LevelReader level, BlockPos pos)
     {
         boolean north = canConnectToBlock(level, pos, Direction.NORTH);
         boolean east = canConnectToBlock(level, pos, Direction.EAST);
@@ -125,7 +128,7 @@ public class HedgeBlock extends FurnitureWaterloggedBlock
         return state.setValue(NORTH, north).setValue(EAST, east).setValue(SOUTH, south).setValue(WEST, west);
     }
 
-    private boolean canConnectToBlock(LevelAccessor level, BlockPos pos, Direction direction)
+    private boolean canConnectToBlock(LevelReader level, BlockPos pos, Direction direction)
     {
         BlockPos offsetPos = pos.relative(direction);
         BlockState offsetState = level.getBlockState(offsetPos);
@@ -142,8 +145,8 @@ public class HedgeBlock extends FurnitureWaterloggedBlock
         builder.add(WEST);
     }
 
-    @Deprecated
-    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos)
+    @Override
+    protected int getLightDampening(BlockState state)
     {
         return 1;
     }

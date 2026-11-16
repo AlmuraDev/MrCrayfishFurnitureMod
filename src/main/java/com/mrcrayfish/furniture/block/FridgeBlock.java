@@ -1,5 +1,8 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.world.level.LevelReader;
+import net.neoforged.neoforge.registries.DeferredBlock;
+import org.jspecify.annotations.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
@@ -26,9 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.registries.RegistryObject;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -44,9 +45,9 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
-    private final Supplier<RegistryObject<Block>> freezer;
+    private final Supplier<DeferredBlock<Block>> freezer;
 
-    public FridgeBlock(Properties properties, Supplier<RegistryObject<Block>> freezer)
+    public FridgeBlock(Properties properties, Supplier<DeferredBlock<Block>> freezer)
     {
         super(properties);
         this.freezer = freezer;
@@ -80,19 +81,19 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return context == CollisionContext.empty() ? Shapes.block() : SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result)
+    protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player playerEntity, InteractionHand hand, BlockHitResult result)
     {
         if(state.getValue(DIRECTION).getOpposite() == result.getDirection())
         {
@@ -124,7 +125,7 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
     }
 
     @Override
-    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
     {
         BlockState belowState = level.getBlockState(pos.below());
         if(belowState.getBlock() instanceof FreezerBlock)
@@ -132,11 +133,11 @@ public class FridgeBlock extends FurnitureHorizontalBlock implements EntityBlock
             level.setBlock(pos.below(), Blocks.AIR.defaultBlockState(), 35);
             level.levelEvent(player, 2001, pos.below(), Block.getId(belowState));
         }
-        super.playerWillDestroy(level, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Override
-    public ItemStack getCloneItemStack(BlockGetter reader, BlockPos pos, BlockState state)
+    protected ItemStack getCloneItemStack(LevelReader reader, BlockPos pos, BlockState state, boolean includeData)
     {
         return new ItemStack(this.freezer.get().get());
     }

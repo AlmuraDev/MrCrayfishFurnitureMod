@@ -15,8 +15,8 @@ import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
 import com.mrcrayfish.furniture.util.BlockEntityUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.Container;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.NetworkHooks;
 
 /**
  * Author: MrCrayfish
@@ -57,7 +57,7 @@ public class ServerPlayHandler
             return;
 
         BlockEntityUtil.sendUpdatePacket(blockEntity);
-        NetworkHooks.openScreen(player, blockEntity, message.getPos());
+        player.openMenu(blockEntity, message.getPos());
     }
 
     public static void handleSendMailMessage(ServerPlayer player, C2SMessageSendMail message)
@@ -70,7 +70,7 @@ public class ServerPlayHandler
 
         Mail mail = new Mail("Yo", postBox.getMail(), player.getName().getString());
         if(!PostOffice.sendMailToPlayer(message.getPlayerId(), message.getMailBoxId(), mail))
-{
+        {
             player.sendSystemMessage(Component.translatable("message.cfm.mail_queue_full"));
             return;
         }
@@ -85,6 +85,10 @@ public class ServerPlayHandler
             return;
 
         if(!(level.getBlockEntity(message.getPos()) instanceof DoorMatBlockEntity doorMat))
+            return;
+
+        // Only a player at the mat can write on it (it is written just after placing it)
+        if(!Container.stillValidBlockEntity(doorMat, player))
             return;
 
         doorMat.setMessage(message.getMessage());
@@ -109,6 +113,6 @@ public class ServerPlayHandler
             return;
 
         BlockEntityUtil.sendUpdatePacket(mailBox);
-        NetworkHooks.openScreen(player, mailBox, message.getPos());
+        player.openMenu(mailBox, message.getPos());
     }
 }

@@ -1,21 +1,25 @@
 package com.mrcrayfish.furniture.tileentity;
 
-import com.google.common.collect.Maps;
+import com.mojang.serialization.Codec;
 import com.mrcrayfish.furniture.block.FreezerBlock;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.event.FreezerFuelTimeEvent;
 import com.mrcrayfish.furniture.inventory.container.FreezerMenu;
+import com.mrcrayfish.furniture.item.crafting.FreezerSolidifyRecipe;
+import com.mrcrayfish.furniture.util.RecipeLookup;
+import it.unimi.dsi.fastutil.objects.Reference2IntOpenHashMap;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Vec3i;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
+import net.minecraft.world.Containers;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -23,23 +27,25 @@ import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.ItemStackTemplate;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.LazyOptional;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.wrapper.SidedInvWrapper;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.minecraft.world.phys.Vec3;
+import net.neoforged.neoforge.common.NeoForge;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.Map;
 
 /**
+ * The freezer under a fridge: freezes items with ice as fuel, like a furnace.
+ *
  * Author: MrCrayfish
  */
 public class FreezerBlockEntity extends BasicLootBlockEntity
@@ -47,32 +53,26 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     private static final int[] SLOTS_SOURCE = new int[]{0};
     private static final int[] SLOTS_FUEL = new int[]{1};
     private static final int[] SLOTS_RESULT = new int[]{2};
+    private static final Codec<Map<ResourceKey<Recipe<?>>, Integer>> RECIPES_USED_CODEC = Codec.unboundedMap(Recipe.KEY_CODEC, Codec.INT);
 
     private int fuelTime;
     private int fuelTimeTotal;
     private int freezeTime;
     private int freezeTimeTotal;
 
-    private LazyOptional<? extends IItemHandler>[] handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
-
     protected final SimpleContainerData freezerData = new SimpleContainerData(4)
     {
         @Override
         public int get(int index)
         {
-            switch(index)
+            return switch(index)
             {
-                case 0:
-                    return fuelTime;
-                case 1:
-                    return fuelTimeTotal;
-                case 2:
-                    return freezeTime;
-                case 3:
-                    return freezeTimeTotal;
-                default:
-                    return 0;
-            }
+                case 0 -> FreezerBlockEntity.this.fuelTime;
+                case 1 -> FreezerBlockEntity.this.fuelTimeTotal;
+                case 2 -> FreezerBlockEntity.this.freezeTime;
+                case 3 -> FreezerBlockEntity.this.freezeTimeTotal;
+                default -> 0;
+            };
         }
 
         @Override
@@ -80,24 +80,15 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         {
             switch(index)
             {
-                case 0:
-                    fuelTime = value;
-                    break;
-                case 1:
-                    fuelTimeTotal = value;
-                    break;
-                case 2:
-                    freezeTime = value;
-                    break;
-                case 3:
-                    freezeTimeTotal = value;
-                    break;
+                case 0 -> FreezerBlockEntity.this.fuelTime = value;
+                case 1 -> FreezerBlockEntity.this.fuelTimeTotal = value;
+                case 2 -> FreezerBlockEntity.this.freezeTime = value;
+                case 3 -> FreezerBlockEntity.this.freezeTimeTotal = value;
             }
-
         }
     };
 
-    private final Map<ResourceLocation, Integer> usedRecipeCount = Maps.newHashMap();
+    private final Reference2IntOpenHashMap<ResourceKey<Recipe<?>>> usedRecipeCount = new Reference2IntOpenHashMap<>();
 
     protected FreezerBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
     {
@@ -108,12 +99,10 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     {
         super(ModBlockEntities.FREEZER.get(), pos, state);
     }
-    
+
     public static void serverTick(Level level, BlockPos pos, BlockState state, FreezerBlockEntity blockEntity)
     {
-        boolean freezing = blockEntity.isFreezing();
         boolean shouldMarkDirty = false;
-
         if(blockEntity.isFreezing())
         {
             --blockEntity.fuelTime;
@@ -122,7 +111,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         ItemStack fuelStack = blockEntity.items.get(1);
         if(blockEntity.isFreezing() || !fuelStack.isEmpty() && !blockEntity.items.get(0).isEmpty())
         {
-            Recipe<?> recipe = level.getRecipeManager().getRecipeFor(ModRecipeTypes.FREEZER_SOLIDIFY.get(), blockEntity, level).orElse(null);
+            RecipeHolder<FreezerSolidifyRecipe> recipe = blockEntity.findRecipe(blockEntity.items.get(0));
             if(!blockEntity.isFreezing() && blockEntity.canFreeze(recipe))
             {
                 blockEntity.fuelTime = blockEntity.getFreezeTime(fuelStack);
@@ -130,18 +119,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
                 if(blockEntity.isFreezing())
                 {
                     shouldMarkDirty = true;
-                    if(fuelStack.hasCraftingRemainingItem())
-                    {
-                        blockEntity.items.set(1, fuelStack.getCraftingRemainingItem());
-                    }
-                    else if(!fuelStack.isEmpty())
-                    {
-                        fuelStack.shrink(1);
-                        if(fuelStack.isEmpty())
-                        {
-                            blockEntity.items.set(1, fuelStack.getCraftingRemainingItem());
-                        }
-                    }
+                    blockEntity.consumeFuel(fuelStack);
                 }
             }
 
@@ -172,6 +150,33 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         }
     }
 
+    private void consumeFuel(ItemStack fuel)
+    {
+        ItemStackTemplate remainder = fuel.getCraftingRemainder();
+        ItemStack newFuel = fuel;
+        fuel.shrink(1);
+        if(remainder != null)
+        {
+            if(fuel.isEmpty())
+            {
+                newFuel = remainder.create();
+            }
+            else if(this.level != null)
+            {
+                Containers.dropItemStack(this.level, this.worldPosition.getX(), this.worldPosition.getY(), this.worldPosition.getZ(), remainder.create());
+            }
+        }
+        this.items.set(1, newFuel);
+    }
+
+    @Nullable
+    private RecipeHolder<FreezerSolidifyRecipe> findRecipe(ItemStack stack)
+    {
+        if(this.level == null || stack.isEmpty())
+            return null;
+        return RecipeLookup.find(this.level, ModRecipeTypes.FREEZER_SOLIDIFY.get(), stack).orElse(null);
+    }
+
     private boolean isFreezing()
     {
         return this.fuelTime > 0;
@@ -183,28 +188,33 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         {
             return 0;
         }
-        else if(stack.getItem() == Items.ICE)
+        else if(stack.is(Items.ICE))
         {
             return 2000;
         }
-        else if(stack.getItem() == Items.BLUE_ICE)
+        else if(stack.is(Items.BLUE_ICE))
         {
             return 162000;
         }
-        else if(stack.getItem() == Items.PACKED_ICE)
+        else if(stack.is(Items.PACKED_ICE))
         {
             return 18000;
         }
         FreezerFuelTimeEvent event = new FreezerFuelTimeEvent(stack);
-        MinecraftForge.EVENT_BUS.post(event);
+        NeoForge.EVENT_BUS.post(event);
         return event.getFuelTime();
     }
 
-    private boolean canFreeze(@Nullable Recipe<?> recipe)
+    private ItemStack getResult(RecipeHolder<FreezerSolidifyRecipe> recipe)
+    {
+        return recipe.value().assemble(new SingleRecipeInput(this.items.get(0)));
+    }
+
+    private boolean canFreeze(@Nullable RecipeHolder<FreezerSolidifyRecipe> recipe)
     {
         if(!this.items.get(0).isEmpty() && recipe != null)
         {
-            ItemStack outputStack = recipe.getResultItem(this.level.registryAccess());
+            ItemStack outputStack = this.getResult(recipe);
             if(outputStack.isEmpty())
             {
                 return false;
@@ -223,38 +233,33 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
             {
                 return true;
             }
-            else
-            {
-                return resultStack.getCount() + outputStack.getCount() <= outputStack.getMaxStackSize();
-            }
+            return resultStack.getCount() + outputStack.getCount() <= outputStack.getMaxStackSize();
         }
         return false;
     }
 
-    private void freeze(@Nullable Recipe<?> recipe)
+    private void freeze(@Nullable RecipeHolder<FreezerSolidifyRecipe> recipe)
     {
         if(recipe != null && this.canFreeze(recipe))
         {
             ItemStack sourceStack = this.items.get(0);
-            ItemStack outputStack = recipe.getResultItem(this.level.registryAccess());
+            ItemStack outputStack = this.getResult(recipe);
             ItemStack resultStack = this.items.get(2);
             if(resultStack.isEmpty())
             {
                 this.items.set(2, outputStack.copy());
             }
-            else if(resultStack.getItem() == outputStack.getItem())
+            else if(resultStack.is(outputStack.getItem()))
             {
                 resultStack.grow(outputStack.getCount());
             }
 
-            if(!this.level.isClientSide)
-            {
-                this.addRecipeUsed(recipe);
-            }
+            this.usedRecipeCount.addTo(recipe.id(), 1);
 
-            if(sourceStack.hasCraftingRemainingItem())
+            ItemStackTemplate remainder = sourceStack.getCraftingRemainder();
+            if(remainder != null)
             {
-                this.items.set(0, sourceStack.getCraftingRemainingItem());
+                this.items.set(0, remainder.create());
             }
             else
             {
@@ -283,7 +288,8 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
 
     protected int getFreezeTime()
     {
-        return this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.FREEZER_SOLIDIFY.get(), this, this.level).map(AbstractCookingRecipe::getCookingTime).orElse(300);
+        RecipeHolder<FreezerSolidifyRecipe> recipe = this.findRecipe(this.items.get(0));
+        return recipe != null ? recipe.value().cookingTime() : 300;
     }
 
     @Override
@@ -307,59 +313,44 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     @Override
     public int[] getSlotsForFace(Direction direction)
     {
-        switch(direction)
+        return switch(direction)
         {
-            case UP:
-                return SLOTS_SOURCE;
-            case DOWN:
-                return SLOTS_RESULT;
-            default:
-                return SLOTS_FUEL;
-        }
+            case UP -> SLOTS_SOURCE;
+            case DOWN -> SLOTS_RESULT;
+            default -> SLOTS_FUEL;
+        };
     }
 
-    private void addRecipeUsed(@Nullable Recipe<?> recipe)
-    {
-        if(recipe != null)
-        {
-            this.usedRecipeCount.compute(recipe.getId(), (id, count) -> 1 + (count == null ? 0 : count));
-        }
-    }
-
+    /**
+     * Gives the player the experience of everything frozen since it was last taken out.
+     */
     public void spawnExperience(Player player)
     {
-        for(Map.Entry<ResourceLocation, Integer> entry : this.usedRecipeCount.entrySet())
+        if(player.level() instanceof ServerLevel level)
         {
-            player.level().getRecipeManager().byKey(entry.getKey()).ifPresent((recipe) ->
+            for(Map.Entry<ResourceKey<Recipe<?>>, Integer> entry : this.usedRecipeCount.entrySet())
             {
-                spawnExperienceOrbs(player, entry.getValue(), ((AbstractCookingRecipe) recipe).getExperience());
-            });
+                level.recipeAccess().byKey(entry.getKey()).ifPresent(recipe ->
+                {
+                    if(recipe.value() instanceof FreezerSolidifyRecipe freezerRecipe)
+                    {
+                        spawnExperienceOrbs(level, player.position(), entry.getValue(), freezerRecipe.experience());
+                    }
+                });
+            }
+            this.usedRecipeCount.clear();
         }
-        this.usedRecipeCount.clear();
     }
 
-    private static void spawnExperienceOrbs(Player player, int count, float exp)
+    private static void spawnExperienceOrbs(ServerLevel level, Vec3 pos, int count, float exp)
     {
-        if(exp == 0.0F)
+        int xpReward = Mth.floor(count * exp);
+        float xpFraction = Mth.frac(count * exp);
+        if(xpFraction != 0.0F && level.getRandom().nextFloat() < xpFraction)
         {
-            count = 0;
+            xpReward++;
         }
-        else if(exp < 1.0F)
-        {
-            int totalExp = Mth.floor((float) count * exp);
-            if(totalExp < Mth.ceil((float) count * exp) && Math.random() < (double) ((float) count * exp - (float) totalExp))
-            {
-                ++totalExp;
-            }
-            count = totalExp;
-        }
-
-        while(count > 0)
-        {
-            int splitExp = ExperienceOrb.getExperienceValue(count);
-            count -= splitExp;
-            player.level().addFreshEntity(new ExperienceOrb(player.level(), player.getX(), player.getY() + 0.5, player.getZ(), splitExp));
-        }
+        ExperienceOrb.award(level, pos, xpReward);
     }
 
     @Override
@@ -389,37 +380,25 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
     }
 
     @Override
-    public void load(CompoundTag compound)
+    protected void loadAdditional(ValueInput input)
     {
-        super.load(compound);
-        this.freezeTime = compound.getInt("FreezeTime");
-        this.freezeTimeTotal = compound.getInt("FreezeTimeTotal");
-        this.fuelTime = compound.getInt("FuelTime");
+        super.loadAdditional(input);
+        this.freezeTime = input.getIntOr("FreezeTime", 0);
+        this.freezeTimeTotal = input.getIntOr("FreezeTimeTotal", 0);
+        this.fuelTime = input.getIntOr("FuelTime", 0);
         this.fuelTimeTotal = this.getFreezeTime(this.items.get(1));
-        int recipesUsedSize = compound.getShort("RecipesUsedSize");
-        for(int i = 0; i < recipesUsedSize; ++i)
-        {
-            ResourceLocation resourcelocation = new ResourceLocation(compound.getString("RecipeLocation" + i));
-            int amount = compound.getInt("RecipeAmount" + i);
-            this.usedRecipeCount.put(resourcelocation, amount);
-        }
+        this.usedRecipeCount.clear();
+        this.usedRecipeCount.putAll(input.read("RecipesUsed", RECIPES_USED_CODEC).orElse(Map.of()));
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag)
+    protected void saveAdditional(ValueOutput output)
     {
-        super.saveAdditional(tag);
-        tag.putInt("FreezeTime", this.freezeTime);
-        tag.putInt("FreezeTimeTotal", this.freezeTimeTotal);
-        tag.putInt("FuelTime", this.fuelTime);
-        tag.putShort("RecipesUsedSize", (short)this.usedRecipeCount.size());
-        int i = 0;
-        for(Map.Entry<ResourceLocation, Integer> entry : this.usedRecipeCount.entrySet())
-        {
-            tag.putString("RecipeLocation" + i, entry.getKey().toString());
-            tag.putInt("RecipeAmount" + i, entry.getValue());
-            i++;
-        }
+        super.saveAdditional(output);
+        output.putInt("FreezeTime", this.freezeTime);
+        output.putInt("FreezeTimeTotal", this.freezeTimeTotal);
+        output.putInt("FuelTime", this.fuelTime);
+        output.store("RecipesUsed", RECIPES_USED_CODEC, this.usedRecipeCount);
     }
 
     public ContainerData getFreezerData()
@@ -443,7 +422,7 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
 
     private void playDoorSound(BlockState state, SoundEvent event)
     {
-        Vec3i directionVec = state.getValue(FreezerBlock.DIRECTION).getOpposite().getNormal();
+        Vec3i directionVec = state.getValue(FreezerBlock.DIRECTION).getOpposite().getUnitVec3i();
         double x = this.worldPosition.getX() + 0.5D + directionVec.getX() / 2.0D;
         double y = this.worldPosition.getY() + 0.5D + directionVec.getY() / 2.0D;
         double z = this.worldPosition.getZ() + 0.5D + directionVec.getZ() / 2.0D;
@@ -461,43 +440,5 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         {
             level.setBlock(this.getBlockPos(), state.setValue(FreezerBlock.OPEN, open), 3);
         }
-    }
-
-    @Override
-    public <T> LazyOptional<T> getCapability(Capability<T> capability, @Nullable Direction facing)
-    {
-        if(!this.remove && facing != null && capability == ForgeCapabilities.ITEM_HANDLER)
-        {
-            if(facing == Direction.UP)
-            {
-                return this.handlers[0].cast();
-            }
-            else if(facing == Direction.DOWN)
-            {
-                return this.handlers[1].cast();
-            }
-            else
-            {
-                return this.handlers[2].cast();
-            }
-        }
-        return super.getCapability(capability, facing);
-    }
-
-    @Override
-    public void invalidateCaps()
-    {
-        super.invalidateCaps();
-        for(LazyOptional<? extends IItemHandler> handler : this.handlers)
-        {
-            handler.invalidate();
-        }
-    }
-
-    @Override
-    public void reviveCaps()
-    {
-        super.reviveCaps();
-        this.handlers = SidedInvWrapper.create(this, Direction.UP, Direction.DOWN, Direction.NORTH);
     }
 }

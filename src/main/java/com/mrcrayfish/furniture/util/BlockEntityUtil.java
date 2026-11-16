@@ -1,19 +1,16 @@
 package com.mrcrayfish.furniture.util;
 
-import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.world.level.ChunkPos;
+import net.minecraft.util.ProblemReporter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.TagValueOutput;
+import net.minecraft.world.level.storage.ValueOutput;
 
-import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Author: MrCrayfish
@@ -21,60 +18,29 @@ import java.util.List;
 public class BlockEntityUtil
 {
     /**
-     * Sends an update packet to clients tracking a tile entity.
+     * Sends a block entity's update packet ({@link BlockEntity#getUpdatePacket()}) to the clients tracking it, and marks it changed so
+     * the change is saved. Does nothing on the client.
      *
-     * @param tileEntity the tile entity to update
+     * @param blockEntity the block entity to update
      */
-    public static void sendUpdatePacket(BlockEntity tileEntity)
+    public static void sendUpdatePacket(BlockEntity blockEntity)
     {
-        Packet<ClientGamePacketListener> packet = tileEntity.getUpdatePacket();
-        if(packet != null)
+        Level level = blockEntity.getLevel();
+        if(level != null && !level.isClientSide())
         {
-            sendUpdatePacket(tileEntity.getLevel(), tileEntity.getBlockPos(), packet);
+            blockEntity.setChanged();
+            BlockState state = blockEntity.getBlockState();
+            level.sendBlockUpdated(blockEntity.getBlockPos(), state, state, Block.UPDATE_CLIENTS);
         }
     }
 
     /**
-     * Sends an update packet to clients tracking a tile entity with a specific CompoundTag
-     *
-     * @param blockEntity the tile entity to update
+     * Writes only what the client needs into an update tag, for {@link BlockEntity#getUpdateTag(HolderLookup.Provider)}.
      */
-    public static void sendUpdatePacket(BlockEntity blockEntity, CompoundTag compound)
+    public static CompoundTag createUpdateTag(HolderLookup.Provider registries, Consumer<ValueOutput> writer)
     {
-        addIdAndPosition(blockEntity, compound);
-        ClientboundBlockEntityDataPacket packet = ClientboundBlockEntityDataPacket.create(blockEntity, e -> compound);
-        sendUpdatePacket(blockEntity.getLevel(), blockEntity.getBlockPos(), packet);
-    }
-
-    public static void sendUpdatePacketSimple(BlockEntity blockEntity, CompoundTag compound)
-    {
-        ResourceLocation id = BlockEntityType.getKey(blockEntity.getType());
-        compound.putString("id", id.toString());
-        compound.putInt("x", blockEntity.getBlockPos().getX());
-        compound.putInt("y", blockEntity.getBlockPos().getY());
-        compound.putInt("z", blockEntity.getBlockPos().getZ());
-        ClientboundBlockEntityDataPacket packet = ClientboundBlockEntityDataPacket.create(blockEntity, e -> compound);
-        sendUpdatePacket(blockEntity.getLevel(), blockEntity.getBlockPos(), packet);
-    }
-
-    private static void sendUpdatePacket(Level level, BlockPos pos, Packet<ClientGamePacketListener> packet)
-    {
-        if(level instanceof ServerLevel server)
-        {
-            List<ServerPlayer> players = server.getChunkSource().chunkMap.getPlayers(new ChunkPos(pos), false);
-            players.forEach(player -> player.connection.send(packet));
-        }
-    }
-
-    private static void addIdAndPosition(BlockEntity blockEntity, CompoundTag tag)
-    {
-        ResourceLocation id = BlockEntityType.getKey(blockEntity.getType());
-        if(id != null)
-        {
-            tag.putString("id", id.toString());
-            tag.putInt("x", blockEntity.getBlockPos().getX());
-            tag.putInt("y", blockEntity.getBlockPos().getY());
-            tag.putInt("z", blockEntity.getBlockPos().getZ());
-        }
+        TagValueOutput output = TagValueOutput.createWithContext(ProblemReporter.DISCARDING, registries);
+        writer.accept(output);
+        return output.buildResult();
     }
 }

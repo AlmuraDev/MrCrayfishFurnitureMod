@@ -1,7 +1,7 @@
 package com.mrcrayfish.furniture.event;
 
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.eventbus.api.Event;
+import net.neoforged.bus.api.Event;
 
 /**
  * Author: MrCrayfish

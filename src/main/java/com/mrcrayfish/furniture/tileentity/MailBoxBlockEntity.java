@@ -5,11 +5,14 @@ import com.mrcrayfish.furniture.common.mail.Mail;
 import com.mrcrayfish.furniture.common.mail.PostOffice;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.inventory.container.MailBoxMenu;
+import com.mrcrayfish.furniture.util.BlockEntityUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.Containers;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerPlayer;
@@ -19,8 +22,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 
-import javax.annotation.Nullable;
+import org.jspecify.annotations.Nullable;
 import java.util.UUID;
 import java.util.function.Supplier;
 
@@ -61,6 +66,7 @@ public class MailBoxBlockEntity extends BasicLootBlockEntity
     public void setMailBoxName(String name)
     {
         this.name = name;
+        this.setChanged();
     }
 
     public String getMailBoxName()
@@ -141,6 +147,24 @@ public class MailBoxBlockEntity extends BasicLootBlockEntity
         }
     }
 
+    // Drops the mail still queued for this mail box and takes it out of the post office (server only)
+    @Override
+    public void preRemoveSideEffects(BlockPos pos, BlockState state)
+    {
+        super.preRemoveSideEffects(pos, state);
+        if(this.level != null && !this.level.isClientSide() && this.id != null && this.ownerId != null)
+        {
+            Supplier<Mail> supplier = PostOffice.getMailForPlayerMailBox(this.ownerId, this.id);
+            while(true)
+            {
+                Mail mail = supplier.get();
+                if(mail == null) break;
+                Containers.dropItemStack(this.level, pos.getX(), pos.getY(), pos.getZ(), mail.getStack());
+            }
+            PostOffice.unregisterMailBox(this.ownerId, this.id);
+        }
+    }
+
     @Override
     public int getContainerSize()
     {
@@ -160,74 +184,63 @@ public class MailBoxBlockEntity extends BasicLootBlockEntity
     }
 
     @Override
-    public void load(CompoundTag compound)
+    protected void loadAdditional(ValueInput input)
     {
-        super.load(compound);
-        this.readData(compound);
+        super.loadAdditional(input);
+        this.readData(input);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag)
+    protected void saveAdditional(ValueOutput output)
     {
-        super.saveAdditional(tag);
-        this.writeData(tag);
+        super.saveAdditional(output);
+        this.writeData(output);
     }
 
+    // The client only needs the mail box's name and owner, not the items (menus sync those)
     @Override
-    public CompoundTag getUpdateTag()
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries)
     {
-        return this.writeData(new CompoundTag());
+        return BlockEntityUtil.createUpdateTag(registries, this::writeData);
     }
 
-    @Nullable
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
+    public void onDataPacket(Connection connection, ValueInput input)
     {
-        CompoundTag compound = pkt.getTag();
-        this.readData(compound);
+        this.readData(input);
     }
 
-    private void readData(CompoundTag compound)
+    @Override
+    public void handleUpdateTag(ValueInput input)
     {
-        if(compound.hasUUID("MailBoxUUID"))
-        {
-            this.id = compound.getUUID("MailBoxUUID");
-        }
-        if(compound.contains("MailBoxName", Tag.TAG_STRING))
-        {
-            this.name = compound.getString("MailBoxName");
-        }
-        if(compound.contains("OwnerName", Tag.TAG_STRING))
-        {
-            this.ownerName = compound.getString("OwnerName");
-        }
-        if(compound.hasUUID("OwnerUUID"))
-        {
-            this.ownerId = compound.getUUID("OwnerUUID");
-        }
+        this.readData(input);
     }
 
-    private CompoundTag writeData(CompoundTag compound)
+    private void readData(ValueInput input)
     {
-        if(this.id != null)
-        {
-            compound.putUUID("MailBoxUUID", this.id);
-        }
+        input.read("MailBoxUUID", UUIDUtil.CODEC).ifPresent(id -> this.id = id);
+        input.getString("MailBoxName").ifPresent(name -> this.name = name);
+        input.getString("OwnerName").ifPresent(ownerName -> this.ownerName = ownerName);
+        input.read("OwnerUUID", UUIDUtil.CODEC).ifPresent(ownerId -> this.ownerId = ownerId);
+    }
+
+    private void writeData(ValueOutput output)
+    {
+        output.storeNullable("MailBoxUUID", UUIDUtil.CODEC, this.id);
         if(this.name != null)
         {
-            compound.putString("MailBoxName", this.name);
+            output.putString("MailBoxName", this.name);
         }
         if(this.ownerName != null && this.ownerId != null)
         {
-            compound.putString("OwnerName", this.ownerName);
-            compound.putUUID("OwnerUUID", this.ownerId);
+            output.putString("OwnerName", this.ownerName);
+            output.store("OwnerUUID", UUIDUtil.CODEC, this.ownerId);
         }
-        return compound;
     }
 }

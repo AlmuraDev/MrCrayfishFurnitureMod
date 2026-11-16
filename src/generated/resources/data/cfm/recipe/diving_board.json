@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:white_concrete",
+    "G": "minecraft:light_gray_concrete",
+    "S": "#c:slime_balls"
+  },
+  "pattern": [
+    "CCC",
+    "SSS",
+    "G  "
+  ],
+  "result": {
+    "id": "cfm:diving_board"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "coffee_table",
+  "key": {
+    "L": "minecraft:stripped_birch_log",
+    "P": "minecraft:birch_log"
+  },
+  "pattern": [
+    "LLL",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:stripped_birch_coffee_table"
+  }
+}

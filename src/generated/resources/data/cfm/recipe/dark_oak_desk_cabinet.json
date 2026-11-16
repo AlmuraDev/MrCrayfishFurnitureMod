@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "desk_cabinet",
+  "key": {
+    "L": "minecraft:dark_oak_log",
+    "P": "minecraft:dark_oak_planks"
+  },
+  "pattern": [
+    "LLL",
+    "PPP",
+    "P P"
+  ],
+  "result": {
+    "count": 2,
+    "id": "cfm:dark_oak_desk_cabinet"
+  }
+}

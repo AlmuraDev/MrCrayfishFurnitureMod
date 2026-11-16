@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture;
 
-import com.mrcrayfish.furniture.client.ClientHandler;
+import com.mrcrayfish.furniture.common.CapabilitySetup;
 import com.mrcrayfish.furniture.common.CommonHandler;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModBlocks;
@@ -11,80 +11,48 @@ import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.core.ModRecipeSerializers;
 import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import com.mrcrayfish.furniture.core.ModSounds;
-import com.mrcrayfish.furniture.datagen.BlockTagGen;
-import com.mrcrayfish.furniture.datagen.ItemTagGen;
-import com.mrcrayfish.furniture.datagen.LootTableGen;
-import com.mrcrayfish.furniture.datagen.RecipeGen;
-import net.minecraft.core.HolderLookup;
-import net.minecraft.data.DataGenerator;
-import net.minecraft.data.PackOutput;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.data.event.GatherDataEvent;
-import net.minecraftforge.eventbus.api.IEventBus;
-import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import com.mrcrayfish.furniture.datagen.DataSetup;
+import com.mrcrayfish.furniture.network.PacketHandler;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.common.Mod;
+import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.OnDatapackSyncEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.concurrent.CompletableFuture;
-
+/**
+ * The mod on both sides. Client-only setup lives in {@link com.mrcrayfish.furniture.client.FurnitureClient}, which only the client loads.
+ */
 @Mod(Reference.MOD_ID)
 public class FurnitureMod
 {
     public static final Logger LOGGER = LogManager.getLogger(Reference.MOD_ID);
 
-    public FurnitureMod()
+    public FurnitureMod(IEventBus modBus, ModContainer container)
     {
-        IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
-        ModBlocks.REGISTER.register(eventBus);
-        ModItems.REGISTER.register(eventBus);
-        ModEntities.REGISTER.register(eventBus);
-        ModBlockEntities.REGISTER.register(eventBus);
-        ModContainers.REGISTER.register(eventBus);
-        ModSounds.REGISTER.register(eventBus);
-        ModRecipeTypes.REGISTER.register(eventBus);
-        ModRecipeSerializers.REGISTER.register(eventBus);
-        ModCreativeTabs.REGISTER.register(eventBus);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.CLIENT, FurnitureConfig.clientSpec);
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, FurnitureConfig.commonSpec);
-        eventBus.addListener(this::onCommonSetup);
-        eventBus.addListener(this::onClientSetup);
-        eventBus.addListener(this::onGatherData);
-        DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> () -> {
-            eventBus.addListener(ClientHandler::onRegisterBlockColors);
-            eventBus.addListener(ClientHandler::onRegisterItemColors);
-            eventBus.addListener(ClientHandler::onRegisterRenderers);
-            eventBus.addListener(ClientHandler::onRegisterGeometryLoaders);
-        });
+        ModBlocks.REGISTER.register(modBus);
+        ModItems.REGISTER.register(modBus);
+        ModEntities.REGISTER.register(modBus);
+        ModBlockEntities.REGISTER.register(modBus);
+        ModContainers.REGISTER.register(modBus);
+        ModSounds.REGISTER.register(modBus);
+        ModRecipeTypes.REGISTER.register(modBus);
+        ModRecipeSerializers.REGISTER.register(modBus);
+        ModCreativeTabs.REGISTER.register(modBus);
+        container.registerConfig(ModConfig.Type.LOCAL, FurnitureConfig.commonSpec);
+        modBus.addListener(PacketHandler::register);
+        modBus.addListener(this::onCommonSetup);
+        modBus.addListener(CapabilitySetup::onRegisterCapabilities);
+        DataSetup.register(modBus);
+        // The freezer screen checks its ingredients on the client too, so clients get the freezer recipes
+        NeoForge.EVENT_BUS.addListener(OnDatapackSyncEvent.class, event -> event.sendRecipes(ModRecipeTypes.FREEZER_SOLIDIFY.get()));
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event)
     {
         event.enqueueWork(CommonHandler::setup);
-    }
-
-    private void onClientSetup(FMLClientSetupEvent event)
-    {
-        event.enqueueWork(ClientHandler::setup);
-    }
-
-    private void onGatherData(GatherDataEvent event)
-    {
-        DataGenerator generator = event.getGenerator();
-        PackOutput output = generator.getPackOutput();
-        ExistingFileHelper existingFileHelper = event.getExistingFileHelper();
-        CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
-        BlockTagGen blockTagGen = new BlockTagGen(output, lookupProvider, existingFileHelper);
-        generator.addProvider(event.includeServer(), new RecipeGen(output));
-        generator.addProvider(event.includeServer(), new LootTableGen(output));
-        generator.addProvider(event.includeServer(), blockTagGen);
-        generator.addProvider(event.includeServer(), new ItemTagGen(output, lookupProvider, blockTagGen.contentsGetter(), existingFileHelper));
     }
 }

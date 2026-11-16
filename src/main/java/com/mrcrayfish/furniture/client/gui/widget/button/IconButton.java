@@ -1,28 +1,27 @@
 package com.mrcrayfish.furniture.client.gui.widget.button;
 
-import com.mojang.blaze3d.platform.GlStateManager;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-import net.minecraft.client.gui.GuiGraphics;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphicsExtractor;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.Tooltip;
-import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipPositioner;
 import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
-import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.client.renderer.RenderPipelines;
 import net.minecraft.network.chat.CommonComponents;
-import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
+import net.minecraft.util.ARGB;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Author: MrCrayfish
  */
 public class IconButton extends Button
 {
-    private ResourceLocation iconResource;
+    private Identifier iconResource;
     private int iconU;
     private int iconV;
+    private @Nullable Tooltip tooltip;
 
-    public IconButton(int x, int y, OnPress onPress, ResourceLocation iconResource, int iconU, int iconV)
+    public IconButton(int x, int y, OnPress onPress, Identifier iconResource, int iconU, int iconV)
     {
         super(x, y, 20, 20, CommonComponents.EMPTY, onPress, DEFAULT_NARRATION);
         this.iconResource = iconResource;
@@ -30,7 +29,7 @@ public class IconButton extends Button
         this.iconV = iconV;
     }
 
-    public void setIcon(ResourceLocation iconResource, int iconU, int iconV)
+    public void setIcon(Identifier iconResource, int iconU, int iconV)
     {
         this.iconResource = iconResource;
         this.iconU = iconU;
@@ -38,19 +37,31 @@ public class IconButton extends Button
     }
 
     @Override
-    public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTicks)
+    protected void extractContents(GuiGraphicsExtractor graphics, int mouseX, int mouseY, float partialTicks)
     {
-        super.renderWidget(graphics, mouseX, mouseY, partialTicks);
-        if(!this.active)
-        {
-            RenderSystem.setShaderColor(0.5F, 0.5F, 0.5F, 1.0F);
-        }
-        graphics.blit(this.iconResource, this.getX() + 2, this.getY() + 2, this.iconU, this.iconV, 16, 16);
+        this.extractDefaultSprite(graphics);
+        int color = this.active ? ARGB.white(this.alpha) : ARGB.colorFromFloat(this.alpha, 0.5F, 0.5F, 0.5F);
+        graphics.blit(RenderPipelines.GUI_TEXTURED, this.iconResource, this.getX() + 2, this.getY() + 2, this.iconU, this.iconV, 16, 16, 256, 256, color);
     }
 
     @Override
-    protected ClientTooltipPositioner createTooltipPositioner()
+    public void setTooltip(@Nullable Tooltip tooltip)
     {
-        return DefaultTooltipPositioner.INSTANCE;
+        super.setTooltip(tooltip);
+        this.tooltip = tooltip;
+    }
+
+    /**
+     * Shows the tooltip at the mouse rather than above the button
+     */
+    @Override
+    protected void extractTooltipForNextRenderPass(GuiGraphicsExtractor graphics, int mouseX, int mouseY)
+    {
+        if(this.tooltip != null && this.isHovered())
+        {
+            graphics.setTooltipForNextFrame(Minecraft.getInstance().font, this.tooltip.toCharSequence(Minecraft.getInstance()), DefaultTooltipPositioner.INSTANCE, mouseX, mouseY, false);
+            return;
+        }
+        super.extractTooltipForNextRenderPass(graphics, mouseX, mouseY);
     }
 }

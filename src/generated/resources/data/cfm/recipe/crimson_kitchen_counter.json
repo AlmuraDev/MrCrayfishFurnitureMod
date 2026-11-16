@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_counter",
+  "key": {
+    "L": "minecraft:crimson_stem",
+    "P": "minecraft:crimson_planks"
+  },
+  "pattern": [
+    "LLL",
+    "PPP",
+    "PPP"
+  ],
+  "result": {
+    "count": 8,
+    "id": "cfm:crimson_kitchen_counter"
+  }
+}

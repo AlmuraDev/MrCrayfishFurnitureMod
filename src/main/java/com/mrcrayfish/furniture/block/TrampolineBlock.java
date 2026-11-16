@@ -1,5 +1,11 @@
 package com.mrcrayfish.furniture.block;
 
+import com.mrcrayfish.furniture.util.BounceHelper;
+import net.minecraft.core.particles.ColorParticleOption;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import org.jspecify.annotations.Nullable;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.tileentity.TrampolineBlockEntity;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
@@ -14,7 +20,6 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -24,7 +29,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -198,19 +202,19 @@ public class TrampolineBlock extends FurnitureBlock implements EntityBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return this.getShape(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return this.getShape(state);
     }
 
     @Override
-    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, float fallDistance)
+    public void fallOn(Level level, BlockState state, BlockPos pos, Entity entity, double fallDistance)
     {
         if(entity instanceof LivingEntity)
         {
@@ -224,31 +228,32 @@ public class TrampolineBlock extends FurnitureBlock implements EntityBlock
                 maxHeight = trampoline.getCount() * 0.25F;
             }
 
-            float height = entity.fallDistance * strength;
+            float height = (float) entity.fallDistance * strength;
             if(height > 0 && !entity.isShiftKeyDown())
             {
                 if(height > maxHeight - 0.25F) height = maxHeight - 0.25F;
-                entity.setDeltaMovement(entity.getDeltaMovement().multiply(1.0, 0.0, 1.0));
-                entity.push(0, Math.sqrt(0.22 * (height + 0.25F)), 0);
-                if(level.isClientSide)
+                BounceHelper.prepareBounce(entity, Math.sqrt(0.22 * (height + 0.25F)));
+                if(level.isClientSide())
                 {
                     for(int i = 0; i < 5; i++)
                     {
-                        level.addParticle(ParticleTypes.ENTITY_EFFECT, entity.xo, entity.yo, entity.zo, 1.0, 1.0, 1.0);
+                        level.addParticle(ColorParticleOption.create(ParticleTypes.ENTITY_EFFECT, 1.0F, 1.0F, 1.0F), entity.xo, entity.yo, entity.zo, 1.0, 1.0, 1.0);
                     }
                 }
                 else
                 {
-                    level.playSound(null, pos, ModSounds.BLOCK_TRAMPOLINE_BOUNCE.get(), SoundSource.BLOCKS, 1.0F, level.random.nextFloat() * 0.2F + 0.9F);
+                    level.playSound(null, pos, ModSounds.BLOCK_TRAMPOLINE_BOUNCE.get(), SoundSource.BLOCKS, 1.0F, level.getRandom().nextFloat() * 0.2F + 0.9F);
                 }
             }
             entity.fallDistance = 0;
         }
     }
 
+    // Throws the entity up at the speed fallOn worked out (see BounceHelper)
     @Override
-    public void updateEntityAfterFallOn(BlockGetter worldIn, Entity entityIn)
+    public float getBounceRestitution(Level level, BlockPos pos, BlockState state, Entity entity)
     {
+        return BounceHelper.takeRestitution(entity);
     }
 
     @Override
@@ -277,12 +282,12 @@ public class TrampolineBlock extends FurnitureBlock implements EntityBlock
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos newPos, BlockState newState, RandomSource random)
     {
         return this.getTrampolineState(state, level, pos);
     }
 
-    private BlockState getTrampolineState(BlockState state, LevelAccessor level, BlockPos pos)
+    private BlockState getTrampolineState(BlockState state, LevelReader level, BlockPos pos)
     {
         boolean north = level.getBlockState(pos.north()).getBlock() == this;
         boolean east = level.getBlockState(pos.east()).getBlock() == this;
@@ -293,15 +298,6 @@ public class TrampolineBlock extends FurnitureBlock implements EntityBlock
         boolean cornerSouthEast = south && east && level.getBlockState(pos.south().east()).getBlock() != this;
         boolean cornerSouthWest = south && west && level.getBlockState(pos.south().west()).getBlock() != this;
         return state.setValue(NORTH, north).setValue(EAST, east).setValue(SOUTH, south).setValue(WEST, west).setValue(CORNER_NORTH_WEST, cornerNorthWest).setValue(CORNER_NORTH_EAST, cornerNorthEast).setValue(CORNER_SOUTH_EAST, cornerSouthEast).setValue(CORNER_SOUTH_WEST, cornerSouthWest);
-    }
-
-    @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
-    {
-        if(!state.is(newState.getBlock()))
-        {
-            super.onRemove(state, level, pos, newState, isMoving);
-        }
     }
 
     @Override

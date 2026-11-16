@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "coffee_table",
+  "key": {
+    "L": "minecraft:jungle_log",
+    "P": "minecraft:jungle_planks"
+  },
+  "pattern": [
+    "LLL",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:jungle_coffee_table"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "desk_cabinet",
+  "key": {
+    "L": "minecraft:stripped_acacia_log",
+    "P": "minecraft:acacia_log"
+  },
+  "pattern": [
+    "LLL",
+    "PPP",
+    "P P"
+  ],
+  "result": {
+    "count": 2,
+    "id": "cfm:stripped_acacia_desk_cabinet"
+  }
+}

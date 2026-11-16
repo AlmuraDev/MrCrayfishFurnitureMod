@@ -8,27 +8,28 @@ import com.mrcrayfish.furniture.inventory.container.CrateMenu;
 import com.mrcrayfish.furniture.util.BlockEntityUtil;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.core.Vec3i;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
 import net.minecraft.network.Connection;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
 import net.minecraft.world.phys.AABB;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.UUID;
 
 /**
@@ -36,6 +37,7 @@ import java.util.UUID;
  */
 public class CrateBlockEntity extends BasicLootBlockEntity
 {
+    @Nullable
     private UUID ownerUuid;
     private boolean locked;
 
@@ -62,12 +64,13 @@ public class CrateBlockEntity extends BasicLootBlockEntity
     }
 
     @Override
+    @Nullable
     protected AbstractContainerMenu createMenu(int windowId, Inventory playerInventory)
     {
-        if(this.locked && !this.ownerUuid.equals(playerInventory.player.getUUID()))
+        if(this.locked && !playerInventory.player.getUUID().equals(this.ownerUuid))
         {
-            playerInventory.player.displayClientMessage(Component.translatable("container.isLocked", this.getDisplayName()), true);
-            playerInventory.player.playNotifySound(SoundEvents.CHEST_LOCKED, SoundSource.BLOCKS, 1.0F, 1.0F);
+            playerInventory.player.sendOverlayMessage(Component.translatable("container.isLocked", this.getDisplayName()));
+            playerInventory.player.level().playSound(null, this.worldPosition, SoundEvents.CHEST_LOCKED, SoundSource.BLOCKS, 1.0F, 1.0F);
             return null;
         }
         return new CrateMenu(windowId, playerInventory, this, this.locked);
@@ -79,14 +82,16 @@ public class CrateBlockEntity extends BasicLootBlockEntity
         return menu instanceof CrateMenu crateMenu && crateMenu.getBlockEntity() == this;
     }
 
+    @Nullable
     public UUID getOwner()
     {
-        return ownerUuid;
+        return this.ownerUuid;
     }
 
     public void setOwner(UUID uuid)
     {
         this.ownerUuid = uuid;
+        this.setChanged();
     }
 
     public boolean isLocked()
@@ -97,6 +102,7 @@ public class CrateBlockEntity extends BasicLootBlockEntity
     public void setLocked(boolean locked)
     {
         this.locked = locked;
+        this.setChanged();
         BlockEntityUtil.sendUpdatePacket(this);
     }
 
@@ -116,20 +122,13 @@ public class CrateBlockEntity extends BasicLootBlockEntity
 
     public void removeUnauthorisedPlayers()
     {
-        if(this.locked)
+        if(this.locked && this.level != null)
         {
-            int x = this.worldPosition.getX();
-            int y = this.worldPosition.getY();
-            int z = this.worldPosition.getZ();
-            for(Player player : level.getEntitiesOfClass(Player.class, new AABB((float) x - 5.0F, (float) y - 5.0F, (float) z - 5.0F, (float) (x + 1) + 5.0F, (float) (y + 1) + 5.0F, (float) (z + 1) + 5.0F)))
+            for(Player player : this.level.getEntitiesOfClass(Player.class, new AABB(this.worldPosition).inflate(5.0)))
             {
-                if(player.containerMenu instanceof CrateMenu)
+                if(player.containerMenu instanceof CrateMenu crateMenu && crateMenu.getBlockEntity() == this && !player.getUUID().equals(this.ownerUuid))
                 {
-                    Container container = ((CrateMenu) player.containerMenu).getBlockEntity();
-                    if(this == container && !player.getUUID().equals(this.ownerUuid))
-                    {
-                        player.closeContainer();
-                    }
+                    player.closeContainer();
                 }
             }
         }
@@ -137,14 +136,14 @@ public class CrateBlockEntity extends BasicLootBlockEntity
 
     private void playLidSound(BlockState state, SoundEvent event)
     {
-        Vec3i directionVec = state.getValue(CabinetBlock.DIRECTION).getNormal();
+        Vec3i directionVec = state.getValue(CabinetBlock.DIRECTION).getUnitVec3i();
         double x = this.worldPosition.getX() + 0.5D + directionVec.getX() / 2.0D;
         double y = this.worldPosition.getY() + 0.5D + directionVec.getY() / 2.0D;
         double z = this.worldPosition.getZ() + 0.5D + directionVec.getZ() / 2.0D;
         Level level = this.getLevel();
         if(level != null)
         {
-            level.playSound(null, x, y, z, event, SoundSource.BLOCKS, 0.75F, level.random.nextFloat() * 0.1F + 0.7F);
+            level.playSound(null, x, y, z, event, SoundSource.BLOCKS, 0.75F, level.getRandom().nextFloat() * 0.1F + 0.7F);
         }
     }
 
@@ -158,70 +157,65 @@ public class CrateBlockEntity extends BasicLootBlockEntity
     }
 
     @Override
-    public void load(CompoundTag compound)
+    protected void loadAdditional(ValueInput input)
     {
-        super.load(compound);
-        this.readData(compound);
+        super.loadAdditional(input);
+        this.readData(input);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag)
+    protected void saveAdditional(ValueOutput output)
     {
-        super.saveAdditional(tag);
-        this.writeData(tag);
+        super.saveAdditional(output);
+        this.writeData(output);
     }
 
+    // The client only needs the lock, not the items (menus sync those)
     @Override
-    public CompoundTag getUpdateTag()
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries)
     {
-        return this.writeData(new CompoundTag());
+        return BlockEntityUtil.createUpdateTag(registries, this::writeData);
     }
 
-    @Nullable
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
+    public void onDataPacket(Connection connection, ValueInput input)
     {
-        CompoundTag compound = pkt.getTag();
-        this.readData(compound);
+        this.readData(input);
     }
 
-    private void readData(CompoundTag compound)
+    @Override
+    public void handleUpdateTag(ValueInput input)
     {
-        if(compound.hasUUID("OwnerUUID"))
-        {
-            this.ownerUuid = compound.getUUID("OwnerUUID");
-        }
-        if(compound.contains("Locked", Tag.TAG_BYTE))
-        {
-            this.locked = compound.getBoolean("Locked");
-        }
+        this.readData(input);
     }
 
-    private CompoundTag writeData(CompoundTag compound)
+    private void readData(ValueInput input)
     {
-        if(this.ownerUuid != null)
-        {
-            compound.putUUID("OwnerUUID", this.ownerUuid);
-        }
-        compound.putBoolean("Locked", this.locked);
-        return compound;
+        input.read("OwnerUUID", UUIDUtil.CODEC).ifPresent(uuid -> this.ownerUuid = uuid);
+        this.locked = input.getBooleanOr("Locked", this.locked);
+    }
+
+    private void writeData(ValueOutput output)
+    {
+        output.storeNullable("OwnerUUID", UUIDUtil.CODEC, this.ownerUuid);
+        output.putBoolean("Locked", this.locked);
     }
 
     @Override
     public boolean canPlaceItemThroughFace(int i, ItemStack itemStack, @Nullable Direction direction)
     {
-        return !locked;
+        return !this.locked;
     }
 
     @Override
     public boolean canTakeItemThroughFace(int i, ItemStack itemStack, Direction direction)
     {
-        return !locked;
+        return !this.locked;
     }
 }

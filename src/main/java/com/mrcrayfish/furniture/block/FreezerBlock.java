@@ -1,5 +1,7 @@
 package com.mrcrayfish.furniture.block;
 
+import net.neoforged.neoforge.registries.DeferredBlock;
+import org.jspecify.annotations.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
@@ -33,10 +35,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.registries.RegistryObject;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -52,9 +51,9 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     public static final BooleanProperty OPEN = BooleanProperty.create("open");
 
     public final ImmutableMap<BlockState, VoxelShape> SHAPES;
-    private final Supplier<RegistryObject<Block>> fridge;
+    private final Supplier<DeferredBlock<Block>> fridge;
 
-    public FreezerBlock(Properties properties, Supplier<RegistryObject<Block>> fridge)
+    public FreezerBlock(Properties properties, Supplier<DeferredBlock<Block>> fridge)
     {
         super(properties);
         this.fridge = fridge;
@@ -88,19 +87,19 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return context == CollisionContext.empty() ? Shapes.block() : SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         if(state.getValue(DIRECTION).getOpposite() == result.getDirection())
         {
@@ -108,7 +107,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
             {
                 if(level.getBlockEntity(pos) instanceof FreezerBlockEntity blockEntity)
                 {
-                    NetworkHooks.openScreen((ServerPlayer) player, blockEntity, pos);
+                    player.openMenu(blockEntity, pos);
                 }
             }
         }
@@ -144,7 +143,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
     }
 
     @Override
-    public void playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
+    public BlockState playerWillDestroy(Level level, BlockPos pos, BlockState state, Player player)
     {
         BlockState upState = level.getBlockState(pos.above());
         if(upState.getBlock() instanceof FridgeBlock)
@@ -152,7 +151,7 @@ public class FreezerBlock extends FurnitureHorizontalBlock implements EntityBloc
             level.setBlock(pos.above(), Blocks.AIR.defaultBlockState(), 35);
             level.levelEvent(player, 2001, pos.above(), Block.getId(upState));
         }
-        super.playerWillDestroy(level, pos, state, player);
+        return super.playerWillDestroy(level, pos, state, player);
     }
 
     @Nullable

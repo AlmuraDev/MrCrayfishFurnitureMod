@@ -1,47 +1,27 @@
 package com.mrcrayfish.furniture.network.message;
 
-import com.mrcrayfish.furniture.network.play.ServerPlayHandler;
+import com.mrcrayfish.furniture.Reference;
+import io.netty.buffer.ByteBuf;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
-
-import java.util.function.Supplier;
+import net.minecraft.network.codec.ByteBufCodecs;
+import net.minecraft.network.codec.StreamCodec;
+import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
+import net.minecraft.resources.Identifier;
 
 /**
+ * Renames the player's own mail box.
+ *
  * Author: MrCrayfish
  */
-public class C2SMessageSetMailBoxName implements IMessage<C2SMessageSetMailBoxName>
+public record C2SMessageSetMailBoxName(String name, BlockPos pos) implements CustomPacketPayload
 {
-    private String name;
-    private BlockPos pos;
+    public static final int MAX_LENGTH = 32;
 
-    public C2SMessageSetMailBoxName() {}
-
-    public C2SMessageSetMailBoxName(String name, BlockPos pos)
-    {
-        this.name = name;
-        this.pos = pos;
-    }
-
-    @Override
-    public void encode(C2SMessageSetMailBoxName message, FriendlyByteBuf buffer)
-    {
-        buffer.writeUtf(message.name, 32);
-        buffer.writeBlockPos(message.pos);
-    }
-
-    @Override
-    public C2SMessageSetMailBoxName decode(FriendlyByteBuf buffer)
-    {
-        return new C2SMessageSetMailBoxName(buffer.readUtf(32), buffer.readBlockPos());
-    }
-
-    @Override
-    public void handle(C2SMessageSetMailBoxName message, Supplier<NetworkEvent.Context> supplier)
-    {
-        supplier.get().enqueueWork(() -> IMessage.callServerConsumer(message, supplier, ServerPlayHandler::handleSetMailBoxNameMessage));
-        supplier.get().setPacketHandled(true);
-    }
+    public static final CustomPacketPayload.Type<C2SMessageSetMailBoxName> TYPE = new CustomPacketPayload.Type<>(Identifier.fromNamespaceAndPath(Reference.MOD_ID, "set_mail_box_name"));
+    public static final StreamCodec<ByteBuf, C2SMessageSetMailBoxName> STREAM_CODEC = StreamCodec.composite(
+            ByteBufCodecs.stringUtf8(MAX_LENGTH), C2SMessageSetMailBoxName::name,
+            BlockPos.STREAM_CODEC, C2SMessageSetMailBoxName::pos,
+            C2SMessageSetMailBoxName::new);
 
     public String getName()
     {
@@ -51,5 +31,11 @@ public class C2SMessageSetMailBoxName implements IMessage<C2SMessageSetMailBoxNa
     public BlockPos getPos()
     {
         return this.pos;
+    }
+
+    @Override
+    public Type<C2SMessageSetMailBoxName> type()
+    {
+        return TYPE;
     }
 }

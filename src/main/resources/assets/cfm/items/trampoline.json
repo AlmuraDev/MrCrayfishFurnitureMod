@@ -1,0 +1,14 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "cfm:item/trampoline",
+    "tints": [
+      {
+        "type": "cfm:trampoline_color"
+      },
+      {
+        "type": "cfm:trampoline_color"
+      }
+    ]
+  }
+}

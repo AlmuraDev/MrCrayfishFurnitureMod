@@ -1,35 +1,47 @@
 package com.mrcrayfish.furniture.common.mail;
 
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
-import net.minecraft.core.registries.BuiltInRegistries;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.ListTag;
-import net.minecraft.nbt.Tag;
+import net.minecraft.core.UUIDUtil;
 import net.minecraft.resources.ResourceKey;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.util.INBTSerializable;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
 /**
+ * A registered mail box and the mail queued for it.
+ *
  * Author: MrCrayfish
  */
-public class MailBox implements INBTSerializable<CompoundTag>
+public class MailBox
 {
-    private UUID id;
+    public static final Codec<MailBox> CODEC = RecordCodecBuilder.create(instance -> instance.group(
+            UUIDUtil.CODEC.fieldOf("MailBoxUUID").forGetter(MailBox::getId),
+            Codec.STRING.fieldOf("MailBoxName").forGetter(MailBox::getName),
+            UUIDUtil.CODEC.fieldOf("OwnerUUID").forGetter(MailBox::getOwnerId),
+            Codec.STRING.fieldOf("OwnerName").forGetter(MailBox::getOwnerName),
+            BlockPos.CODEC.fieldOf("Pos").forGetter(MailBox::getPos),
+            Level.RESOURCE_KEY_CODEC.optionalFieldOf("World", Level.OVERWORLD).forGetter(MailBox::getLevelResourceKey),
+            Mail.CODEC.listOf().optionalFieldOf("MailStorage", List.of()).forGetter(MailBox::getMailStorage)
+    ).apply(instance, MailBox::new));
+
+    private final UUID id;
     private String name;
-    private UUID ownerId;
-    private String ownerName;
-    private BlockPos pos;
-    private ResourceKey<Level> levelResourceKey = Level.OVERWORLD;
-    private List<Mail> mailStorage = new ArrayList<>();
+    private final UUID ownerId;
+    private final String ownerName;
+    private final BlockPos pos;
+    private final ResourceKey<Level> levelResourceKey;
+    private final List<Mail> mailStorage;
 
     public MailBox(UUID id, String name, UUID ownerId, String ownerName, BlockPos pos, ResourceKey<Level> levelResourceKey)
+    {
+        this(id, name, ownerId, ownerName, pos, levelResourceKey, List.of());
+    }
+
+    private MailBox(UUID id, String name, UUID ownerId, String ownerName, BlockPos pos, ResourceKey<Level> levelResourceKey, List<Mail> mailStorage)
     {
         this.id = id;
         this.name = name;
@@ -37,16 +49,12 @@ public class MailBox implements INBTSerializable<CompoundTag>
         this.ownerName = ownerName;
         this.pos = pos;
         this.levelResourceKey = levelResourceKey;
-    }
-
-    public MailBox(CompoundTag compound)
-    {
-        this.deserializeNBT(compound);
+        this.mailStorage = new ArrayList<>(mailStorage);
     }
 
     public UUID getId()
     {
-        return id;
+        return this.id;
     }
 
     public String getName()
@@ -76,7 +84,7 @@ public class MailBox implements INBTSerializable<CompoundTag>
 
     public ResourceKey<Level> getLevelResourceKey()
     {
-        return levelResourceKey;
+        return this.levelResourceKey;
     }
 
     public void addMail(Mail mail)
@@ -94,57 +102,8 @@ public class MailBox implements INBTSerializable<CompoundTag>
         return this.mailStorage.size();
     }
 
-    public CompoundTag serializeDetails()
+    public MailBoxEntry toEntry()
     {
-        CompoundTag compound = new CompoundTag();
-        compound.putUUID("MailBoxUUID", this.id);
-        compound.putString("MailBoxName", this.name);
-        compound.putUUID("OwnerUUID", this.ownerId);
-        compound.putString("OwnerName", this.ownerName);
-        return compound;
-    }
-
-    @Override
-    public CompoundTag serializeNBT()
-    {
-        CompoundTag compound = new CompoundTag();
-        compound.putUUID("MailBoxUUID", this.id);
-        compound.putString("MailBoxName", this.name);
-        compound.putUUID("OwnerUUID", this.ownerId);
-        compound.putString("OwnerName", this.ownerName);
-        compound.putLong("Pos", this.pos.asLong());
-        compound.putString("World", this.levelResourceKey.location().toString());
-
-        if(!this.mailStorage.isEmpty())
-        {
-            ListTag mailStorageList = new ListTag();
-            this.mailStorage.forEach(mail -> mailStorageList.add(mail.serializeNBT()));
-            compound.put("MailStorage", mailStorageList);
-        }
-
-        return compound;
-    }
-
-    @Override
-    public void deserializeNBT(CompoundTag compound)
-    {
-        this.mailStorage = new ArrayList<>();
-
-        this.id = compound.getUUID("MailBoxUUID");
-        this.name = compound.getString("MailBoxName");
-        this.ownerId = compound.getUUID("OwnerUUID");
-        this.ownerName = compound.getString("OwnerName");
-        this.pos = BlockPos.of(compound.getLong("Pos"));
-        this.levelResourceKey = ResourceKey.create(Registries.DIMENSION, new ResourceLocation(compound.getString("World")));
-
-        if(compound.contains("MailStorage", Tag.TAG_LIST))
-        {
-            ListTag mailStorageList = compound.getList("MailStorage", Tag.TAG_COMPOUND);
-            mailStorageList.forEach(nbt2 ->
-            {
-                CompoundTag mailCompound = (CompoundTag) nbt2;
-                this.mailStorage.add(new Mail(mailCompound));
-            });
-        }
+        return new MailBoxEntry(this.id, this.name, this.ownerId, this.ownerName);
     }
 }

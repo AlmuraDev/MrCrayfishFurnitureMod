@@ -3,7 +3,7 @@ package com.mrcrayfish.furniture.common;
 import com.mrcrayfish.furniture.Reference;
 import net.minecraft.core.Registry;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.resources.Identifier;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -30,7 +30,7 @@ public class ModTags
 
         private static TagKey<Item> tag(String name)
         {
-            return TagKey.create(Registries.ITEM, new ResourceLocation(Reference.MOD_ID, name));
+            return TagKey.create(Registries.ITEM, Identifier.fromNamespaceAndPath(Reference.MOD_ID, name));
         }
     }
 
@@ -44,7 +44,7 @@ public class ModTags
 
         private static TagKey<Block> tag(String name)
         {
-            return TagKey.create(Registries.BLOCK, new ResourceLocation(Reference.MOD_ID, name));
+            return TagKey.create(Registries.BLOCK, Identifier.fromNamespaceAndPath(Reference.MOD_ID, name));
         }
     }
 }

@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "trampoline",
+  "key": {
+    "I": "#c:ingots/iron",
+    "S": "#c:slime_balls",
+    "W": "minecraft:orange_wool"
+  },
+  "pattern": [
+    "WSW",
+    "I I",
+    "III"
+  ],
+  "result": {
+    "components": {
+      "minecraft:base_color": "orange"
+    },
+    "id": "cfm:trampoline"
+  }
+}

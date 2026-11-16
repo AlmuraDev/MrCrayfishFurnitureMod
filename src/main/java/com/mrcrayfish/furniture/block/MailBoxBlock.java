@@ -1,5 +1,6 @@
 package com.mrcrayfish.furniture.block;
 
+import org.jspecify.annotations.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.common.mail.Mail;
@@ -28,9 +29,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.NetworkHooks;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -68,13 +67,13 @@ public class MailBoxBlock extends FurnitureHorizontalBlock implements EntityBloc
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
@@ -97,35 +96,7 @@ public class MailBoxBlock extends FurnitureHorizontalBlock implements EntityBloc
     }
 
     @Override
-    public void onRemove(BlockState state, Level level, BlockPos pos, BlockState newState, boolean isMoving)
-    {
-        if(!level.isClientSide())
-        {
-            BlockEntity tileEntity = level.getBlockEntity(pos);
-            if(tileEntity instanceof MailBoxBlockEntity)
-            {
-                MailBoxBlockEntity mailBox = (MailBoxBlockEntity) tileEntity;
-                if(mailBox.getId() != null && mailBox.getOwnerId() != null)
-                {
-                    /* Drops all items that were queue to be inserted into mail box */
-                    Supplier<Mail> supplier = PostOffice.getMailForPlayerMailBox(mailBox.getOwnerId(), mailBox.getId());
-                    while(true)
-                    {
-                        Mail mail = supplier.get();
-                        if(mail == null) break;
-                        Containers.dropItemStack(level, pos.getX(), pos.getY(), pos.getZ(), mail.getStack());
-                    }
-
-                    /* Unregisters the mail box */
-                    PostOffice.unregisterMailBox(mailBox.getOwnerId(), mailBox.getId());
-                }
-            }
-        }
-        super.onRemove(state, level, pos, newState, isMoving);
-    }
-
-    @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         if(!level.isClientSide())
         {
@@ -135,7 +106,7 @@ public class MailBoxBlock extends FurnitureHorizontalBlock implements EntityBloc
                 blockEntity.updateIdAndAttemptClaim(serverPlayer);
                 blockEntity.updateOwnerName(serverPlayer);
                 BlockEntityUtil.sendUpdatePacket(blockEntity);
-                NetworkHooks.openScreen(serverPlayer, blockEntity, pos);
+                serverPlayer.openMenu(blockEntity, pos);
             }
         }
         return InteractionResult.SUCCESS;

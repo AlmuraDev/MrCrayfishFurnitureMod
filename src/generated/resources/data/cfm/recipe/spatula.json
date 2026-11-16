@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "B": "minecraft:iron_bars",
+    "I": "#c:ingots/iron",
+    "W": "minecraft:black_wool"
+  },
+  "pattern": [
+    "B",
+    "I",
+    "W"
+  ],
+  "result": {
+    "id": "cfm:spatula"
+  }
+}

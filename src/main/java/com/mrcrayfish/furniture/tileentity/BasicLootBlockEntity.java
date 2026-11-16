@@ -3,12 +3,11 @@ package com.mrcrayfish.furniture.tileentity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.ContainerHelper;
 import net.minecraft.world.WorldlyContainer;
+import net.minecraft.world.entity.ContainerUser;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ChestMenu;
 import net.minecraft.world.item.ItemStack;
@@ -17,9 +16,11 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.ContainerOpenersCounter;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.Nullable;
-import java.util.Iterator;
+import java.util.List;
 import java.util.stream.IntStream;
 
 /**
@@ -80,18 +81,14 @@ public abstract class BasicLootBlockEntity extends RandomizableContainerBlockEnt
     @Override
     public boolean isEmpty()
     {
-        Iterator it = this.items.iterator();
-        ItemStack stack;
-        do
+        for(ItemStack stack : this.items)
         {
-            if(!it.hasNext())
+            if(!stack.isEmpty())
             {
-                return true;
+                return false;
             }
-            stack = (ItemStack) it.next();
         }
-        while(stack.isEmpty());
-        return false;
+        return true;
     }
 
     public boolean isFull()
@@ -107,30 +104,30 @@ public abstract class BasicLootBlockEntity extends RandomizableContainerBlockEnt
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag)
+    protected void saveAdditional(ValueOutput output)
     {
-        super.saveAdditional(tag);
-        if(!this.trySaveLootTable(tag))
+        super.saveAdditional(output);
+        if(!this.trySaveLootTable(output))
         {
-            ContainerHelper.saveAllItems(tag, this.items);
+            ContainerHelper.saveAllItems(output, this.items);
         }
     }
 
     @Override
-    public void load(CompoundTag compound)
+    protected void loadAdditional(ValueInput input)
     {
-        super.load(compound);
+        super.loadAdditional(input);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
-        if(!this.tryLoadLootTable(compound))
+        if(!this.tryLoadLootTable(input))
         {
-            ContainerHelper.loadAllItems(compound, this.items);
+            ContainerHelper.loadAllItems(input, this.items);
         }
     }
 
     @Override
     public int[] getSlotsForFace(Direction direction)
     {
-        return slots;
+        return this.slots;
     }
 
     @Override
@@ -146,21 +143,27 @@ public abstract class BasicLootBlockEntity extends RandomizableContainerBlockEnt
     }
 
     @Override
-    public void startOpen(Player player)
+    public void startOpen(ContainerUser user)
     {
-        if(!this.remove && !player.isSpectator())
+        if(!this.remove && !user.getLivingEntity().isSpectator())
         {
-            this.openersCounter.incrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
+            this.openersCounter.incrementOpeners(user.getLivingEntity(), this.getLevel(), this.getBlockPos(), this.getBlockState(), user.getContainerInteractionRange());
         }
     }
 
     @Override
-    public void stopOpen(Player player)
+    public void stopOpen(ContainerUser user)
     {
-        if(!this.remove && !player.isSpectator())
+        if(!this.remove && !user.getLivingEntity().isSpectator())
         {
-            this.openersCounter.decrementOpeners(player, this.getLevel(), this.getBlockPos(), this.getBlockState());
+            this.openersCounter.decrementOpeners(user.getLivingEntity(), this.getLevel(), this.getBlockPos(), this.getBlockState());
         }
+    }
+
+    @Override
+    public List<ContainerUser> getEntitiesWithContainerOpen()
+    {
+        return this.openersCounter.getEntitiesWithContainerOpen(this.getLevel(), this.getBlockPos());
     }
 
     public void updateOpenerCount()

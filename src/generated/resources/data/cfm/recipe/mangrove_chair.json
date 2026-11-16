@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "chair",
+  "key": {
+    "L": "minecraft:mangrove_log",
+    "P": "minecraft:mangrove_planks"
+  },
+  "pattern": [
+    "L  ",
+    "LLL",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:mangrove_chair"
+  }
+}

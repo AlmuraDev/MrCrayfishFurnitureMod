@@ -1,5 +1,9 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import org.jspecify.annotations.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.common.ModTags;
@@ -9,17 +13,15 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoorHingeSide;
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,19 +112,19 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return COLLISION_SHAPES.get(state);
     }
@@ -134,12 +136,13 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos newPos, BlockState newState, RandomSource random)
     {
+        state = super.updateShape(state, level, ticks, pos, direction, newPos, newState, random);
         return this.getFenceState(state, level, pos);
     }
 
-    private BlockState getFenceState(BlockState state, LevelAccessor level, BlockPos pos)
+    private BlockState getFenceState(BlockState state, LevelReader level, BlockPos pos)
     {
         boolean north = this.canConnectToBlock(level, pos, Direction.NORTH);
         boolean east = this.canConnectToBlock(level, pos, Direction.EAST);
@@ -148,7 +151,7 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
         return state.setValue(NORTH, north).setValue(EAST, east).setValue(SOUTH, south).setValue(WEST, west);
     }
 
-    private boolean canConnectToBlock(LevelAccessor level, BlockPos pos, Direction direction)
+    private boolean canConnectToBlock(LevelReader level, BlockPos pos, Direction direction)
     {
         BlockPos offsetPos = pos.relative(direction);
         BlockState offsetState = level.getBlockState(offsetPos);
@@ -178,8 +181,8 @@ public class UpgradedFenceBlock extends FurnitureWaterloggedBlock
 
     @Nullable
     @Override
-    public BlockPathTypes getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity)
+    public PathType getBlockPathType(BlockState state, BlockGetter world, BlockPos pos, @Nullable Mob entity)
     {
-        return BlockPathTypes.FENCE;
+        return PathType.FENCE;
     }
 }

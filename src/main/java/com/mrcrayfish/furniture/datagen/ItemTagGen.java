@@ -5,23 +5,26 @@ import com.mrcrayfish.furniture.common.ModTags;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
 import net.minecraft.core.HolderLookup;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.data.tags.TagsProvider;
+import net.minecraft.resources.ResourceKey;
 import net.minecraft.tags.TagBuilder;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.common.data.ExistingFileHelper;
+import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
+import net.neoforged.neoforge.registries.DeferredBlock;
 
 import java.util.concurrent.CompletableFuture;
 
 /**
  * @author Ocelot
  */
-public class ItemTagGen extends ItemTagsProvider
+public class ItemTagGen extends BlockTagCopyingItemTagProvider
 {
-    public ItemTagGen(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> tagLookup, ExistingFileHelper existingFileHelper)
+    public ItemTagGen(PackOutput output, CompletableFuture<HolderLookup.Provider> lookupProvider, CompletableFuture<TagsProvider.TagLookup<Block>> tagLookup)
     {
-        super(output, lookupProvider, tagLookup, Reference.MOD_ID, existingFileHelper);
+        super(output, lookupProvider, tagLookup, Reference.MOD_ID);
     }
 
     @Override
@@ -29,188 +32,188 @@ public class ItemTagGen extends ItemTagsProvider
     {
         this.tag(ModTags.Items.GENERAL)
                 // Sofa
-                .add(ModBlocks.SOFA_WHITE.get().asItem())
-                .add(ModBlocks.SOFA_ORANGE.get().asItem())
-                .add(ModBlocks.SOFA_MAGENTA.get().asItem())
-                .add(ModBlocks.SOFA_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.SOFA_YELLOW.get().asItem())
-                .add(ModBlocks.SOFA_LIME.get().asItem())
-                .add(ModBlocks.SOFA_PINK.get().asItem())
-                .add(ModBlocks.SOFA_GRAY.get().asItem())
-                .add(ModBlocks.SOFA_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.SOFA_CYAN.get().asItem())
-                .add(ModBlocks.SOFA_PURPLE.get().asItem())
-                .add(ModBlocks.SOFA_BLUE.get().asItem())
-                .add(ModBlocks.SOFA_BROWN.get().asItem())
-                .add(ModBlocks.SOFA_GREEN.get().asItem())
-                .add(ModBlocks.SOFA_RED.get().asItem())
-                .add(ModBlocks.SOFA_BLACK.get().asItem());
+                .add(item(ModBlocks.SOFA_WHITE))
+                .add(item(ModBlocks.SOFA_ORANGE))
+                .add(item(ModBlocks.SOFA_MAGENTA))
+                .add(item(ModBlocks.SOFA_LIGHT_BLUE))
+                .add(item(ModBlocks.SOFA_YELLOW))
+                .add(item(ModBlocks.SOFA_LIME))
+                .add(item(ModBlocks.SOFA_PINK))
+                .add(item(ModBlocks.SOFA_GRAY))
+                .add(item(ModBlocks.SOFA_LIGHT_GRAY))
+                .add(item(ModBlocks.SOFA_CYAN))
+                .add(item(ModBlocks.SOFA_PURPLE))
+                .add(item(ModBlocks.SOFA_BLUE))
+                .add(item(ModBlocks.SOFA_BROWN))
+                .add(item(ModBlocks.SOFA_GREEN))
+                .add(item(ModBlocks.SOFA_RED))
+                .add(item(ModBlocks.SOFA_BLACK));
 
         this.tag(ModTags.Items.KITCHEN)
                 // Kitchen Counters
-                .add(ModBlocks.KITCHEN_COUNTER_WHITE.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_ORANGE.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_MAGENTA.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_YELLOW.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_LIME.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_PINK.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_GRAY.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_CYAN.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_PURPLE.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_BLUE.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_BROWN.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_GREEN.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_RED.get().asItem())
-                .add(ModBlocks.KITCHEN_COUNTER_BLACK.get().asItem())
+                .add(item(ModBlocks.KITCHEN_COUNTER_WHITE))
+                .add(item(ModBlocks.KITCHEN_COUNTER_ORANGE))
+                .add(item(ModBlocks.KITCHEN_COUNTER_MAGENTA))
+                .add(item(ModBlocks.KITCHEN_COUNTER_LIGHT_BLUE))
+                .add(item(ModBlocks.KITCHEN_COUNTER_YELLOW))
+                .add(item(ModBlocks.KITCHEN_COUNTER_LIME))
+                .add(item(ModBlocks.KITCHEN_COUNTER_PINK))
+                .add(item(ModBlocks.KITCHEN_COUNTER_GRAY))
+                .add(item(ModBlocks.KITCHEN_COUNTER_LIGHT_GRAY))
+                .add(item(ModBlocks.KITCHEN_COUNTER_CYAN))
+                .add(item(ModBlocks.KITCHEN_COUNTER_PURPLE))
+                .add(item(ModBlocks.KITCHEN_COUNTER_BLUE))
+                .add(item(ModBlocks.KITCHEN_COUNTER_BROWN))
+                .add(item(ModBlocks.KITCHEN_COUNTER_GREEN))
+                .add(item(ModBlocks.KITCHEN_COUNTER_RED))
+                .add(item(ModBlocks.KITCHEN_COUNTER_BLACK))
                 // Kitchen Drawers
-                .add(ModBlocks.KITCHEN_DRAWER_WHITE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_ORANGE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_MAGENTA.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_YELLOW.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_LIME.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_PINK.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_GRAY.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_CYAN.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_PURPLE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_BLUE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_BROWN.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_GREEN.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_RED.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_BLACK.get().asItem())
+                .add(item(ModBlocks.KITCHEN_DRAWER_WHITE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_ORANGE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_MAGENTA))
+                .add(item(ModBlocks.KITCHEN_DRAWER_LIGHT_BLUE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_YELLOW))
+                .add(item(ModBlocks.KITCHEN_DRAWER_LIME))
+                .add(item(ModBlocks.KITCHEN_DRAWER_PINK))
+                .add(item(ModBlocks.KITCHEN_DRAWER_GRAY))
+                .add(item(ModBlocks.KITCHEN_DRAWER_LIGHT_GRAY))
+                .add(item(ModBlocks.KITCHEN_DRAWER_CYAN))
+                .add(item(ModBlocks.KITCHEN_DRAWER_PURPLE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_BLUE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_BROWN))
+                .add(item(ModBlocks.KITCHEN_DRAWER_GREEN))
+                .add(item(ModBlocks.KITCHEN_DRAWER_RED))
+                .add(item(ModBlocks.KITCHEN_DRAWER_BLACK))
                 // Spatula
-                .add(ModItems.SPATULA.get())
+                .add(ModItems.SPATULA.key())
                 // Kitchen Sinks
-                .add(ModBlocks.KITCHEN_SINK_WHITE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_ORANGE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_MAGENTA.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_YELLOW.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIME.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_PINK.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_GRAY.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_CYAN.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_PURPLE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_BLUE.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_BROWN.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_GREEN.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_RED.get().asItem())
-                .add(ModBlocks.KITCHEN_SINK_BLACK.get().asItem())
+                .add(item(ModBlocks.KITCHEN_SINK_WHITE))
+                .add(item(ModBlocks.KITCHEN_SINK_ORANGE))
+                .add(item(ModBlocks.KITCHEN_SINK_MAGENTA))
+                .add(item(ModBlocks.KITCHEN_SINK_LIGHT_BLUE))
+                .add(item(ModBlocks.KITCHEN_SINK_YELLOW))
+                .add(item(ModBlocks.KITCHEN_SINK_LIME))
+                .add(item(ModBlocks.KITCHEN_SINK_PINK))
+                .add(item(ModBlocks.KITCHEN_SINK_GRAY))
+                .add(item(ModBlocks.KITCHEN_SINK_LIGHT_GRAY))
+                .add(item(ModBlocks.KITCHEN_SINK_CYAN))
+                .add(item(ModBlocks.KITCHEN_SINK_PURPLE))
+                .add(item(ModBlocks.KITCHEN_SINK_BLUE))
+                .add(item(ModBlocks.KITCHEN_SINK_BROWN))
+                .add(item(ModBlocks.KITCHEN_SINK_GREEN))
+                .add(item(ModBlocks.KITCHEN_SINK_RED))
+                .add(item(ModBlocks.KITCHEN_SINK_BLACK))
                 //Fridge
-                .add(ModBlocks.FRIDGE_LIGHT.get().asItem())
-                .add(ModBlocks.FRIDGE_DARK.get().asItem());
+                .add(item(ModBlocks.FRIDGE_LIGHT))
+                .add(item(ModBlocks.FRIDGE_DARK));
 
         this.tag(ModTags.Items.OUTDOORS)
                 // Fences and Fence Gates
                 .addTag(ModTags.Items.UPGRADED_FENCE_GATES)
                 .addTag(ModTags.Items.UPGRADED_FENCES)
                 // Post Box
-                .add(ModBlocks.POST_BOX.get().asItem())
+                .add(item(ModBlocks.POST_BOX))
                 // Hedge
                 .addTag(ModTags.Items.HEDGES)
                 // Rock Path
-                .add(ModBlocks.ROCK_PATH.get().asItem())
+                .add(item(ModBlocks.ROCK_PATH))
                 // Trampolines
-                .add(ModBlocks.TRAMPOLINE.get().asItem())
+                .add(item(ModBlocks.TRAMPOLINE))
                 // Coolers
-                .add(ModBlocks.COOLER_WHITE.get().asItem())
-                .add(ModBlocks.COOLER_ORANGE.get().asItem())
-                .add(ModBlocks.COOLER_MAGENTA.get().asItem())
-                .add(ModBlocks.COOLER_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.COOLER_YELLOW.get().asItem())
-                .add(ModBlocks.COOLER_LIME.get().asItem())
-                .add(ModBlocks.COOLER_PINK.get().asItem())
-                .add(ModBlocks.COOLER_GRAY.get().asItem())
-                .add(ModBlocks.COOLER_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.COOLER_CYAN.get().asItem())
-                .add(ModBlocks.COOLER_PURPLE.get().asItem())
-                .add(ModBlocks.COOLER_BLUE.get().asItem())
-                .add(ModBlocks.COOLER_BROWN.get().asItem())
-                .add(ModBlocks.COOLER_GREEN.get().asItem())
-                .add(ModBlocks.COOLER_RED.get().asItem())
-                .add(ModBlocks.COOLER_BLACK.get().asItem())
+                .add(item(ModBlocks.COOLER_WHITE))
+                .add(item(ModBlocks.COOLER_ORANGE))
+                .add(item(ModBlocks.COOLER_MAGENTA))
+                .add(item(ModBlocks.COOLER_LIGHT_BLUE))
+                .add(item(ModBlocks.COOLER_YELLOW))
+                .add(item(ModBlocks.COOLER_LIME))
+                .add(item(ModBlocks.COOLER_PINK))
+                .add(item(ModBlocks.COOLER_GRAY))
+                .add(item(ModBlocks.COOLER_LIGHT_GRAY))
+                .add(item(ModBlocks.COOLER_CYAN))
+                .add(item(ModBlocks.COOLER_PURPLE))
+                .add(item(ModBlocks.COOLER_BLUE))
+                .add(item(ModBlocks.COOLER_BROWN))
+                .add(item(ModBlocks.COOLER_GREEN))
+                .add(item(ModBlocks.COOLER_RED))
+                .add(item(ModBlocks.COOLER_BLACK))
                 // Grill
-                .add(ModBlocks.GRILL_WHITE.get().asItem())
-                .add(ModBlocks.GRILL_ORANGE.get().asItem())
-                .add(ModBlocks.GRILL_MAGENTA.get().asItem())
-                .add(ModBlocks.GRILL_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.GRILL_YELLOW.get().asItem())
-                .add(ModBlocks.GRILL_LIME.get().asItem())
-                .add(ModBlocks.GRILL_PINK.get().asItem())
-                .add(ModBlocks.GRILL_GRAY.get().asItem())
-                .add(ModBlocks.GRILL_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.GRILL_CYAN.get().asItem())
-                .add(ModBlocks.GRILL_PURPLE.get().asItem())
-                .add(ModBlocks.GRILL_BLUE.get().asItem())
-                .add(ModBlocks.GRILL_BROWN.get().asItem())
-                .add(ModBlocks.GRILL_GREEN.get().asItem())
-                .add(ModBlocks.GRILL_RED.get().asItem())
-                .add(ModBlocks.GRILL_BLACK.get().asItem())
+                .add(item(ModBlocks.GRILL_WHITE))
+                .add(item(ModBlocks.GRILL_ORANGE))
+                .add(item(ModBlocks.GRILL_MAGENTA))
+                .add(item(ModBlocks.GRILL_LIGHT_BLUE))
+                .add(item(ModBlocks.GRILL_YELLOW))
+                .add(item(ModBlocks.GRILL_LIME))
+                .add(item(ModBlocks.GRILL_PINK))
+                .add(item(ModBlocks.GRILL_GRAY))
+                .add(item(ModBlocks.GRILL_LIGHT_GRAY))
+                .add(item(ModBlocks.GRILL_CYAN))
+                .add(item(ModBlocks.GRILL_PURPLE))
+                .add(item(ModBlocks.GRILL_BLUE))
+                .add(item(ModBlocks.GRILL_BROWN))
+                .add(item(ModBlocks.GRILL_GREEN))
+                .add(item(ModBlocks.GRILL_RED))
+                .add(item(ModBlocks.GRILL_BLACK))
                 // Spatula
-                .add(ModItems.SPATULA.get())
-                .add(ModBlocks.DOOR_MAT.get().asItem());
+                .add(ModItems.SPATULA.key())
+                .add(item(ModBlocks.DOOR_MAT));
 
         this.tag(ModTags.Items.STORAGE)
                 // Coolers
-                .add(ModBlocks.COOLER_WHITE.get().asItem())
-                .add(ModBlocks.COOLER_ORANGE.get().asItem())
-                .add(ModBlocks.COOLER_MAGENTA.get().asItem())
-                .add(ModBlocks.COOLER_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.COOLER_YELLOW.get().asItem())
-                .add(ModBlocks.COOLER_LIME.get().asItem())
-                .add(ModBlocks.COOLER_PINK.get().asItem())
-                .add(ModBlocks.COOLER_GRAY.get().asItem())
-                .add(ModBlocks.COOLER_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.COOLER_CYAN.get().asItem())
-                .add(ModBlocks.COOLER_PURPLE.get().asItem())
-                .add(ModBlocks.COOLER_BLUE.get().asItem())
-                .add(ModBlocks.COOLER_BROWN.get().asItem())
-                .add(ModBlocks.COOLER_GREEN.get().asItem())
-                .add(ModBlocks.COOLER_RED.get().asItem())
-                .add(ModBlocks.COOLER_BLACK.get().asItem())
+                .add(item(ModBlocks.COOLER_WHITE))
+                .add(item(ModBlocks.COOLER_ORANGE))
+                .add(item(ModBlocks.COOLER_MAGENTA))
+                .add(item(ModBlocks.COOLER_LIGHT_BLUE))
+                .add(item(ModBlocks.COOLER_YELLOW))
+                .add(item(ModBlocks.COOLER_LIME))
+                .add(item(ModBlocks.COOLER_PINK))
+                .add(item(ModBlocks.COOLER_GRAY))
+                .add(item(ModBlocks.COOLER_LIGHT_GRAY))
+                .add(item(ModBlocks.COOLER_CYAN))
+                .add(item(ModBlocks.COOLER_PURPLE))
+                .add(item(ModBlocks.COOLER_BLUE))
+                .add(item(ModBlocks.COOLER_BROWN))
+                .add(item(ModBlocks.COOLER_GREEN))
+                .add(item(ModBlocks.COOLER_RED))
+                .add(item(ModBlocks.COOLER_BLACK))
                 // Post Box
-                .add(ModBlocks.POST_BOX.get().asItem())
+                .add(item(ModBlocks.POST_BOX))
                 // Coolers
-                .add(ModBlocks.COOLER_WHITE.get().asItem())
-                .add(ModBlocks.COOLER_ORANGE.get().asItem())
-                .add(ModBlocks.COOLER_MAGENTA.get().asItem())
-                .add(ModBlocks.COOLER_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.COOLER_YELLOW.get().asItem())
-                .add(ModBlocks.COOLER_LIME.get().asItem())
-                .add(ModBlocks.COOLER_PINK.get().asItem())
-                .add(ModBlocks.COOLER_GRAY.get().asItem())
-                .add(ModBlocks.COOLER_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.COOLER_CYAN.get().asItem())
-                .add(ModBlocks.COOLER_PURPLE.get().asItem())
-                .add(ModBlocks.COOLER_BLUE.get().asItem())
-                .add(ModBlocks.COOLER_BROWN.get().asItem())
-                .add(ModBlocks.COOLER_GREEN.get().asItem())
-                .add(ModBlocks.COOLER_RED.get().asItem())
-                .add(ModBlocks.COOLER_BLACK.get().asItem())
+                .add(item(ModBlocks.COOLER_WHITE))
+                .add(item(ModBlocks.COOLER_ORANGE))
+                .add(item(ModBlocks.COOLER_MAGENTA))
+                .add(item(ModBlocks.COOLER_LIGHT_BLUE))
+                .add(item(ModBlocks.COOLER_YELLOW))
+                .add(item(ModBlocks.COOLER_LIME))
+                .add(item(ModBlocks.COOLER_PINK))
+                .add(item(ModBlocks.COOLER_GRAY))
+                .add(item(ModBlocks.COOLER_LIGHT_GRAY))
+                .add(item(ModBlocks.COOLER_CYAN))
+                .add(item(ModBlocks.COOLER_PURPLE))
+                .add(item(ModBlocks.COOLER_BLUE))
+                .add(item(ModBlocks.COOLER_BROWN))
+                .add(item(ModBlocks.COOLER_GREEN))
+                .add(item(ModBlocks.COOLER_RED))
+                .add(item(ModBlocks.COOLER_BLACK))
                 // Kitchen Drawers
-                .add(ModBlocks.KITCHEN_DRAWER_WHITE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_ORANGE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_MAGENTA.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_LIGHT_BLUE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_YELLOW.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_LIME.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_PINK.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_GRAY.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_LIGHT_GRAY.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_CYAN.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_PURPLE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_BLUE.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_BROWN.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_GREEN.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_RED.get().asItem())
-                .add(ModBlocks.KITCHEN_DRAWER_BLACK.get().asItem());
+                .add(item(ModBlocks.KITCHEN_DRAWER_WHITE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_ORANGE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_MAGENTA))
+                .add(item(ModBlocks.KITCHEN_DRAWER_LIGHT_BLUE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_YELLOW))
+                .add(item(ModBlocks.KITCHEN_DRAWER_LIME))
+                .add(item(ModBlocks.KITCHEN_DRAWER_PINK))
+                .add(item(ModBlocks.KITCHEN_DRAWER_GRAY))
+                .add(item(ModBlocks.KITCHEN_DRAWER_LIGHT_GRAY))
+                .add(item(ModBlocks.KITCHEN_DRAWER_CYAN))
+                .add(item(ModBlocks.KITCHEN_DRAWER_PURPLE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_BLUE))
+                .add(item(ModBlocks.KITCHEN_DRAWER_BROWN))
+                .add(item(ModBlocks.KITCHEN_DRAWER_GREEN))
+                .add(item(ModBlocks.KITCHEN_DRAWER_RED))
+                .add(item(ModBlocks.KITCHEN_DRAWER_BLACK));
 
-        this.tag(ModTags.Items.TRAMPOLINE).add(ModBlocks.TRAMPOLINE.get().asItem());
-        this.tag(ModTags.Items.ITEMS).add(ModItems.SPATULA.get());
+        this.tag(ModTags.Items.TRAMPOLINE).add(item(ModBlocks.TRAMPOLINE));
+        this.tag(ModTags.Items.ITEMS).add(ModItems.SPATULA.key());
 
         this.copy(ModTags.Blocks.UPGRADED_FENCE_GATES, ModTags.Items.UPGRADED_FENCE_GATES);
         this.copy(ModTags.Blocks.PICKET_FENCE_GATES, ModTags.Items.PICKET_FENCE_GATES);
@@ -218,156 +221,161 @@ public class ItemTagGen extends ItemTagsProvider
         this.copy(ModTags.Blocks.PICKET_FENCES, ModTags.Items.PICKET_FENCES);
         this.copy(ModTags.Blocks.HEDGES, ModTags.Items.HEDGES);
 
-        TagBuilder bedroomTag = this.getOrCreateRawBuilder(ModTags.Items.BEDROOM).replace(false);
+        TagBuilder bedroomTag = this.getOrCreateRawBuilder(ModTags.Items.BEDROOM);
         for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
         {
-            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, false));
+            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, true));
+                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, true).getId());
             }
 
-            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK, variant, false));
+            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK, variant, true));
+                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK, variant, true).getId());
             }
 
-            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, false));
+            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, true));
+                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, true).getId());
             }
 
-            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BLINDS, variant, false));
+            bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BLINDS, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BLINDS, variant, true));
+                bedroomTag.addElement(GeneratorData.getResultBlock(GeneratorData.BLINDS, variant, true).getId());
             }
         }
 
-        TagBuilder generalTag = this.getOrCreateRawBuilder(ModTags.Items.GENERAL).replace(false);
+        TagBuilder generalTag = this.getOrCreateRawBuilder(ModTags.Items.GENERAL);
         for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
         {
-            generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.TABLE, variant, false));
+            generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.TABLE, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.TABLE, variant, true));
+                generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.TABLE, variant, true).getId());
             }
 
-            generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.CHAIR, variant, false));
+            generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.CHAIR, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.CHAIR, variant, true));
+                generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.CHAIR, variant, true).getId());
             }
 
-            generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.COFFEE_TABLE, variant, false));
+            generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.COFFEE_TABLE, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.COFFEE_TABLE, variant, true));
+                generalTag.addElement(GeneratorData.getResultBlock(GeneratorData.COFFEE_TABLE, variant, true).getId());
             }
         }
 
-        TagBuilder kitchenTag = this.getOrCreateRawBuilder(ModTags.Items.KITCHEN).replace(false);
+        TagBuilder kitchenTag = this.getOrCreateRawBuilder(ModTags.Items.KITCHEN);
         for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
         {
-            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_COUNTER, variant, false));
+            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_COUNTER, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_COUNTER, variant, true));
+                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_COUNTER, variant, true).getId());
             }
 
-            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, false));
+            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, true));
+                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, true).getId());
             }
 
-            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, false));
+            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, true));
+                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, true).getId());
             }
 
-            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, false));
+            kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, true));
+                kitchenTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, true).getId());
             }
         }
 
-        TagBuilder outdoorTag = this.getOrCreateRawBuilder(ModTags.Items.OUTDOORS).replace(false);
+        TagBuilder outdoorTag = this.getOrCreateRawBuilder(ModTags.Items.OUTDOORS);
         for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
         {
-            outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.PARK_BENCH, variant, false));
+            outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.PARK_BENCH, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.PARK_BENCH, variant, true));
+                outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.PARK_BENCH, variant, true).getId());
             }
 
-            outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, false));
+            outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, true));
+                outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, true).getId());
             }
 
-            outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, false));
+            outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, true));
+                outdoorTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, true).getId());
             }
         }
 
-        TagBuilder storageTag = this.getOrCreateRawBuilder(ModTags.Items.STORAGE).replace(false);
+        TagBuilder storageTag = this.getOrCreateRawBuilder(ModTags.Items.STORAGE);
         for(GeneratorData.Variant variant : GeneratorData.ALL_VARIANTS)
         {
-            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CABINET, variant, false));
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CABINET, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CABINET, variant, true));
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CABINET, variant, true).getId());
             }
 
-            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, false));
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, true));
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.BEDSIDE_CABINET, variant, true).getId());
             }
 
-            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, false));
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, true));
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.DESK_CABINET, variant, true).getId());
             }
 
-            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CRATE, variant, false));
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CRATE, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CRATE, variant, true));
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.CRATE, variant, true).getId());
             }
 
-            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, false));
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, true));
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.MAIL_BOX, variant, true).getId());
             }
 
-            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, false));
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, true));
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_DRAWER, variant, true).getId());
             }
 
-            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, false));
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, true));
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_LIGHT, variant, true).getId());
             }
 
-            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, false));
+            storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, false).getId());
             if(variant.strippedLog() != null)
             {
-                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, true));
+                storageTag.addElement(GeneratorData.getResultBlock(GeneratorData.KITCHEN_SINK_DARK, variant, true).getId());
             }
         }
+    }
+
+    private static ResourceKey<Item> item(DeferredBlock<?> block)
+    {
+        return ResourceKey.create(Registries.ITEM, block.getId());
     }
 }

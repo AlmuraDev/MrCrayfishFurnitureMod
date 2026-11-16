@@ -1,5 +1,9 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
+import org.jspecify.annotations.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
@@ -8,7 +12,6 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -16,7 +19,6 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,20 +89,21 @@ public class CoffeeTableBlock extends FurnitureWaterloggedBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public BlockState updateShape(BlockState state, Direction direction, BlockState newState, LevelAccessor level, BlockPos pos, BlockPos newPos)
+    protected BlockState updateShape(BlockState state, LevelReader level, ScheduledTickAccess ticks, BlockPos pos, Direction direction, BlockPos newPos, BlockState newState, RandomSource random)
     {
+        state = super.updateShape(state, level, ticks, pos, direction, newPos, newState, random);
         boolean tall = state.getValue(TALL);
         boolean north = this.isCoffeeTable(level, pos, Direction.NORTH, tall);
         boolean east = this.isCoffeeTable(level, pos, Direction.EAST, tall);
@@ -109,7 +112,7 @@ public class CoffeeTableBlock extends FurnitureWaterloggedBlock
         return state.setValue(NORTH, north).setValue(EAST, east).setValue(SOUTH, south).setValue(WEST, west);
     }
 
-    private boolean isCoffeeTable(LevelAccessor level, BlockPos source, Direction direction, boolean tall)
+    private boolean isCoffeeTable(LevelReader level, BlockPos source, Direction direction, boolean tall)
     {
         BlockState state = level.getBlockState(source.relative(direction));
         return state.getBlock() == this && state.getValue(TALL) == tall;
@@ -129,7 +132,7 @@ public class CoffeeTableBlock extends FurnitureWaterloggedBlock
     }
 
     @Override
-    public boolean canBeReplaced(BlockState state, BlockPlaceContext context)
+    protected boolean canBeReplaced(BlockState state, BlockPlaceContext context)
     {
         ItemStack stack = context.getItemInHand();
         return !state.getValue(TALL) && stack.getItem() == this.asItem();

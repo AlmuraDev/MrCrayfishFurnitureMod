@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "table",
+  "key": {
+    "L": "minecraft:jungle_log",
+    "P": "minecraft:jungle_planks"
+  },
+  "pattern": [
+    "LLL",
+    " P ",
+    " P "
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:jungle_table"
+  }
+}

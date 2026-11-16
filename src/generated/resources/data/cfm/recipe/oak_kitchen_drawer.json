@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_drawer",
+  "key": {
+    "C": "#c:chests/wooden",
+    "L": "minecraft:oak_log",
+    "P": "minecraft:oak_planks"
+  },
+  "pattern": [
+    "LLL",
+    "PCP",
+    "PPP"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:oak_kitchen_drawer"
+  }
+}

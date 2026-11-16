@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "coffee_table",
+  "key": {
+    "L": "minecraft:warped_stem",
+    "P": "minecraft:warped_planks"
+  },
+  "pattern": [
+    "LLL",
+    "P P"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:warped_coffee_table"
+  }
+}

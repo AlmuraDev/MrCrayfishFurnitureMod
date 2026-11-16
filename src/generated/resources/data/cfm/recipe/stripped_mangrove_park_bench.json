@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "park_bench",
+  "key": {
+    "L": "minecraft:mangrove_log",
+    "P": "minecraft:stripped_mangrove_log"
+  },
+  "pattern": [
+    "PPP",
+    "PPP",
+    "L L"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:stripped_mangrove_park_bench"
+  }
+}

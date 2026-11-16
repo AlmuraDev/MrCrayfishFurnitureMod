@@ -1,7 +1,7 @@
 package com.mrcrayfish.furniture.inventory.container;
 
 import com.google.common.collect.ImmutableList;
-import com.mrcrayfish.furniture.client.MailBoxEntry;
+import com.mrcrayfish.furniture.common.mail.MailBoxEntry;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
 import net.minecraft.world.SimpleContainer;

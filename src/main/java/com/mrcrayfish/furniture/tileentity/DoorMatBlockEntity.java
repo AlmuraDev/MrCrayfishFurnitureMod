@@ -3,21 +3,22 @@ package com.mrcrayfish.furniture.tileentity;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.util.BlockEntityUtil;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-
-import javax.annotation.Nullable;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import org.jspecify.annotations.Nullable;
 
 /**
  * Author: MrCrayfish
  */
 public class DoorMatBlockEntity extends BlockEntity
 {
+    @Nullable
     private String message = null;
 
     protected DoorMatBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state)
@@ -30,13 +31,22 @@ public class DoorMatBlockEntity extends BlockEntity
         super(ModBlockEntities.DOOR_MAT.get(), pos, state);
     }
 
+    /**
+     * Sets the message once: a door mat is written on just after it is placed and can't be changed after.
+     */
     public void setMessage(String message)
     {
         if(this.message == null)
         {
             this.message = message;
+            this.setChanged();
             BlockEntityUtil.sendUpdatePacket(this);
         }
+    }
+
+    public boolean hasMessage()
+    {
+        return this.message != null;
     }
 
     public String getMessage()
@@ -45,41 +55,31 @@ public class DoorMatBlockEntity extends BlockEntity
     }
 
     @Override
-    public void load(CompoundTag compound)
+    protected void loadAdditional(ValueInput input)
     {
-        super.load(compound);
-        if(compound.contains("Message", Tag.TAG_STRING))
-        {
-            this.message = compound.getString("Message");
-        }
+        super.loadAdditional(input);
+        input.getString("Message").ifPresent(message -> this.message = message);
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag)
+    protected void saveAdditional(ValueOutput output)
     {
-        super.saveAdditional(tag);
+        super.saveAdditional(output);
         if(this.message != null)
         {
-            tag.putString("Message", this.message);
+            output.putString("Message", this.message);
         }
     }
 
-    @Nullable
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
-    public CompoundTag getUpdateTag()
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries)
     {
-        return this.saveWithFullMetadata();
-    }
-
-    @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
-    {
-        this.load(pkt.getTag());
+        return this.saveWithoutMetadata(registries);
     }
 }

@@ -4,35 +4,40 @@ import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.item.crafting.GrillCookingRecipe;
-import com.mrcrayfish.furniture.network.PacketHandler;
 import com.mrcrayfish.furniture.network.message.S2CMessageFlipGrill;
 import com.mrcrayfish.furniture.util.BlockEntityUtil;
-import com.mrcrayfish.furniture.util.ItemStackHelper;
+import com.mrcrayfish.furniture.util.FuelHelper;
+import com.mrcrayfish.furniture.util.RecipeLookup;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.nbt.Tag;
-import net.minecraft.network.Connection;
 import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.Container;
 import net.minecraft.world.ContainerHelper;
-import net.minecraft.world.SimpleContainer;
+import net.minecraft.world.ItemStackWithSlot;
 import net.minecraft.world.WorldlyContainer;
 import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.SingleRecipeInput;
+import net.minecraft.world.level.ChunkPos;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.network.PacketDistributor;
+import net.minecraft.world.level.storage.ValueInput;
+import net.minecraft.world.level.storage.ValueOutput;
+import net.neoforged.neoforge.network.PacketDistributor;
+import org.jspecify.annotations.Nullable;
 
-import javax.annotation.Nullable;
 import java.util.Optional;
 
 /**
@@ -117,7 +122,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
             Level level = this.getLevel();
             if(level != null)
             {
-                level.playSound(null, this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 1.0, this.worldPosition.getZ() + 0.5, ModSounds.BLOCK_GRILL_PLACE.get(), SoundSource.BLOCKS, 0.75F, level.random.nextFloat() * 0.2F + 0.9F);
+                level.playSound(null, this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 1.0, this.worldPosition.getZ() + 0.5, ModSounds.BLOCK_GRILL_PLACE.get(), SoundSource.BLOCKS, 0.75F, level.getRandom().nextFloat() * 0.2F + 0.9F);
             }
 
             return true;
@@ -134,13 +139,8 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
         this.rotations[position] = rotation;
 
         /* Send updates to client */
-        CompoundTag compound = new CompoundTag();
-        this.writeItems(compound);
-        this.writeCookingTimes(compound);
-        this.writeCookingTotalTimes(compound);
-        this.writeFlipped(compound);
-        this.writeRotations(compound);
-        BlockEntityUtil.sendUpdatePacket(this, compound);
+
+        BlockEntityUtil.sendUpdatePacket(this);
     }
 
     public boolean addFuel(ItemStack stack)
@@ -154,9 +154,8 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
                 this.fuel.set(i, fuel);
 
                 /* Send updates to client */
-                CompoundTag compound = new CompoundTag();
-                this.writeFuel(compound);
-                BlockEntityUtil.sendUpdatePacket(this, compound);
+
+                BlockEntityUtil.sendUpdatePacket(this);
 
                 return true;
             }
@@ -174,13 +173,14 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
                 this.cookingTimes[position] = 0;
 
                 /* Sends a packet to players tracking the chunk the Grill is in indicating that animation should play */
-                PacketHandler.getPlayChannel().send(PacketDistributor.TRACKING_CHUNK.with(() -> this.level.getChunkAt(this.worldPosition)), new S2CMessageFlipGrill(this.worldPosition, position));
+                if(this.level instanceof ServerLevel serverLevel)
+                {
+                    PacketDistributor.sendToPlayersTrackingChunk(serverLevel, ChunkPos.containing(this.worldPosition), new S2CMessageFlipGrill(this.worldPosition, position));
+                }
 
                 /* Send updates to client */
-                CompoundTag compound = new CompoundTag();
-                this.writeCookingTimes(compound);
-                this.writeFlipped(compound);
-                BlockEntityUtil.sendUpdatePacket(this, compound);
+
+                BlockEntityUtil.sendUpdatePacket(this);
 
                 /* Play flip sound */
                 Level level = this.getLevel();
@@ -239,9 +239,8 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
             }
 
             /* Send updates to client */
-            CompoundTag compound = new CompoundTag();
-            this.writeItems(compound);
-            BlockEntityUtil.sendUpdatePacket(this, compound);
+
+            BlockEntityUtil.sendUpdatePacket(this);
         }
     }
 
@@ -254,14 +253,12 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
             {
                 if(!blockEntity.fuel.get(i).isEmpty())
                 {
-                    blockEntity.remainingFuel = net.minecraftforge.common.ForgeHooks.getBurnTime(blockEntity.fuel.get(i), RecipeType.SMELTING);
+                    blockEntity.remainingFuel = level instanceof ServerLevel serverLevel ? FuelHelper.getBurnTime(serverLevel, blockEntity, blockEntity.fuel.get(i)) : 0;
                     blockEntity.fuel.set(i, ItemStack.EMPTY);
 
                     /* Send updates to client */
-                    CompoundTag compound = new CompoundTag();
-                    blockEntity.writeFuel(compound);
-                    blockEntity.writeRemainingFuel(compound);
-                    BlockEntityUtil.sendUpdatePacketSimple(blockEntity, compound);
+
+                    BlockEntityUtil.sendUpdatePacket(blockEntity);
                     break;
                 }
             }
@@ -274,9 +271,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
             if(blockEntity.remainingFuel == 0)
             {
                 /* Send updates to client */
-                CompoundTag compound = new CompoundTag();
-                blockEntity.writeRemainingFuel(compound);
-                BlockEntityUtil.sendUpdatePacketSimple(blockEntity, compound);
+                BlockEntityUtil.sendUpdatePacket(blockEntity);
             }
         }
     }
@@ -325,11 +320,11 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
                         /* Set to result on cooked and flipped */
                         if(this.flipped[i])
                         {
-                            Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(this.grill.get(i)), this.level);
+                            ItemStack raw = this.grill.get(i);
+                            Optional<RecipeHolder<GrillCookingRecipe>> optional = this.findRecipe(raw);
                             if(optional.isPresent())
                             {
-                                this.grill.set(i, optional.get().getResultItem(this.level.registryAccess()).copy());
-
+                                this.grill.set(i, optional.get().value().assemble(new SingleRecipeInput(raw)));
                             }
                         }
                         itemsChanged = true;
@@ -340,10 +335,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
         if(itemsChanged)
         {
             /* Send updates to client */
-            CompoundTag compound = new CompoundTag();
-            this.writeItems(compound);
-            this.writeCookingTimes(compound);
-            BlockEntityUtil.sendUpdatePacket(this, compound);
+            BlockEntityUtil.sendUpdatePacket(this);
         }
     }
 
@@ -354,16 +346,16 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
         {
             if(this.isCooking() && this.remainingFuel > 0)
             {
-                double posX = worldPosition.getX() + 0.2 + 0.6 * level.random.nextDouble();
+                double posX = worldPosition.getX() + 0.2 + 0.6 * level.getRandom().nextDouble();
                 double posY = worldPosition.getY() + 0.85;
-                double posZ = worldPosition.getZ() + 0.2 + 0.6 * level.random.nextDouble();
+                double posZ = worldPosition.getZ() + 0.2 + 0.6 * level.getRandom().nextDouble();
                 level.addParticle(ParticleTypes.FLAME, posX, posY, posZ, 0.0, 0.0, 0.0);
             }
 
             BlockPos pos = this.getBlockPos();
             for(int i = 0; i < this.grill.size(); i++)
             {
-                if(!this.grill.get(i).isEmpty() && level.random.nextFloat() < 0.1F)
+                if(!this.grill.get(i).isEmpty() && level.getRandom().nextFloat() < 0.1F)
                 {
                     double posX = pos.getX() + 0.3 + 0.4 * (i % 2);
                     double posY = pos.getY() + 1.0;
@@ -392,9 +384,16 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
         return false;
     }
 
-    public Optional<GrillCookingRecipe> findMatchingRecipe(ItemStack input)
+    public Optional<RecipeHolder<GrillCookingRecipe>> findMatchingRecipe(ItemStack input)
     {
-        return this.grill.stream().noneMatch(ItemStack::isEmpty) ? Optional.empty() : this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(input), this.level);
+        return this.grill.stream().noneMatch(ItemStack::isEmpty) ? Optional.empty() : this.findRecipe(input);
+    }
+
+    private Optional<RecipeHolder<GrillCookingRecipe>> findRecipe(ItemStack input)
+    {
+        if(this.level == null || input.isEmpty())
+            return Optional.empty();
+        return RecipeLookup.find(this.level, ModRecipeTypes.GRILL_COOKING.get(), input);
     }
 
     @Override
@@ -459,9 +458,8 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
             }
 
             /* Send updates to client */
-            CompoundTag compound = new CompoundTag();
-            this.writeItems(compound);
-            BlockEntityUtil.sendUpdatePacket(this, compound);
+
+            BlockEntityUtil.sendUpdatePacket(this);
 
             return result;
         }
@@ -469,9 +467,8 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
         ItemStack result = ContainerHelper.removeItem(this.fuel, index, count);
 
         /* Send updates to client */
-        CompoundTag compound = new CompoundTag();
-        this.writeFuel(compound);
-        BlockEntityUtil.sendUpdatePacket(this, compound);
+
+        BlockEntityUtil.sendUpdatePacket(this);
 
         return result;
     }
@@ -495,11 +492,11 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
             index -= this.fuel.size();
             inventory = this.grill;
             int finalIndex = index;
-            Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(stack), this.level);
+            Optional<RecipeHolder<GrillCookingRecipe>> optional = this.findRecipe(stack);
             if(optional.isPresent())
             {
-                GrillCookingRecipe recipe = optional.get();
-                this.resetPosition(finalIndex, recipe.getCookingTime(), recipe.getExperience(), (byte) 0);
+                GrillCookingRecipe recipe = optional.get().value();
+                this.resetPosition(finalIndex, recipe.cookingTime(), recipe.experience(), (byte) 0);
             }
         }
         inventory.set(index, stack);
@@ -509,10 +506,8 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
         }
 
         /* Send updates to client */
-        CompoundTag compound = new CompoundTag();
-        this.writeItems(compound);
-        this.writeFuel(compound);
-        BlockEntityUtil.sendUpdatePacket(this, compound);
+
+        BlockEntityUtil.sendUpdatePacket(this);
     }
 
     @Override
@@ -529,152 +524,105 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
     }
 
     @Override
-    public void load(CompoundTag compound)
+    protected void loadAdditional(ValueInput input)
     {
-        super.load(compound);
-        if(compound.contains("Grill", Tag.TAG_LIST))
-        {
-            this.grill.clear();
-            ItemStackHelper.loadAllItems("Grill", compound, this.grill);
-        }
-        if(compound.contains("Fuel", Tag.TAG_LIST))
-        {
-            this.fuel.clear();
-            ItemStackHelper.loadAllItems("Fuel", compound, this.fuel);
-        }
-        if(compound.contains("RemainingFuel", Tag.TAG_INT))
-        {
-            this.remainingFuel = compound.getInt("RemainingFuel");
-        }
-        if(compound.contains("CookingTimes", Tag.TAG_INT_ARRAY))
-        {
-            int[] cookingTimes = compound.getIntArray("CookingTimes");
-            System.arraycopy(cookingTimes, 0, this.cookingTimes, 0, Math.min(this.cookingTotalTimes.length, cookingTimes.length));
-        }
-        if(compound.contains("CookingTotalTimes", Tag.TAG_INT_ARRAY))
-        {
-            int[] cookingTimes = compound.getIntArray("CookingTotalTimes");
-            System.arraycopy(cookingTimes, 0, this.cookingTotalTimes, 0, Math.min(this.cookingTotalTimes.length, cookingTimes.length));
-        }
-        if(compound.contains("Flipped", Tag.TAG_BYTE_ARRAY))
-        {
-            byte[] flipped = compound.getByteArray("Flipped");
+        super.loadAdditional(input);
+        this.grill.clear();
+        loadItems(input, "Grill", this.grill);
+        this.fuel.clear();
+        loadItems(input, "Fuel", this.fuel);
+        this.remainingFuel = input.getIntOr("RemainingFuel", 0);
+        input.getIntArray("CookingTimes").ifPresent(times -> System.arraycopy(times, 0, this.cookingTimes, 0, Math.min(this.cookingTimes.length, times.length)));
+        input.getIntArray("CookingTotalTimes").ifPresent(times -> System.arraycopy(times, 0, this.cookingTotalTimes, 0, Math.min(this.cookingTotalTimes.length, times.length)));
+        input.getIntArray("Flipped").ifPresent(flipped -> {
             for(int i = 0; i < Math.min(this.flipped.length, flipped.length); i++)
             {
                 this.flipped[i] = flipped[i] == 1;
             }
-        }
-        if(compound.contains("Experience", Tag.TAG_INT_ARRAY))
-        {
-            int[] experience = compound.getIntArray("Experience");
+        });
+        input.getIntArray("Experience").ifPresent(experience -> {
             for(int i = 0; i < Math.min(this.experience.length, experience.length); i++)
             {
                 this.experience[i] = Float.intBitsToFloat(experience[i]);
             }
-        }
-        if(compound.contains("Rotations", Tag.TAG_BYTE_ARRAY))
-        {
-            byte[] rotations = compound.getByteArray("Rotations");
-            System.arraycopy(rotations, 0, this.rotations, 0, Math.min(this.rotations.length, rotations.length));
-        }
+        });
+        input.getIntArray("Rotations").ifPresent(rotations -> {
+            for(int i = 0; i < Math.min(this.rotations.length, rotations.length); i++)
+            {
+                this.rotations[i] = (byte) rotations[i];
+            }
+        });
     }
 
     @Override
-    protected void saveAdditional(CompoundTag tag)
+    protected void saveAdditional(ValueOutput output)
     {
-        super.saveAdditional(tag);
-        this.writeItems(tag);
-        this.writeFuel(tag);
-        this.writeCookingTimes(tag);
-        this.writeCookingTotalTimes(tag);
-        this.writeFlipped(tag);
-        this.writeExperience(tag);
-        this.writeRemainingFuel(tag);
-        this.writeRotations(tag);
-    }
-
-    private CompoundTag writeItems(CompoundTag compound)
-    {
-        ItemStackHelper.saveAllItems("Grill", compound, this.grill, true);
-        return compound;
-    }
-
-    private CompoundTag writeFuel(CompoundTag compound)
-    {
-        ItemStackHelper.saveAllItems("Fuel", compound, this.fuel, true);
-        return compound;
-    }
-
-    private CompoundTag writeRemainingFuel(CompoundTag compound)
-    {
-        compound.putInt("RemainingFuel", this.remainingFuel);
-        return compound;
-    }
-
-    private CompoundTag writeCookingTimes(CompoundTag compound)
-    {
-        compound.putIntArray("CookingTimes", this.cookingTimes);
-        return compound;
-    }
-
-    private CompoundTag writeCookingTotalTimes(CompoundTag compound)
-    {
-        compound.putIntArray("CookingTotalTimes", this.cookingTotalTimes);
-        return compound;
-    }
-
-    private CompoundTag writeFlipped(CompoundTag compound)
-    {
-        byte[] flipped = new byte[this.flipped.length];
+        super.saveAdditional(output);
+        saveItems(output, "Grill", this.grill);
+        saveItems(output, "Fuel", this.fuel);
+        output.putInt("RemainingFuel", this.remainingFuel);
+        output.putIntArray("CookingTimes", this.cookingTimes);
+        output.putIntArray("CookingTotalTimes", this.cookingTotalTimes);
+        int[] flipped = new int[this.flipped.length];
         for(int i = 0; i < this.flipped.length; i++)
         {
-            flipped[i] = (byte) (this.flipped[i] ? 1 : 0);
+            flipped[i] = this.flipped[i] ? 1 : 0;
         }
-        compound.putByteArray("Flipped", flipped);
-        return compound;
-    }
-
-    private CompoundTag writeExperience(CompoundTag compound)
-    {
+        output.putIntArray("Flipped", flipped);
         int[] experience = new int[this.experience.length];
         for(int i = 0; i < this.experience.length; i++)
         {
-            experience[i] = Float.floatToIntBits(experience[i]);
+            experience[i] = Float.floatToIntBits(this.experience[i]);
         }
-        compound.putIntArray("Experience", experience);
-        return compound;
+        output.putIntArray("Experience", experience);
+        int[] rotations = new int[this.rotations.length];
+        for(int i = 0; i < this.rotations.length; i++)
+        {
+            rotations[i] = this.rotations[i];
+        }
+        output.putIntArray("Rotations", rotations);
     }
 
-    private CompoundTag writeRotations(CompoundTag compound)
+    private static void saveItems(ValueOutput output, String key, NonNullList<ItemStack> items)
     {
-        compound.putByteArray("Rotations", this.rotations);
-        return compound;
+        ValueOutput.TypedOutputList<ItemStackWithSlot> list = output.list(key, ItemStackWithSlot.CODEC);
+        for(int i = 0; i < items.size(); i++)
+        {
+            if(!items.get(i).isEmpty())
+            {
+                list.add(new ItemStackWithSlot(i, items.get(i)));
+            }
+        }
     }
 
+    private static void loadItems(ValueInput input, String key, NonNullList<ItemStack> items)
+    {
+        for(ItemStackWithSlot item : input.listOrEmpty(key, ItemStackWithSlot.CODEC))
+        {
+            if(item.isValidInContainer(items.size()))
+            {
+                items.set(item.slot(), item.stack());
+            }
+        }
+    }
+
+    // The client draws the items cooking on the grill, so it gets everything
     @Override
-    public CompoundTag getUpdateTag()
+    public CompoundTag getUpdateTag(HolderLookup.Provider registries)
     {
-        return this.saveWithFullMetadata();
+        return this.saveWithoutMetadata(registries);
     }
 
-    @Nullable
     @Override
     public ClientboundBlockEntityDataPacket getUpdatePacket()
     {
-        return ClientboundBlockEntityDataPacket.create(this, BlockEntity::getUpdateTag);
-    }
-
-    @Override
-    public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
-    {
-        CompoundTag compound = pkt.getTag();
-        this.load(compound);
+        return ClientboundBlockEntityDataPacket.create(this);
     }
 
     @Override
     public boolean stillValid(Player player)
     {
-        return this.level.getBlockEntity(this.worldPosition) == this && player.distanceToSqr(this.worldPosition.getX() + 0.5, this.worldPosition.getY() + 0.5, this.worldPosition.getZ() + 0.5) <= 64;
+        return Container.stillValidBlockEntity(this, player);
     }
 
     @Override
@@ -692,7 +640,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
         }
         if(index - this.fuel.size() >= 0)
         {
-            return this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(stack), this.level).isPresent();
+            return this.findRecipe(stack).isPresent();
         }
         return stack.getItem() == Items.COAL || stack.getItem() == Items.CHARCOAL;
     }
@@ -707,8 +655,7 @@ public class GrillBlockEntity extends BlockEntity implements WorldlyContainer
                 index -= this.fuel.size();
                 if(this.flipped[index] && this.cookingTimes[index] == this.cookingTotalTimes[index])
                 {
-                    Optional<GrillCookingRecipe> optional = this.level.getRecipeManager().getRecipeFor(ModRecipeTypes.GRILL_COOKING.get(), new SimpleContainer(stack), this.level);
-                    return !optional.isPresent();
+                    return this.findRecipe(stack).isEmpty();
                 }
             }
         }

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_drawer",
+  "key": {
+    "B": "#c:chests/wooden",
+    "C": "minecraft:white_concrete",
+    "D": "#c:dyes/purple",
+    "S": "minecraft:terracotta"
+  },
+  "pattern": [
+    "SDS",
+    "CBC",
+    "CCC"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:purple_kitchen_drawer"
+  }
+}

@@ -6,7 +6,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
+import net.neoforged.neoforge.common.NeoForge;
 
 /**
  * Author: MrCrayfish
@@ -55,12 +55,12 @@ public class FreezerResultSlot extends Slot
     @Override
     protected void checkTakeAchievements(ItemStack stack)
     {
-        stack.onCraftedBy(this.player.level(), this.player, this.removeCount);
-        if(!this.player.level().isClientSide && this.container instanceof FreezerBlockEntity)
+        stack.onCraftedBy(this.player, this.removeCount);
+        if(!this.player.level().isClientSide() && this.container instanceof FreezerBlockEntity)
         {
             ((FreezerBlockEntity) this.container).spawnExperience(this.player);
         }
         this.removeCount = 0;
-        MinecraftForge.EVENT_BUS.post(new ItemSolidifyEvent(this.player, stack));
+        NeoForge.EVENT_BUS.post(new ItemSolidifyEvent(this.player, stack));
     }
 }

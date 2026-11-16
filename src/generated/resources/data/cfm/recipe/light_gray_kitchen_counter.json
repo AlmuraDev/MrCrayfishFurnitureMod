@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "kitchen_counter",
+  "key": {
+    "C": "minecraft:white_concrete",
+    "D": "#c:dyes/light_gray",
+    "S": "minecraft:terracotta"
+  },
+  "pattern": [
+    "SDS",
+    "CCC",
+    "CCC"
+  ],
+  "result": {
+    "count": 8,
+    "id": "cfm:light_gray_kitchen_counter"
+  }
+}

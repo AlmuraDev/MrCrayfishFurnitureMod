@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "crate",
+  "key": {
+    "L": "minecraft:oak_log",
+    "P": "minecraft:oak_planks"
+  },
+  "pattern": [
+    "LPL",
+    "P P",
+    "LPL"
+  ],
+  "result": {
+    "count": 2,
+    "id": "cfm:oak_crate"
+  }
+}

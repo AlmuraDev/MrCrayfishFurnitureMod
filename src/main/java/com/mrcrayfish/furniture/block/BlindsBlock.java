@@ -1,5 +1,9 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.ScheduledTickAccess;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.mrcrayfish.furniture.core.ModSounds;
@@ -13,7 +17,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -63,19 +66,19 @@ public class BlindsBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
+    protected VoxelShape getShape(BlockState state, BlockGetter reader, BlockPos pos, CollisionContext context)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getOcclusionShape(BlockState state, BlockGetter reader, BlockPos pos)
+    protected VoxelShape getOcclusionShape(BlockState state)
     {
         return SHAPES.get(state);
     }
 
     @Override
-    public VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
+    protected VoxelShape getCollisionShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
     {
         return VoxelShapeHelper.rotate(VoxelShapeHelper.rotate(Block.box(0, 1, 0, 16, 16, 3), Direction.SOUTH), state.getValue(DIRECTION));
     }
@@ -88,12 +91,12 @@ public class BlindsBlock extends FurnitureHorizontalBlock
     }
 
     @Override
-    public BlockState updateShape(BlockState stateIn, Direction facing, BlockState facingState, LevelAccessor level, BlockPos currentPos, BlockPos facingPos)
+    protected BlockState updateShape(BlockState stateIn, LevelReader level, ScheduledTickAccess ticks, BlockPos currentPos, Direction facing, BlockPos facingPos, BlockState facingState, RandomSource random)
     {
         return this.getBlindState(stateIn, level, currentPos);
     }
 
-    private BlockState getBlindState(BlockState state, LevelAccessor level, BlockPos pos)
+    private BlockState getBlindState(BlockState state, LevelReader level, BlockPos pos)
     {
         BlockState aboveState = level.getBlockState(pos.above());
         boolean isExtension = aboveState.getBlock() == this && aboveState.getValue(DIRECTION) == state.getValue(DIRECTION);
@@ -113,18 +116,18 @@ public class BlindsBlock extends FurnitureHorizontalBlock
     }*/
 
     @Override
-    public InteractionResult use(BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
+    protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
         this.toggleBlinds(level, pos, !state.getValue(OPEN), state.getValue(DIRECTION), 5);
         if(!level.isClientSide())
         {
             if(state.getValue(OPEN))
             {
-                level.playSound(null, pos, ModSounds.BLOCK_BLINDS_CLOSE.get(), SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.8F);
+                level.playSound(null, pos, ModSounds.BLOCK_BLINDS_CLOSE.get(), SoundSource.BLOCKS, 0.5F, level.getRandom().nextFloat() * 0.1F + 0.8F);
             }
             else
             {
-                level.playSound(null, pos, ModSounds.BLOCK_BLINDS_OPEN.get(), SoundSource.BLOCKS, 0.5F, level.random.nextFloat() * 0.1F + 0.9F);
+                level.playSound(null, pos, ModSounds.BLOCK_BLINDS_OPEN.get(), SoundSource.BLOCKS, 0.5F, level.getRandom().nextFloat() * 0.1F + 0.9F);
             }
         }
         return InteractionResult.SUCCESS;

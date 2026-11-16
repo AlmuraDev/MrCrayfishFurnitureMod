@@ -1,0 +1,31 @@
+modLoader = "javafml"
+loaderVersion = "${neoforge_loader_version_range}"
+license = "${mod_license}"
+issueTrackerURL = "https://github.com/AlmuraDev/MrCrayfishFurnitureMod/issues"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${version}"
+displayName = "${mod_name}"
+displayURL = "https://mrcrayfish.com/mods?id=cfm"
+logoFile = "furniture.png"
+credits = "The people who helped me when I first started creating mods. I wouldn't be here without them!"
+authors = "${mod_authors}"
+description = '''MrCrayfish's Furniture Mod is all about adding functioning furniture and decorations to your home, kitchen and garden.'''
+
+[[mixins]]
+config = "cfm.mixins.json"
+
+[[dependencies.${mod_id}]]
+modId = "neoforge"
+type = "required"
+versionRange = "[${neoforge_version},)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "minecraft"
+type = "required"
+versionRange = "${minecraft_version_range}"
+ordering = "NONE"
+side = "BOTH"

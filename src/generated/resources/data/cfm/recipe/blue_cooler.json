@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "trampoline",
+  "key": {
+    "C": "#c:chests/wooden",
+    "T": "minecraft:blue_terracotta",
+    "W": "minecraft:white_concrete"
+  },
+  "pattern": [
+    "TTT",
+    "WCW",
+    "TTT"
+  ],
+  "result": {
+    "count": 2,
+    "id": "cfm:blue_cooler"
+  }
+}

@@ -1,60 +1,38 @@
 package com.mrcrayfish.furniture.item;
 
 import com.mrcrayfish.furniture.Reference;
-import com.mrcrayfish.furniture.tileentity.TrampolineBlockEntity;
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.core.component.DataComponents;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.BlockItem;
-import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
 
-import javax.annotation.Nullable;
 import java.util.function.Consumer;
 
 /**
+ * A trampoline in one of the sixteen colours. The colour is the item's {@link DataComponents#BASE_COLOR}; the trampoline's block entity
+ * takes it when placed and gives it back when broken.
+ *
  * Author: MrCrayfish
  */
 public class TrampolineItem extends BlockItem implements CreativeItem
 {
-    public TrampolineItem(Block blockIn, Item.Properties builder)
+    public TrampolineItem(Block block, Item.Properties properties)
     {
-        super(blockIn, builder);
+        super(block, properties);
     }
 
     @Override
-    protected boolean updateCustomBlockEntityTag(BlockPos pos, Level level, @Nullable Player player, ItemStack stack, BlockState state)
+    public Component getName(ItemStack stack)
     {
-        super.updateCustomBlockEntityTag(pos, level, player, stack, state);
-        CompoundTag blockEntityTag = stack.getTagElement("BlockEntityTag");
-        if(blockEntityTag != null)
+        DyeColor color = stack.get(DataComponents.BASE_COLOR);
+        if(color != null)
         {
-            DyeColor color = DyeColor.byId(blockEntityTag.getInt("Color"));
-            if(level.getBlockEntity(pos) instanceof TrampolineBlockEntity blockEntity)
-            {
-                blockEntity.setColour(color);
-            }
+            return Component.translatable(String.format("block.%s.%s_trampoline", Reference.MOD_ID, color.getName()));
         }
-        return true;
-    }
-
-    @Override
-    public String getDescriptionId(ItemStack stack)
-    {
-        CompoundTag tag = stack.getTag();
-        if(tag != null)
-        {
-            CompoundTag blockEntityTag = tag.getCompound("BlockEntityTag");
-            DyeColor color = DyeColor.byId(blockEntityTag.getInt("Color"));
-            return String.format("block.%s.%s_trampoline", Reference.MOD_ID, color.getName());
-        }
-        return super.getDescriptionId(stack);
+        return super.getName(stack);
     }
 
     @Override
@@ -63,11 +41,7 @@ public class TrampolineItem extends BlockItem implements CreativeItem
         for(DyeColor color : DyeColor.values())
         {
             ItemStack stack = new ItemStack(this);
-            CompoundTag tag = new CompoundTag();
-            CompoundTag blockEntityTag = new CompoundTag();
-            blockEntityTag.putInt("Color", color.getId());
-            tag.put("BlockEntityTag", blockEntityTag);
-            stack.setTag(tag);
+            stack.set(DataComponents.BASE_COLOR, color);
             output.accept(stack);
         }
     }

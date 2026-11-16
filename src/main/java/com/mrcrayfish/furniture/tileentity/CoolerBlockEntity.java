@@ -65,14 +65,14 @@ public class CoolerBlockEntity extends BasicLootBlockEntity
 
     private void playLidSound(BlockState state, SoundEvent event)
     {
-        Vec3i directionVec = state.getValue(CoolerBlock.DIRECTION).getNormal();
+        Vec3i directionVec = state.getValue(CoolerBlock.DIRECTION).getUnitVec3i();
         double x = this.worldPosition.getX() + 0.5D + directionVec.getX() / 2.0D;
         double y = this.worldPosition.getY() + 0.5D + directionVec.getY() / 2.0D;
         double z = this.worldPosition.getZ() + 0.5D + directionVec.getZ() / 2.0D;
         Level level = this.getLevel();
         if(level != null)
         {
-            level.playSound(null, x, y, z, event, SoundSource.BLOCKS, 0.75F, level.random.nextFloat() * 0.1F + 0.7F);
+            level.playSound(null, x, y, z, event, SoundSource.BLOCKS, 0.75F, level.getRandom().nextFloat() * 0.1F + 0.7F);
         }
     }
 
