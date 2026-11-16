@@ -334,6 +334,78 @@ public class RecipeGen extends RecipeProvider
                 .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
                 .save(this.output);
 
+        // Brought forward from 1.12.2
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.BIRD_BATH.get())
+                .pattern("***")
+                .pattern(" * ")
+                .pattern(" * ")
+                .define('*', Blocks.STONE)
+                .unlockedBy("has_stone", this.has(Blocks.STONE))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CANDLE.get())
+                .pattern("WWW")
+                .pattern("SSS")
+                .pattern(" C ")
+                .define('W', Blocks.DYED_TERRACOTTA.pick(DyeColor.WHITE))
+                .define('S', Blocks.STONE)
+                .define('C', Blocks.COBBLESTONE)
+                .unlockedBy("has_terracotta", this.has(Blocks.DYED_TERRACOTTA.pick(DyeColor.WHITE)))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHIMNEY.get())
+                .pattern("CCC")
+                .pattern("BBB")
+                .pattern("BBB")
+                .define('C', Blocks.COBBLESTONE)
+                .define('B', Blocks.BRICKS)
+                .unlockedBy("has_bricks", this.has(Blocks.BRICKS))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.MANTEL_PIECE.get())
+                .pattern("BBB")
+                .pattern("B B")
+                .pattern("B B")
+                .define('B', Blocks.BRICKS)
+                .unlockedBy("has_bricks", this.has(Blocks.BRICKS))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.WREATH.get())
+                .pattern("LLL")
+                .pattern("L L")
+                .pattern("LLL")
+                .define('L', Blocks.OAK_LEAVES)
+                .unlockedBy("has_leaves", this.has(Blocks.OAK_LEAVES))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.FAIRY_LIGHT.get())
+                .pattern("SSS")
+                .pattern("RGR")
+                .define('S', Items.STRING)
+                .define('R', Blocks.STAINED_GLASS.pick(DyeColor.RED))
+                .define('G', Blocks.STAINED_GLASS.pick(DyeColor.GREEN))
+                .unlockedBy("has_string", this.has(Items.STRING))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.TOILET.get())
+                .pattern("QB ")
+                .pattern("QQQ")
+                .pattern(" Q ")
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .define('B', Blocks.STONE_BUTTON)
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+        this.barStool(ModBlocks.BAR_STOOL_WHITE.get(), Blocks.WOOL.pick(DyeColor.WHITE));
+        this.barStool(ModBlocks.BAR_STOOL_ORANGE.get(), Blocks.WOOL.pick(DyeColor.ORANGE));
+        this.barStool(ModBlocks.BAR_STOOL_MAGENTA.get(), Blocks.WOOL.pick(DyeColor.MAGENTA));
+        this.barStool(ModBlocks.BAR_STOOL_LIGHT_BLUE.get(), Blocks.WOOL.pick(DyeColor.LIGHT_BLUE));
+        this.barStool(ModBlocks.BAR_STOOL_YELLOW.get(), Blocks.WOOL.pick(DyeColor.YELLOW));
+        this.barStool(ModBlocks.BAR_STOOL_LIME.get(), Blocks.WOOL.pick(DyeColor.LIME));
+        this.barStool(ModBlocks.BAR_STOOL_PINK.get(), Blocks.WOOL.pick(DyeColor.PINK));
+        this.barStool(ModBlocks.BAR_STOOL_GRAY.get(), Blocks.WOOL.pick(DyeColor.GRAY));
+        this.barStool(ModBlocks.BAR_STOOL_LIGHT_GRAY.get(), Blocks.WOOL.pick(DyeColor.LIGHT_GRAY));
+        this.barStool(ModBlocks.BAR_STOOL_CYAN.get(), Blocks.WOOL.pick(DyeColor.CYAN));
+        this.barStool(ModBlocks.BAR_STOOL_PURPLE.get(), Blocks.WOOL.pick(DyeColor.PURPLE));
+        this.barStool(ModBlocks.BAR_STOOL_BLUE.get(), Blocks.WOOL.pick(DyeColor.BLUE));
+        this.barStool(ModBlocks.BAR_STOOL_BROWN.get(), Blocks.WOOL.pick(DyeColor.BROWN));
+        this.barStool(ModBlocks.BAR_STOOL_GREEN.get(), Blocks.WOOL.pick(DyeColor.GREEN));
+        this.barStool(ModBlocks.BAR_STOOL_RED.get(), Blocks.WOOL.pick(DyeColor.RED));
+        this.barStool(ModBlocks.BAR_STOOL_BLACK.get(), Blocks.WOOL.pick(DyeColor.BLACK));
+
         // Cooking Recipes
         this.cookingRecipesForMethod("grill_cooking", GrillCookingRecipe::new, 600);
 
@@ -341,6 +413,21 @@ public class RecipeGen extends RecipeProvider
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.WATER_BUCKET), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.ICE, 1, 1000, FreezerSolidifyRecipe::new).unlockedBy("has_water", this.has(Items.WATER_BUCKET)).save(this.output, "ice_from_freezing");
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.ICE), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.PACKED_ICE, 1, 2000, FreezerSolidifyRecipe::new).unlockedBy("has_ice", this.has(Items.ICE)).save(this.output, "packed_ice_from_freezing");
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.PACKED_ICE), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.BLUE_ICE, 1, 4000, FreezerSolidifyRecipe::new).unlockedBy("has_packed_ice", this.has(Items.PACKED_ICE)).save(this.output, "blue_ice_from_freezing");
+    }
+
+    private void barStool(ItemLike stool, ItemLike wool)
+    {
+        this.shaped(RecipeCategory.DECORATIONS, stool)
+                .pattern("WWW")
+                .pattern("CCC")
+                .pattern("Q Q")
+                .define('W', wool)
+                .define('C', Blocks.DYED_TERRACOTTA.pick(DyeColor.CYAN))
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .group("bar_stool")
+                .unlockedBy("has_wool", this.has(wool))
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
     }
 
     private void table(ItemLike table, ItemLike log, ItemLike planks)

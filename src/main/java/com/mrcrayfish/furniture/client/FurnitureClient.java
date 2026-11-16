@@ -124,6 +124,9 @@ public class FurnitureClient
         register(event, List.of(BlockTintSources.constant(FoliageColor.FOLIAGE_MANGROVE)), ModBlocks.HEDGE_MANGROVE);
         register(event, List.of(BlockTintSources.foliage()), ModBlocks.HEDGE_OAK, ModBlocks.HEDGE_JUNGLE, ModBlocks.HEDGE_ACACIA, ModBlocks.HEDGE_DARK_OAK);
 
+        // The wreath's leaves are pine green, as in 1.12.2
+        register(event, List.of(BlockTintSources.constant(FoliageColor.FOLIAGE_EVERGREEN)), ModBlocks.WREATH);
+
         // The trampoline's colour is kept by its block entity; every layer takes it
         BlockTintSource trampoline = new BlockTintSource()
         {

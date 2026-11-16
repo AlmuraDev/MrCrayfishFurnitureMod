@@ -1,0 +1,9 @@
+{
+  "parent": "cfm:block/bar_stool",
+  "textures": {
+    "1": "minecraft:block/yellow_terracotta",
+    "2": "minecraft:block/light_gray_concrete",
+    "3": "minecraft:block/white_concrete",
+    "4": "minecraft:block/light_gray_concrete"
+  }
+}

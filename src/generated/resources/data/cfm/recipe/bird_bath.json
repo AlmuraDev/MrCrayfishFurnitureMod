@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "*": "minecraft:stone"
+  },
+  "pattern": [
+    "***",
+    " * ",
+    " * "
+  ],
+  "result": {
+    "id": "cfm:bird_bath"
+  }
+}

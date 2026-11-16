@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "bar_stool",
+  "key": {
+    "C": "minecraft:cyan_terracotta",
+    "Q": "minecraft:quartz_block",
+    "W": "minecraft:gray_wool"
+  },
+  "pattern": [
+    "WWW",
+    "CCC",
+    "Q Q"
+  ],
+  "result": {
+    "id": "cfm:gray_bar_stool"
+  }
+}

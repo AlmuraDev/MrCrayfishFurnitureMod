@@ -1,4 +1,4 @@
-// 26.3	2026-11-15T22:19:22.9040282	cfm-global/Tags for minecraft:block mod id cfm
+// 26.3	2026-11-15T22:33:44.0304813	cfm-global/Tags for minecraft:block mod id cfm
 214f75cd032a631f1a0d235bcd21e5bcd76b5c82 data/cfm/tags/block/fences/hedge.json
 c2381928c291ecfd9e7bd1979e0413bfeb5eb9f9 data/cfm/tags/block/fences/picket.json
 df801ba9f499d6d7936b85ccd53c2981c42b8a36 data/cfm/tags/block/fences/upgraded.json
@@ -6,5 +6,5 @@ df801ba9f499d6d7936b85ccd53c2981c42b8a36 data/cfm/tags/block/fences/upgraded.jso
 ed00804745d3a61865d45671dbb3ea514d67d597 data/cfm/tags/block/fence_gates/upgraded.json
 608bed73134330dcd8fdcce3ec34369f3721b490 data/minecraft/tags/block/fences.json
 e01348f2f19286196846995f01ffe65d0413c777 data/minecraft/tags/block/fence_gates.json
-4f382915a57f6f45c7273e59d81b010a50e46165 data/minecraft/tags/block/mineable/axe.json
-40e5034698078b2b6796b0e7b0bb825bcb5a4fbd data/minecraft/tags/block/mineable/pickaxe.json
+675ae7533eaa30c16d409e5d22fe4561565ec1e3 data/minecraft/tags/block/mineable/axe.json
+e9888871cc79517ef1c9efc8214f7b6f051df304 data/minecraft/tags/block/mineable/pickaxe.json

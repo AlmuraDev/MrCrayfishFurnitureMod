@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "cfm:mantel_piece"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "cfm:blocks/mantel_piece"
+}

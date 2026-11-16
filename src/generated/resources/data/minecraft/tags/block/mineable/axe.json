@@ -307,6 +307,22 @@
     "cfm:stripped_jungle_kitchen_sink_dark",
     "cfm:stripped_acacia_kitchen_sink_dark",
     "cfm:stripped_dark_oak_kitchen_sink_dark",
-    "cfm:stripped_mangrove_kitchen_sink_dark"
+    "cfm:stripped_mangrove_kitchen_sink_dark",
+    "cfm:white_bar_stool",
+    "cfm:orange_bar_stool",
+    "cfm:magenta_bar_stool",
+    "cfm:light_blue_bar_stool",
+    "cfm:yellow_bar_stool",
+    "cfm:lime_bar_stool",
+    "cfm:pink_bar_stool",
+    "cfm:gray_bar_stool",
+    "cfm:light_gray_bar_stool",
+    "cfm:cyan_bar_stool",
+    "cfm:purple_bar_stool",
+    "cfm:blue_bar_stool",
+    "cfm:brown_bar_stool",
+    "cfm:green_bar_stool",
+    "cfm:red_bar_stool",
+    "cfm:black_bar_stool"
   ]
 }

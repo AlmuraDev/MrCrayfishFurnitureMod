@@ -49,6 +49,34 @@ public class ItemTagGen extends BlockTagCopyingItemTagProvider
                 .add(item(ModBlocks.SOFA_RED))
                 .add(item(ModBlocks.SOFA_BLACK));
 
+        // Brought forward from 1.12.2
+        this.tag(ModTags.Items.GENERAL)
+                .add(item(ModBlocks.CANDLE))
+                .add(item(ModBlocks.CHIMNEY))
+                .add(item(ModBlocks.MANTEL_PIECE))
+                .add(item(ModBlocks.WREATH))
+                .add(item(ModBlocks.FAIRY_LIGHT))
+                .add(item(ModBlocks.TOILET));
+        this.tag(ModTags.Items.KITCHEN)
+                .add(item(ModBlocks.BAR_STOOL_WHITE))
+                .add(item(ModBlocks.BAR_STOOL_ORANGE))
+                .add(item(ModBlocks.BAR_STOOL_MAGENTA))
+                .add(item(ModBlocks.BAR_STOOL_LIGHT_BLUE))
+                .add(item(ModBlocks.BAR_STOOL_YELLOW))
+                .add(item(ModBlocks.BAR_STOOL_LIME))
+                .add(item(ModBlocks.BAR_STOOL_PINK))
+                .add(item(ModBlocks.BAR_STOOL_GRAY))
+                .add(item(ModBlocks.BAR_STOOL_LIGHT_GRAY))
+                .add(item(ModBlocks.BAR_STOOL_CYAN))
+                .add(item(ModBlocks.BAR_STOOL_PURPLE))
+                .add(item(ModBlocks.BAR_STOOL_BLUE))
+                .add(item(ModBlocks.BAR_STOOL_BROWN))
+                .add(item(ModBlocks.BAR_STOOL_GREEN))
+                .add(item(ModBlocks.BAR_STOOL_RED))
+                .add(item(ModBlocks.BAR_STOOL_BLACK));
+        this.tag(ModTags.Items.OUTDOORS)
+                .add(item(ModBlocks.BIRD_BATH));
+
         this.tag(ModTags.Items.KITCHEN)
                 // Kitchen Counters
                 .add(item(ModBlocks.KITCHEN_COUNTER_WHITE))

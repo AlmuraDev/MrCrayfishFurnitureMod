@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "minecraft:green_stained_glass",
+    "R": "minecraft:red_stained_glass",
+    "S": "minecraft:string"
+  },
+  "pattern": [
+    "SSS",
+    "RGR"
+  ],
+  "result": {
+    "id": "cfm:fairy_light"
+  }
+}
