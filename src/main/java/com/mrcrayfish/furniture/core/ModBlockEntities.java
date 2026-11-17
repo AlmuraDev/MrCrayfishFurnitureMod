@@ -35,6 +35,13 @@ public class ModBlockEntities
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<FreezerBlockEntity>> FREEZER = register("freezer", FreezerBlockEntity::new, FreezerBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<LightSwitchBlockEntity>> LIGHT_SWITCH = register("light_switch", LightSwitchBlockEntity::new, LightSwitchBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ShowerHeadBlockEntity>> SHOWER_HEAD = register("shower_head", ShowerHeadBlockEntity::new, ShowerHeadBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<OvenBlockEntity>> OVEN = register("oven", OvenBlockEntity::new, OvenBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<MicrowaveBlockEntity>> MICROWAVE = register("microwave", MicrowaveBlockEntity::new, MicrowaveBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ToasterBlockEntity>> TOASTER = register("toaster", ToasterBlockEntity::new, ToasterBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BlenderBlockEntity>> BLENDER = register("blender", BlenderBlockEntity::new, BlenderBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DishwasherBlockEntity>> DISHWASHER = register("dishwasher", DishwasherBlockEntity::new, DishwasherBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WashingMachineBlockEntity>> WASHING_MACHINE = register("washing_machine", WashingMachineBlockEntity::new, WashingMachineBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CupBlockEntity>> CUP = register("cup", CupBlockEntity::new, CupBlock.class);
 
     /**
      * Registers a block entity type that is valid for every furniture block of the given class (every wood and colour of it). Blocks

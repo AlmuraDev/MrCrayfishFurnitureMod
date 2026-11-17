@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:black_wool",
+    "G": "#c:glass_panes/colorless",
+    "I": "#c:ingots/iron"
+  },
+  "pattern": [
+    "GBG",
+    "GIG",
+    "BBB"
+  ],
+  "result": {
+    "id": "cfm:blender"
+  }
+}

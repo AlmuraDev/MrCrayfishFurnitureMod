@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "F": "minecraft:furnace",
+    "I": "#c:storage_blocks/iron"
+  },
+  "pattern": [
+    "III",
+    "IFI",
+    "III"
+  ],
+  "result": {
+    "id": "cfm:oven"
+  }
+}

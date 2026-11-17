@@ -184,6 +184,13 @@ public class LootTableGen extends LootTableProvider
             this.add(ModBlocks.MODERN_SLIDING_DOOR.get(), block -> this.createSinglePropConditionTable(block, ModernSlidingDoorBlock.HALF, DoubleBlockHalf.LOWER));
             this.dropSelf(ModBlocks.TAP.get());
             this.dropSelf(ModBlocks.SHOWER_HEAD.get());
+            this.dropSelf(ModBlocks.OVEN.get());
+            this.dropSelf(ModBlocks.MICROWAVE.get());
+            this.dropSelf(ModBlocks.TOASTER.get());
+            this.dropSelf(ModBlocks.BLENDER.get());
+            this.dropSelf(ModBlocks.DISHWASHER.get());
+            this.dropSelf(ModBlocks.WASHING_MACHINE.get());
+            this.dropOther(ModBlocks.CUP.get(), ModItems.CUP.get());
             this.add(ModBlocks.SHOWER.get(), block -> this.createSinglePropConditionTable(block, ShowerBlock.HALF, DoubleBlockHalf.LOWER));
             this.add(ModBlocks.BATH.get(), block -> this.createSinglePropConditionTable(block, BathBlock.PART, BedPart.HEAD));
             this.registerFirePit(ModBlocks.FIRE_PIT.get());

@@ -1,0 +1,30 @@
+{
+  "type": "cfm:blending",
+  "ingredients": [
+    {
+      "count": 4,
+      "ingredient": "minecraft:carrot"
+    },
+    {
+      "count": 1,
+      "ingredient": "minecraft:potato"
+    },
+    {
+      "count": 2,
+      "ingredient": "minecraft:pumpkin_pie"
+    }
+  ],
+  "result": {
+    "components": {
+      "minecraft:dyed_color": 16223098,
+      "minecraft:food": {
+        "nutrition": 6,
+        "saturation": 6.0
+      },
+      "minecraft:item_name": {
+        "translate": "drink.cfm.veggie_juice"
+      }
+    },
+    "id": "cfm:drink"
+  }
+}

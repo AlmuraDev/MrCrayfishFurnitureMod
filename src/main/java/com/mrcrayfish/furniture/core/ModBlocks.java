@@ -580,6 +580,16 @@ public class ModBlocks
     public static final DeferredBlock<Block> MODERN_BED_RED = register("red_modern_bed", p -> new ModernBedBlock(DyeColor.RED, p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.RED.getMapColor()).strength(0.2F).sound(SoundType.WOOD).noOcclusion().pushReaction(PushReaction.POPPED), (block, props) -> new BlockItem(block.get(), props.stacksTo(1)));
     public static final DeferredBlock<Block> MODERN_BED_BLACK = register("black_modern_bed", p -> new ModernBedBlock(DyeColor.BLACK, p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK.getMapColor()).strength(0.2F).sound(SoundType.WOOD).noOcclusion().pushReaction(PushReaction.POPPED), (block, props) -> new BlockItem(block.get(), props.stacksTo(1)));
 
+    // Appliances (1.12.2)
+    public static final DeferredBlock<Block> OVEN = register("oven", p -> new OvenBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.BASEDRUM).strength(1.0F).sound(SoundType.METAL).noOcclusion());
+    public static final DeferredBlock<Block> MICROWAVE = register("microwave", p -> new MicrowaveBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0.5F).sound(SoundType.METAL).noOcclusion());
+    public static final DeferredBlock<Block> TOASTER = register("toaster", p -> new ToasterBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0.5F).sound(SoundType.METAL).noOcclusion());
+    public static final DeferredBlock<Block> BLENDER = register("blender", p -> new BlenderBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0.5F).sound(SoundType.GLASS).noOcclusion());
+    public static final DeferredBlock<Block> DISHWASHER = register("dishwasher", p -> new DishwasherBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).instrument(NoteBlockInstrument.BASEDRUM).strength(0.5F).sound(SoundType.METAL).noOcclusion());
+    public static final DeferredBlock<Block> WASHING_MACHINE = register("washing_machine", p -> new WashingMachineBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).instrument(NoteBlockInstrument.BASEDRUM).strength(1.0F).sound(SoundType.METAL).noOcclusion());
+    // Placed by the cup and drink items (ModItems)
+    public static final DeferredBlock<Block> CUP = registerNoItem("cup", p -> new CupBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.1F).sound(SoundType.GLASS).noOcclusion().pushReaction(PushReaction.POPPED));
+
     private static DeferredBlock<Block> register(String name, Function<BlockBehaviour.Properties, Block> factory, Supplier<BlockBehaviour.Properties> properties)
     {
         DeferredBlock<Block> block = REGISTER.registerBlock(name, factory, properties);

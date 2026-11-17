@@ -31,6 +31,13 @@ public class ModSounds
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_SHOWER = register("block.shower.run");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_SLIDING_DOOR_OPEN = register("block.sliding_door.open");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_SLIDING_DOOR_CLOSE = register("block.sliding_door.close");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_MICROWAVE_RUNNING = register("block.microwave.running");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_MICROWAVE_FINISH = register("block.microwave.finish");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_TOASTER_DOWN = register("block.toaster.down");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_TOASTER_UP = register("block.toaster.up");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_BLENDER = register("block.blender.run");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_DISHWASHER = register("block.dishwasher.run");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_WASHING_MACHINE = register("block.washing_machine.run");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String name)
     {

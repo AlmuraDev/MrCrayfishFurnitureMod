@@ -1,0 +1,30 @@
+{
+  "type": "cfm:blending",
+  "ingredients": [
+    {
+      "count": 4,
+      "ingredient": "minecraft:egg"
+    },
+    {
+      "count": 1,
+      "ingredient": "minecraft:milk_bucket"
+    },
+    {
+      "count": 2,
+      "ingredient": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "components": {
+      "minecraft:dyed_color": 16771762,
+      "minecraft:food": {
+        "nutrition": 5,
+        "saturation": 5.0
+      },
+      "minecraft:item_name": {
+        "translate": "drink.cfm.egg_nog"
+      }
+    },
+    "id": "cfm:drink"
+  }
+}

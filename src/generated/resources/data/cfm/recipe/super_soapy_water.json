@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "#c:ingots/gold",
+    "S": "cfm:soapy_water"
+  },
+  "pattern": [
+    "GGG",
+    "GSG",
+    "GGG"
+  ],
+  "result": {
+    "id": "cfm:super_soapy_water"
+  }
+}

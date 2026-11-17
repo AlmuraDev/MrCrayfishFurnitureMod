@@ -3,7 +3,15 @@ package com.mrcrayfish.furniture.datagen;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
+import com.mrcrayfish.furniture.item.crafting.BlendingRecipe;
 import com.mrcrayfish.furniture.item.crafting.CuttingRecipe;
+import com.mrcrayfish.furniture.item.crafting.MicrowaveHeatingRecipe;
+import com.mrcrayfish.furniture.item.crafting.OvenBakingRecipe;
+import com.mrcrayfish.furniture.item.crafting.ToastingRecipe;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.component.DyedItemColor;
+import net.neoforged.neoforge.common.crafting.SizedIngredient;
 import com.mrcrayfish.furniture.item.crafting.FreezerSolidifyRecipe;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.CraftingRecipe;
@@ -597,8 +605,107 @@ public class RecipeGen extends RecipeProvider
         this.modernCouch(ModBlocks.MODERN_COUCH_BLACK.get(), ModBlocks.SOFA_BLACK.get());
         this.modernBed(ModBlocks.MODERN_BED_BLACK.get(), Blocks.BED.pick(DyeColor.BLACK));
 
+        // Appliances (1.12.2)
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.OVEN.get())
+                .pattern("III")
+                .pattern("IFI")
+                .pattern("III")
+                .define('I', Tags.Items.STORAGE_BLOCKS_IRON)
+                .define('F', Blocks.FURNACE)
+                .unlockedBy("has_furnace", this.has(Blocks.FURNACE))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.MICROWAVE.get())
+                .pattern("IIQ")
+                .pattern("GGB")
+                .pattern("IIQ")
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .define('G', Tags.Items.GLASS_PANES_COLORLESS)
+                .define('B', Blocks.STONE_BUTTON)
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.TOASTER.get())
+                .pattern("QBQ")
+                .pattern("QPS")
+                .pattern("WWW")
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .define('B', Blocks.IRON_BARS)
+                .define('P', Blocks.PISTON)
+                .define('S', Blocks.STONE)
+                .define('W', Blocks.WOOL.pick(DyeColor.BLACK))
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.BLENDER.get())
+                .pattern("GBG")
+                .pattern("GIG")
+                .pattern("BBB")
+                .define('G', Tags.Items.GLASS_PANES_COLORLESS)
+                .define('B', Blocks.WOOL.pick(DyeColor.BLACK))
+                .define('I', Tags.Items.INGOTS_IRON)
+                .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.DISHWASHER.get())
+                .pattern("QQQ")
+                .pattern("CBC")
+                .pattern("CFC")
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .define('C', Blocks.DYED_TERRACOTTA.pick(DyeColor.CYAN))
+                .define('B', Blocks.IRON_BARS)
+                .define('F', Blocks.FURNACE)
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.WASHING_MACHINE.get())
+                .pattern("QQQ")
+                .pattern("QGQ")
+                .pattern("QFQ")
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .define('G', Tags.Items.GLASS_PANES_COLORLESS)
+                .define('F', Blocks.FURNACE)
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+        this.shaped(RecipeCategory.MISC, ModItems.CUP.get())
+                .pattern("G G")
+                .pattern("G G")
+                .pattern("GGG")
+                .define('G', Tags.Items.GLASS_PANES_COLORLESS)
+                .unlockedBy("has_glass_pane", this.has(Tags.Items.GLASS_PANES_COLORLESS))
+                .save(this.output);
+        this.shapeless(RecipeCategory.MISC, ModItems.SOAP.get())
+                .requires(Items.CLAY_BALL)
+                .requires(Items.BONE_MEAL)
+                .requires(Tags.Items.DYES_LIGHT_BLUE)
+                .unlockedBy("has_clay_ball", this.has(Items.CLAY_BALL))
+                .save(this.output);
+        this.shapeless(RecipeCategory.MISC, ModItems.SOAPY_WATER.get())
+                .requires(ModItems.SOAP.get())
+                .requires(Items.WATER_BUCKET)
+                .unlockedBy("has_soap", this.has(ModItems.SOAP.get()))
+                .save(this.output);
+        this.shaped(RecipeCategory.MISC, ModItems.SUPER_SOAPY_WATER.get())
+                .pattern("GGG")
+                .pattern("GSG")
+                .pattern("GGG")
+                .define('G', Tags.Items.INGOTS_GOLD)
+                .define('S', ModItems.SOAPY_WATER.get())
+                .unlockedBy("has_soapy_water", this.has(ModItems.SOAPY_WATER.get()))
+                .save(this.output);
+        // 1.12.2 cut bread on its chopping board; until that comes across, an axe cuts it in the crafting grid
+        CuttingRecipe breadSlices = new CuttingRecipe(new Recipe.CommonInfo(true), new CraftingRecipe.CraftingBookInfo(CraftingBookCategory.MISC, ""),
+                new ItemStackTemplate(ModItems.BREAD_SLICE.get(), 6), List.of(this.tag(ItemTags.AXES), Ingredient.of(Items.BREAD)));
+        this.output.accept(recipeKey(Identifier.fromNamespaceAndPath(Reference.MOD_ID, "bread_slice")), breadSlices, null);
+
         // Cooking Recipes
         this.cookingRecipesForMethod("grill_cooking", GrillCookingRecipe::new, 600);
+        this.cookingRecipesForMethod("oven_baking", OvenBakingRecipe::new, 200);
+        this.cookingRecipesForMethod("microwave_heating", MicrowaveHeatingRecipe::new, 40);
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(ModItems.BREAD_SLICE.get()), RecipeCategory.FOOD, CookingBookCategory.FOOD, ModItems.TOAST.get(), 0.1F, 200, ToastingRecipe::new).unlockedBy("has_bread_slice", this.has(ModItems.BREAD_SLICE.get())).save(this.output, "toast_from_toasting");
+
+        // Blender drinks (1.12.2): the ingredients, how much the drink feeds, and its colour
+        this.blending("fruit_crush", 4, 0xFF3A25, SizedIngredient.of(Items.APPLE, 2), SizedIngredient.of(Items.MELON_SLICE, 4));
+        this.blending("veggie_juice", 6, 0xF78B7A, SizedIngredient.of(Items.CARROT, 4), SizedIngredient.of(Items.POTATO, 1), SizedIngredient.of(Items.PUMPKIN_PIE, 2));
+        this.blending("cookies_and_cream_milkshake", 4, 0xFFD6A4, SizedIngredient.of(Items.COOKIE, 2), SizedIngredient.of(Items.MILK_BUCKET, 1));
+        this.blending("energy_drink", 8, 0x5C1708, SizedIngredient.of(Items.REDSTONE, 8), SizedIngredient.of(Items.FIRE_CHARGE, 1), SizedIngredient.of(Items.SUGAR, 16));
+        this.blending("egg_nog", 5, 0xFFEAB2, SizedIngredient.of(Items.EGG, 4), SizedIngredient.of(Items.MILK_BUCKET, 1), SizedIngredient.of(Items.SUGAR, 2));
 
         // Freezing Recipes
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.WATER_BUCKET), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.ICE, 1, 1000, FreezerSolidifyRecipe::new).unlockedBy("has_water", this.has(Items.WATER_BUCKET)).save(this.output, "ice_from_freezing");
@@ -1067,6 +1174,18 @@ public class RecipeGen extends RecipeProvider
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.PORKCHOP), RecipeCategory.FOOD, CookingBookCategory.FOOD, Items.COOKED_PORKCHOP, 0.35F, cookingTime, factory).unlockedBy("has_porkchop", this.has(Items.PORKCHOP)).save(this.output, "cooked_porkchop_from_" + method);
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.POTATO), RecipeCategory.FOOD, CookingBookCategory.FOOD, Items.BAKED_POTATO, 0.35F, cookingTime, factory).unlockedBy("has_potato", this.has(Items.POTATO)).save(this.output, "baked_potato_from_" + method);
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.RABBIT), RecipeCategory.FOOD, CookingBookCategory.FOOD, Items.COOKED_RABBIT, 0.35F, cookingTime, factory).unlockedBy("has_rabbit", this.has(Items.RABBIT)).save(this.output, "cooked_rabbit_from_" + method);
+    }
+
+    // A blender drink: a cfm:drink named, coloured and feeding as given (1.12.2 healed as many hunger points as it fed)
+    private void blending(String name, int nutrition, int colour, SizedIngredient... ingredients)
+    {
+        DataComponentPatch drink = DataComponentPatch.builder()
+                .set(DataComponents.ITEM_NAME, Component.translatable("drink.cfm." + name))
+                .set(DataComponents.FOOD, new FoodProperties.Builder().nutrition(nutrition).saturationModifier(0.5F).build())
+                .set(DataComponents.DYED_COLOR, new DyedItemColor(colour))
+                .build();
+        BlendingRecipe recipe = new BlendingRecipe(new Recipe.CommonInfo(true), List.of(ingredients), new ItemStackTemplate(ModItems.DRINK.get(), drink));
+        this.output.accept(recipeKey(Identifier.fromNamespaceAndPath(Reference.MOD_ID, name + "_from_blending")), recipe, null);
     }
 
     private static ResourceKey<Recipe<?>> recipeKey(Identifier id)

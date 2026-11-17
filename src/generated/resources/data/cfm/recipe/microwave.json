@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:stone_button",
+    "G": "#c:glass_panes/colorless",
+    "I": "#c:ingots/iron",
+    "Q": "minecraft:quartz_block"
+  },
+  "pattern": [
+    "IIQ",
+    "GGB",
+    "IIQ"
+  ],
+  "result": {
+    "id": "cfm:microwave"
+  }
+}

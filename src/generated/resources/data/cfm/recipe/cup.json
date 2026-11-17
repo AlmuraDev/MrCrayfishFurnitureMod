@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "#c:glass_panes/colorless"
+  },
+  "pattern": [
+    "G G",
+    "G G",
+    "GGG"
+  ],
+  "result": {
+    "id": "cfm:cup"
+  }
+}

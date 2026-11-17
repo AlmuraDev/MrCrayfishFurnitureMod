@@ -9,8 +9,10 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.TagsProvider;
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagBuilder;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.neoforged.neoforge.common.data.BlockTagCopyingItemTagProvider;
 import net.neoforged.neoforge.registries.DeferredBlock;
@@ -313,6 +315,39 @@ public class ItemTagGen extends BlockTagCopyingItemTagProvider
 
         this.tag(ModTags.Items.TRAMPOLINE).add(item(ModBlocks.TRAMPOLINE));
         this.tag(ModTags.Items.ITEMS).add(ModItems.SPATULA.key());
+        this.tag(ModTags.Items.KITCHEN)
+                .add(item(ModBlocks.OVEN))
+                .add(item(ModBlocks.MICROWAVE))
+                .add(item(ModBlocks.TOASTER))
+                .add(item(ModBlocks.BLENDER))
+                .add(item(ModBlocks.DISHWASHER));
+        this.tag(ModTags.Items.GENERAL)
+                .add(item(ModBlocks.WASHING_MACHINE));
+        this.tag(ModTags.Items.ITEMS)
+                .add(ModItems.BREAD_SLICE.key())
+                .add(ModItems.TOAST.key())
+                .add(ModItems.CUP.key())
+                .add(ModItems.SOAP.key())
+                .add(ModItems.SOAPY_WATER.key())
+                .add(ModItems.SUPER_SOAPY_WATER.key());
+        // 1.12.2 listed these in its recipe API; tags let packs add more
+        this.tag(ModTags.Items.DISHWASHER_CLEANABLE)
+                .addTag(ItemTags.PICKAXES)
+                .addTag(ItemTags.SHOVELS)
+                .addTag(ItemTags.SWORDS)
+                .addTag(ItemTags.AXES)
+                .addTag(ItemTags.HOES)
+                .addTag(ItemTags.SPEARS)
+                .add(Items.BOW.builtInRegistryHolder().key(), Items.CROSSBOW.builtInRegistryHolder().key(), Items.FISHING_ROD.builtInRegistryHolder().key(),
+                        Items.FLINT_AND_STEEL.builtInRegistryHolder().key(), Items.SHEARS.builtInRegistryHolder().key(), Items.SHIELD.builtInRegistryHolder().key(),
+                        Items.TRIDENT.builtInRegistryHolder().key(), Items.MACE.builtInRegistryHolder().key(), Items.BRUSH.builtInRegistryHolder().key(),
+                        Items.CARROT_ON_A_STICK.builtInRegistryHolder().key(), Items.WARPED_FUNGUS_ON_A_STICK.builtInRegistryHolder().key(), ModItems.SPATULA.key());
+        this.tag(ModTags.Items.WASHING_MACHINE_CLEANABLE)
+                .addTag(ItemTags.HEAD_ARMOR)
+                .addTag(ItemTags.CHEST_ARMOR)
+                .addTag(ItemTags.LEG_ARMOR)
+                .addTag(ItemTags.FOOT_ARMOR)
+                .add(Items.ELYTRA.builtInRegistryHolder().key());
 
         this.copy(ModTags.Blocks.UPGRADED_FENCE_GATES, ModTags.Items.UPGRADED_FENCE_GATES);
         this.copy(ModTags.Blocks.PICKET_FENCE_GATES, ModTags.Items.PICKET_FENCE_GATES);

@@ -1,5 +1,11 @@
 {
   "values": [
-    "cfm:spatula"
+    "cfm:spatula",
+    "cfm:bread_slice",
+    "cfm:toast",
+    "cfm:cup",
+    "cfm:soap",
+    "cfm:soapy_water",
+    "cfm:super_soapy_water"
   ]
 }

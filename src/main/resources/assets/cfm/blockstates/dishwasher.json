@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cfm:block/dishwasher",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cfm:block/dishwasher"
+    },
+    "facing=south": {
+      "model": "cfm:block/dishwasher",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cfm:block/dishwasher",
+      "y": 180
+    }
+  }
+}

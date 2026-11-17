@@ -1,6 +1,9 @@
 package com.mrcrayfish.furniture.client;
 
 import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.ApplianceItemsRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.BlenderBlockEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.CupBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.DoorMatBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.GrillBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.KitchenSinkBlockEntityRenderer;
@@ -26,5 +29,11 @@ public class RenderSetup
         event.registerBlockEntityRenderer(ModBlockEntities.GRILL.get(), GrillBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.DOOR_MAT.get(), DoorMatBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.KITCHEN_SINK.get(), KitchenSinkBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.OVEN.get(), ApplianceItemsRenderer.Oven::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.MICROWAVE.get(), ApplianceItemsRenderer.Microwave::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.TOASTER.get(), ApplianceItemsRenderer.Toaster::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.WASHING_MACHINE.get(), ApplianceItemsRenderer.WashingMachine::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.BLENDER.get(), BlenderBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.CUP.get(), CupBlockEntityRenderer::new);
     }
 }

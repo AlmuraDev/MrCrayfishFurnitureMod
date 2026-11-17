@@ -70,5 +70,33 @@
     "block.sliding_door.close": {
         "subtitle": "subtitle.cfm.sliding_door_close",
         "sounds": [ "cfm:block/sliding_door/close" ]
+    },
+    "block.microwave.running": {
+        "subtitle": "subtitle.cfm.microwave_running",
+        "sounds": [ "cfm:block/microwave/running" ]
+    },
+    "block.microwave.finish": {
+        "subtitle": "subtitle.cfm.microwave_finish",
+        "sounds": [ "cfm:block/microwave/finish" ]
+    },
+    "block.toaster.down": {
+        "subtitle": "subtitle.cfm.toaster_down",
+        "sounds": [ "cfm:block/toaster/down" ]
+    },
+    "block.toaster.up": {
+        "subtitle": "subtitle.cfm.toaster_up",
+        "sounds": [ "cfm:block/toaster/up" ]
+    },
+    "block.blender.run": {
+        "subtitle": "subtitle.cfm.blender",
+        "sounds": [ "cfm:block/blender/run" ]
+    },
+    "block.dishwasher.run": {
+        "subtitle": "subtitle.cfm.dishwasher",
+        "sounds": [ "cfm:block/dishwasher/run" ]
+    },
+    "block.washing_machine.run": {
+        "subtitle": "subtitle.cfm.washing_machine",
+        "sounds": [ "cfm:block/washing_machine/run" ]
     }
 }

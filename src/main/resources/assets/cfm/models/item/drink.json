@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "cfm:item/itemdrink",
+    "layer1": "cfm:item/cup_overlay"
+  }
+}

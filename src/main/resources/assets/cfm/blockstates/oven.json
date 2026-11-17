@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cfm:block/oven",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cfm:block/oven"
+    },
+    "facing=south": {
+      "model": "cfm:block/oven",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cfm:block/oven",
+      "y": 180
+    }
+  }
+}

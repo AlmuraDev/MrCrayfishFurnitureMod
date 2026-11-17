@@ -1,0 +1,30 @@
+{
+  "type": "cfm:blending",
+  "ingredients": [
+    {
+      "count": 8,
+      "ingredient": "minecraft:redstone"
+    },
+    {
+      "count": 1,
+      "ingredient": "minecraft:fire_charge"
+    },
+    {
+      "count": 16,
+      "ingredient": "minecraft:sugar"
+    }
+  ],
+  "result": {
+    "components": {
+      "minecraft:dyed_color": 6035208,
+      "minecraft:food": {
+        "nutrition": 8,
+        "saturation": 8.0
+      },
+      "minecraft:item_name": {
+        "translate": "drink.cfm.energy_drink"
+      }
+    },
+    "id": "cfm:drink"
+  }
+}

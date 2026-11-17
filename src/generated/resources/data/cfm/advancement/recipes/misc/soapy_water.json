@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_soap": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cfm:soap"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "cfm:soapy_water"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_soap"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cfm:soapy_water"
+    ]
+  }
+}

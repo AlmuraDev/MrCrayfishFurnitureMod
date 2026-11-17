@@ -1,0 +1,10 @@
+{
+  "type": "cfm:toasting",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.1,
+  "ingredient": "cfm:bread_slice",
+  "result": {
+    "id": "cfm:toast"
+  }
+}

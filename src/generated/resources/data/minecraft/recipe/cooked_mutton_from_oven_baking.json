@@ -1,0 +1,10 @@
+{
+  "type": "cfm:oven_baking",
+  "category": "food",
+  "cookingtime": 200,
+  "experience": 0.35,
+  "ingredient": "minecraft:mutton",
+  "result": {
+    "id": "minecraft:cooked_mutton"
+  }
+}

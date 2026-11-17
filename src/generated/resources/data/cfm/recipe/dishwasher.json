@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:iron_bars",
+    "C": "minecraft:cyan_terracotta",
+    "F": "minecraft:furnace",
+    "Q": "minecraft:quartz_block"
+  },
+  "pattern": [
+    "QQQ",
+    "CBC",
+    "CFC"
+  ],
+  "result": {
+    "id": "cfm:dishwasher"
+  }
+}

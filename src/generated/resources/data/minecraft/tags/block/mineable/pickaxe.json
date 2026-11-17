@@ -76,6 +76,11 @@
     "cfm:tap",
     "cfm:shower",
     "cfm:shower_head",
-    "cfm:bath"
+    "cfm:bath",
+    "cfm:oven",
+    "cfm:microwave",
+    "cfm:toaster",
+    "cfm:dishwasher",
+    "cfm:washing_machine"
   ]
 }

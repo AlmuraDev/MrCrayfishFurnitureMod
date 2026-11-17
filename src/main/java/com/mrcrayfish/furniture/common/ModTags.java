@@ -27,6 +27,9 @@ public class ModTags
         public static final TagKey<Item> OUTDOORS = tag("outdoors");
         public static final TagKey<Item> STORAGE = tag("storage");
         public static final TagKey<Item> TRAMPOLINE = tag("trampoline");
+        // What the dishwasher and washing machine clean (repair); 1.12.2 listed them in its recipe API
+        public static final TagKey<Item> DISHWASHER_CLEANABLE = tag("dishwasher_cleanable");
+        public static final TagKey<Item> WASHING_MACHINE_CLEANABLE = tag("washing_machine_cleanable");
 
         private static TagKey<Item> tag(String name)
         {

@@ -1,0 +1,26 @@
+{
+  "type": "cfm:blending",
+  "ingredients": [
+    {
+      "count": 2,
+      "ingredient": "minecraft:cookie"
+    },
+    {
+      "count": 1,
+      "ingredient": "minecraft:milk_bucket"
+    }
+  ],
+  "result": {
+    "components": {
+      "minecraft:dyed_color": 16766628,
+      "minecraft:food": {
+        "nutrition": 4,
+        "saturation": 4.0
+      },
+      "minecraft:item_name": {
+        "translate": "drink.cfm.cookies_and_cream_milkshake"
+      }
+    },
+    "id": "cfm:drink"
+  }
+}
