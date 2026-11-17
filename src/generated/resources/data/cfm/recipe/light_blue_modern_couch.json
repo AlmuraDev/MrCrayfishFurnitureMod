@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "modern_couch",
+  "key": {
+    "C": "cfm:light_blue_sofa",
+    "O": "minecraft:oak_planks",
+    "S": "minecraft:spruce_planks"
+  },
+  "pattern": [
+    "OCO",
+    " S "
+  ],
+  "result": {
+    "id": "cfm:light_blue_modern_couch"
+  }
+}

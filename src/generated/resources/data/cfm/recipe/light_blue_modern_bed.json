@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "group": "modern_bed",
+  "key": {
+    "C": "minecraft:light_blue_bed",
+    "O": "minecraft:gray_concrete"
+  },
+  "pattern": [
+    " O ",
+    "OCO",
+    " O "
+  ],
+  "result": {
+    "id": "cfm:light_blue_modern_bed"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "cfm:item/modern_bed",
+  "textures": {
+    "color": "minecraft:block/lime_wool"
+  }
+}

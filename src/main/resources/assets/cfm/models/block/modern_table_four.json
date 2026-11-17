@@ -1,0 +1,41 @@
+{
+  "textures": {
+    "color": "minecraft:block/white_concrete"
+  },
+  "elements": [
+    {
+      "name": "table_top_1",
+      "from": [
+        0.0,
+        14.0,
+        0.0
+      ],
+      "to": [
+        16.0,
+        16.0,
+        16.0
+      ],
+      "faces": {
+        "up": {
+          "texture": "#color",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "cullface": "up"
+        },
+        "down": {
+          "texture": "#color",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        }
+      }
+    }
+  ]
+}

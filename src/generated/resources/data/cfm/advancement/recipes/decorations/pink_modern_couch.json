@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sofa": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cfm:pink_sofa"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "cfm:pink_modern_couch"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sofa"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cfm:pink_modern_couch"
+    ]
+  }
+}

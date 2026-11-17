@@ -29,6 +29,8 @@ public class ModSounds
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_LIGHT_SWITCH = register("block.light_switch.click");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_TAP = register("block.tap.run");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_SHOWER = register("block.shower.run");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_SLIDING_DOOR_OPEN = register("block.sliding_door.open");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_SLIDING_DOOR_CLOSE = register("block.sliding_door.close");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String name)
     {

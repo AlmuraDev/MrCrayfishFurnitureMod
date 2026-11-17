@@ -62,5 +62,13 @@
     "block.shower.run": {
         "subtitle": "subtitle.cfm.shower",
         "sounds": [ "cfm:block/shower/run" ]
+    },
+    "block.sliding_door.open": {
+        "subtitle": "subtitle.cfm.sliding_door_open",
+        "sounds": [ "cfm:block/sliding_door/open" ]
+    },
+    "block.sliding_door.close": {
+        "subtitle": "subtitle.cfm.sliding_door_close",
+        "sounds": [ "cfm:block/sliding_door/close" ]
     }
 }

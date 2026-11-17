@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cfm:block/modern_chair",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cfm:block/modern_chair"
+    },
+    "facing=south": {
+      "model": "cfm:block/modern_chair",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cfm:block/modern_chair",
+      "y": 180
+    }
+  }
+}

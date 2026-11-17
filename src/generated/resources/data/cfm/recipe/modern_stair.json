@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:white_concrete",
+    "I": "#c:ingots/iron"
+  },
+  "pattern": [
+    "C  ",
+    "IC ",
+    " IC"
+  ],
+  "result": {
+    "count": 4,
+    "id": "cfm:modern_stair"
+  }
+}

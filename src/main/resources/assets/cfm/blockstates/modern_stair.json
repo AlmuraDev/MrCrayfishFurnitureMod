@@ -1,0 +1,64 @@
+{
+  "variants": {
+    "facing=north,type=up": {
+      "model": "cfm:block/modern_stair_up"
+    },
+    "facing=north,type=down": {
+      "model": "cfm:block/modern_stair_down"
+    },
+    "facing=north,type=both": {
+      "model": "cfm:block/modern_stair_both"
+    },
+    "facing=north,type=none": {
+      "model": "cfm:block/modern_stair_none"
+    },
+    "facing=east,type=up": {
+      "model": "cfm:block/modern_stair_up",
+      "y": 90
+    },
+    "facing=east,type=down": {
+      "model": "cfm:block/modern_stair_down",
+      "y": 90
+    },
+    "facing=east,type=both": {
+      "model": "cfm:block/modern_stair_both",
+      "y": 90
+    },
+    "facing=east,type=none": {
+      "model": "cfm:block/modern_stair_none",
+      "y": 90
+    },
+    "facing=south,type=up": {
+      "model": "cfm:block/modern_stair_up",
+      "y": 180
+    },
+    "facing=south,type=down": {
+      "model": "cfm:block/modern_stair_down",
+      "y": 180
+    },
+    "facing=south,type=both": {
+      "model": "cfm:block/modern_stair_both",
+      "y": 180
+    },
+    "facing=south,type=none": {
+      "model": "cfm:block/modern_stair_none",
+      "y": 180
+    },
+    "facing=west,type=up": {
+      "model": "cfm:block/modern_stair_up",
+      "y": 270
+    },
+    "facing=west,type=down": {
+      "model": "cfm:block/modern_stair_down",
+      "y": 270
+    },
+    "facing=west,type=both": {
+      "model": "cfm:block/modern_stair_both",
+      "y": 270
+    },
+    "facing=west,type=none": {
+      "model": "cfm:block/modern_stair_none",
+      "y": 270
+    }
+  }
+}

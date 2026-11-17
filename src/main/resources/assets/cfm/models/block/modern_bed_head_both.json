@@ -1,0 +1,167 @@
+{
+  "textures": {
+    "0": "minecraft:block/gray_concrete",
+    "1": "minecraft:block/light_gray_concrete",
+    "3": "minecraft:block/white_concrete"
+  },
+  "elements": [
+    {
+      "name": "bed_back",
+      "from": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "to": [
+        16.0,
+        16.0,
+        2.0
+      ],
+      "faces": {
+        "north": {
+          "texture": "#0",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ],
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#0",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            16.0
+          ]
+        },
+        "up": {
+          "texture": "#0",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            2.0
+          ]
+        },
+        "down": {
+          "texture": "#0",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            2.0
+          ],
+          "cullface": "down"
+        }
+      }
+    },
+    {
+      "name": "bed_bottom",
+      "from": [
+        0.0,
+        4.5,
+        2.0
+      ],
+      "to": [
+        16.0,
+        5.5,
+        16.0
+      ],
+      "faces": {
+        "down": {
+          "texture": "#1",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            14.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "bed_blanket_1",
+      "from": [
+        1.0,
+        5.0,
+        8.0
+      ],
+      "to": [
+        16.0,
+        9.0,
+        16.0
+      ],
+      "faces": {
+        "up": {
+          "texture": "#color",
+          "uv": [
+            0.0,
+            0.0,
+            15.0,
+            8.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "pillow",
+      "from": [
+        0.0,
+        5.0,
+        2.0
+      ],
+      "to": [
+        16.0,
+        9.5,
+        8.0
+      ],
+      "faces": {
+        "south": {
+          "texture": "#3",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            4.5
+          ]
+        },
+        "up": {
+          "texture": "#3",
+          "uv": [
+            0.0,
+            0.0,
+            16.0,
+            6.0
+          ]
+        }
+      }
+    },
+    {
+      "name": "Cube",
+      "from": [
+        0.0,
+        5.0,
+        8.0
+      ],
+      "to": [
+        1.0,
+        9.0,
+        16.0
+      ],
+      "faces": {
+        "up": {
+          "texture": "#color",
+          "uv": [
+            15.0,
+            0.0,
+            16.0,
+            8.0
+          ]
+        }
+      }
+    }
+  ]
+}

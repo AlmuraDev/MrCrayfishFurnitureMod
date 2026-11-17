@@ -1,0 +1,7 @@
+{
+  "parent": "cfm:block/modern_bed_base_left",
+  "textures": {
+    "color": "minecraft:block/magenta_wool",
+    "particle": "minecraft:block/gray_concrete"
+  }
+}

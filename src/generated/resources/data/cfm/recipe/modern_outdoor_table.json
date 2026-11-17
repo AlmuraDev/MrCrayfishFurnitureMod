@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:white_concrete",
+    "G": "minecraft:glass",
+    "L": "minecraft:light_gray_concrete"
+  },
+  "pattern": [
+    "CGC",
+    "L L",
+    "L L"
+  ],
+  "result": {
+    "id": "cfm:modern_outdoor_table"
+  }
+}

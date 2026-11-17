@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:white_concrete",
+    "G": "minecraft:glass_pane"
+  },
+  "pattern": [
+    "CCC",
+    "CGC",
+    "CCC"
+  ],
+  "result": {
+    "count": 8,
+    "id": "cfm:modern_window"
+  }
+}

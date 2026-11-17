@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "condition": {
+        "type": "minecraft:survives_explosion"
+      },
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "condition": {
+            "type": "minecraft:match_block",
+            "blocks": "cfm:modern_sliding_door",
+            "state": {
+              "half": "lower"
+            }
+          },
+          "name": "cfm:modern_sliding_door"
+        }
+      ],
+      "rolls": 1
+    }
+  ],
+  "random_sequence": "cfm:blocks/modern_sliding_door"
+}

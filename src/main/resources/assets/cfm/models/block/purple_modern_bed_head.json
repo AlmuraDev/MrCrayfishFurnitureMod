@@ -1,0 +1,7 @@
+{
+  "parent": "cfm:block/modern_bed_head",
+  "textures": {
+    "color": "minecraft:block/purple_wool",
+    "particle": "minecraft:block/gray_concrete"
+  }
+}

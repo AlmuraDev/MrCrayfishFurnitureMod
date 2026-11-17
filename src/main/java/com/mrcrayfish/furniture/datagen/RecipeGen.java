@@ -507,6 +507,96 @@ public class RecipeGen extends RecipeProvider
                 .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
                 .save(this.output);
 
+        // Modern furniture (1.12.2)
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.MODERN_CHAIR.get())
+                .pattern("C  ")
+                .pattern("CCC")
+                .pattern("GGG")
+                .define('C', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('G', Blocks.CONCRETE.pick(DyeColor.LIGHT_GRAY))
+                .unlockedBy("has_concrete", this.has(Blocks.CONCRETE.pick(DyeColor.WHITE)))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.MODERN_TABLE.get())
+                .pattern("CCC")
+                .pattern("G G")
+                .pattern("G G")
+                .define('C', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('G', Blocks.CONCRETE.pick(DyeColor.LIGHT_GRAY))
+                .unlockedBy("has_concrete", this.has(Blocks.CONCRETE.pick(DyeColor.WHITE)))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.MODERN_OUTDOOR_TABLE.get())
+                .pattern("CGC")
+                .pattern("L L")
+                .pattern("L L")
+                .define('C', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('G', Blocks.GLASS)
+                .define('L', Blocks.CONCRETE.pick(DyeColor.LIGHT_GRAY))
+                .unlockedBy("has_concrete", this.has(Blocks.CONCRETE.pick(DyeColor.WHITE)))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.MODERN_COFFEE_TABLE.get())
+                .pattern("TTT")
+                .pattern("L L")
+                .define('T', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('L', Blocks.CONCRETE.pick(DyeColor.LIGHT_GRAY))
+                .unlockedBy("has_concrete", this.has(Blocks.CONCRETE.pick(DyeColor.WHITE)))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.MODERN_STAIR.get(), 4)
+                .pattern("C  ")
+                .pattern("IC ")
+                .pattern(" IC")
+                .define('C', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('I', Tags.Items.INGOTS_IRON)
+                .unlockedBy("has_concrete", this.has(Blocks.CONCRETE.pick(DyeColor.WHITE)))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.MODERN_WINDOW.get(), 8)
+                .pattern("CCC")
+                .pattern("CGC")
+                .pattern("CCC")
+                .define('C', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('G', Blocks.GLASS_PANE)
+                .unlockedBy("has_concrete", this.has(Blocks.CONCRETE.pick(DyeColor.WHITE)))
+                .save(this.output);
+        this.shaped(RecipeCategory.REDSTONE, ModBlocks.MODERN_SLIDING_DOOR.get())
+                .pattern("CC")
+                .pattern("GG")
+                .pattern("CC")
+                .define('C', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('G', Blocks.GLASS_PANE)
+                .unlockedBy("has_concrete", this.has(Blocks.CONCRETE.pick(DyeColor.WHITE)))
+                .save(this.output);
+        this.modernCouch(ModBlocks.MODERN_COUCH_WHITE.get(), ModBlocks.SOFA_WHITE.get());
+        this.modernBed(ModBlocks.MODERN_BED_WHITE.get(), Blocks.BED.pick(DyeColor.WHITE));
+        this.modernCouch(ModBlocks.MODERN_COUCH_ORANGE.get(), ModBlocks.SOFA_ORANGE.get());
+        this.modernBed(ModBlocks.MODERN_BED_ORANGE.get(), Blocks.BED.pick(DyeColor.ORANGE));
+        this.modernCouch(ModBlocks.MODERN_COUCH_MAGENTA.get(), ModBlocks.SOFA_MAGENTA.get());
+        this.modernBed(ModBlocks.MODERN_BED_MAGENTA.get(), Blocks.BED.pick(DyeColor.MAGENTA));
+        this.modernCouch(ModBlocks.MODERN_COUCH_LIGHT_BLUE.get(), ModBlocks.SOFA_LIGHT_BLUE.get());
+        this.modernBed(ModBlocks.MODERN_BED_LIGHT_BLUE.get(), Blocks.BED.pick(DyeColor.LIGHT_BLUE));
+        this.modernCouch(ModBlocks.MODERN_COUCH_YELLOW.get(), ModBlocks.SOFA_YELLOW.get());
+        this.modernBed(ModBlocks.MODERN_BED_YELLOW.get(), Blocks.BED.pick(DyeColor.YELLOW));
+        this.modernCouch(ModBlocks.MODERN_COUCH_LIME.get(), ModBlocks.SOFA_LIME.get());
+        this.modernBed(ModBlocks.MODERN_BED_LIME.get(), Blocks.BED.pick(DyeColor.LIME));
+        this.modernCouch(ModBlocks.MODERN_COUCH_PINK.get(), ModBlocks.SOFA_PINK.get());
+        this.modernBed(ModBlocks.MODERN_BED_PINK.get(), Blocks.BED.pick(DyeColor.PINK));
+        this.modernCouch(ModBlocks.MODERN_COUCH_GRAY.get(), ModBlocks.SOFA_GRAY.get());
+        this.modernBed(ModBlocks.MODERN_BED_GRAY.get(), Blocks.BED.pick(DyeColor.GRAY));
+        this.modernCouch(ModBlocks.MODERN_COUCH_LIGHT_GRAY.get(), ModBlocks.SOFA_LIGHT_GRAY.get());
+        this.modernBed(ModBlocks.MODERN_BED_LIGHT_GRAY.get(), Blocks.BED.pick(DyeColor.LIGHT_GRAY));
+        this.modernCouch(ModBlocks.MODERN_COUCH_CYAN.get(), ModBlocks.SOFA_CYAN.get());
+        this.modernBed(ModBlocks.MODERN_BED_CYAN.get(), Blocks.BED.pick(DyeColor.CYAN));
+        this.modernCouch(ModBlocks.MODERN_COUCH_PURPLE.get(), ModBlocks.SOFA_PURPLE.get());
+        this.modernBed(ModBlocks.MODERN_BED_PURPLE.get(), Blocks.BED.pick(DyeColor.PURPLE));
+        this.modernCouch(ModBlocks.MODERN_COUCH_BLUE.get(), ModBlocks.SOFA_BLUE.get());
+        this.modernBed(ModBlocks.MODERN_BED_BLUE.get(), Blocks.BED.pick(DyeColor.BLUE));
+        this.modernCouch(ModBlocks.MODERN_COUCH_BROWN.get(), ModBlocks.SOFA_BROWN.get());
+        this.modernBed(ModBlocks.MODERN_BED_BROWN.get(), Blocks.BED.pick(DyeColor.BROWN));
+        this.modernCouch(ModBlocks.MODERN_COUCH_GREEN.get(), ModBlocks.SOFA_GREEN.get());
+        this.modernBed(ModBlocks.MODERN_BED_GREEN.get(), Blocks.BED.pick(DyeColor.GREEN));
+        this.modernCouch(ModBlocks.MODERN_COUCH_RED.get(), ModBlocks.SOFA_RED.get());
+        this.modernBed(ModBlocks.MODERN_BED_RED.get(), Blocks.BED.pick(DyeColor.RED));
+        this.modernCouch(ModBlocks.MODERN_COUCH_BLACK.get(), ModBlocks.SOFA_BLACK.get());
+        this.modernBed(ModBlocks.MODERN_BED_BLACK.get(), Blocks.BED.pick(DyeColor.BLACK));
+
         // Cooking Recipes
         this.cookingRecipesForMethod("grill_cooking", GrillCookingRecipe::new, 600);
 
@@ -514,6 +604,33 @@ public class RecipeGen extends RecipeProvider
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.WATER_BUCKET), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.ICE, 1, 1000, FreezerSolidifyRecipe::new).unlockedBy("has_water", this.has(Items.WATER_BUCKET)).save(this.output, "ice_from_freezing");
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.ICE), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.PACKED_ICE, 1, 2000, FreezerSolidifyRecipe::new).unlockedBy("has_ice", this.has(Items.ICE)).save(this.output, "packed_ice_from_freezing");
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.PACKED_ICE), RecipeCategory.MISC, CookingBookCategory.MISC, Blocks.BLUE_ICE, 1, 4000, FreezerSolidifyRecipe::new).unlockedBy("has_packed_ice", this.has(Items.PACKED_ICE)).save(this.output, "blue_ice_from_freezing");
+    }
+
+    // 1.12.2 made the modern couch from its classic couch; the sofa takes that part here
+    private void modernCouch(ItemLike couch, ItemLike sofa)
+    {
+        this.shaped(RecipeCategory.DECORATIONS, couch)
+                .pattern("OCO")
+                .pattern(" S ")
+                .define('O', Blocks.OAK_PLANKS)
+                .define('C', sofa)
+                .define('S', Blocks.SPRUCE_PLANKS)
+                .group("modern_couch")
+                .unlockedBy("has_sofa", this.has(sofa))
+                .save(this.output);
+    }
+
+    private void modernBed(ItemLike modernBed, ItemLike bed)
+    {
+        this.shaped(RecipeCategory.DECORATIONS, modernBed)
+                .pattern(" O ")
+                .pattern("OCO")
+                .pattern(" O ")
+                .define('O', Blocks.CONCRETE.pick(DyeColor.GRAY))
+                .define('C', bed)
+                .group("modern_bed")
+                .unlockedBy("has_bed", this.has(bed))
+                .save(this.output);
     }
 
     private void lamp(ItemLike lamp, ItemLike wool)

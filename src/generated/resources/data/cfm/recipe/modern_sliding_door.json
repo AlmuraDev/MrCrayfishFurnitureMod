@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "redstone",
+  "key": {
+    "C": "minecraft:white_concrete",
+    "G": "minecraft:glass_pane"
+  },
+  "pattern": [
+    "CC",
+    "GG",
+    "CC"
+  ],
+  "result": {
+    "id": "cfm:modern_sliding_door"
+  }
+}

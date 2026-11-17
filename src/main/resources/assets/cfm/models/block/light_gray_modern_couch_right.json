@@ -1,0 +1,6 @@
+{
+  "parent": "cfm:block/modern_couch_right",
+  "textures": {
+    "couch": "minecraft:block/light_gray_terracotta"
+  }
+}
