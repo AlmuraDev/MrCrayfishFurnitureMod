@@ -1,93 +1,46 @@
-name: Build and Sign Mod
+# Builds the NeoForge 26.3 mod on every push and pull request to 4.0, and keeps the jar as a download on the run.
+# The recipes, loot tables and tags are committed under src/generated, so this does not run the data generators.
+name: Build
+
 on:
   push:
-    paths:
-      - 'release_build'
+    branches: [ '4.0' ]
+  pull_request:
+    branches: [ '4.0' ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    environment: Build
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'adopt'
-    - name: Validate Gradle Wrapper
-      uses: gradle/wrapper-validation-action@v1
-    - name: Read modid from gradle.properties
-      id: mod_id
-      uses: Reedyuk/read-properties@v1.0.1
-      with:
-        path: './gradle.properties'
-        property: 'mod_id'
-    - name: Read mod version from gradle.properties
-      id: mod_version
-      uses: Reedyuk/read-properties@v1.0.1
-      with:
-        path: './gradle.properties'
-        property: 'mod_version'
-    - name: Read minecraft version from gradle.properties
-      id: mc_version
-      uses: Reedyuk/read-properties@v1.0.1
-      with:
-        path: './gradle.properties'
-        property: 'minecraft_version'
-    - name: Cache
-      uses: actions/cache@v3
-      with:
-        path: ~/.gradle/caches
-        key: gradle-minecraft-${{ steps.mc_version.outputs.value }}
-    - name: Load Keystore
-      id: load_keystore
-      env:
-        JKS: ${{ secrets.MRCRAYFISH_JKS }}
-      if: ${{ env.JKS != '' }}
-      uses: timheuer/base64-to-file@v1.2
-      with:
-        fileName: 'keystore.jks'
-        encodedString: ${{ env.JKS }}
-    - name: Set Keystore Variables
-      if: ${{ steps.load_keystore.outputs.filePath != '' }}
-      run: |
-        echo "KEYSTORE=${{ steps.load_keystore.outputs.filePath }}" >> $GITHUB_ENV 
-        echo "KEYSTORE_ALIAS=${{ secrets.MRCRAYFISH_JKS_ALIAS }}" >> $GITHUB_ENV
-        echo "KEYSTORE_PASS=${{ secrets.MRCRAYFISH_JKS_PASSPHRASE }}" >> $GITHUB_ENV
-    - name: Make gradlew executable
-      run: chmod +x ./gradlew
-    - name: Build Mod
-      env:
-        GPR_USER: "MrCrayfish"
-        GPR_KEY: ${{ secrets.GPR_TOKEN }}
-        SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-        SIGNING_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-      run: ./gradlew build
-    - name: Stop Gradle
-      run: ./gradlew --stop
-    - name: Construct artifact files
-      id: artifacts
-      run: |
-        echo "forge=build/libs/${{ steps.mod_id.outputs.value }}-forge-${{ steps.mc_version.outputs.value }}-${{ steps.mod_version.outputs.value }}.jar" >> "$GITHUB_OUTPUT"
-    - name: Import GPG
-      env:
-        SIGNING_KEY: ${{ secrets.GPG_SIGNING_KEY }}
-        SIGNING_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-      if: ${{ env.SIGNING_KEY != '' && env.SIGNING_PASSPHRASE != '' }}
-      uses: crazy-max/ghaction-import-gpg@v5.3.0
-      with:
-        gpg_private_key: ${{ env.SIGNING_KEY }}
-        passphrase: ${{ env.SIGNING_PASSPHRASE }}
-    - name: Sign JAR
-      env:
-        SIGNING_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
-      if: ${{ env.SIGNING_PASSPHRASE != '' }}
-      run: |
-        gpg --batch --yes --passphrase "${{ env.SIGNING_PASSPHRASE }}" --armor --detach-sign ${{ steps.artifacts.outputs.forge }}
-    - name: Upload Forge Artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: '${{ steps.mod_id.outputs.value }}-forge-${{ steps.mc_version.outputs.value }}-${{ steps.mod_version.outputs.value }}'
-        path: |
-          ${{ steps.artifacts.outputs.forge }}
-          ${{ steps.artifacts.outputs.forge }}.asc
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 25
+        uses: actions/setup-java@v4
+        with:
+          java-version: '25'
+          distribution: 'temurin'
+
+      # Validates the Gradle wrapper and caches Gradle's downloads (including Minecraft and NeoForge) between runs
+      - name: Set up Gradle
+        uses: gradle/actions/setup-gradle@v4
+
+      - name: Build
+        run: ./gradlew build
+
+      - name: Read version
+        id: version
+        run: |
+          echo "minecraft=$(grep '^minecraft_version=' gradle.properties | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+          echo "mod=$(grep '^version=' gradle.properties | cut -d= -f2)" >> "$GITHUB_OUTPUT"
+
+      - name: Upload jar
+        uses: actions/upload-artifact@v4
+        with:
+          name: cfm-neoforge-${{ steps.version.outputs.minecraft }}-${{ steps.version.outputs.mod }}
+          path: build/libs/*.jar
+          if-no-files-found: error
