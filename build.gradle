@@ -14,6 +14,16 @@ java {
 
 repositories {
     mavenCentral()
+    maven {
+        name = 'JEI'
+        url = 'https://maven.blamejared.com'
+        content { includeGroup 'mezz.jei' }
+    }
+}
+
+dependencies {
+    // Only the API: the plugin is skipped when JEI isn't installed
+    compileOnly 'mezz.jei:jei-26.3-neoforge-api:31.14.0.72'
 }
 
 // Resources made by the data generators (./gradlew runData)
