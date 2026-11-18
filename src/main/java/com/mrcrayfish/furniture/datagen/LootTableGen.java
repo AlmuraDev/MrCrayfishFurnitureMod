@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.datagen;
 
 import com.mrcrayfish.furniture.block.BathBlock;
+import com.mrcrayfish.furniture.block.ChristmasTreeBlock;
 import com.mrcrayfish.furniture.block.CoffeeTableBlock;
 import com.mrcrayfish.furniture.block.ShowerBlock;
 import net.minecraft.world.level.block.state.properties.BedPart;
@@ -190,6 +191,24 @@ public class LootTableGen extends LootTableProvider
             this.dropSelf(ModBlocks.BLENDER.get());
             this.dropSelf(ModBlocks.DISHWASHER.get());
             this.dropSelf(ModBlocks.WASHING_MACHINE.get());
+            // Only the bottom of the tree drops it; a placed present is only wrapping, its contents spill out
+            this.add(ModBlocks.CHRISTMAS_TREE.get(), block -> this.createSinglePropConditionTable(block, ChristmasTreeBlock.HALF, DoubleBlockHalf.LOWER));
+            this.add(ModBlocks.PRESENT_WHITE.get(), noDrop());
+            this.add(ModBlocks.PRESENT_ORANGE.get(), noDrop());
+            this.add(ModBlocks.PRESENT_MAGENTA.get(), noDrop());
+            this.add(ModBlocks.PRESENT_LIGHT_BLUE.get(), noDrop());
+            this.add(ModBlocks.PRESENT_YELLOW.get(), noDrop());
+            this.add(ModBlocks.PRESENT_LIME.get(), noDrop());
+            this.add(ModBlocks.PRESENT_PINK.get(), noDrop());
+            this.add(ModBlocks.PRESENT_GRAY.get(), noDrop());
+            this.add(ModBlocks.PRESENT_LIGHT_GRAY.get(), noDrop());
+            this.add(ModBlocks.PRESENT_CYAN.get(), noDrop());
+            this.add(ModBlocks.PRESENT_PURPLE.get(), noDrop());
+            this.add(ModBlocks.PRESENT_BLUE.get(), noDrop());
+            this.add(ModBlocks.PRESENT_BROWN.get(), noDrop());
+            this.add(ModBlocks.PRESENT_GREEN.get(), noDrop());
+            this.add(ModBlocks.PRESENT_RED.get(), noDrop());
+            this.add(ModBlocks.PRESENT_BLACK.get(), noDrop());
             this.dropSelf(ModBlocks.TV.get());
             this.dropSelf(ModBlocks.MODERN_TV.get());
             this.dropSelf(ModBlocks.TV_STAND.get());

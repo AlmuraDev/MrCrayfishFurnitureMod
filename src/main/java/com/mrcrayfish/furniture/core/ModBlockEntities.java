@@ -49,6 +49,8 @@ public class ModBlockEntities
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PrinterBlockEntity>> PRINTER = register("printer", PrinterBlockEntity::new, PrinterBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DigitalClockBlockEntity>> DIGITAL_CLOCK = register("digital_clock", DigitalClockBlockEntity::new, DigitalClockBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PhotoFrameBlockEntity>> PHOTO_FRAME = register("photo_frame", PhotoFrameBlockEntity::new, PhotoFrameBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ChristmasTreeBlockEntity>> CHRISTMAS_TREE = register("christmas_tree", ChristmasTreeBlockEntity::new, ChristmasTreeBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PresentBlockEntity>> PRESENT = register("present", PresentBlockEntity::new, PresentBlock.class);
 
     /**
      * Registers a block entity type that is valid for every furniture block of the given class (every wood and colour of it). Blocks

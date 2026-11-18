@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.common.mail.MailBoxEntry;
 import com.mrcrayfish.furniture.inventory.container.CrateMenu;
 import com.mrcrayfish.furniture.inventory.container.FreezerMenu;
+import com.mrcrayfish.furniture.inventory.container.PresentMenu;
 import com.mrcrayfish.furniture.inventory.container.PrinterMenu;
 import com.mrcrayfish.furniture.inventory.container.ComputerMenu;
 import com.mrcrayfish.furniture.inventory.container.WashingMachineMenu;
@@ -80,6 +81,9 @@ public class ModContainers
     public static final DeferredHolder<MenuType<?>, MenuType<PrinterMenu>> PRINTER = register("printer", (windowId, playerInventory, data) -> {
         return new PrinterMenu(windowId, playerInventory, (PrinterBlockEntity) playerInventory.player.level().getBlockEntity(data.readBlockPos()));
     });
+
+    // The present in the player's main hand
+    public static final DeferredHolder<MenuType<?>, MenuType<PresentMenu>> PRESENT = register("present", (windowId, playerInventory, data) -> new PresentMenu(windowId, playerInventory));
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> register(String key, IContainerFactory<T> factory)
     {

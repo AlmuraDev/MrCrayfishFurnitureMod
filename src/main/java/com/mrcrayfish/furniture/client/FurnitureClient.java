@@ -140,6 +140,10 @@ public class FurnitureClient
         // The wreath's leaves are pine green, as in 1.12.2
         register(event, List.of(BlockTintSources.constant(FoliageColor.FOLIAGE_EVERGREEN)), ModBlocks.WREATH);
 
+        // The Christmas tree's leaves (tint layer 4) are the same green
+        BlockTintSource white = BlockTintSources.constant(WHITE);
+        register(event, List.of(white, white, white, white, BlockTintSources.constant(FoliageColor.FOLIAGE_EVERGREEN)), ModBlocks.CHRISTMAS_TREE);
+
         // The trampoline's colour is kept by its block entity; every layer takes it
         BlockTintSource trampoline = new BlockTintSource()
         {

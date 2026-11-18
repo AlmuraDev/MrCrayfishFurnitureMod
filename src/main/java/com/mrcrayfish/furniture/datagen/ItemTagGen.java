@@ -374,6 +374,24 @@ public class ItemTagGen extends BlockTagCopyingItemTagProvider
                 .add(item(ModBlocks.DOOR_BELL_MANGROVE));
         this.tag(ModTags.Items.OUTDOORS)
                 .add(item(ModBlocks.ELECTRIC_FENCE));
+        this.tag(ModTags.Items.GENERAL)
+                .add(item(ModBlocks.CHRISTMAS_TREE))
+                .add(item(ModBlocks.PRESENT_WHITE))
+                .add(item(ModBlocks.PRESENT_ORANGE))
+                .add(item(ModBlocks.PRESENT_MAGENTA))
+                .add(item(ModBlocks.PRESENT_LIGHT_BLUE))
+                .add(item(ModBlocks.PRESENT_YELLOW))
+                .add(item(ModBlocks.PRESENT_LIME))
+                .add(item(ModBlocks.PRESENT_PINK))
+                .add(item(ModBlocks.PRESENT_GRAY))
+                .add(item(ModBlocks.PRESENT_LIGHT_GRAY))
+                .add(item(ModBlocks.PRESENT_CYAN))
+                .add(item(ModBlocks.PRESENT_PURPLE))
+                .add(item(ModBlocks.PRESENT_BLUE))
+                .add(item(ModBlocks.PRESENT_BROWN))
+                .add(item(ModBlocks.PRESENT_GREEN))
+                .add(item(ModBlocks.PRESENT_RED))
+                .add(item(ModBlocks.PRESENT_BLACK));
         this.tag(ModTags.Items.ITEMS)
                 .add(ModItems.TV_REMOTE.key())
                 .add(ModItems.INK_CARTRIDGE.key());
