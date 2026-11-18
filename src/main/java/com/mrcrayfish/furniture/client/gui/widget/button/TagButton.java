@@ -8,7 +8,6 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.gui.screens.inventory.tooltip.DefaultTooltipPositioner;
 import net.minecraft.client.input.InputWithModifiers;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.sprite.SpriteId;
 import net.minecraft.data.AtlasIds;
 import net.minecraft.network.chat.CommonComponents;
 import net.minecraft.resources.Identifier;
@@ -67,7 +66,8 @@ public class TagButton extends Button
      */
     private void drawRotatedTab(GuiGraphicsExtractor graphics, Identifier spriteId, int x, int y, int width, int height)
     {
-        TextureAtlasSprite sprite = graphics.getSprite(new SpriteId(AtlasIds.GUI, spriteId));
+        // GUI sprites live in their own atlas, which the sprite lookup on GuiGraphicsExtractor refuses
+        TextureAtlasSprite sprite = Minecraft.getInstance().getAtlasManager().getAtlasOrThrow(AtlasIds.GUI).getSprite(spriteId);
         graphics.pose().pushMatrix();
         graphics.pose().translate(x, y);
         // A quarter turn (screen x = local y, screen y = -local x) with the u range reversed below gives the
