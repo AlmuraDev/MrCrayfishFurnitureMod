@@ -114,5 +114,9 @@
     "block.electric_fence.zap": {
         "subtitle": "subtitle.cfm.electric_fence",
         "sounds": [ "cfm:block/electric_fence/zap" ]
+    },
+    "block.chopping_board.chop": {
+        "subtitle": "subtitle.cfm.chopping_board",
+        "sounds": [ "cfm:block/chopping_board/chop" ]
     }
 }

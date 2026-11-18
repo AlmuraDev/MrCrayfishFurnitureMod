@@ -1,0 +1,8 @@
+{
+  "type": "cfm:chopping",
+  "ingredient": "minecraft:bread",
+  "result": {
+    "count": 6,
+    "id": "cfm:bread_slice"
+  }
+}

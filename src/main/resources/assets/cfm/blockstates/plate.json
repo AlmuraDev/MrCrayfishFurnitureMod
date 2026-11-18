@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "cfm:block/plate_pre"
+    }
+  }
+}

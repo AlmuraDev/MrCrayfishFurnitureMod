@@ -191,6 +191,26 @@ public class LootTableGen extends LootTableProvider
             this.dropSelf(ModBlocks.BLENDER.get());
             this.dropSelf(ModBlocks.DISHWASHER.get());
             this.dropSelf(ModBlocks.WASHING_MACHINE.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_WHITE.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_ORANGE.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_MAGENTA.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_LIGHT_BLUE.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_YELLOW.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_LIME.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_PINK.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_GRAY.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_LIGHT_GRAY.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_CYAN.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_PURPLE.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_BLUE.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_BROWN.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_GREEN.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_RED.get());
+            this.dropSelf(ModBlocks.KITCHEN_CABINET_BLACK.get());
+            this.dropSelf(ModBlocks.WALL_CABINET.get());
+            this.dropSelf(ModBlocks.CHOPPING_BOARD.get());
+            this.dropSelf(ModBlocks.PLATE.get());
+            this.dropSelf(ModBlocks.COOKIE_JAR.get());
             // Only the bottom of the tree drops it; a placed present is only wrapping, its contents spill out
             this.add(ModBlocks.CHRISTMAS_TREE.get(), block -> this.createSinglePropConditionTable(block, ChristmasTreeBlock.HALF, DoubleBlockHalf.LOWER));
             this.add(ModBlocks.PRESENT_WHITE.get(), noDrop());

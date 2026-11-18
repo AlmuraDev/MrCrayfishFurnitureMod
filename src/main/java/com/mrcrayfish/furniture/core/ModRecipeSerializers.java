@@ -1,6 +1,7 @@
 package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.Reference;
+import com.mrcrayfish.furniture.item.crafting.ChoppingRecipe;
 import com.mrcrayfish.furniture.item.crafting.CuttingRecipe;
 import com.mrcrayfish.furniture.item.crafting.MineBayRecipe;
 import com.mrcrayfish.furniture.item.crafting.BlendingRecipe;
@@ -29,4 +30,5 @@ public class ModRecipeSerializers
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ToastingRecipe>> TOASTING = REGISTER.register("toasting", () -> new RecipeSerializer<>(ToastingRecipe.MAP_CODEC, ToastingRecipe.STREAM_CODEC));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<BlendingRecipe>> BLENDING = REGISTER.register("blending", () -> new RecipeSerializer<>(BlendingRecipe.MAP_CODEC, BlendingRecipe.STREAM_CODEC));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<MineBayRecipe>> MINEBAY = REGISTER.register("minebay", () -> new RecipeSerializer<>(MineBayRecipe.MAP_CODEC, MineBayRecipe.STREAM_CODEC));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ChoppingRecipe>> CHOPPING = REGISTER.register("chopping", () -> new RecipeSerializer<>(ChoppingRecipe.MAP_CODEC, ChoppingRecipe.STREAM_CODEC));
 }

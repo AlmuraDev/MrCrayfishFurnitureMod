@@ -4,7 +4,9 @@ import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.ApplianceItemsRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.BlenderBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.ChristmasTreeBlockEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.CookieJarBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.CupBlockEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.DisplayItemBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.DigitalClockBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.DoorMatBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.ScreenBlockEntityRenderer;
@@ -42,5 +44,8 @@ public class RenderSetup
         event.registerBlockEntityRenderer(ModBlockEntities.PHOTO_FRAME.get(), ScreenBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.DIGITAL_CLOCK.get(), DigitalClockBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.CHRISTMAS_TREE.get(), ChristmasTreeBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.PLATE.get(), DisplayItemBlockEntityRenderer::plate);
+        event.registerBlockEntityRenderer(ModBlockEntities.CHOPPING_BOARD.get(), DisplayItemBlockEntityRenderer::choppingBoard);
+        event.registerBlockEntityRenderer(ModBlockEntities.COOKIE_JAR.get(), CookieJarBlockEntityRenderer::new);
     }
 }

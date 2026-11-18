@@ -4,6 +4,7 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.item.crafting.BlendingRecipe;
+import com.mrcrayfish.furniture.item.crafting.ChoppingRecipe;
 import com.mrcrayfish.furniture.item.crafting.CuttingRecipe;
 import com.mrcrayfish.furniture.item.crafting.MicrowaveHeatingRecipe;
 import com.mrcrayfish.furniture.item.crafting.MineBayRecipe;
@@ -697,10 +698,9 @@ public class RecipeGen extends RecipeProvider
                 .define('S', ModItems.SOAPY_WATER.get())
                 .unlockedBy("has_soapy_water", this.has(ModItems.SOAPY_WATER.get()))
                 .save(this.output);
-        // 1.12.2 cut bread on its chopping board; until that comes across, an axe cuts it in the crafting grid
-        CuttingRecipe breadSlices = new CuttingRecipe(new Recipe.CommonInfo(true), new CraftingRecipe.CraftingBookInfo(CraftingBookCategory.MISC, ""),
-                new ItemStackTemplate(ModItems.BREAD_SLICE.get(), 6), List.of(this.tag(ItemTags.AXES), Ingredient.of(Items.BREAD)));
-        this.output.accept(recipeKey(Identifier.fromNamespaceAndPath(Reference.MOD_ID, "bread_slice")), breadSlices, null);
+        // Bread is sliced on the chopping board, with a knife
+        this.output.accept(recipeKey(Identifier.fromNamespaceAndPath(Reference.MOD_ID, "bread_slice_from_chopping")),
+                new ChoppingRecipe(new Recipe.CommonInfo(true), Ingredient.of(Items.BREAD), new ItemStackTemplate(ModItems.BREAD_SLICE.get(), 6)), null);
 
         // Electronics (1.12.2)
         this.shaped(RecipeCategory.DECORATIONS, ModBlocks.TV.get())
@@ -1319,6 +1319,189 @@ public class RecipeGen extends RecipeProvider
                 .define('W', Blocks.WOOL.pick(DyeColor.BLACK))
                 .define('P', Items.PAPER)
                 .unlockedBy("has_paper", this.has(Items.PAPER))
+                .save(this.output);
+
+        // Kitchen (1.12.2)
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_WHITE.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.WHITE))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_ORANGE.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.ORANGE))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.ORANGE))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_MAGENTA.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.MAGENTA))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.MAGENTA))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_LIGHT_BLUE.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.LIGHT_BLUE))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.LIGHT_BLUE))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_YELLOW.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.YELLOW))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.YELLOW))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_LIME.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.LIME))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.LIME))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_PINK.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.PINK))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.PINK))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_GRAY.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.GRAY))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.GRAY))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_LIGHT_GRAY.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.LIGHT_GRAY))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.LIGHT_GRAY))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_CYAN.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.CYAN))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.CYAN))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_PURPLE.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.PURPLE))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.PURPLE))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_BLUE.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.BLUE))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.BLUE))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_BROWN.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.BROWN))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.BROWN))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_GREEN.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.GREEN))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.GREEN))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_RED.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.RED))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.RED))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.KITCHEN_CABINET_BLACK.get())
+                .pattern("QQQ")
+                .pattern("TCT")
+                .pattern("QQQ")
+                .define('Q', Blocks.CONCRETE.pick(DyeColor.BLACK))
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.BLACK))
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_chest", this.has(Tags.Items.CHESTS_WOODEN))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.WALL_CABINET.get())
+                .pattern("QQQ")
+                .pattern("QCQ")
+                .pattern("QQQ")
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .define('C', Tags.Items.CHESTS_WOODEN)
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CHOPPING_BOARD.get())
+                .pattern("LLL")
+                .pattern("SSS")
+                .pattern("LLL")
+                .define('L', ItemTags.LOGS)
+                .define('S', ItemTags.WOODEN_SLABS)
+                .unlockedBy("has_log", this.has(ItemTags.LOGS))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.PLATE.get())
+                .pattern("Q Q")
+                .pattern(" Q ")
+                .define('Q', Blocks.QUARTZ_BLOCK)
+                .unlockedBy("has_quartz", this.has(Blocks.QUARTZ_BLOCK))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.COOKIE_JAR.get())
+                .pattern(" W ")
+                .pattern("G G")
+                .pattern("GGG")
+                .define('W', Blocks.WOOL.pick(DyeColor.BLACK))
+                .define('G', Tags.Items.GLASS_PANES_COLORLESS)
+                .unlockedBy("has_glass_pane", this.has(Tags.Items.GLASS_PANES_COLORLESS))
+                .save(this.output);
+        this.shaped(RecipeCategory.TOOLS, ModItems.KNIFE.get())
+                .pattern("I ")
+                .pattern(" S")
+                .define('I', Blocks.STONE)
+                .define('S', Tags.Items.RODS_WOODEN)
+                .unlockedBy("has_stone", this.has(Blocks.STONE))
                 .save(this.output);
 
         // Cooking Recipes

@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cfm:block/red_kitchen_cabinet",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cfm:block/red_kitchen_cabinet"
+    },
+    "facing=south": {
+      "model": "cfm:block/red_kitchen_cabinet",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cfm:block/red_kitchen_cabinet",
+      "y": 180
+    }
+  }
+}

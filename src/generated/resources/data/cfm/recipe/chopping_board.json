@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "L": "#minecraft:logs",
+    "S": "#minecraft:wooden_slabs"
+  },
+  "pattern": [
+    "LLL",
+    "SSS",
+    "LLL"
+  ],
+  "result": {
+    "id": "cfm:chopping_board"
+  }
+}

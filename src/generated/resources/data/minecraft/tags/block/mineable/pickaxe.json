@@ -105,6 +105,8 @@
     "cfm:red_digital_clock",
     "cfm:black_digital_clock",
     "cfm:fire_alarm",
-    "cfm:electric_fence"
+    "cfm:electric_fence",
+    "cfm:wall_cabinet",
+    "cfm:plate"
   ]
 }

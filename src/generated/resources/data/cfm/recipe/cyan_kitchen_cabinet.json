@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "#c:chests/wooden",
+    "Q": "minecraft:cyan_concrete",
+    "T": "minecraft:cyan_terracotta"
+  },
+  "pattern": [
+    "QQQ",
+    "TCT",
+    "QQQ"
+  ],
+  "result": {
+    "id": "cfm:cyan_kitchen_cabinet"
+  }
+}

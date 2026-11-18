@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.item.crafting.BlendingRecipe;
+import com.mrcrayfish.furniture.item.crafting.ChoppingRecipe;
 import com.mrcrayfish.furniture.item.crafting.FreezerSolidifyRecipe;
 import com.mrcrayfish.furniture.item.crafting.MicrowaveHeatingRecipe;
 import com.mrcrayfish.furniture.item.crafting.MineBayRecipe;
@@ -28,6 +29,7 @@ public class ModRecipeTypes
     public static final DeferredHolder<RecipeType<?>, RecipeType<ToastingRecipe>> TOASTING = create("toasting");
     public static final DeferredHolder<RecipeType<?>, RecipeType<BlendingRecipe>> BLENDING = create("blending");
     public static final DeferredHolder<RecipeType<?>, RecipeType<MineBayRecipe>> MINEBAY = create("minebay");
+    public static final DeferredHolder<RecipeType<?>, RecipeType<ChoppingRecipe>> CHOPPING = create("chopping");
 
     private static <T extends Recipe<?>> DeferredHolder<RecipeType<?>, RecipeType<T>> create(String name)
     {

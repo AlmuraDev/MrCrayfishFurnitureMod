@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "#c:chests/wooden",
+    "Q": "minecraft:lime_concrete",
+    "T": "minecraft:lime_terracotta"
+  },
+  "pattern": [
+    "QQQ",
+    "TCT",
+    "QQQ"
+  ],
+  "result": {
+    "id": "cfm:lime_kitchen_cabinet"
+  }
+}

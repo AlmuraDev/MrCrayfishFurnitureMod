@@ -1,0 +1,25 @@
+{
+  "variants": {
+    "cookies=0": {
+      "model": "cfm:block/cookie_jar_pre"
+    },
+    "cookies=1": {
+      "model": "cfm:block/cookie_jar_pre"
+    },
+    "cookies=2": {
+      "model": "cfm:block/cookie_jar_pre"
+    },
+    "cookies=3": {
+      "model": "cfm:block/cookie_jar_pre"
+    },
+    "cookies=4": {
+      "model": "cfm:block/cookie_jar_pre"
+    },
+    "cookies=5": {
+      "model": "cfm:block/cookie_jar_pre"
+    },
+    "cookies=6": {
+      "model": "cfm:block/cookie_jar_pre"
+    }
+  }
+}

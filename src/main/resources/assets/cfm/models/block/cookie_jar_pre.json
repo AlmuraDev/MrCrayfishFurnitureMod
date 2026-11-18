@@ -1,0 +1,7 @@
+{
+  "parent": "cfm:block/cookie_jar",
+  "textures": {
+    "1": "minecraft:block/gray_concrete",
+    "2": "minecraft:block/white_stained_glass"
+  }
+}

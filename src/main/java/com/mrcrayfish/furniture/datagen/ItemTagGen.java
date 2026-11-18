@@ -374,6 +374,30 @@ public class ItemTagGen extends BlockTagCopyingItemTagProvider
                 .add(item(ModBlocks.DOOR_BELL_MANGROVE));
         this.tag(ModTags.Items.OUTDOORS)
                 .add(item(ModBlocks.ELECTRIC_FENCE));
+        this.tag(ModTags.Items.KITCHEN)
+                .add(item(ModBlocks.KITCHEN_CABINET_WHITE))
+                .add(item(ModBlocks.KITCHEN_CABINET_ORANGE))
+                .add(item(ModBlocks.KITCHEN_CABINET_MAGENTA))
+                .add(item(ModBlocks.KITCHEN_CABINET_LIGHT_BLUE))
+                .add(item(ModBlocks.KITCHEN_CABINET_YELLOW))
+                .add(item(ModBlocks.KITCHEN_CABINET_LIME))
+                .add(item(ModBlocks.KITCHEN_CABINET_PINK))
+                .add(item(ModBlocks.KITCHEN_CABINET_GRAY))
+                .add(item(ModBlocks.KITCHEN_CABINET_LIGHT_GRAY))
+                .add(item(ModBlocks.KITCHEN_CABINET_CYAN))
+                .add(item(ModBlocks.KITCHEN_CABINET_PURPLE))
+                .add(item(ModBlocks.KITCHEN_CABINET_BLUE))
+                .add(item(ModBlocks.KITCHEN_CABINET_BROWN))
+                .add(item(ModBlocks.KITCHEN_CABINET_GREEN))
+                .add(item(ModBlocks.KITCHEN_CABINET_RED))
+                .add(item(ModBlocks.KITCHEN_CABINET_BLACK))
+                .add(item(ModBlocks.CHOPPING_BOARD))
+                .add(item(ModBlocks.PLATE))
+                .add(item(ModBlocks.COOKIE_JAR));
+        this.tag(ModTags.Items.GENERAL)
+                .add(item(ModBlocks.WALL_CABINET));
+        this.tag(ModTags.Items.ITEMS)
+                .add(ModItems.KNIFE.key());
         this.tag(ModTags.Items.GENERAL)
                 .add(item(ModBlocks.CHRISTMAS_TREE))
                 .add(item(ModBlocks.PRESENT_WHITE))

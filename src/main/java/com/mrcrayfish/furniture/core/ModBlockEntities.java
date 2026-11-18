@@ -51,6 +51,11 @@ public class ModBlockEntities
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PhotoFrameBlockEntity>> PHOTO_FRAME = register("photo_frame", PhotoFrameBlockEntity::new, PhotoFrameBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ChristmasTreeBlockEntity>> CHRISTMAS_TREE = register("christmas_tree", ChristmasTreeBlockEntity::new, ChristmasTreeBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PresentBlockEntity>> PRESENT = register("present", PresentBlockEntity::new, PresentBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<KitchenCabinetBlockEntity>> KITCHEN_CABINET = register("kitchen_cabinet", KitchenCabinetBlockEntity::new, KitchenCabinetBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WallCabinetBlockEntity>> WALL_CABINET = register("wall_cabinet", WallCabinetBlockEntity::new, WallCabinetBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ChoppingBoardBlockEntity>> CHOPPING_BOARD = register("chopping_board", ChoppingBoardBlockEntity::new, ChoppingBoardBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PlateBlockEntity>> PLATE = register("plate", PlateBlockEntity::new, PlateBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CookieJarBlockEntity>> COOKIE_JAR = register("cookie_jar", CookieJarBlockEntity::new, CookieJarBlock.class);
 
     /**
      * Registers a block entity type that is valid for every furniture block of the given class (every wood and colour of it). Blocks

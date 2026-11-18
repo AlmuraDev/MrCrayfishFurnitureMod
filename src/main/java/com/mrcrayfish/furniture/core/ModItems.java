@@ -35,6 +35,8 @@ public class ModItems
     // Electronics (1.12.2)
     public static final DeferredItem<TVRemoteItem> TV_REMOTE = REGISTER.registerItem("tv_remote", TVRemoteItem::new, () -> new Item.Properties().stacksTo(1));
     public static final DeferredItem<Item> INK_CARTRIDGE = REGISTER.registerItem("ink_cartridge", Item::new, Item.Properties::new);
+    // Chops food on the chopping board; it fights like a stone sword (1.12.2)
+    public static final DeferredItem<Item> KNIFE = REGISTER.registerItem("knife", Item::new, () -> new Item.Properties().sword(ToolMaterial.STONE, 2, -2.4F).durability(100));
     public static final DeferredItem<Item> SOAP = REGISTER.registerItem("soap", Item::new, Item.Properties::new);
     // Runs the dishwasher and washing machine, which use it up (the bucket comes back when it is crafted from a water bucket); the super
     // kind cleans more than twice as fast
