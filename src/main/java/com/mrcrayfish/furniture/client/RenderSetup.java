@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.client;
 import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.ApplianceItemsRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.BlenderBlockEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.CeilingFanBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.ChristmasTreeBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.CookieJarBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.CupBlockEntityRenderer;
@@ -47,5 +48,6 @@ public class RenderSetup
         event.registerBlockEntityRenderer(ModBlockEntities.PLATE.get(), DisplayItemBlockEntityRenderer::plate);
         event.registerBlockEntityRenderer(ModBlockEntities.CHOPPING_BOARD.get(), DisplayItemBlockEntityRenderer::choppingBoard);
         event.registerBlockEntityRenderer(ModBlockEntities.COOKIE_JAR.get(), CookieJarBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.CEILING_FAN.get(), CeilingFanBlockEntityRenderer::new);
     }
 }

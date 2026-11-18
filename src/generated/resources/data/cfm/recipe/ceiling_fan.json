@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "minecraft:gray_concrete",
+    "I": "#c:ingots/iron",
+    "R": "#c:storage_blocks/redstone",
+    "W": "minecraft:white_concrete"
+  },
+  "pattern": [
+    " G ",
+    " W ",
+    "IRI"
+  ],
+  "result": {
+    "id": "cfm:ceiling_fan"
+  }
+}

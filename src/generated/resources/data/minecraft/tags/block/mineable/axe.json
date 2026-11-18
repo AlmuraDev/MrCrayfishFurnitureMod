@@ -390,6 +390,7 @@
     "cfm:chopping_board",
     "cfm:grand_chair",
     "cfm:bench",
-    "cfm:outdoor_table"
+    "cfm:outdoor_table",
+    "cfm:ceiling_fan"
   ]
 }

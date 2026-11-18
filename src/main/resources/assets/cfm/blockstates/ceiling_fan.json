@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "cfm:block/ceiling_fan"
+    },
+    "powered=true": {
+      "model": "cfm:block/ceiling_fan"
+    }
+  }
+}

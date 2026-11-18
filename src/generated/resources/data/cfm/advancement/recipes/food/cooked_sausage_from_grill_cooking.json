@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_sausage": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cfm:sausage"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "cfm:cooked_sausage_from_grill_cooking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_sausage"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cfm:cooked_sausage_from_grill_cooking"
+    ]
+  }
+}

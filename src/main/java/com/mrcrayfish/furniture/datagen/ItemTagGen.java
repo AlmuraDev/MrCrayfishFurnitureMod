@@ -418,6 +418,15 @@ public class ItemTagGen extends BlockTagCopyingItemTagProvider
         this.tag(ModTags.Items.GENERAL)
                 .add(item(ModBlocks.WALL_CABINET));
         this.tag(ModTags.Items.GENERAL)
+                .add(item(ModBlocks.CEILING_FAN));
+        this.tag(ModTags.Items.ITEMS)
+                .add(ModItems.SAUSAGE.key())
+                .add(ModItems.COOKED_SAUSAGE.key())
+                .add(ModItems.KEBAB.key())
+                .add(ModItems.COOKED_KEBAB.key())
+                .add(ModItems.FLESH.key())
+                .add(ModItems.COOKED_FLESH.key());
+        this.tag(ModTags.Items.GENERAL)
                 .add(item(ModBlocks.BIN))
                 .add(item(ModBlocks.MIRROR))
                 .add(item(ModBlocks.GRAND_CHAIR))

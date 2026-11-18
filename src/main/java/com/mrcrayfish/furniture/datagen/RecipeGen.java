@@ -1771,6 +1771,37 @@ public class RecipeGen extends RecipeProvider
                 .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
                 .save(this.output);
 
+        // Last of 1.12.2: the ceiling fan, and the grill and fridge food
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CEILING_FAN.get())
+                .pattern(" G ")
+                .pattern(" W ")
+                .pattern("IRI")
+                .define('G', Blocks.CONCRETE.pick(DyeColor.GRAY))
+                .define('W', Blocks.CONCRETE.pick(DyeColor.WHITE))
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('R', Tags.Items.STORAGE_BLOCKS_REDSTONE)
+                .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
+                .save(this.output);
+        this.shaped(RecipeCategory.FOOD, ModItems.SAUSAGE.get(), 16)
+                .pattern("  B")
+                .pattern(" B ")
+                .pattern("B  ")
+                .define('B', Items.BEEF)
+                .unlockedBy("has_beef", this.has(Items.BEEF))
+                .save(this.output);
+        this.shaped(RecipeCategory.FOOD, ModItems.KEBAB.get(), 2)
+                .pattern("  S")
+                .pattern(" C ")
+                .pattern("S  ")
+                .define('S', Tags.Items.RODS_WOODEN)
+                .define('C', Items.CHICKEN)
+                .unlockedBy("has_chicken", this.has(Items.CHICKEN))
+                .save(this.output);
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(ModItems.SAUSAGE.get()), RecipeCategory.FOOD, CookingBookCategory.FOOD, ModItems.COOKED_SAUSAGE.get(), 0.35F, 600, GrillCookingRecipe::new).unlockedBy("has_sausage", this.has(ModItems.SAUSAGE.get())).save(this.output, "cfm:cooked_sausage_from_grill_cooking");
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(ModItems.KEBAB.get()), RecipeCategory.FOOD, CookingBookCategory.FOOD, ModItems.COOKED_KEBAB.get(), 0.35F, 600, GrillCookingRecipe::new).unlockedBy("has_kebab", this.has(ModItems.KEBAB.get())).save(this.output, "cfm:cooked_kebab_from_grill_cooking");
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(ModItems.FLESH.get()), RecipeCategory.FOOD, CookingBookCategory.FOOD, ModItems.COOKED_FLESH.get(), 0.35F, 200, OvenBakingRecipe::new).unlockedBy("has_flesh", this.has(ModItems.FLESH.get())).save(this.output, "cfm:cooked_flesh_from_oven_baking");
+        SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.ROTTEN_FLESH), RecipeCategory.FOOD, CookingBookCategory.FOOD, ModItems.FLESH.get(), 0.1F, 1000, FreezerSolidifyRecipe::new).unlockedBy("has_rotten_flesh", this.has(Items.ROTTEN_FLESH)).save(this.output, "cfm:flesh_from_freezing");
+
         // Cooking Recipes
         this.cookingRecipesForMethod("grill_cooking", GrillCookingRecipe::new, 600);
         this.cookingRecipesForMethod("oven_baking", OvenBakingRecipe::new, 200);

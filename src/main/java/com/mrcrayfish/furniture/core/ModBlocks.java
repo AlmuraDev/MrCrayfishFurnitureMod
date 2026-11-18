@@ -727,6 +727,9 @@ public class ModBlocks
     public static final DeferredBlock<Block> CASTLE_NETTING = register("castle_netting", p -> new IronBarsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.WOOL).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
     public static final DeferredBlock<Block> STONE_PATH = register("stone_path", p -> new StonePathBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(0.75F).sound(SoundType.STONE).noOcclusion().pushReaction(PushReaction.POPPED));
 
+    // Last of 1.12.2
+    public static final DeferredBlock<Block> CEILING_FAN = register("ceiling_fan", p -> new CeilingFanBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion().ignitedByLava());
+
     private static DeferredBlock<Block> register(String name, Function<BlockBehaviour.Properties, Block> factory, Supplier<BlockBehaviour.Properties> properties)
     {
         DeferredBlock<Block> block = REGISTER.registerBlock(name, factory, properties);

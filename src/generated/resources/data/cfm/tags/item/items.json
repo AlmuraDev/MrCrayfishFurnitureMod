@@ -1,6 +1,12 @@
 {
   "values": [
     "cfm:spatula",
+    "cfm:sausage",
+    "cfm:cooked_sausage",
+    "cfm:kebab",
+    "cfm:cooked_kebab",
+    "cfm:flesh",
+    "cfm:cooked_flesh",
     "cfm:knife",
     "cfm:tv_remote",
     "cfm:ink_cartridge",

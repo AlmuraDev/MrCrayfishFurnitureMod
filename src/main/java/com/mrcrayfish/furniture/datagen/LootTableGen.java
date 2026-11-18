@@ -192,6 +192,7 @@ public class LootTableGen extends LootTableProvider
             this.dropSelf(ModBlocks.BLENDER.get());
             this.dropSelf(ModBlocks.DISHWASHER.get());
             this.dropSelf(ModBlocks.WASHING_MACHINE.get());
+            this.dropSelf(ModBlocks.CEILING_FAN.get());
             this.dropSelf(ModBlocks.BENCH.get());
             this.dropSelf(ModBlocks.OUTDOOR_TABLE.get());
             this.dropSelf(ModBlocks.CASTLE_NETTING.get());

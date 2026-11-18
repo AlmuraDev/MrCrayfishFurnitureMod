@@ -4,7 +4,10 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.item.DrinkItem;
 import com.mrcrayfish.furniture.item.FirewoodItem;
 import com.mrcrayfish.furniture.item.TVRemoteItem;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;
+import net.minecraft.world.item.consume_effects.ApplyStatusEffectsConsumeEffect;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.component.Consumables;
@@ -37,6 +40,14 @@ public class ModItems
     public static final DeferredItem<Item> INK_CARTRIDGE = REGISTER.registerItem("ink_cartridge", Item::new, Item.Properties::new);
     // Chops food on the chopping board; it fights like a stone sword (1.12.2)
     public static final DeferredItem<Item> KNIFE = REGISTER.registerItem("knife", Item::new, () -> new Item.Properties().sword(ToolMaterial.STONE, 2, -2.4F).durability(100));
+    // Grill and fridge food (1.12.2): sausages and kebabs for the grill, and flesh, which the freezer makes from rotten flesh
+    public static final DeferredItem<Item> SAUSAGE = REGISTER.registerItem("sausage", Item::new, () -> new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build()));
+    public static final DeferredItem<Item> COOKED_SAUSAGE = REGISTER.registerItem("cooked_sausage", Item::new, () -> new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).build()));
+    public static final DeferredItem<Item> KEBAB = REGISTER.registerItem("kebab", Item::new, () -> new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.6F).build(),
+            Consumables.defaultFood().onConsume(new ApplyStatusEffectsConsumeEffect(new MobEffectInstance(MobEffects.HUNGER, 600, 0), 0.3F)).build()));
+    public static final DeferredItem<Item> COOKED_KEBAB = REGISTER.registerItem("cooked_kebab", Item::new, () -> new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).build()));
+    public static final DeferredItem<Item> FLESH = REGISTER.registerItem("flesh", Item::new, () -> new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build()));
+    public static final DeferredItem<Item> COOKED_FLESH = REGISTER.registerItem("cooked_flesh", Item::new, () -> new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).build()));
     public static final DeferredItem<Item> SOAP = REGISTER.registerItem("soap", Item::new, Item.Properties::new);
     // Runs the dishwasher and washing machine, which use it up (the bucket comes back when it is crafted from a water bucket); the super
     // kind cleans more than twice as fast

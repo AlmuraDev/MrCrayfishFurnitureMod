@@ -820,5 +820,12 @@
     "block.cfm.bench": "Bench",
     "block.cfm.outdoor_table": "Outdoor Table",
     "block.cfm.castle_netting": "Castle Netting",
-    "block.cfm.stone_path": "Stone Path"
+    "block.cfm.stone_path": "Stone Path",
+    "block.cfm.ceiling_fan": "Ceiling Fan",
+    "item.cfm.sausage": "Sausage",
+    "item.cfm.cooked_sausage": "Cooked Sausage",
+    "item.cfm.kebab": "Kebab",
+    "item.cfm.cooked_kebab": "Cooked Kebab",
+    "item.cfm.flesh": "Flesh",
+    "item.cfm.cooked_flesh": "Cooked Flesh"
 }

@@ -1,4 +1,4 @@
-// 26.3	2026-11-17T20:19:52.0091072	Registries for Reloadable (cfm[1]): [minecraft, cfm]
+// 26.3	2026-11-17T20:29:00.6321746	Registries for Reloadable (cfm[1]): [minecraft, cfm]
 dd0a2505af6c271c4aaed3044f7fbfe6e4bacced data/cfm/advancement/recipes/decorations/acacia_bedside_cabinet.json
 1cd0a209bffd9841144595ffb77fd264935ddb6c data/cfm/advancement/recipes/decorations/acacia_blinds.json
 dd9cd67af70567bcf0ef4ec395036616ee7cf39c data/cfm/advancement/recipes/decorations/acacia_cabinet.json
@@ -101,6 +101,7 @@ ffc3662d6f5fd2551f79d2e4ac608a85a820144a data/cfm/advancement/recipes/decoration
 206e3e239a63f73a1e85991faf182130533966c9 data/cfm/advancement/recipes/decorations/brown_trampoline.json
 4648667d572a4aea3e559aefbcf99afe11327532 data/cfm/advancement/recipes/decorations/candle.json
 f2f2b3a49d451aec7fd03c2cf913cdfbf84573bc data/cfm/advancement/recipes/decorations/castle_netting.json
+e1ec902ed94a5f18355bda33045f8753504d001e data/cfm/advancement/recipes/decorations/ceiling_fan.json
 d14eea8abfbd6cbb9792e25735b69c70ed230c2e data/cfm/advancement/recipes/decorations/ceiling_light.json
 ad7a3da7ff75eb4bb0c4bdce78149ba9c88ea6f5 data/cfm/advancement/recipes/decorations/chimney.json
 e8a0e54faeecbd42ebc24611102fafb8fb5b34fd data/cfm/advancement/recipes/decorations/chopping_board.json
@@ -701,6 +702,12 @@ f3c02381c3b4d1ae5d157c432a7f60c4f61303e2 data/cfm/advancement/recipes/decoration
 231bc198e9e1acc72f0747d29bb9f120b47e1f86 data/cfm/advancement/recipes/decorations/yellow_present.json
 7e04f805c5cd0092d577ff7d5ddc330336d07048 data/cfm/advancement/recipes/decorations/yellow_sofa.json
 7cb7eac79fd28ed402385f3dec4af68751e33b85 data/cfm/advancement/recipes/decorations/yellow_trampoline.json
+b7d69132bbe5cb0c590f1dea3527883a6a993f7a data/cfm/advancement/recipes/food/cooked_flesh_from_oven_baking.json
+24362f8debaf918abae9a65815f809b8095415cf data/cfm/advancement/recipes/food/cooked_kebab_from_grill_cooking.json
+288a533202e3485b0064b83c07c48dee03b38d56 data/cfm/advancement/recipes/food/cooked_sausage_from_grill_cooking.json
+4a76e1ce03b15ba71806b9f13545bc3823f2c549 data/cfm/advancement/recipes/food/flesh_from_freezing.json
+b56085e8ac2dee7291d31f686def9b30b0edad6b data/cfm/advancement/recipes/food/kebab.json
+627deb37d45acc58ec80ba416f457b22c6ae1020 data/cfm/advancement/recipes/food/sausage.json
 c3169b5bd90302ca9b11dc1ddce66230a6271c63 data/cfm/advancement/recipes/misc/cup.json
 d81154451808b78c57199cc3b6dea243fba38c18 data/cfm/advancement/recipes/misc/ink_cartridge.json
 5d3253bce1584049abb3960c6dc0b27f48d5ad60 data/cfm/advancement/recipes/misc/soap.json
@@ -821,6 +828,7 @@ b7faf2a75c639f354fa72c2255c829623c621d7c data/cfm/loot_table/blocks/brown_picket
 9a2157d3233c90ffcf4293227f35fc3bb18bebfd data/cfm/loot_table/blocks/brown_sofa.json
 f0f910196f8d5dee7a8bfaaa0b670135cab084a6 data/cfm/loot_table/blocks/candle.json
 bb2b085b6db2963a73b183cf30e15041082c184b data/cfm/loot_table/blocks/castle_netting.json
+dbbdabaa8d0bc709373916e9b49b31100eb16874 data/cfm/loot_table/blocks/ceiling_fan.json
 80016949eaa03b0a7a5484b62eec8984de038451 data/cfm/loot_table/blocks/ceiling_light.json
 4c6d221ae35cab1190db13b6c365fb4ed18af1d0 data/cfm/loot_table/blocks/chimney.json
 0774ab55b09a691b868820f2b9158ecc8d311e0a data/cfm/loot_table/blocks/chopping_board.json
@@ -1498,11 +1506,15 @@ d61109cc13b8c6933322cfb6143efedc0da7ff7f data/cfm/recipe/brown_picket_gate.json
 d4e6e6f4126cb2c9c4e9218d148eb245a2c90849 data/cfm/recipe/brown_trampoline.json
 fb9f3f0c140644a16096aa35e6ab274b14c32dd1 data/cfm/recipe/candle.json
 6037f30051fdd95238e2eb48b5ab2a9aa63a9699 data/cfm/recipe/castle_netting.json
+dcab47b6df3863e80c4ff06e663bea23cfd60a2a data/cfm/recipe/ceiling_fan.json
 f5260e124628a30e396d71494182e590ffd96ce1 data/cfm/recipe/ceiling_light.json
 8acf18056a3af66e177f455f2278edf327d2d3fb data/cfm/recipe/chimney.json
 a9e0eef4a5c776c36c00f8d2bf43c707229434c5 data/cfm/recipe/chopping_board.json
 2d47039fc076e650c539ef4161d003250f1cfdf7 data/cfm/recipe/christmas_tree.json
 4fafce9c72c745592b8d2932043d30d7e35617eb data/cfm/recipe/computer.json
+4af97f5ea4ce4dd370a9b1736ab97f0e54144548 data/cfm/recipe/cooked_flesh_from_oven_baking.json
+2f908e74d755f765d0950287c2249921f2527c81 data/cfm/recipe/cooked_kebab_from_grill_cooking.json
+e4517582426198a09da407bce60d02ac82f081c9 data/cfm/recipe/cooked_sausage_from_grill_cooking.json
 d6b1c03497dc59113e0917be700684c1976c3d97 data/cfm/recipe/cookies_and_cream_milkshake_from_blending.json
 b846bc9db4c5226aaa8c9baee338d6bc89aa515c data/cfm/recipe/cookie_jar.json
 a6ab324b0b99c99e362725989296d96f3e5552b8 data/cfm/recipe/crimson_bedside_cabinet.json
@@ -1601,6 +1613,7 @@ fc7c380d8d743b24d76219fd314abcf052b8faac data/cfm/recipe/dye_red_picket_fence.js
 a4c9ef0ee5dff3b50fa8df131bb896b73171ff06 data/cfm/recipe/fairy_light.json
 91f5cd9b4c9fe762c5f1af414a38d90815656e3e data/cfm/recipe/firewood.json
 c585cfb0a9c3f9650c28bc70717ff79bb568ec80 data/cfm/recipe/fire_alarm.json
+370d9f472acde03a9f11551784e3d953e2180327 data/cfm/recipe/flesh_from_freezing.json
 717f527e3686c762b98df53039b614618cc0e92e data/cfm/recipe/flowering_azalea_hedge.json
 1c458c761d41d24bed8674bd1f5f2918e32cf702 data/cfm/recipe/fridge_dark.json
 083dee31ab0d8d1bd10d97c3687dc440ffbb6244 data/cfm/recipe/fridge_light.json
@@ -1664,6 +1677,7 @@ f1f6c2bfde1ab394722b083cac49fe590d9b23b7 data/cfm/recipe/jungle_mail_box.json
 bce5766fcfbd815d87cf1008f9fd4cee3af3da65 data/cfm/recipe/jungle_table.json
 a6de96a58b48d829188e689ab49011d02874f96d data/cfm/recipe/jungle_upgraded_fence.json
 0ca823e142f463cf871424d38ce1f2965c168f5a data/cfm/recipe/jungle_upgraded_gate.json
+463f0c8745b8e35d226a377fcd5b61bada6118ba data/cfm/recipe/kebab.json
 75728d40bc5a5fe8c8d80d433e3b65303b5080fa data/cfm/recipe/knife.json
 549805646f249f45487b6c3fcc6b9627eec23a5b data/cfm/recipe/light_blue_bar_stool.json
 887beac90246dc04964f944c34ba7c51429ff1d0 data/cfm/recipe/light_blue_cooler.json
@@ -1884,6 +1898,7 @@ e5c0b00d8eeffa5a958586086ce28e4bb510d8ea data/cfm/recipe/red_picket_gate.json
 7810e140bee362fb0217b45d5958a88c3aabd46a data/cfm/recipe/red_sofa.json
 649c91f2c32589ea4009aaae39942ff50f35fe8d data/cfm/recipe/red_trampoline.json
 a195a75fb1fe6a30a064cb89b679ca0560cf2657 data/cfm/recipe/rock_path.json
+99a07d3dd0378dd7c8c605f7a53981b0e7cd1f76 data/cfm/recipe/sausage.json
 583b99bda1e5a3da1e06f674814f54218bda4058 data/cfm/recipe/shower.json
 c30ddaf4443fb0de0324c8cab8b6964f7e0603bf data/cfm/recipe/shower_head.json
 639b1b4b70092df614c394040d3835589325bf08 data/cfm/recipe/soap.json

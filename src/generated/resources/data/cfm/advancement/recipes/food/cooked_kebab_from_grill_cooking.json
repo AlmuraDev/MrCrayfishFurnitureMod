@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_kebab": {
+      "conditions": {
+        "items": [
+          {
+            "items": "cfm:kebab"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipes": "cfm:cooked_kebab_from_grill_cooking"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_kebab"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "cfm:cooked_kebab_from_grill_cooking"
+    ]
+  }
+}
