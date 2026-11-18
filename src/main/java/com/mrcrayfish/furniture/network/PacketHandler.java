@@ -7,6 +7,8 @@ import com.mrcrayfish.furniture.network.message.C2SMessageSetDoorMat;
 import com.mrcrayfish.furniture.network.message.C2SMessageSetMailBoxName;
 import com.mrcrayfish.furniture.network.message.S2CMessageFlipGrill;
 import com.mrcrayfish.furniture.network.message.S2CMessageOpenDoorMat;
+import com.mrcrayfish.furniture.network.message.S2CMessageOpenScreenSettings;
+import com.mrcrayfish.furniture.network.message.C2SMessageSetScreenSettings;
 import com.mrcrayfish.furniture.network.play.ServerPlayHandler;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.network.protocol.common.custom.CustomPacketPayload;
@@ -24,7 +26,7 @@ import java.util.function.BiConsumer;
  */
 public class PacketHandler
 {
-    public static final String PROTOCOL_VERSION = "2";
+    public static final String PROTOCOL_VERSION = "3";
 
     public static void register(RegisterPayloadHandlersEvent event)
     {
@@ -36,6 +38,8 @@ public class PacketHandler
         registrar.playToServer(C2SMessageSetDoorMat.TYPE, C2SMessageSetDoorMat.STREAM_CODEC, server(ServerPlayHandler::handleSetDoorMatMessage));
         registrar.playToClient(S2CMessageFlipGrill.TYPE, S2CMessageFlipGrill.STREAM_CODEC);
         registrar.playToClient(S2CMessageOpenDoorMat.TYPE, S2CMessageOpenDoorMat.STREAM_CODEC);
+        registrar.playToServer(C2SMessageSetScreenSettings.TYPE, C2SMessageSetScreenSettings.STREAM_CODEC, server(ServerPlayHandler::handleSetScreenSettingsMessage));
+        registrar.playToClient(S2CMessageOpenScreenSettings.TYPE, S2CMessageOpenScreenSettings.STREAM_CODEC);
     }
 
     // Handlers run on the server thread; the sender is always a server player there

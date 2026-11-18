@@ -1,0 +1,11 @@
+{
+  "type": "cfm:minebay",
+  "price": {
+    "count": 8,
+    "ingredient": "minecraft:emerald"
+  },
+  "result": {
+    "id": "minecraft:horse_spawn_egg"
+  },
+  "show_notification": false
+}

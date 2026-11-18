@@ -1,0 +1,12 @@
+{
+  "type": "cfm:minebay",
+  "price": {
+    "count": 1,
+    "ingredient": "minecraft:emerald"
+  },
+  "result": {
+    "count": 16,
+    "id": "minecraft:terracotta"
+  },
+  "show_notification": false
+}

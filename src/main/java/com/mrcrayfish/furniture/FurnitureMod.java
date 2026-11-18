@@ -49,10 +49,10 @@ public class FurnitureMod
         modBus.addListener(this::onCommonSetup);
         modBus.addListener(CapabilitySetup::onRegisterCapabilities);
         DataSetup.register(modBus);
-        // The freezer, oven and microwave screens check their ingredients on the client too, and so does using a toaster, so clients
-        // get those recipes
+        // The freezer, oven and microwave screens check their ingredients on the client too, using a toaster does, and the computer lists
+        // what MineBay sells, so clients get those recipes
         NeoForge.EVENT_BUS.addListener(OnDatapackSyncEvent.class, event -> event.sendRecipes(ModRecipeTypes.FREEZER_SOLIDIFY.get(),
-                ModRecipeTypes.OVEN_BAKING.get(), ModRecipeTypes.MICROWAVE_HEATING.get(), ModRecipeTypes.TOASTING.get()));
+                ModRecipeTypes.OVEN_BAKING.get(), ModRecipeTypes.MICROWAVE_HEATING.get(), ModRecipeTypes.TOASTING.get(), ModRecipeTypes.MINEBAY.get()));
     }
 
     private void onCommonSetup(FMLCommonSetupEvent event)

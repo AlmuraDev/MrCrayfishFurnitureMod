@@ -38,6 +38,10 @@ public class ModSounds
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_BLENDER = register("block.blender.run");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_DISHWASHER = register("block.dishwasher.run");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_WASHING_MACHINE = register("block.washing_machine.run");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_TV_STATIC = register("block.tv.static");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_DOOR_BELL = register("block.door_bell.ring");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_FIRE_ALARM = register("block.fire_alarm.ring");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_ELECTRIC_FENCE_ZAP = register("block.electric_fence.zap");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String name)
     {

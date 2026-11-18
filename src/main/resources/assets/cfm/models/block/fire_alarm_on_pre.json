@@ -1,0 +1,7 @@
+{
+  "parent": "cfm:block/fire_alarm",
+  "textures": {
+    "1": "minecraft:block/red_concrete",
+    "2": "minecraft:block/white_concrete"
+  }
+}

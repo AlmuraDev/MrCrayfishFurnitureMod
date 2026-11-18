@@ -42,6 +42,13 @@ public class ModBlockEntities
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DishwasherBlockEntity>> DISHWASHER = register("dishwasher", DishwasherBlockEntity::new, DishwasherBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<WashingMachineBlockEntity>> WASHING_MACHINE = register("washing_machine", WashingMachineBlockEntity::new, WashingMachineBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CupBlockEntity>> CUP = register("cup", CupBlockEntity::new, CupBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TVBlockEntity>> TV = register("tv", TVBlockEntity::new, TVBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<TVStandBlockEntity>> TV_STAND = register("tv_stand", TVStandBlockEntity::new, TVStandBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<StereoBlockEntity>> STEREO = register("stereo", StereoBlockEntity::new, StereoBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ComputerBlockEntity>> COMPUTER = register("computer", ComputerBlockEntity::new, ComputerBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PrinterBlockEntity>> PRINTER = register("printer", PrinterBlockEntity::new, PrinterBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<DigitalClockBlockEntity>> DIGITAL_CLOCK = register("digital_clock", DigitalClockBlockEntity::new, DigitalClockBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PhotoFrameBlockEntity>> PHOTO_FRAME = register("photo_frame", PhotoFrameBlockEntity::new, PhotoFrameBlock.class);
 
     /**
      * Registers a block entity type that is valid for every furniture block of the given class (every wood and colour of it). Blocks

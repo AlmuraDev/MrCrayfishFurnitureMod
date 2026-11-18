@@ -98,5 +98,21 @@
     "block.washing_machine.run": {
         "subtitle": "subtitle.cfm.washing_machine",
         "sounds": [ "cfm:block/washing_machine/run" ]
+    },
+    "block.tv.static": {
+        "subtitle": "subtitle.cfm.tv_static",
+        "sounds": [ "cfm:block/tv/static" ]
+    },
+    "block.door_bell.ring": {
+        "subtitle": "subtitle.cfm.door_bell",
+        "sounds": [ "cfm:block/door_bell/ring" ]
+    },
+    "block.fire_alarm.ring": {
+        "subtitle": "subtitle.cfm.fire_alarm",
+        "sounds": [ "cfm:block/fire_alarm/ring" ]
+    },
+    "block.electric_fence.zap": {
+        "subtitle": "subtitle.cfm.electric_fence",
+        "sounds": [ "cfm:block/electric_fence/zap" ]
     }
 }

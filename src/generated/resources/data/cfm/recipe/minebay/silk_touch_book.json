@@ -1,0 +1,16 @@
+{
+  "type": "cfm:minebay",
+  "price": {
+    "count": 8,
+    "ingredient": "minecraft:emerald"
+  },
+  "result": {
+    "components": {
+      "minecraft:stored_enchantments": {
+        "minecraft:silk_touch": 1
+      }
+    },
+    "id": "minecraft:enchanted_book"
+  },
+  "show_notification": false
+}

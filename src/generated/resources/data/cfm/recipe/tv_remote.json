@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "B": "minecraft:stone_button",
+    "D": "minecraft:daylight_detector",
+    "I": "#c:ingots/iron",
+    "R": "#c:storage_blocks/redstone"
+  },
+  "pattern": [
+    "IDI",
+    "IBI",
+    "IRI"
+  ],
+  "result": {
+    "id": "cfm:tv_remote"
+  }
+}

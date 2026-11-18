@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "#c:glass_panes/colorless",
+    "L": "#c:ingots/iron",
+    "R": "#c:dusts/redstone"
+  },
+  "pattern": [
+    "LLL",
+    "LGL",
+    "LRL"
+  ],
+  "result": {
+    "id": "cfm:tv"
+  }
+}

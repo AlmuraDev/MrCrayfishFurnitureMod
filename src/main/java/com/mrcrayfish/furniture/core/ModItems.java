@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.item.DrinkItem;
 import com.mrcrayfish.furniture.item.FirewoodItem;
+import com.mrcrayfish.furniture.item.TVRemoteItem;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -31,6 +32,9 @@ public class ModItems
     // A blended drink. The blender's recipe gives it its name, colour and food; drinking it leaves the cup, and it can be set down too
     public static final DeferredItem<DrinkItem> DRINK = REGISTER.registerItem("drink", props -> new DrinkItem(ModBlocks.CUP.get(), props), () -> new Item.Properties().stacksTo(1)
             .food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.5F).build(), Consumables.DEFAULT_DRINK).usingConvertsTo(CUP.get()));
+    // Electronics (1.12.2)
+    public static final DeferredItem<TVRemoteItem> TV_REMOTE = REGISTER.registerItem("tv_remote", TVRemoteItem::new, () -> new Item.Properties().stacksTo(1));
+    public static final DeferredItem<Item> INK_CARTRIDGE = REGISTER.registerItem("ink_cartridge", Item::new, Item.Properties::new);
     public static final DeferredItem<Item> SOAP = REGISTER.registerItem("soap", Item::new, Item.Properties::new);
     // Runs the dishwasher and washing machine, which use it up (the bucket comes back when it is crafted from a water bucket); the super
     // kind cleans more than twice as fast

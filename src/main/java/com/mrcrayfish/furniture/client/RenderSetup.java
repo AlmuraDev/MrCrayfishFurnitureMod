@@ -4,7 +4,9 @@ import com.mrcrayfish.furniture.client.renderer.SeatRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.ApplianceItemsRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.BlenderBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.CupBlockEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.DigitalClockBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.DoorMatBlockEntityRenderer;
+import com.mrcrayfish.furniture.client.renderer.tileentity.ScreenBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.GrillBlockEntityRenderer;
 import com.mrcrayfish.furniture.client.renderer.tileentity.KitchenSinkBlockEntityRenderer;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
@@ -35,5 +37,8 @@ public class RenderSetup
         event.registerBlockEntityRenderer(ModBlockEntities.WASHING_MACHINE.get(), ApplianceItemsRenderer.WashingMachine::new);
         event.registerBlockEntityRenderer(ModBlockEntities.BLENDER.get(), BlenderBlockEntityRenderer::new);
         event.registerBlockEntityRenderer(ModBlockEntities.CUP.get(), CupBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.TV.get(), ScreenBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.PHOTO_FRAME.get(), ScreenBlockEntityRenderer::new);
+        event.registerBlockEntityRenderer(ModBlockEntities.DIGITAL_CLOCK.get(), DigitalClockBlockEntityRenderer::new);
     }
 }

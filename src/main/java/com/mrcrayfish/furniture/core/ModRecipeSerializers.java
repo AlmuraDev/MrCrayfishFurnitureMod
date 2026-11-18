@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.core;
 
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.item.crafting.CuttingRecipe;
+import com.mrcrayfish.furniture.item.crafting.MineBayRecipe;
 import com.mrcrayfish.furniture.item.crafting.BlendingRecipe;
 import com.mrcrayfish.furniture.item.crafting.ToastingRecipe;
 import com.mrcrayfish.furniture.item.crafting.MicrowaveHeatingRecipe;
@@ -27,4 +28,5 @@ public class ModRecipeSerializers
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<MicrowaveHeatingRecipe>> MICROWAVE_HEATING = REGISTER.register("microwave_heating", () -> new RecipeSerializer<>(MicrowaveHeatingRecipe.MAP_CODEC, MicrowaveHeatingRecipe.STREAM_CODEC));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<ToastingRecipe>> TOASTING = REGISTER.register("toasting", () -> new RecipeSerializer<>(ToastingRecipe.MAP_CODEC, ToastingRecipe.STREAM_CODEC));
     public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<BlendingRecipe>> BLENDING = REGISTER.register("blending", () -> new RecipeSerializer<>(BlendingRecipe.MAP_CODEC, BlendingRecipe.STREAM_CODEC));
+    public static final DeferredHolder<RecipeSerializer<?>, RecipeSerializer<MineBayRecipe>> MINEBAY = REGISTER.register("minebay", () -> new RecipeSerializer<>(MineBayRecipe.MAP_CODEC, MineBayRecipe.STREAM_CODEC));
 }

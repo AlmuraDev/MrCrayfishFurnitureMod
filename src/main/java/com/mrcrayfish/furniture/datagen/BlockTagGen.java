@@ -101,6 +101,8 @@ public class BlockTagGen extends BlockTagsProvider
         // Adds upgraded fences and gates to normal fence and gate tags
         this.tag(BlockTags.FENCES).addTag(ModTags.Blocks.PICKET_FENCES);
         this.tag(BlockTags.FENCES).addTag(ModTags.Blocks.UPGRADED_FENCES);
+        // Not a wooden fence, so it joins up with picket and nether brick fences, as in 1.12.2
+        this.tag(BlockTags.FENCES).add(ModBlocks.ELECTRIC_FENCE.getKey());
         this.tag(BlockTags.FENCE_GATES).addTag(ModTags.Blocks.PICKET_FENCE_GATES);
         this.tag(BlockTags.FENCE_GATES).addTag(ModTags.Blocks.UPGRADED_FENCE_GATES);
 

@@ -4,11 +4,14 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeHolder;
+import net.minecraft.world.item.crafting.RecipeInput;
 import net.minecraft.world.item.crafting.RecipeMap;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SingleRecipeInput;
 import net.minecraft.world.level.Level;
 
+import java.util.Comparator;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -27,6 +30,15 @@ public class RecipeLookup
             return serverLevel.recipeAccess().getRecipeFor(type, input, serverLevel);
         }
         return clientRecipes.getRecipesFor(type, input, level).findFirst();
+    }
+
+    /**
+     * Every recipe of a type, sorted by id so both sides list them in the same order.
+     */
+    public static <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> all(Level level, RecipeType<T> type)
+    {
+        RecipeMap recipes = level instanceof ServerLevel serverLevel ? serverLevel.recipeAccess().recipeMap() : clientRecipes;
+        return recipes.byType(type).stream().sorted(Comparator.comparing(holder -> holder.id().identifier().toString())).toList();
     }
 
     /**

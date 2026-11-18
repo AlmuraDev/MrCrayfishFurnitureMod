@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:gray_concrete",
+    "S": "minecraft:chest",
+    "T": "cfm:modern_table"
+  },
+  "pattern": [
+    "CTC",
+    "CSC"
+  ],
+  "result": {
+    "id": "cfm:tv_stand"
+  }
+}

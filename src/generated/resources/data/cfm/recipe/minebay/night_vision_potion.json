@@ -1,0 +1,17 @@
+{
+  "type": "cfm:minebay",
+  "price": {
+    "count": 1,
+    "ingredient": "minecraft:emerald"
+  },
+  "result": {
+    "components": {
+      "minecraft:potion_contents": {
+        "potion": "minecraft:night_vision"
+      }
+    },
+    "count": 2,
+    "id": "minecraft:potion"
+  },
+  "show_notification": false
+}

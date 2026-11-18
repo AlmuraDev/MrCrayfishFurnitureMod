@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:clock",
+    "D": "#c:dyes/cyan",
+    "I": "#c:ingots/iron",
+    "R": "#c:dusts/redstone"
+  },
+  "pattern": [
+    "IDI",
+    "ICI",
+    "IRI"
+  ],
+  "result": {
+    "id": "cfm:cyan_digital_clock"
+  }
+}

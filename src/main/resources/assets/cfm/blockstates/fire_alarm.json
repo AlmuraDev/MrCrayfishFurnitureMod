@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "lit=false": {
+      "model": "cfm:block/fire_alarm_off_pre"
+    },
+    "lit=true": {
+      "model": "cfm:block/fire_alarm_on_pre"
+    }
+  }
+}

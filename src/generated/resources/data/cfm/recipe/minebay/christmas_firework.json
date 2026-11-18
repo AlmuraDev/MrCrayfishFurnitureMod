@@ -1,0 +1,30 @@
+{
+  "type": "cfm:minebay",
+  "price": {
+    "count": 1,
+    "ingredient": "minecraft:iron_ingot"
+  },
+  "result": {
+    "components": {
+      "minecraft:custom_name": {
+        "translate": "item.cfm.christmas_firework"
+      },
+      "minecraft:fireworks": {
+        "explosions": [
+          {
+            "colors": [
+              11743532,
+              3887386
+            ],
+            "has_trail": true,
+            "shape": "small_ball"
+          }
+        ],
+        "flight_duration": 1
+      }
+    },
+    "count": 4,
+    "id": "minecraft:firework_rocket"
+  },
+  "show_notification": false
+}

@@ -1,0 +1,7 @@
+{
+  "parent": "cfm:block/photo_frame",
+  "textures": {
+    "color": "minecraft:block/magenta_concrete",
+    "particle": "minecraft:block/magenta_concrete"
+  }
+}

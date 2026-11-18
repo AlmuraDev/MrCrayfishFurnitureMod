@@ -2,7 +2,9 @@ package com.mrcrayfish.furniture.client;
 
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
+import com.mrcrayfish.furniture.client.gui.screen.inventory.ComputerScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.FreezerScreen;
+import com.mrcrayfish.furniture.client.gui.screen.inventory.PrinterScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.MicrowaveScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.OvenScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.WasherScreen;
@@ -36,6 +38,8 @@ public class ScreenSetup
         event.register(ModContainers.FREEZER.get(), FreezerScreen::new);
         event.register(ModContainers.OVEN.get(), OvenScreen::new);
         event.register(ModContainers.MICROWAVE.get(), MicrowaveScreen::new);
+        event.register(ModContainers.COMPUTER.get(), ComputerScreen::new);
+        event.register(ModContainers.PRINTER.get(), PrinterScreen::new);
         event.register(ModContainers.DISHWASHER.get(), (DishwasherMenu menu, Inventory inventory, Component title) -> new WasherScreen<>(menu, inventory, title, "dishwasher", WasherScreen.Layout.DISHWASHER));
         event.register(ModContainers.WASHING_MACHINE.get(), (WashingMachineMenu menu, Inventory inventory, Component title) -> new WasherScreen<>(menu, inventory, title, "washing_machine", WasherScreen.Layout.WASHING_MACHINE));
     }

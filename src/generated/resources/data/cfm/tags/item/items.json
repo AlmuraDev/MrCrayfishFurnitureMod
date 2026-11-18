@@ -1,6 +1,8 @@
 {
   "values": [
     "cfm:spatula",
+    "cfm:tv_remote",
+    "cfm:ink_cartridge",
     "cfm:bread_slice",
     "cfm:toast",
     "cfm:cup",

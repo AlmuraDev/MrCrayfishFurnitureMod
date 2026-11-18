@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "F": "cfm:white_picket_fence",
+    "I": "#c:ingots/iron",
+    "T": "minecraft:redstone_torch"
+  },
+  "pattern": [
+    "III",
+    "IFI",
+    "ITI"
+  ],
+  "result": {
+    "count": 8,
+    "id": "cfm:electric_fence"
+  }
+}

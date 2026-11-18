@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:orange_concrete",
+    "F": "minecraft:item_frame",
+    "G": "#c:glass_panes/colorless",
+    "W": "#minecraft:planks"
+  },
+  "pattern": [
+    "CGC",
+    "CFC",
+    "CWC"
+  ],
+  "result": {
+    "id": "cfm:orange_photo_frame"
+  }
+}

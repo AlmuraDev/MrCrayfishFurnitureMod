@@ -1,6 +1,6 @@
 package com.mrcrayfish.furniture.inventory.container;
 
-import com.mrcrayfish.furniture.tileentity.ApplianceContainerBlockEntity;
+import com.mrcrayfish.furniture.tileentity.BasicLootBlockEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
  *
  * Author: MrCrayfish
  */
-public abstract class ApplianceMenu<T extends ApplianceContainerBlockEntity> extends AbstractContainerMenu
+public abstract class ApplianceMenu<T extends BasicLootBlockEntity> extends AbstractContainerMenu
 {
     protected final T blockEntity;
     protected final ContainerData data;

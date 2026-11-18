@@ -1,0 +1,11 @@
+{
+  "type": "cfm:minebay",
+  "price": {
+    "count": 8,
+    "ingredient": "minecraft:diamond"
+  },
+  "result": {
+    "id": "minecraft:diamond_horse_armor"
+  },
+  "show_notification": false
+}

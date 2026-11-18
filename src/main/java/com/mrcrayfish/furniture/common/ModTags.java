@@ -30,6 +30,8 @@ public class ModTags
         // What the dishwasher and washing machine clean (repair); 1.12.2 listed them in its recipe API
         public static final TagKey<Item> DISHWASHER_CLEANABLE = tag("dishwasher_cleanable");
         public static final TagKey<Item> WASHING_MACHINE_CLEANABLE = tag("washing_machine_cleanable");
+        // What the printer copies
+        public static final TagKey<Item> PRINTABLE = tag("printable");
 
         private static TagKey<Item> tag(String name)
         {

@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "minecraft:note_block",
+    "minecraft:stone_button",
+    "minecraft:warped_stem"
+  ],
+  "result": {
+    "id": "cfm:warped_door_bell"
+  }
+}

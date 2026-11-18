@@ -1,6 +1,7 @@
 {
   "values": [
     "#cfm:fences/picket",
-    "#cfm:fences/upgraded"
+    "#cfm:fences/upgraded",
+    "cfm:electric_fence"
   ]
 }

@@ -1,0 +1,11 @@
+{
+  "type": "cfm:minebay",
+  "price": {
+    "count": 1,
+    "ingredient": "minecraft:iron_ingot"
+  },
+  "result": {
+    "id": "minecraft:experience_bottle"
+  },
+  "show_notification": false
+}

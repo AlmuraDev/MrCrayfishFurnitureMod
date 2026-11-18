@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cfm:block/white_photo_frame"
+    },
+    "facing=east": {
+      "model": "cfm:block/white_photo_frame",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "cfm:block/white_photo_frame",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "cfm:block/white_photo_frame",
+      "y": 270
+    }
+  }
+}

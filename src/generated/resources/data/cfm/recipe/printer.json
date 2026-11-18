@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": "#c:storage_blocks/iron",
+    "P": "minecraft:paper",
+    "R": "#c:dusts/redstone",
+    "S": "minecraft:stone"
+  },
+  "pattern": [
+    "SPS",
+    "IRI",
+    "SSS"
+  ],
+  "result": {
+    "id": "cfm:printer"
+  }
+}

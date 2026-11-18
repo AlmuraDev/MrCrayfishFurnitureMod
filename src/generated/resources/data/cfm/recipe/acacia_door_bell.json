@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "minecraft:note_block",
+    "minecraft:stone_button",
+    "minecraft:acacia_log"
+  ],
+  "result": {
+    "id": "cfm:acacia_door_bell"
+  }
+}

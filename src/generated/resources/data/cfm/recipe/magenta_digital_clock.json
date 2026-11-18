@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "C": "minecraft:clock",
+    "D": "#c:dyes/magenta",
+    "I": "#c:ingots/iron",
+    "R": "#c:dusts/redstone"
+  },
+  "pattern": [
+    "IDI",
+    "ICI",
+    "IRI"
+  ],
+  "result": {
+    "id": "cfm:magenta_digital_clock"
+  }
+}

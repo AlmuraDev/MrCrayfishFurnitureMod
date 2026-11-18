@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cfm:block/tv",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cfm:block/tv"
+    },
+    "facing=south": {
+      "model": "cfm:block/tv",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cfm:block/tv",
+      "y": 180
+    }
+  }
+}

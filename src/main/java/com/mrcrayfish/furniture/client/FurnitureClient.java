@@ -22,7 +22,12 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.client.renderer.block.BlockAndTintGetter;
 import net.neoforged.api.distmarker.Dist;
+import com.mrcrayfish.furniture.client.gui.screen.ScreenSettingsScreen;
+import com.mrcrayfish.furniture.network.message.S2CMessageOpenScreenSettings;
+import com.mrcrayfish.furniture.tileentity.ScreenBlockEntity;
 import net.neoforged.bus.api.IEventBus;
+import net.neoforged.fml.ModContainer;
+import net.neoforged.fml.config.ModConfig;
 import net.neoforged.fml.common.Mod;
 import com.mrcrayfish.furniture.util.RecipeLookup;
 import net.neoforged.neoforge.client.event.RecipesReceivedEvent;
@@ -43,8 +48,9 @@ public class FurnitureClient
 {
     private static final int WHITE = -1;
 
-    public FurnitureClient(IEventBus modBus)
+    public FurnitureClient(IEventBus modBus, ModContainer container)
     {
+        container.registerConfig(ModConfig.Type.CLIENT, ClientConfig.SPEC);
         modBus.addListener(FurnitureClient::onRegisterBlockTints);
         modBus.addListener(FurnitureClient::onRegisterItemTints);
         modBus.addListener(FurnitureClient::onRegisterPayloadHandlers);
@@ -60,6 +66,13 @@ public class FurnitureClient
             if(level != null && level.getBlockEntity(message.getPos()) instanceof GrillBlockEntity grill)
             {
                 grill.setFlipping(message.getPosition());
+            }
+        });
+        event.register(S2CMessageOpenScreenSettings.TYPE, (message, context) -> {
+            Level level = Minecraft.getInstance().level;
+            if(level != null && level.getBlockEntity(message.pos()) instanceof ScreenBlockEntity screen)
+            {
+                Minecraft.getInstance().gui.setScreen(new ScreenSettingsScreen(screen));
             }
         });
         event.register(S2CMessageOpenDoorMat.TYPE, (message, context) -> {

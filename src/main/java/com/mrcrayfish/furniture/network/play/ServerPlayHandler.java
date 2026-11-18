@@ -9,9 +9,11 @@ import com.mrcrayfish.furniture.network.message.C2SMessageOpenMailBox;
 import com.mrcrayfish.furniture.network.message.C2SMessageSendMail;
 import com.mrcrayfish.furniture.network.message.C2SMessageSetDoorMat;
 import com.mrcrayfish.furniture.network.message.C2SMessageSetMailBoxName;
+import com.mrcrayfish.furniture.network.message.C2SMessageSetScreenSettings;
 import com.mrcrayfish.furniture.tileentity.CrateBlockEntity;
 import com.mrcrayfish.furniture.tileentity.DoorMatBlockEntity;
 import com.mrcrayfish.furniture.tileentity.MailBoxBlockEntity;
+import com.mrcrayfish.furniture.tileentity.ScreenBlockEntity;
 import com.mrcrayfish.furniture.util.BlockEntityUtil;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
@@ -92,6 +94,22 @@ public class ServerPlayHandler
             return;
 
         doorMat.setMessage(message.getMessage());
+    }
+
+    public static void handleSetScreenSettingsMessage(ServerPlayer player, C2SMessageSetScreenSettings message)
+    {
+        Level level = player.level();
+        if(!level.isLoaded(message.pos()))
+            return;
+
+        if(!(level.getBlockEntity(message.pos()) instanceof ScreenBlockEntity screen))
+            return;
+
+        // Only a player standing at it can change it
+        if(!player.isWithinBlockInteractionRange(message.pos(), 1.0))
+            return;
+
+        screen.applySettings(message.urls(), message.stretch(), message.powered());
     }
 
     public static void handleSetMailBoxNameMessage(ServerPlayer player, C2SMessageSetMailBoxName message)

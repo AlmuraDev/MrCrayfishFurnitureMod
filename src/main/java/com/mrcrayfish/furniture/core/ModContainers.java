@@ -4,6 +4,8 @@ import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.common.mail.MailBoxEntry;
 import com.mrcrayfish.furniture.inventory.container.CrateMenu;
 import com.mrcrayfish.furniture.inventory.container.FreezerMenu;
+import com.mrcrayfish.furniture.inventory.container.PrinterMenu;
+import com.mrcrayfish.furniture.inventory.container.ComputerMenu;
 import com.mrcrayfish.furniture.inventory.container.WashingMachineMenu;
 import com.mrcrayfish.furniture.inventory.container.DishwasherMenu;
 import com.mrcrayfish.furniture.inventory.container.MicrowaveMenu;
@@ -12,6 +14,8 @@ import com.mrcrayfish.furniture.inventory.container.MailBoxMenu;
 import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
 import com.mrcrayfish.furniture.tileentity.CrateBlockEntity;
 import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
+import com.mrcrayfish.furniture.tileentity.PrinterBlockEntity;
+import com.mrcrayfish.furniture.tileentity.ComputerBlockEntity;
 import com.mrcrayfish.furniture.tileentity.WashingMachineBlockEntity;
 import com.mrcrayfish.furniture.tileentity.DishwasherBlockEntity;
 import com.mrcrayfish.furniture.tileentity.MicrowaveBlockEntity;
@@ -67,6 +71,14 @@ public class ModContainers
 
     public static final DeferredHolder<MenuType<?>, MenuType<WashingMachineMenu>> WASHING_MACHINE = register("washing_machine", (windowId, playerInventory, data) -> {
         return new WashingMachineMenu(windowId, playerInventory, (WashingMachineBlockEntity) playerInventory.player.level().getBlockEntity(data.readBlockPos()));
+    });
+
+    public static final DeferredHolder<MenuType<?>, MenuType<ComputerMenu>> COMPUTER = register("computer", (windowId, playerInventory, data) -> {
+        return new ComputerMenu(windowId, playerInventory, (ComputerBlockEntity) playerInventory.player.level().getBlockEntity(data.readBlockPos()));
+    });
+
+    public static final DeferredHolder<MenuType<?>, MenuType<PrinterMenu>> PRINTER = register("printer", (windowId, playerInventory, data) -> {
+        return new PrinterMenu(windowId, playerInventory, (PrinterBlockEntity) playerInventory.player.level().getBlockEntity(data.readBlockPos()));
     });
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> register(String key, IContainerFactory<T> factory)

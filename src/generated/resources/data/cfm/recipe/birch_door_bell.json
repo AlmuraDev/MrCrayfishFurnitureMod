@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    "minecraft:note_block",
+    "minecraft:stone_button",
+    "minecraft:birch_log"
+  ],
+  "result": {
+    "id": "cfm:birch_door_bell"
+  }
+}

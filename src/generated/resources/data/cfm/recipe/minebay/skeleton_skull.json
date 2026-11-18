@@ -1,0 +1,11 @@
+{
+  "type": "cfm:minebay",
+  "price": {
+    "count": 8,
+    "ingredient": "minecraft:emerald"
+  },
+  "result": {
+    "id": "minecraft:skeleton_skull"
+  },
+  "show_notification": false
+}
