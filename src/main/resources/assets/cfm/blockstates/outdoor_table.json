@@ -1,0 +1,120 @@
+{
+  "variants": {
+    "east=false,north=true,south=false,waterlogged=false,west=true": {
+      "model": "cfm:block/outdoor_table_corner"
+    },
+    "east=false,north=true,south=false,waterlogged=true,west=true": {
+      "model": "cfm:block/outdoor_table_corner"
+    },
+    "east=true,north=true,south=false,waterlogged=false,west=false": {
+      "model": "cfm:block/outdoor_table_corner",
+      "y": 270
+    },
+    "east=true,north=true,south=false,waterlogged=true,west=false": {
+      "model": "cfm:block/outdoor_table_corner",
+      "y": 270
+    },
+    "east=false,north=false,south=true,waterlogged=false,west=true": {
+      "model": "cfm:block/outdoor_table_corner",
+      "y": 90
+    },
+    "east=false,north=false,south=true,waterlogged=true,west=true": {
+      "model": "cfm:block/outdoor_table_corner",
+      "y": 90
+    },
+    "east=true,north=false,south=true,waterlogged=false,west=false": {
+      "model": "cfm:block/outdoor_table_corner",
+      "y": 180
+    },
+    "east=true,north=false,south=true,waterlogged=true,west=false": {
+      "model": "cfm:block/outdoor_table_corner",
+      "y": 180
+    },
+    "east=false,north=true,south=false,waterlogged=false,west=false": {
+      "model": "cfm:block/outdoor_table_end"
+    },
+    "east=false,north=true,south=false,waterlogged=true,west=false": {
+      "model": "cfm:block/outdoor_table_end"
+    },
+    "east=false,north=false,south=false,waterlogged=false,west=true": {
+      "model": "cfm:block/outdoor_table_end",
+      "y": 90
+    },
+    "east=false,north=false,south=false,waterlogged=true,west=true": {
+      "model": "cfm:block/outdoor_table_end",
+      "y": 90
+    },
+    "east=true,north=false,south=false,waterlogged=false,west=false": {
+      "model": "cfm:block/outdoor_table_end",
+      "y": 270
+    },
+    "east=true,north=false,south=false,waterlogged=true,west=false": {
+      "model": "cfm:block/outdoor_table_end",
+      "y": 270
+    },
+    "east=false,north=false,south=true,waterlogged=false,west=false": {
+      "model": "cfm:block/outdoor_table_end",
+      "y": 180
+    },
+    "east=false,north=false,south=true,waterlogged=true,west=false": {
+      "model": "cfm:block/outdoor_table_end",
+      "y": 180
+    },
+    "east=false,north=false,south=false,waterlogged=false,west=false": {
+      "model": "cfm:block/outdoor_table_single"
+    },
+    "east=false,north=false,south=false,waterlogged=true,west=false": {
+      "model": "cfm:block/outdoor_table_single"
+    },
+    "east=false,north=true,south=true,waterlogged=false,west=false": {
+      "model": "cfm:block/outdoor_table_middle",
+      "y": 90
+    },
+    "east=false,north=true,south=true,waterlogged=true,west=false": {
+      "model": "cfm:block/outdoor_table_middle",
+      "y": 90
+    },
+    "east=true,north=true,south=true,waterlogged=false,west=false": {
+      "model": "cfm:block/outdoor_table_three",
+      "y": 270
+    },
+    "east=true,north=true,south=true,waterlogged=true,west=false": {
+      "model": "cfm:block/outdoor_table_three",
+      "y": 270
+    },
+    "east=false,north=true,south=true,waterlogged=false,west=true": {
+      "model": "cfm:block/outdoor_table_three",
+      "y": 90
+    },
+    "east=false,north=true,south=true,waterlogged=true,west=true": {
+      "model": "cfm:block/outdoor_table_three",
+      "y": 90
+    },
+    "east=true,north=false,south=false,waterlogged=false,west=true": {
+      "model": "cfm:block/outdoor_table_middle"
+    },
+    "east=true,north=false,south=false,waterlogged=true,west=true": {
+      "model": "cfm:block/outdoor_table_middle"
+    },
+    "east=true,north=true,south=false,waterlogged=false,west=true": {
+      "model": "cfm:block/outdoor_table_three"
+    },
+    "east=true,north=true,south=false,waterlogged=true,west=true": {
+      "model": "cfm:block/outdoor_table_three"
+    },
+    "east=true,north=false,south=true,waterlogged=false,west=true": {
+      "model": "cfm:block/outdoor_table_three",
+      "y": 180
+    },
+    "east=true,north=false,south=true,waterlogged=true,west=true": {
+      "model": "cfm:block/outdoor_table_three",
+      "y": 180
+    },
+    "east=true,north=true,south=true,waterlogged=false,west=true": {
+      "model": "cfm:block/outdoor_table_all"
+    },
+    "east=true,north=true,south=true,waterlogged=true,west=true": {
+      "model": "cfm:block/outdoor_table_all"
+    }
+  }
+}

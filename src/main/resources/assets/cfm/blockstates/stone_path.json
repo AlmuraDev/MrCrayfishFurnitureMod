@@ -1,0 +1,36 @@
+{
+  "variants": {
+    "": [
+      {
+        "model": "cfm:block/stone_path_1_pre"
+      },
+      {
+        "model": "cfm:block/stone_path_1_pre",
+        "y": 90
+      },
+      {
+        "model": "cfm:block/stone_path_1_pre",
+        "y": 180
+      },
+      {
+        "model": "cfm:block/stone_path_1_pre",
+        "y": 270
+      },
+      {
+        "model": "cfm:block/stone_path_2_pre"
+      },
+      {
+        "model": "cfm:block/stone_path_2_pre",
+        "y": 90
+      },
+      {
+        "model": "cfm:block/stone_path_2_pre",
+        "y": 180
+      },
+      {
+        "model": "cfm:block/stone_path_2_pre",
+        "y": 270
+      }
+    ]
+  }
+}

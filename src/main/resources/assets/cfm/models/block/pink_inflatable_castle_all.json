@@ -1,0 +1,6 @@
+{
+  "parent": "cfm:block/inflatable_castle_all",
+  "textures": {
+    "all": "minecraft:block/pink_shulker_box"
+  }
+}

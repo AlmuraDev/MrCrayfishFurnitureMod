@@ -1,0 +1,62 @@
+{
+  "variants": {
+    "type=none": {
+      "model": "cfm:block/light_blue_inflatable_castle"
+    },
+    "type=north": {
+      "model": "cfm:block/light_blue_inflatable_castle_end",
+      "y": 180
+    },
+    "type=east": {
+      "model": "cfm:block/light_blue_inflatable_castle_end",
+      "y": 270
+    },
+    "type=south": {
+      "model": "cfm:block/light_blue_inflatable_castle_end"
+    },
+    "type=west": {
+      "model": "cfm:block/light_blue_inflatable_castle_end",
+      "y": 90
+    },
+    "type=horizontal_east_west": {
+      "model": "cfm:block/light_blue_inflatable_castle_middle"
+    },
+    "type=horizontal_north_south": {
+      "model": "cfm:block/light_blue_inflatable_castle_middle",
+      "y": 90
+    },
+    "type=corner_east_south": {
+      "model": "cfm:block/light_blue_inflatable_castle_corner"
+    },
+    "type=corner_west_south": {
+      "model": "cfm:block/light_blue_inflatable_castle_corner",
+      "y": 90
+    },
+    "type=corner_north_east": {
+      "model": "cfm:block/light_blue_inflatable_castle_corner",
+      "y": 270
+    },
+    "type=corner_north_west": {
+      "model": "cfm:block/light_blue_inflatable_castle_corner",
+      "y": 180
+    },
+    "type=three_north": {
+      "model": "cfm:block/light_blue_inflatable_castle_three"
+    },
+    "type=three_east": {
+      "model": "cfm:block/light_blue_inflatable_castle_three",
+      "y": 90
+    },
+    "type=three_south": {
+      "model": "cfm:block/light_blue_inflatable_castle_three",
+      "y": 180
+    },
+    "type=three_west": {
+      "model": "cfm:block/light_blue_inflatable_castle_three",
+      "y": 270
+    },
+    "type=center": {
+      "model": "cfm:block/light_blue_inflatable_castle_all"
+    }
+  }
+}

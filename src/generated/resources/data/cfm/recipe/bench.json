@@ -1,0 +1,14 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "L": "#minecraft:logs_that_burn",
+    "P": "#minecraft:planks"
+  },
+  "pattern": [
+    "LPL",
+    "P P"
+  ],
+  "result": {
+    "id": "cfm:bench"
+  }
+}

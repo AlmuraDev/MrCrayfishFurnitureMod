@@ -1660,6 +1660,117 @@ public class RecipeGen extends RecipeProvider
                 .unlockedBy("has_wool", this.has(ItemTags.WOOL))
                 .save(this.output);
 
+        // Outdoors (1.12.2)
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.BENCH.get())
+                .pattern("LPL")
+                .pattern("P P")
+                .define('L', ItemTags.LOGS_THAT_BURN)
+                .define('P', ItemTags.PLANKS)
+                .unlockedBy("has_planks", this.has(ItemTags.PLANKS))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.OUTDOOR_TABLE.get())
+                .pattern("LGL")
+                .pattern("P P")
+                .pattern("P P")
+                .define('L', ItemTags.LOGS_THAT_BURN)
+                .define('G', Blocks.STAINED_GLASS.pick(DyeColor.BROWN))
+                .define('P', ItemTags.PLANKS)
+                .unlockedBy("has_planks", this.has(ItemTags.PLANKS))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.CASTLE_NETTING.get(), 16)
+                .pattern("SSS")
+                .pattern("SIS")
+                .pattern("SSS")
+                .define('S', Tags.Items.STRINGS)
+                .define('I', Items.INK_SAC)
+                .unlockedBy("has_string", this.has(Tags.Items.STRINGS))
+                .save(this.output);
+        this.shaped(RecipeCategory.DECORATIONS, ModBlocks.STONE_PATH.get(), 8)
+                .pattern("CC")
+                .define('C', Blocks.COBBLESTONE)
+                .unlockedBy("has_cobblestone", this.has(Blocks.COBBLESTONE))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_WHITE.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.WHITE))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_ORANGE.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.ORANGE))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_MAGENTA.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.MAGENTA))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_LIGHT_BLUE.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.LIGHT_BLUE))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_YELLOW.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.YELLOW))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_LIME.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.LIME))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_PINK.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.PINK))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_GRAY.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.GRAY))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_LIGHT_GRAY.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.LIGHT_GRAY))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_CYAN.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.CYAN))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_PURPLE.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.PURPLE))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_BLUE.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.BLUE))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_BROWN.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.BROWN))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_GREEN.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.GREEN))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_RED.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.RED))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+        this.shapeless(RecipeCategory.DECORATIONS, ModBlocks.INFLATABLE_CASTLE_BLACK.get(), 16)
+                .requires(Blocks.WOOL.pick(DyeColor.BLACK))
+                .requires(Items.RABBIT_FOOT)
+                .unlockedBy("has_rabbit_foot", this.has(Items.RABBIT_FOOT))
+                .save(this.output);
+
         // Cooking Recipes
         this.cookingRecipesForMethod("grill_cooking", GrillCookingRecipe::new, 600);
         this.cookingRecipesForMethod("oven_baking", OvenBakingRecipe::new, 200);

@@ -1,0 +1,11 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    "minecraft:purple_wool",
+    "minecraft:rabbit_foot"
+  ],
+  "result": {
+    "count": 16,
+    "id": "cfm:purple_inflatable_castle"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "G": "minecraft:brown_stained_glass",
+    "L": "#minecraft:logs_that_burn",
+    "P": "#minecraft:planks"
+  },
+  "pattern": [
+    "LGL",
+    "P P",
+    "P P"
+  ],
+  "result": {
+    "id": "cfm:outdoor_table"
+  }
+}

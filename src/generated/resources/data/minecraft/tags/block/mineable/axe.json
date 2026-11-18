@@ -388,6 +388,8 @@
     "cfm:red_kitchen_cabinet",
     "cfm:black_kitchen_cabinet",
     "cfm:chopping_board",
-    "cfm:grand_chair"
+    "cfm:grand_chair",
+    "cfm:bench",
+    "cfm:outdoor_table"
   ]
 }

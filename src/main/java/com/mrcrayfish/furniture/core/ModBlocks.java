@@ -11,6 +11,7 @@ import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.IronBarsBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -703,6 +704,28 @@ public class ModBlocks
     public static final DeferredBlock<Block> CURTAINS_BLACK = register("black_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
     public static final DeferredBlock<Block> MIRROR = register("mirror", p -> new MirrorBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).strength(0.5F).sound(SoundType.GLASS).noOcclusion());
     public static final DeferredBlock<Block> GRAND_CHAIR = register("grand_chair", p -> new GrandChairBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASS).strength(1.0F).sound(SoundType.WOOD).noOcclusion().ignitedByLava());
+
+    // Outdoors (1.12.2)
+    public static final DeferredBlock<Block> BENCH = register("bench", p -> new BenchBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(1.0F).sound(SoundType.WOOD).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> OUTDOOR_TABLE = register("outdoor_table", p -> new TableBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(1.0F).sound(SoundType.WOOD).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_WHITE = register("white_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.WHITE).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_ORANGE = register("orange_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.ORANGE).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_MAGENTA = register("magenta_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.MAGENTA).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_LIGHT_BLUE = register("light_blue_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.LIGHT_BLUE).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_YELLOW = register("yellow_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.YELLOW).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_LIME = register("lime_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.LIME).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_PINK = register("pink_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.PINK).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_GRAY = register("gray_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.GRAY).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_LIGHT_GRAY = register("light_gray_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.LIGHT_GRAY).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_CYAN = register("cyan_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.CYAN).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_PURPLE = register("purple_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.PURPLE).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_BLUE = register("blue_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLUE).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_BROWN = register("brown_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BROWN).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_GREEN = register("green_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.GREEN).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_RED = register("red_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.RED).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> INFLATABLE_CASTLE_BLACK = register("black_inflatable_castle", p -> new InflatableCastleBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).strength(0.25F).sound(SoundType.WOOL).ignitedByLava());
+    public static final DeferredBlock<Block> CASTLE_NETTING = register("castle_netting", p -> new IronBarsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.WOOL).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> STONE_PATH = register("stone_path", p -> new StonePathBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(0.75F).sound(SoundType.STONE).noOcclusion().pushReaction(PushReaction.POPPED));
 
     private static DeferredBlock<Block> register(String name, Function<BlockBehaviour.Properties, Block> factory, Supplier<BlockBehaviour.Properties> properties)
     {

@@ -108,6 +108,7 @@
     "cfm:electric_fence",
     "cfm:wall_cabinet",
     "cfm:plate",
-    "cfm:bin"
+    "cfm:bin",
+    "cfm:stone_path"
   ]
 }

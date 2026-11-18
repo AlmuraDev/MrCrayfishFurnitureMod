@@ -1,0 +1,6 @@
+{
+  "parent": "cfm:block/inflatable_castle_end",
+  "textures": {
+    "all": "minecraft:block/orange_shulker_box"
+  }
+}
