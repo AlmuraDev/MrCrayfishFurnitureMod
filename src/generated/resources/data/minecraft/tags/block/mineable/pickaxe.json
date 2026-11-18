@@ -107,6 +107,7 @@
     "cfm:fire_alarm",
     "cfm:electric_fence",
     "cfm:wall_cabinet",
-    "cfm:plate"
+    "cfm:plate",
+    "cfm:bin"
   ]
 }

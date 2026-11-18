@@ -118,5 +118,13 @@
     "block.chopping_board.chop": {
         "subtitle": "subtitle.cfm.chopping_board",
         "sounds": [ "cfm:block/chopping_board/chop" ]
+    },
+    "block.bin.open": {
+        "subtitle": "subtitle.cfm.bin_open",
+        "sounds": [ "cfm:block/bin/open" ]
+    },
+    "block.bin.close": {
+        "subtitle": "subtitle.cfm.bin_close",
+        "sounds": [ "cfm:block/bin/close" ]
     }
 }

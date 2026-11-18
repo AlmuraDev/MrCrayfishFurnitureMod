@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.core;
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.common.mail.MailBoxEntry;
 import com.mrcrayfish.furniture.inventory.container.CrateMenu;
+import com.mrcrayfish.furniture.inventory.container.BinMenu;
 import com.mrcrayfish.furniture.inventory.container.FreezerMenu;
 import com.mrcrayfish.furniture.inventory.container.PresentMenu;
 import com.mrcrayfish.furniture.inventory.container.PrinterMenu;
@@ -14,6 +15,7 @@ import com.mrcrayfish.furniture.inventory.container.OvenMenu;
 import com.mrcrayfish.furniture.inventory.container.MailBoxMenu;
 import com.mrcrayfish.furniture.inventory.container.PostBoxMenu;
 import com.mrcrayfish.furniture.tileentity.CrateBlockEntity;
+import com.mrcrayfish.furniture.tileentity.BinBlockEntity;
 import com.mrcrayfish.furniture.tileentity.FreezerBlockEntity;
 import com.mrcrayfish.furniture.tileentity.PrinterBlockEntity;
 import com.mrcrayfish.furniture.tileentity.ComputerBlockEntity;
@@ -84,6 +86,10 @@ public class ModContainers
 
     // The present in the player's main hand
     public static final DeferredHolder<MenuType<?>, MenuType<PresentMenu>> PRESENT = register("present", (windowId, playerInventory, data) -> new PresentMenu(windowId, playerInventory));
+
+    public static final DeferredHolder<MenuType<?>, MenuType<BinMenu>> BIN = register("bin", (windowId, playerInventory, data) -> {
+        return new BinMenu(windowId, playerInventory, (BinBlockEntity) playerInventory.player.level().getBlockEntity(data.readBlockPos()));
+    });
 
     private static <T extends AbstractContainerMenu> DeferredHolder<MenuType<?>, MenuType<T>> register(String key, IContainerFactory<T> factory)
     {

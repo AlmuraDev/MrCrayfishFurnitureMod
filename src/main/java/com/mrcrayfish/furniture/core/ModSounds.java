@@ -43,6 +43,8 @@ public class ModSounds
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_FIRE_ALARM = register("block.fire_alarm.ring");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_ELECTRIC_FENCE_ZAP = register("block.electric_fence.zap");
     public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_CHOPPING_BOARD_CHOP = register("block.chopping_board.chop");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_BIN_OPEN = register("block.bin.open");
+    public static final DeferredHolder<SoundEvent, SoundEvent> BLOCK_BIN_CLOSE = register("block.bin.close");
 
     private static DeferredHolder<SoundEvent, SoundEvent> register(String name)
     {

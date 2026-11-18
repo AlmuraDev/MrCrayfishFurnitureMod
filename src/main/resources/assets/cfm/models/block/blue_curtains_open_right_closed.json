@@ -1,0 +1,6 @@
+{
+  "parent": "cfm:block/curtains_open_right_closed",
+  "textures": {
+    "colour": "minecraft:block/blue_wool"
+  }
+}

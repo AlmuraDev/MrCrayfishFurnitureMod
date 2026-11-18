@@ -56,6 +56,7 @@ public class ModBlockEntities
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<ChoppingBoardBlockEntity>> CHOPPING_BOARD = register("chopping_board", ChoppingBoardBlockEntity::new, ChoppingBoardBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<PlateBlockEntity>> PLATE = register("plate", PlateBlockEntity::new, PlateBlock.class);
     public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<CookieJarBlockEntity>> COOKIE_JAR = register("cookie_jar", CookieJarBlockEntity::new, CookieJarBlock.class);
+    public static final DeferredHolder<BlockEntityType<?>, BlockEntityType<BinBlockEntity>> BIN = register("bin", BinBlockEntity::new, BinBlock.class);
 
     /**
      * Registers a block entity type that is valid for every furniture block of the given class (every wood and colour of it). Blocks

@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture.client;
 
 import com.mrcrayfish.furniture.client.event.CreativeScreenEvents;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.CrateScreen;
+import com.mrcrayfish.furniture.client.gui.screen.inventory.BinScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.ComputerScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.FreezerScreen;
 import com.mrcrayfish.furniture.client.gui.screen.inventory.PresentScreen;
@@ -42,6 +43,7 @@ public class ScreenSetup
         event.register(ModContainers.COMPUTER.get(), ComputerScreen::new);
         event.register(ModContainers.PRINTER.get(), PrinterScreen::new);
         event.register(ModContainers.PRESENT.get(), PresentScreen::new);
+        event.register(ModContainers.BIN.get(), BinScreen::new);
         event.register(ModContainers.DISHWASHER.get(), (DishwasherMenu menu, Inventory inventory, Component title) -> new WasherScreen<>(menu, inventory, title, "dishwasher", WasherScreen.Layout.DISHWASHER));
         event.register(ModContainers.WASHING_MACHINE.get(), (WashingMachineMenu menu, Inventory inventory, Component title) -> new WasherScreen<>(menu, inventory, title, "washing_machine", WasherScreen.Layout.WASHING_MACHINE));
     }

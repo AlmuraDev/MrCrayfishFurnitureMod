@@ -396,6 +396,26 @@ public class ItemTagGen extends BlockTagCopyingItemTagProvider
                 .add(item(ModBlocks.COOKIE_JAR));
         this.tag(ModTags.Items.GENERAL)
                 .add(item(ModBlocks.WALL_CABINET));
+        this.tag(ModTags.Items.GENERAL)
+                .add(item(ModBlocks.BIN))
+                .add(item(ModBlocks.MIRROR))
+                .add(item(ModBlocks.GRAND_CHAIR))
+                .add(item(ModBlocks.CURTAINS_WHITE))
+                .add(item(ModBlocks.CURTAINS_ORANGE))
+                .add(item(ModBlocks.CURTAINS_MAGENTA))
+                .add(item(ModBlocks.CURTAINS_LIGHT_BLUE))
+                .add(item(ModBlocks.CURTAINS_YELLOW))
+                .add(item(ModBlocks.CURTAINS_LIME))
+                .add(item(ModBlocks.CURTAINS_PINK))
+                .add(item(ModBlocks.CURTAINS_GRAY))
+                .add(item(ModBlocks.CURTAINS_LIGHT_GRAY))
+                .add(item(ModBlocks.CURTAINS_CYAN))
+                .add(item(ModBlocks.CURTAINS_PURPLE))
+                .add(item(ModBlocks.CURTAINS_BLUE))
+                .add(item(ModBlocks.CURTAINS_BROWN))
+                .add(item(ModBlocks.CURTAINS_GREEN))
+                .add(item(ModBlocks.CURTAINS_RED))
+                .add(item(ModBlocks.CURTAINS_BLACK));
         this.tag(ModTags.Items.ITEMS)
                 .add(ModItems.KNIFE.key());
         this.tag(ModTags.Items.GENERAL)

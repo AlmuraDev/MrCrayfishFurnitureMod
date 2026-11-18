@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "cfm:block/bin_pre",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "cfm:block/bin_pre"
+    },
+    "facing=south": {
+      "model": "cfm:block/bin_pre",
+      "y": 90
+    },
+    "facing=west": {
+      "model": "cfm:block/bin_pre",
+      "y": 180
+    }
+  }
+}

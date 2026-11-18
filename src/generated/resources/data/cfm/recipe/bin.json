@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "I": "#c:ingots/iron",
+    "P": "minecraft:heavy_weighted_pressure_plate",
+    "S": "minecraft:stone"
+  },
+  "pattern": [
+    "PSP",
+    "I I",
+    "III"
+  ],
+  "result": {
+    "id": "cfm:bin"
+  }
+}

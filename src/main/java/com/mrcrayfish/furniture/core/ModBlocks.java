@@ -683,6 +683,27 @@ public class ModBlocks
     public static final DeferredBlock<Block> PLATE = register("plate", p -> new PlateBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).strength(0.5F).sound(SoundType.STONE).noOcclusion().pushReaction(PushReaction.POPPED));
     public static final DeferredBlock<Block> COOKIE_JAR = register("cookie_jar", p -> new CookieJarBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.NONE).strength(0.5F).sound(SoundType.GLASS).noOcclusion().pushReaction(PushReaction.POPPED));
 
+    // Around the house (1.12.2)
+    public static final DeferredBlock<Block> BIN = register("bin", p -> new BinBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.METAL).strength(0.5F).sound(SoundType.METAL).noOcclusion());
+    public static final DeferredBlock<Block> CURTAINS_WHITE = register("white_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.WHITE).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_ORANGE = register("orange_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.ORANGE).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_MAGENTA = register("magenta_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.MAGENTA).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_LIGHT_BLUE = register("light_blue_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.LIGHT_BLUE).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_YELLOW = register("yellow_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.YELLOW).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_LIME = register("lime_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.LIME).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_PINK = register("pink_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.PINK).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_GRAY = register("gray_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.GRAY).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_LIGHT_GRAY = register("light_gray_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.LIGHT_GRAY).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_CYAN = register("cyan_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.CYAN).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_PURPLE = register("purple_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.PURPLE).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_BLUE = register("blue_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLUE).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_BROWN = register("brown_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BROWN).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_GREEN = register("green_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.GREEN).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_RED = register("red_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.RED).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> CURTAINS_BLACK = register("black_curtains", p -> new CurtainsBlock(p), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.BLACK).strength(0.5F).sound(SoundType.WOOL).noOcclusion().ignitedByLava());
+    public static final DeferredBlock<Block> MIRROR = register("mirror", p -> new MirrorBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.QUARTZ).strength(0.5F).sound(SoundType.GLASS).noOcclusion());
+    public static final DeferredBlock<Block> GRAND_CHAIR = register("grand_chair", p -> new GrandChairBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASS).strength(1.0F).sound(SoundType.WOOD).noOcclusion().ignitedByLava());
+
     private static DeferredBlock<Block> register(String name, Function<BlockBehaviour.Properties, Block> factory, Supplier<BlockBehaviour.Properties> properties)
     {
         DeferredBlock<Block> block = REGISTER.registerBlock(name, factory, properties);

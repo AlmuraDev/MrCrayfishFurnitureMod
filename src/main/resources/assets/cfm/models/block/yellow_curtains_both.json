@@ -1,0 +1,6 @@
+{
+  "parent": "cfm:block/curtains_both",
+  "textures": {
+    "colour": "minecraft:block/yellow_wool"
+  }
+}

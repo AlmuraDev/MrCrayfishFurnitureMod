@@ -1,0 +1,274 @@
+{
+  "variants": {
+    "facing=north,open=true,type=default": {
+      "model": "cfm:block/orange_curtains_open",
+      "y": 270
+    },
+    "facing=north,open=false,type=default": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 270
+    },
+    "facing=north,open=true,type=left": {
+      "model": "cfm:block/orange_curtains_open_left",
+      "y": 270
+    },
+    "facing=north,open=false,type=left": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 270
+    },
+    "facing=north,open=true,type=right": {
+      "model": "cfm:block/orange_curtains_open_right",
+      "y": 270
+    },
+    "facing=north,open=false,type=right": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 270
+    },
+    "facing=north,open=true,type=left_open": {
+      "model": "cfm:block/orange_curtains_open_left_open",
+      "y": 270
+    },
+    "facing=north,open=false,type=left_open": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 270
+    },
+    "facing=north,open=true,type=right_open": {
+      "model": "cfm:block/orange_curtains_open_right_open",
+      "y": 270
+    },
+    "facing=north,open=false,type=right_open": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 270
+    },
+    "facing=north,open=true,type=left_closed": {
+      "model": "cfm:block/orange_curtains_open_left_closed",
+      "y": 270
+    },
+    "facing=north,open=false,type=left_closed": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 270
+    },
+    "facing=north,open=true,type=right_closed": {
+      "model": "cfm:block/orange_curtains_open_right_closed",
+      "y": 270
+    },
+    "facing=north,open=false,type=right_closed": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 270
+    },
+    "facing=north,open=true,type=both": {
+      "model": "cfm:block/orange_curtains_both",
+      "y": 270
+    },
+    "facing=north,open=false,type=both": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 270
+    },
+    "facing=north,open=true,type=none": {
+      "model": "cfm:block/orange_curtains_none",
+      "y": 270
+    },
+    "facing=north,open=false,type=none": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 270
+    },
+    "facing=east,open=true,type=default": {
+      "model": "cfm:block/orange_curtains_open"
+    },
+    "facing=east,open=false,type=default": {
+      "model": "cfm:block/orange_curtains_closed"
+    },
+    "facing=east,open=true,type=left": {
+      "model": "cfm:block/orange_curtains_open_left"
+    },
+    "facing=east,open=false,type=left": {
+      "model": "cfm:block/orange_curtains_closed"
+    },
+    "facing=east,open=true,type=right": {
+      "model": "cfm:block/orange_curtains_open_right"
+    },
+    "facing=east,open=false,type=right": {
+      "model": "cfm:block/orange_curtains_closed"
+    },
+    "facing=east,open=true,type=left_open": {
+      "model": "cfm:block/orange_curtains_open_left_open"
+    },
+    "facing=east,open=false,type=left_open": {
+      "model": "cfm:block/orange_curtains_closed"
+    },
+    "facing=east,open=true,type=right_open": {
+      "model": "cfm:block/orange_curtains_open_right_open"
+    },
+    "facing=east,open=false,type=right_open": {
+      "model": "cfm:block/orange_curtains_closed"
+    },
+    "facing=east,open=true,type=left_closed": {
+      "model": "cfm:block/orange_curtains_open_left_closed"
+    },
+    "facing=east,open=false,type=left_closed": {
+      "model": "cfm:block/orange_curtains_closed"
+    },
+    "facing=east,open=true,type=right_closed": {
+      "model": "cfm:block/orange_curtains_open_right_closed"
+    },
+    "facing=east,open=false,type=right_closed": {
+      "model": "cfm:block/orange_curtains_closed"
+    },
+    "facing=east,open=true,type=both": {
+      "model": "cfm:block/orange_curtains_both"
+    },
+    "facing=east,open=false,type=both": {
+      "model": "cfm:block/orange_curtains_closed"
+    },
+    "facing=east,open=true,type=none": {
+      "model": "cfm:block/orange_curtains_none"
+    },
+    "facing=east,open=false,type=none": {
+      "model": "cfm:block/orange_curtains_closed"
+    },
+    "facing=south,open=true,type=default": {
+      "model": "cfm:block/orange_curtains_open",
+      "y": 90
+    },
+    "facing=south,open=false,type=default": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 90
+    },
+    "facing=south,open=true,type=left": {
+      "model": "cfm:block/orange_curtains_open_left",
+      "y": 90
+    },
+    "facing=south,open=false,type=left": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 90
+    },
+    "facing=south,open=true,type=right": {
+      "model": "cfm:block/orange_curtains_open_right",
+      "y": 90
+    },
+    "facing=south,open=false,type=right": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 90
+    },
+    "facing=south,open=true,type=left_open": {
+      "model": "cfm:block/orange_curtains_open_left_open",
+      "y": 90
+    },
+    "facing=south,open=false,type=left_open": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 90
+    },
+    "facing=south,open=true,type=right_open": {
+      "model": "cfm:block/orange_curtains_open_right_open",
+      "y": 90
+    },
+    "facing=south,open=false,type=right_open": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 90
+    },
+    "facing=south,open=true,type=left_closed": {
+      "model": "cfm:block/orange_curtains_open_left_closed",
+      "y": 90
+    },
+    "facing=south,open=false,type=left_closed": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 90
+    },
+    "facing=south,open=true,type=right_closed": {
+      "model": "cfm:block/orange_curtains_open_right_closed",
+      "y": 90
+    },
+    "facing=south,open=false,type=right_closed": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 90
+    },
+    "facing=south,open=true,type=both": {
+      "model": "cfm:block/orange_curtains_both",
+      "y": 90
+    },
+    "facing=south,open=false,type=both": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 90
+    },
+    "facing=south,open=true,type=none": {
+      "model": "cfm:block/orange_curtains_none",
+      "y": 90
+    },
+    "facing=south,open=false,type=none": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 90
+    },
+    "facing=west,open=true,type=default": {
+      "model": "cfm:block/orange_curtains_open",
+      "y": 180
+    },
+    "facing=west,open=false,type=default": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 180
+    },
+    "facing=west,open=true,type=left": {
+      "model": "cfm:block/orange_curtains_open_left",
+      "y": 180
+    },
+    "facing=west,open=false,type=left": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 180
+    },
+    "facing=west,open=true,type=right": {
+      "model": "cfm:block/orange_curtains_open_right",
+      "y": 180
+    },
+    "facing=west,open=false,type=right": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 180
+    },
+    "facing=west,open=true,type=left_open": {
+      "model": "cfm:block/orange_curtains_open_left_open",
+      "y": 180
+    },
+    "facing=west,open=false,type=left_open": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 180
+    },
+    "facing=west,open=true,type=right_open": {
+      "model": "cfm:block/orange_curtains_open_right_open",
+      "y": 180
+    },
+    "facing=west,open=false,type=right_open": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 180
+    },
+    "facing=west,open=true,type=left_closed": {
+      "model": "cfm:block/orange_curtains_open_left_closed",
+      "y": 180
+    },
+    "facing=west,open=false,type=left_closed": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 180
+    },
+    "facing=west,open=true,type=right_closed": {
+      "model": "cfm:block/orange_curtains_open_right_closed",
+      "y": 180
+    },
+    "facing=west,open=false,type=right_closed": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 180
+    },
+    "facing=west,open=true,type=both": {
+      "model": "cfm:block/orange_curtains_both",
+      "y": 180
+    },
+    "facing=west,open=false,type=both": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 180
+    },
+    "facing=west,open=true,type=none": {
+      "model": "cfm:block/orange_curtains_none",
+      "y": 180
+    },
+    "facing=west,open=false,type=none": {
+      "model": "cfm:block/orange_curtains_closed",
+      "y": 180
+    }
+  }
+}

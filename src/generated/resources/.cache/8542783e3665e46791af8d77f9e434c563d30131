@@ -1,4 +1,4 @@
-// 26.3	2026-11-17T20:07:27.8889292	Registries for Reloadable (cfm[1]): [minecraft, cfm]
+// 26.3	2026-11-17T20:14:11.0877484	Registries for Reloadable (cfm[1]): [minecraft, cfm]
 dd0a2505af6c271c4aaed3044f7fbfe6e4bacced data/cfm/advancement/recipes/decorations/acacia_bedside_cabinet.json
 1cd0a209bffd9841144595ffb77fd264935ddb6c data/cfm/advancement/recipes/decorations/acacia_blinds.json
 dd9cd67af70567bcf0ef4ec395036616ee7cf39c data/cfm/advancement/recipes/decorations/acacia_cabinet.json
@@ -20,6 +20,7 @@ e5ee774076d294f7e76c16f15c1ec3b7c508a89c data/cfm/advancement/recipes/decoration
 6c1d3c7171764b3d7205265f759bba692b0e3aaa data/cfm/advancement/recipes/decorations/azalea_hedge.json
 ee2f88f8067b6f57d96a06158498720cbc729472 data/cfm/advancement/recipes/decorations/basin.json
 7e71a9fa08744b58577bf980e82379776a0cbd71 data/cfm/advancement/recipes/decorations/bath.json
+c9815b5f68a819eccd896578161ae7d019fcb815 data/cfm/advancement/recipes/decorations/bin.json
 259bd04763957a27e4d7002c8b4b898ec7367600 data/cfm/advancement/recipes/decorations/birch_bedside_cabinet.json
 067e0bebfee0dd543ff1a3a56fee5bb3bce71079 data/cfm/advancement/recipes/decorations/birch_blinds.json
 f33a4c5f5787af9d29f8077c6061777aa4fe0953 data/cfm/advancement/recipes/decorations/birch_cabinet.json
@@ -41,6 +42,7 @@ a367190edb813d1dc7d7d5e93013915cc43d960a data/cfm/advancement/recipes/decoration
 6f7424e6a4f5cfe5fa8d9f62a3b3c3549f25fb79 data/cfm/advancement/recipes/decorations/bird_bath.json
 6c27513a3a6e86d1a3887a8ee20ca40adf580593 data/cfm/advancement/recipes/decorations/black_bar_stool.json
 3d14fda6ce6be7230958459986775277cd318138 data/cfm/advancement/recipes/decorations/black_cooler.json
+81b65303f46d39317dcce63535ed17983625a823 data/cfm/advancement/recipes/decorations/black_curtains.json
 72be1d7ec37f401c5ceef802f6f7f8f217f9f468 data/cfm/advancement/recipes/decorations/black_digital_clock.json
 0a0ec1a12fe3a160884b5d6abc189a7e7afffb7f data/cfm/advancement/recipes/decorations/black_grill.json
 db34d6fa0528563295fe012b140710a294b728f3 data/cfm/advancement/recipes/decorations/black_kitchen_cabinet.json
@@ -59,6 +61,7 @@ bd996dbbc28a82fe00507d4321bb0c618c2f5d76 data/cfm/advancement/recipes/decoration
 3ba5f25d3d17a7ba6594f76cf8a527678b99abda data/cfm/advancement/recipes/decorations/blender.json
 00978edbeb6117ad03288fc5e9384872c61479f9 data/cfm/advancement/recipes/decorations/blue_bar_stool.json
 ed84593ab8ac31b86431c6f92b5b5d2ca6209f01 data/cfm/advancement/recipes/decorations/blue_cooler.json
+f7dc8834960b9af8c57d7a7afc371973c5369232 data/cfm/advancement/recipes/decorations/blue_curtains.json
 791fa6ab9f01acdca725e3511c595202c1a40372 data/cfm/advancement/recipes/decorations/blue_digital_clock.json
 0d125b60a07c086a784a7c91f0952d23dbb797e7 data/cfm/advancement/recipes/decorations/blue_grill.json
 e64049538531bd76f3cb947123aa223d598a79ad data/cfm/advancement/recipes/decorations/blue_kitchen_cabinet.json
@@ -76,6 +79,7 @@ dfcf65900cde014db905e4e311f143cfb76b3877 data/cfm/advancement/recipes/decoration
 2d60131377ba8110b0085cade189b54aba0c1de9 data/cfm/advancement/recipes/decorations/blue_trampoline.json
 9c4d2ab1d59f9ccb8e4a5f2e7cc37ddc64bb5556 data/cfm/advancement/recipes/decorations/brown_bar_stool.json
 47bd0c9fd6a1d7120899cc9fd1ffc99e14249e7a data/cfm/advancement/recipes/decorations/brown_cooler.json
+aa3682db34e14dfa3f31987e32d94babd0694dcf data/cfm/advancement/recipes/decorations/brown_curtains.json
 b43aa239a0de895cd8bc55b24ce7b8476b86e3fc data/cfm/advancement/recipes/decorations/brown_digital_clock.json
 b11b8c9c7791174dcbc760c2edb0901880118ebf data/cfm/advancement/recipes/decorations/brown_grill.json
 270bba4871b187ba7bed3e79be927f5578f0da37 data/cfm/advancement/recipes/decorations/brown_kitchen_cabinet.json
@@ -117,6 +121,7 @@ a89d9f36ce1d73e9515d7fc27df16c35d01deeac data/cfm/advancement/recipes/decoration
 c86c6d843c93163409cab9720634ac082676178f data/cfm/advancement/recipes/decorations/crimson_upgraded_gate.json
 cf8556191871f856331991e61daee27f133950b8 data/cfm/advancement/recipes/decorations/cyan_bar_stool.json
 9ac098b1b6c9756579d876a5445ff021f9003b17 data/cfm/advancement/recipes/decorations/cyan_cooler.json
+c21632e45929a98a925e518811f0a3392c559831 data/cfm/advancement/recipes/decorations/cyan_curtains.json
 662a477a128e174800bf781719d50cb19eee19f4 data/cfm/advancement/recipes/decorations/cyan_digital_clock.json
 c2bf8dce5719ada4120eda12d84ed555b9908bea data/cfm/advancement/recipes/decorations/cyan_grill.json
 f6b908815ec00342bea930ac1496c2a8b0222df8 data/cfm/advancement/recipes/decorations/cyan_kitchen_cabinet.json
@@ -189,8 +194,10 @@ e32e8a077c4aafde2741f47fab6fe6eb4eb84dbd data/cfm/advancement/recipes/decoration
 4b7d34095748458e642ca801a6dadc5495a837e7 data/cfm/advancement/recipes/decorations/flowering_azalea_hedge.json
 19aa5122f6e7844dfb384746e11c6e0a80ded2e0 data/cfm/advancement/recipes/decorations/fridge_dark.json
 db34cd250b683eb83cee7b9da21c676ea06fc278 data/cfm/advancement/recipes/decorations/fridge_light.json
+a71efbfef38423ccde847c0852a6ccaaf102b6a3 data/cfm/advancement/recipes/decorations/grand_chair.json
 9e4180f4a037e1b43bf051682b72e2aafbab5e3b data/cfm/advancement/recipes/decorations/gray_bar_stool.json
 85e32641409c4d4ff83e3ce4ac05b9d2489206f2 data/cfm/advancement/recipes/decorations/gray_cooler.json
+0bfa1520203c1905f7c77d5cac030de632ec2329 data/cfm/advancement/recipes/decorations/gray_curtains.json
 698942b74f9da3ba9800e7bbaa17225d4cb587a5 data/cfm/advancement/recipes/decorations/gray_digital_clock.json
 a77e5ba2a3a88f91d35c22c50f83719de03a7387 data/cfm/advancement/recipes/decorations/gray_grill.json
 877f02892fa817d5f7ec21d3ad6121c0ba6b87a3 data/cfm/advancement/recipes/decorations/gray_kitchen_cabinet.json
@@ -208,6 +215,7 @@ d9b2f27b7d7e40050eb4fa6c569f24dc758e1ea8 data/cfm/advancement/recipes/decoration
 15e9d463400593a02addf017a0150d24d07d7f3f data/cfm/advancement/recipes/decorations/gray_trampoline.json
 d24f4f13d35f7f53db8a91a314cb54976f628462 data/cfm/advancement/recipes/decorations/green_bar_stool.json
 18899b987bca790c4cc1ef9be2f861fb022eedcd data/cfm/advancement/recipes/decorations/green_cooler.json
+a67d150cce101114a93262163040422cab7ffac3 data/cfm/advancement/recipes/decorations/green_curtains.json
 86404ded2584f6ab86c8607771618bd014914ba4 data/cfm/advancement/recipes/decorations/green_digital_clock.json
 027e051a7af30742332459e33d1c968885b4f351 data/cfm/advancement/recipes/decorations/green_grill.json
 d1aabe9ccbc973ed43b444f7b293de749b80b1ac data/cfm/advancement/recipes/decorations/green_kitchen_cabinet.json
@@ -243,6 +251,7 @@ cc6faee6cf7286102d4f2b40c50b465dc8388669 data/cfm/advancement/recipes/decoration
 35f94bb08fac5c6aa2cd905c9143a1a0b004ac08 data/cfm/advancement/recipes/decorations/jungle_upgraded_gate.json
 d7e80a1428c59a9fda0d66f52dff3e8c17e9a432 data/cfm/advancement/recipes/decorations/light_blue_bar_stool.json
 e39f9d54c235276b0388031c21c832ed687543ee data/cfm/advancement/recipes/decorations/light_blue_cooler.json
+2b1dbd71d88c9946a229070ba9f2f59d5d45354e data/cfm/advancement/recipes/decorations/light_blue_curtains.json
 2cec0ee61ab55b2673f1006de5b53d73dedfea9e data/cfm/advancement/recipes/decorations/light_blue_digital_clock.json
 9b8e67b6e8abbd535afe9282236c3c02208c8b1c data/cfm/advancement/recipes/decorations/light_blue_grill.json
 50c0724570b06821f85d3f8f0ca24be7e15fa6a8 data/cfm/advancement/recipes/decorations/light_blue_kitchen_cabinet.json
@@ -260,6 +269,7 @@ fce3d2c245e98fed5aa45f487614e5e2781e49e0 data/cfm/advancement/recipes/decoration
 0ccd6443d72222567ee009ed9e431b4694f8c866 data/cfm/advancement/recipes/decorations/light_blue_trampoline.json
 72641572b1eec0282ee7d62153366dc537551516 data/cfm/advancement/recipes/decorations/light_gray_bar_stool.json
 fc6e7224d7943ac8c701510b391a65d730dc8d77 data/cfm/advancement/recipes/decorations/light_gray_cooler.json
+5667cbac33687a76dfe8daa708a6c9f34c2ec4ae data/cfm/advancement/recipes/decorations/light_gray_curtains.json
 5afcbb4908254f655bd7c08bb47880c0ae1f48e7 data/cfm/advancement/recipes/decorations/light_gray_digital_clock.json
 b247b779f545130168f4331f8bbefb3f0ac475c8 data/cfm/advancement/recipes/decorations/light_gray_grill.json
 42780384efa8c9f8e77c76b0a2c89c40810442b3 data/cfm/advancement/recipes/decorations/light_gray_kitchen_cabinet.json
@@ -277,6 +287,7 @@ ee5183cd693414a5f3d7075edb141edbb6f27f33 data/cfm/advancement/recipes/decoration
 12ec07af77c12f79e931c7d5fc7e53a3c83d9889 data/cfm/advancement/recipes/decorations/light_gray_trampoline.json
 f574f1725c400ca2c1ba8328daf02ffcccf9d5d8 data/cfm/advancement/recipes/decorations/lime_bar_stool.json
 2790b551a6ca138759a3de3c1b57aa115fa7f8db data/cfm/advancement/recipes/decorations/lime_cooler.json
+985de1c45d82d02058b971252e07066bdb1f88a4 data/cfm/advancement/recipes/decorations/lime_curtains.json
 b5266ea90d42837be3163f78b6bc66ceacfffd28 data/cfm/advancement/recipes/decorations/lime_digital_clock.json
 5bba4831b8eed5792a12c9a699623502fa64c6e3 data/cfm/advancement/recipes/decorations/lime_grill.json
 b72c1b39dc01b49761d00402aaaa3ed35f60b51f data/cfm/advancement/recipes/decorations/lime_kitchen_cabinet.json
@@ -294,6 +305,7 @@ c3cfcd9e1d3621c0db531dfbbdd439101330a1dd data/cfm/advancement/recipes/decoration
 010911741883ce1dd0e68b93d3646f44e0f51537 data/cfm/advancement/recipes/decorations/lime_trampoline.json
 596a9d661ea10323b6784447ae87b2dfe931b81f data/cfm/advancement/recipes/decorations/magenta_bar_stool.json
 75d79045a331b4819a89dae2c2967c0c5a0a3ba6 data/cfm/advancement/recipes/decorations/magenta_cooler.json
+b9df35c561d60e70ec550a5f55d61cb521d6fa1f data/cfm/advancement/recipes/decorations/magenta_curtains.json
 9afe72bf2e12c954df978540c3e3c49764d79367 data/cfm/advancement/recipes/decorations/magenta_digital_clock.json
 ffad69a92645219156bbd4a23bfcf0d034c5b03b data/cfm/advancement/recipes/decorations/magenta_grill.json
 b5f67d556c2923a71016421f4e6c2e0dff465791 data/cfm/advancement/recipes/decorations/magenta_kitchen_cabinet.json
@@ -329,6 +341,7 @@ c9ee123aa7b237516163c1a59994bebef7c2b301 data/cfm/advancement/recipes/decoration
 755fe8d46633503e835e38942da710dc87a75289 data/cfm/advancement/recipes/decorations/mangrove_upgraded_gate.json
 ea7238b6153c902c5489e646dbde0e5ba9e1f614 data/cfm/advancement/recipes/decorations/mantel_piece.json
 558eee8c41aab8ba5d24a86e6701167a82740d46 data/cfm/advancement/recipes/decorations/microwave.json
+9161ec09efda0ea56d6509596b0ec81ffeb76b6b data/cfm/advancement/recipes/decorations/mirror.json
 1a683c0b7957927919a9e7d22fd1b9972feae5f7 data/cfm/advancement/recipes/decorations/modern_chair.json
 f8b88b6f2916c274177743be05a1bed44c5e6576 data/cfm/advancement/recipes/decorations/modern_coffee_table.json
 04961bbf8aa972bbd1bf041d9737d991ca4e7935 data/cfm/advancement/recipes/decorations/modern_light.json
@@ -357,6 +370,7 @@ ad47a8e18358ab3b0fa488d1f6e595917e9ccd57 data/cfm/advancement/recipes/decoration
 c3b6213fadd1db6f213d8dfb5c6d64a86cc7ba85 data/cfm/advancement/recipes/decorations/oak_upgraded_gate.json
 eb8265f580e2e1ee3512850efec9d3e03873c49f data/cfm/advancement/recipes/decorations/orange_bar_stool.json
 5da65284572e04d3690510ca00da3d57b3da0027 data/cfm/advancement/recipes/decorations/orange_cooler.json
+95bdbdabfef9a797b1822638a9d63409ae9890ad data/cfm/advancement/recipes/decorations/orange_curtains.json
 0f5ee2fc60fdef859e7d1b802993dbed993c3e8c data/cfm/advancement/recipes/decorations/orange_digital_clock.json
 88fa6db5dbf210f35723f9b99699d834f72e0112 data/cfm/advancement/recipes/decorations/orange_grill.json
 93963445f73bcdba81a8351bcf49ba097817ec3e data/cfm/advancement/recipes/decorations/orange_kitchen_cabinet.json
@@ -375,6 +389,7 @@ adc8ed6062378c1909c5de1be63b878b4c3c7cf1 data/cfm/advancement/recipes/decoration
 8a4bf568abe8cf58806b2f233bc2f698411b76e6 data/cfm/advancement/recipes/decorations/oven.json
 306a7cbc594565f2ed785013fc7eb4cf6023ac28 data/cfm/advancement/recipes/decorations/pink_bar_stool.json
 e4335ac925f0c4b04112e477dd98ac47efb54f90 data/cfm/advancement/recipes/decorations/pink_cooler.json
+74357b2609edf9b40d3c55c171039e7ba8331c51 data/cfm/advancement/recipes/decorations/pink_curtains.json
 76eecc78c828d6d29310af82a7fea4f3180c6462 data/cfm/advancement/recipes/decorations/pink_digital_clock.json
 760ff6bdbe1ab517a4ae5a0c84c673e0b3314318 data/cfm/advancement/recipes/decorations/pink_grill.json
 ccdeb179fc7d461e507726feb18b3a34e4786810 data/cfm/advancement/recipes/decorations/pink_kitchen_cabinet.json
@@ -395,6 +410,7 @@ cd77d85c08fa6f90c9f4b86a4be2bf7cbabdedff data/cfm/advancement/recipes/decoration
 ad55e3f26ecb181c24c69c84edd3540010b06934 data/cfm/advancement/recipes/decorations/printer.json
 fe5005d613c259cf2c981256c5d253360fdaeb75 data/cfm/advancement/recipes/decorations/purple_bar_stool.json
 c6b9aa3ee9edc72f9c577597e6a3bfc798430bea data/cfm/advancement/recipes/decorations/purple_cooler.json
+3ebdb267dd65985628f29121c3a134a0e71f15af data/cfm/advancement/recipes/decorations/purple_curtains.json
 e287c1b7229bca8634292bba4ac4dcb9d846568e data/cfm/advancement/recipes/decorations/purple_digital_clock.json
 ba1ba89ef5376a953902fa89a8c179d2629dd372 data/cfm/advancement/recipes/decorations/purple_grill.json
 881448e1addbda06e2ff213b6826bfae9fed1767 data/cfm/advancement/recipes/decorations/purple_kitchen_cabinet.json
@@ -413,6 +429,7 @@ dc3362df3192a89fa1c026cf9776999af717278c data/cfm/advancement/recipes/decoration
 53fbf4ea535e2479de6d50e3c196236eb373799c data/cfm/advancement/recipes/decorations/range_hood.json
 56bc709e7d42768c2bcf5a787eb8181ee5e4f0ae data/cfm/advancement/recipes/decorations/red_bar_stool.json
 1e1c601da7d5d2fea08f5f2ae68f1fcb3fef5ed1 data/cfm/advancement/recipes/decorations/red_cooler.json
+8cb37a9490743206a464109964ae993174f1e517 data/cfm/advancement/recipes/decorations/red_curtains.json
 d6c8bbb547b64f319ef29a05cfb1644db3f04ddf data/cfm/advancement/recipes/decorations/red_digital_clock.json
 d795329fa846bea5658fe248739b0de4b91569cf data/cfm/advancement/recipes/decorations/red_grill.json
 437ade064d54c7225a8cf3abcf9b528820d6f991 data/cfm/advancement/recipes/decorations/red_kitchen_cabinet.json
@@ -629,6 +646,7 @@ cb8f99732789f0ab1525ed0d37e28c159cff661b data/cfm/advancement/recipes/decoration
 4b46ddd1fad4347a475634a0d87e76c8c751bea9 data/cfm/advancement/recipes/decorations/washing_machine.json
 c6af0d5370ebd7722a0224f2f20d61fdb6763b58 data/cfm/advancement/recipes/decorations/white_bar_stool.json
 0fc9450c5147a53d36c954ccd6cacf6b42f82837 data/cfm/advancement/recipes/decorations/white_cooler.json
+7a18b54077f4849c7e616c0eaa94fb61ae084a70 data/cfm/advancement/recipes/decorations/white_curtains.json
 2b2c77b3d716d5be7b9b1d033ed6a7d2e7bf2a6d data/cfm/advancement/recipes/decorations/white_digital_clock.json
 517fd13f02882fdc1d4485b57ab6d6572af192f6 data/cfm/advancement/recipes/decorations/white_grill.json
 b3819bb435545238348b546f435b380ad16c573b data/cfm/advancement/recipes/decorations/white_kitchen_cabinet.json
@@ -647,6 +665,7 @@ fc66ccfdb80af67541449175c74222068776542e data/cfm/advancement/recipes/decoration
 1657f9dba8a940128e50debb837fb6ca9f9aa0cd data/cfm/advancement/recipes/decorations/wreath.json
 010db8492c12a48b3ed9c0db5d5e3a683370d16d data/cfm/advancement/recipes/decorations/yellow_bar_stool.json
 8876bc3ee70d11c16b2e44bbe6b0524eca8e63ce data/cfm/advancement/recipes/decorations/yellow_cooler.json
+48e7e6fdf3f4975837b9f86faf9923726c044714 data/cfm/advancement/recipes/decorations/yellow_curtains.json
 95a9b82de06d89fc907489df47a2050d9e7b7c86 data/cfm/advancement/recipes/decorations/yellow_digital_clock.json
 211091589b0a9c03a63690639dc4a81a5e6f33dc data/cfm/advancement/recipes/decorations/yellow_grill.json
 ed9fc873d03d0069c9017bb2965d003750c3ef94 data/cfm/advancement/recipes/decorations/yellow_kitchen_cabinet.json
@@ -703,6 +722,7 @@ c3ae6e968ef7da5a2b26b23906d6cb98d3c42300 data/cfm/loot_table/blocks/acacia_table
 5935e40f5385bd6e88a040dc0b0aa480893432ae data/cfm/loot_table/blocks/azalea_hedge.json
 c6abdd36abff872c6f92621126732751b6d36e67 data/cfm/loot_table/blocks/basin.json
 0b9081c1d303b6968f5bbdf84c3094bee3c023be data/cfm/loot_table/blocks/bath.json
+8ffe43aa947275a3387bc561dade6ee38cb4a8e5 data/cfm/loot_table/blocks/bin.json
 d702afefa40e554c1c53e5d0b359dffb72a70e82 data/cfm/loot_table/blocks/birch_bedside_cabinet.json
 b7749579a2541d86b0d63ff65453886346dd28a7 data/cfm/loot_table/blocks/birch_blinds.json
 299319fc8d952f0e8566b85aba6fc94f3f7fe738 data/cfm/loot_table/blocks/birch_cabinet.json
@@ -725,6 +745,7 @@ a05f756020253858c3ce4c8886f1beaf8d2cea21 data/cfm/loot_table/blocks/birch_upgrad
 c1eabb26172155703c164536d7b8c0b16e6778c3 data/cfm/loot_table/blocks/bird_bath.json
 20c9ba7887ed73940eab9b2c72f1f45b0c6ead06 data/cfm/loot_table/blocks/black_bar_stool.json
 57fa05857ff067c333f89c6cbb9cf0b59480d1f5 data/cfm/loot_table/blocks/black_cooler.json
+91adc13aa2ca2d2f10d7151874e5ccffe1f94ab7 data/cfm/loot_table/blocks/black_curtains.json
 9ddb90657d2bfaa2171035ceef8f3f742d603be8 data/cfm/loot_table/blocks/black_digital_clock.json
 e75d851cd15162f0fe68bbf6d4c89fe2cdfe137b data/cfm/loot_table/blocks/black_grill.json
 958ee6027f4f8fe82b97fe0e38c77b5648bfd486 data/cfm/loot_table/blocks/black_kitchen_cabinet.json
@@ -742,6 +763,7 @@ a8195224c4a4e67ba4d3c38d8b8ab49a93b37c9a data/cfm/loot_table/blocks/black_picket
 0db0e9cb60f6ddd29755b0bbfa739f0c4161ed0c data/cfm/loot_table/blocks/blender.json
 b17c5bcbf8123ce9fc6b1fc2e0ff286874ad30c1 data/cfm/loot_table/blocks/blue_bar_stool.json
 c0e537657d9f8bd09ed142ecfd1e1096f1dd613e data/cfm/loot_table/blocks/blue_cooler.json
+deddf7538b11596cc7c6590278ba9fe7591b78f0 data/cfm/loot_table/blocks/blue_curtains.json
 5b09d635060afdae5c7f92d5f54b3560b9779f82 data/cfm/loot_table/blocks/blue_digital_clock.json
 0812cbbc3e09b711ee7946f23780f0698479760c data/cfm/loot_table/blocks/blue_grill.json
 abb5e30705b5015b9d29931b532ecdef8b700c95 data/cfm/loot_table/blocks/blue_kitchen_cabinet.json
@@ -758,6 +780,7 @@ dd55117754ab110a2f5f2a897bcc6d7adc8ad229 data/cfm/loot_table/blocks/blue_photo_f
 f70b39a10f390c849dd02551499cae4016aea593 data/cfm/loot_table/blocks/blue_sofa.json
 3ebe887e0fcb7e33d884187c85f99144e15ad48a data/cfm/loot_table/blocks/brown_bar_stool.json
 4be97665cdd1cbcb23bc700c3004169b2ae870ac data/cfm/loot_table/blocks/brown_cooler.json
+2d53319fc4d7fb6710b73dcde950ea79a43529e2 data/cfm/loot_table/blocks/brown_curtains.json
 8a1198145d4daeb0c22921c704f9d91e1effc7ec data/cfm/loot_table/blocks/brown_digital_clock.json
 1bdf70e762a88a7f023649ca8ed01f2458b40c8c data/cfm/loot_table/blocks/brown_grill.json
 20660dd9453ba98cec94f38077c82a6ee23f5832 data/cfm/loot_table/blocks/brown_kitchen_cabinet.json
@@ -800,6 +823,7 @@ acd051c05fc8778e6bd7c10662542e71efcbb5bd data/cfm/loot_table/blocks/crimson_mail
 5b40c5e25f6781ed40f60d334dfd690fb5c3456e data/cfm/loot_table/blocks/cup.json
 e1fdc982217544d50a20df50a831b989661d1731 data/cfm/loot_table/blocks/cyan_bar_stool.json
 14ce85385705d7aba8fe66b652ed883a3e1a6b14 data/cfm/loot_table/blocks/cyan_cooler.json
+a77c0d97aaa58aa6dd055bec76e7183ee61519f3 data/cfm/loot_table/blocks/cyan_curtains.json
 5e0943a3f82b47dc8e25d11bbff0a820063ffdb4 data/cfm/loot_table/blocks/cyan_digital_clock.json
 8d32f0965175962ce9973d9c5995ce1b9106d533 data/cfm/loot_table/blocks/cyan_grill.json
 04354e71b2833fb7938f6c322e9acea67c21a615 data/cfm/loot_table/blocks/cyan_kitchen_cabinet.json
@@ -845,8 +869,10 @@ f9aa1e7af115e59489da67307c7648ff74b92c04 data/cfm/loot_table/blocks/fire_alarm.j
 2ed6af8fcf3120d18f4a1e831ba78ad404678a45 data/cfm/loot_table/blocks/freezer_light.json
 220b7249a304f8b297f27974a599307195ea7487 data/cfm/loot_table/blocks/fridge_dark.json
 cd6bdadcd670fd4887dfe91be58d014026c92285 data/cfm/loot_table/blocks/fridge_light.json
+f3dcabdf61154d0ba949202c98231d4e4057a7a0 data/cfm/loot_table/blocks/grand_chair.json
 d3f5091a2e3882838b857a9677c8efce9c57747c data/cfm/loot_table/blocks/gray_bar_stool.json
 662279bce5ae1742177a47a55b19f9ab7c955465 data/cfm/loot_table/blocks/gray_cooler.json
+db5560ad43c4f505a238b2e12f0cd3f687f17b41 data/cfm/loot_table/blocks/gray_curtains.json
 a546734380fae02b8768d2399b58019b4678044d data/cfm/loot_table/blocks/gray_digital_clock.json
 87edcf8957658c3c51b28174c8b9ffe150e123d6 data/cfm/loot_table/blocks/gray_grill.json
 4ad8aa15459e8d59b7cc31c2f43f3051918ecae5 data/cfm/loot_table/blocks/gray_kitchen_cabinet.json
@@ -863,6 +889,7 @@ b1427e3c6288d41937c666615b34197020cdda30 data/cfm/loot_table/blocks/gray_picket_
 caf40203c7d9162abd99652506fc602725a04aa9 data/cfm/loot_table/blocks/gray_sofa.json
 dc4c37c49ab2e3420a7cf80190bd5e90b641d57e data/cfm/loot_table/blocks/green_bar_stool.json
 0fe50734c5409327db19ffefe3bf0219ca887aef data/cfm/loot_table/blocks/green_cooler.json
+adaabb7a950b7d9530c4a1ec1391ebbba640aec7 data/cfm/loot_table/blocks/green_curtains.json
 370fd1ac3cd06103c22b05176d4f7639263c5019 data/cfm/loot_table/blocks/green_digital_clock.json
 be4481649ef96984921ba3b9fc3a7ea68f21a1da data/cfm/loot_table/blocks/green_grill.json
 d20b5802304d93c1b876e6be4845eedf59d7d5cb data/cfm/loot_table/blocks/green_kitchen_cabinet.json
@@ -898,6 +925,7 @@ a021776744b99a78d13bd388fa1d5ba834e172ac data/cfm/loot_table/blocks/jungle_park_
 258177586bcdff2b02c96721665720db051f45a7 data/cfm/loot_table/blocks/jungle_upgraded_gate.json
 e26fe1cf979de84ab930cd40102c9b8de1dcef5e data/cfm/loot_table/blocks/light_blue_bar_stool.json
 d6b3f01b19e59111ba0fed879dd67e5f18dbe91b data/cfm/loot_table/blocks/light_blue_cooler.json
+1a72e60a6d01e655c969d02c1c37d6b9254c3e9e data/cfm/loot_table/blocks/light_blue_curtains.json
 02adf7955e9cbc4dc851c326b96ed2154a0c40ac data/cfm/loot_table/blocks/light_blue_digital_clock.json
 89cfe6f3d3d914dae52aedcff410d11ee17f1b2d data/cfm/loot_table/blocks/light_blue_grill.json
 297d589b6a5fd9e4b6da76849e28d93be9644493 data/cfm/loot_table/blocks/light_blue_kitchen_cabinet.json
@@ -914,6 +942,7 @@ cfa93ce4d166b83a203d86dd06240dfb86832dfc data/cfm/loot_table/blocks/light_blue_p
 9624750e5dca0868b6653e6ed3301bc1d7c1b0b7 data/cfm/loot_table/blocks/light_blue_sofa.json
 3e6d794c3c6498cd65298c06ed8c43326060ada1 data/cfm/loot_table/blocks/light_gray_bar_stool.json
 4db135787487e89865b3f0d718ee8b1fd56f0d78 data/cfm/loot_table/blocks/light_gray_cooler.json
+82cc21c7ac38fe9fbdbf9a80c26df96b9bc0c4f2 data/cfm/loot_table/blocks/light_gray_curtains.json
 e267b8da1515c6b94ebe8d3c236cb41b3207b32d data/cfm/loot_table/blocks/light_gray_digital_clock.json
 31f04d1dd1070cc4c1dd4eafce651ac4539b9743 data/cfm/loot_table/blocks/light_gray_grill.json
 d7b3bd00179426d5f8f486d043576d9408af4a95 data/cfm/loot_table/blocks/light_gray_kitchen_cabinet.json
@@ -931,6 +960,7 @@ e4ec7cfc1c8b93c13180917b139dc53130bf18e3 data/cfm/loot_table/blocks/light_gray_p
 96e6f107b651862cf363aa2b83ec04f15f748a6a data/cfm/loot_table/blocks/light_switch.json
 70b048ed58bfbfbdeea1844383ba4fa0bb69b473 data/cfm/loot_table/blocks/lime_bar_stool.json
 87e47db3c22aea804aae9f247e2c8e8459435475 data/cfm/loot_table/blocks/lime_cooler.json
+6c56262edac9a27cb490a2e6780adea83d410ac7 data/cfm/loot_table/blocks/lime_curtains.json
 8a84d213196c0afeba9297e3940f2e9ca5bed521 data/cfm/loot_table/blocks/lime_digital_clock.json
 37a98b8528a80ba49e9874951e3441706c75e603 data/cfm/loot_table/blocks/lime_grill.json
 201a877ed7a98aa56ef478f010176c67ce50ef35 data/cfm/loot_table/blocks/lime_kitchen_cabinet.json
@@ -947,6 +977,7 @@ b27fcbe717ee17a3df40a75fad0355a3eed55e87 data/cfm/loot_table/blocks/lime_picket_
 2bac21577de05efd5069d593b6b6d11fec20a700 data/cfm/loot_table/blocks/lime_sofa.json
 68fa744de10ff3a04ce2250b87ea1c7f3dd68d19 data/cfm/loot_table/blocks/magenta_bar_stool.json
 0638c095ada203764fb997c54c1f58c908fb0f5b data/cfm/loot_table/blocks/magenta_cooler.json
+523f3c1b93cf0957f913a052084d349f9b617930 data/cfm/loot_table/blocks/magenta_curtains.json
 d7ffeabc507f7a86948c8d77bd1c2727e715c10d data/cfm/loot_table/blocks/magenta_digital_clock.json
 79505585f997a4fb0a86f375b2721c7c1be6e874 data/cfm/loot_table/blocks/magenta_grill.json
 12927130885d00dcffae58e533932a46e292a122 data/cfm/loot_table/blocks/magenta_kitchen_cabinet.json
@@ -982,6 +1013,7 @@ efe40e3b65b30bc16e4061cad125b043c784f566 data/cfm/loot_table/blocks/mangrove_par
 135532d209a8b68fc00cb87af090f15e1ee58a7f data/cfm/loot_table/blocks/mangrove_upgraded_gate.json
 b1db588bfd5101f51d59f5ac5f64d9fbc5a166bb data/cfm/loot_table/blocks/mantel_piece.json
 6dae06cd11524fb516e762225bb418fc4bc74b7d data/cfm/loot_table/blocks/microwave.json
+0dbe56dabf9502815ed25c8b9d28ab64b9687f8f data/cfm/loot_table/blocks/mirror.json
 1edbe27efaeb99d388a5de64359f771d0238ab75 data/cfm/loot_table/blocks/modern_chair.json
 32acabdb473c879c4c8b4d7fd85dc60ad0c810a8 data/cfm/loot_table/blocks/modern_coffee_table.json
 9bb95747cd44de8bcf091048f7d25f1a13b9112e data/cfm/loot_table/blocks/modern_light.json
@@ -1012,6 +1044,7 @@ bba5bbc48792a66f87488d01fa0385922ab6e9d4 data/cfm/loot_table/blocks/oak_upgraded
 9458fd5badd6a854d91c58442ac5c1559c0ec83b data/cfm/loot_table/blocks/oak_upgraded_gate.json
 81954ea2b55ff058d699d4192c6dfc3f6305472d data/cfm/loot_table/blocks/orange_bar_stool.json
 47ee6adc869449aa6e2e3b563f49ec07e702c79e data/cfm/loot_table/blocks/orange_cooler.json
+4ac63193c8ceeeb9b793c40587349ac35e913b94 data/cfm/loot_table/blocks/orange_curtains.json
 6898c001b114af1866668605a182b675bd1b1d47 data/cfm/loot_table/blocks/orange_digital_clock.json
 53527920ab2d72b8333af88bf6876ed18d182edb data/cfm/loot_table/blocks/orange_grill.json
 fd334e440dd7cbef68bfe88c42a98fae1b32d676 data/cfm/loot_table/blocks/orange_kitchen_cabinet.json
@@ -1029,6 +1062,7 @@ c9f754ff4a7cae8e8b55a54093441b126b5bf426 data/cfm/loot_table/blocks/orange_sofa.
 a773220f100f15dd71250b95cdd3dfc10c25f461 data/cfm/loot_table/blocks/oven.json
 7f76f4be2188f8f1b43860eaab8bab7196e03559 data/cfm/loot_table/blocks/pink_bar_stool.json
 2af2322d770e0281ca4a4acfbb049e00443d98ba data/cfm/loot_table/blocks/pink_cooler.json
+934012d2fbed8b541bc60b097925c8421ff1e4b7 data/cfm/loot_table/blocks/pink_curtains.json
 2c1d09ac9afb4e5c1e3b11cf93545ced234dcc2a data/cfm/loot_table/blocks/pink_digital_clock.json
 9d6bfff1b20f3682e507959b0ab921c001bf9f46 data/cfm/loot_table/blocks/pink_grill.json
 e8a9594d738afc79155f712597ef75ea323f0d27 data/cfm/loot_table/blocks/pink_kitchen_cabinet.json
@@ -1048,6 +1082,7 @@ f53140c2e84b4b48fb95d6372e4598388592fe0a data/cfm/loot_table/blocks/pink_sofa.js
 cded8e292b00f835ba586a9c16365e4375a55059 data/cfm/loot_table/blocks/printer.json
 03507b0d350efd0d82be875bc3c1f5c93ccb5663 data/cfm/loot_table/blocks/purple_bar_stool.json
 f2826cec0965e55e9750cc960a2a11d88aa1f25d data/cfm/loot_table/blocks/purple_cooler.json
+691ea8757422888fab7590b29d49d746aed405f0 data/cfm/loot_table/blocks/purple_curtains.json
 4f280837f5fabae15b12ee1a99aa48a9c9e1879d data/cfm/loot_table/blocks/purple_digital_clock.json
 20dbd5f3dd0372d539987c253fc36184eb418f95 data/cfm/loot_table/blocks/purple_grill.json
 e95f7ae68f68dc17f95e0afa2a2332870fbfcec4 data/cfm/loot_table/blocks/purple_kitchen_cabinet.json
@@ -1066,6 +1101,7 @@ c56f3b5323f86a159d2d9e6bac609b2643e609e9 data/cfm/loot_table/blocks/rainbow_sofa
 c0df5c6dd43e613df1850253bc48448151650daf data/cfm/loot_table/blocks/range_hood.json
 f814ca877986632dac6fb4e5887b20a59a1324b5 data/cfm/loot_table/blocks/red_bar_stool.json
 22e9241d504dff36c1c57a8de84f2881e032f2b8 data/cfm/loot_table/blocks/red_cooler.json
+17c5716abe6fcbdc396c64f23ec774673bee34b0 data/cfm/loot_table/blocks/red_curtains.json
 de8438d48803fcfc61a5c5bd24324677f31cf50c data/cfm/loot_table/blocks/red_digital_clock.json
 8c120534ffea2bc85036c535bdfdd8f4e9689f10 data/cfm/loot_table/blocks/red_grill.json
 0a9b6643165f7d887871db6cc31dbea0464773d0 data/cfm/loot_table/blocks/red_kitchen_cabinet.json
@@ -1284,6 +1320,7 @@ c018b8370f3c083e9381613fd56740c359d722bd data/cfm/loot_table/blocks/warped_upgra
 bc6c90d63f04fa0054a7527bf97fd02b3a727fdc data/cfm/loot_table/blocks/washing_machine.json
 300f5fce2ff46052a88e9c8e1693a4a675ec78bd data/cfm/loot_table/blocks/white_bar_stool.json
 8300c4f69993acaa827e0292548836711d127250 data/cfm/loot_table/blocks/white_cooler.json
+0854c4b42e8001a9c6861182174f32e5aae58e96 data/cfm/loot_table/blocks/white_curtains.json
 388d65b68e5d1499b43c5954b66dee5aac95ea57 data/cfm/loot_table/blocks/white_digital_clock.json
 765a55b56fab92f4b88de9dfeee44ec3a9790c4a data/cfm/loot_table/blocks/white_grill.json
 17d8793b7b67e2d622654f94d50cbc701f61d9ae data/cfm/loot_table/blocks/white_kitchen_cabinet.json
@@ -1301,6 +1338,7 @@ bb24f9eafba77b9511393c6d4aea06aac9a1b76c data/cfm/loot_table/blocks/white_presen
 495547dbaaec5bde54358cf91fb80ae8066a825f data/cfm/loot_table/blocks/wreath.json
 29095b28c6b33460628e7534357db0941805e3c2 data/cfm/loot_table/blocks/yellow_bar_stool.json
 e6f1b6b60a60345e919a6957f7ba2a2e7b020c68 data/cfm/loot_table/blocks/yellow_cooler.json
+d0ba6fe186343c8aa2201ee984bef3470752d4fb data/cfm/loot_table/blocks/yellow_curtains.json
 0b379327c4ed1c1fe02ffb170a70cbeea6e26bed data/cfm/loot_table/blocks/yellow_digital_clock.json
 e2ed98abc02bf0c0db167ab1538f4503d7d19c0e data/cfm/loot_table/blocks/yellow_grill.json
 e8aaa405bf012fe9cb3d30e1274ca3d7ad2464b4 data/cfm/loot_table/blocks/yellow_kitchen_cabinet.json
@@ -1337,6 +1375,7 @@ b3e914a63c8823711b929d25cf8315b127092eb5 data/cfm/recipe/acacia_upgraded_fence.j
 0b160f6d94f7b4244fe78f6144010fd8eb4df282 data/cfm/recipe/azalea_hedge.json
 66e92c926bda3d861dc0cec3f599f377295e9ed4 data/cfm/recipe/basin.json
 6046e2ae8a226fb1807a4b6f0369563ca9ecde4e data/cfm/recipe/bath.json
+7ff931404049b433d339a49464855af7d5913b2d data/cfm/recipe/bin.json
 f9b3e799ee2ba0e699dddc5196037589fff9f7b2 data/cfm/recipe/birch_bedside_cabinet.json
 c45edd382a85c579ef437e5d29bad523c7beb3d5 data/cfm/recipe/birch_blinds.json
 82bacbe084f3e228e17cbde081a274f94fc2a679 data/cfm/recipe/birch_cabinet.json
@@ -1359,6 +1398,7 @@ d0ac143a33a2b917b53a12b93bf419ec68835959 data/cfm/recipe/birch_upgraded_fence.js
 29d823d89c76fbc0e092105030b097fbb9e8a881 data/cfm/recipe/bird_bath.json
 a4875dcf8f3a8b14ecbdbb5e20967ae742aa0ccc data/cfm/recipe/black_bar_stool.json
 b47d8c502e5398485140b9b19e8be1771fa23b79 data/cfm/recipe/black_cooler.json
+d88583245c6e70e9adc69537c2bc2a1dd57c91f1 data/cfm/recipe/black_curtains.json
 91bf71dd510c8df97c8a49cc9be26a24fc6072d1 data/cfm/recipe/black_digital_clock.json
 4df2a6c8af16a6f767fd430a5dade40671f3fba8 data/cfm/recipe/black_grill.json
 4daaa95234bc18e4a338286824909d0993838029 data/cfm/recipe/black_kitchen_cabinet.json
@@ -1377,6 +1417,7 @@ a08a988ee55ba1f365bafa68f3d9cccd581a9edb data/cfm/recipe/black_trampoline.json
 292c9b08e4c5fe65e218fd7797bbf9fb911a1401 data/cfm/recipe/blender.json
 b0473763ef6821b89fe44374002635b97a8dcf2f data/cfm/recipe/blue_bar_stool.json
 aeb32e455d06a70a945a468ebd099df74e887634 data/cfm/recipe/blue_cooler.json
+446881744fe93f5bc1b2a80013c44987fbeb7b00 data/cfm/recipe/blue_curtains.json
 e153f4e4f835d01c2951d9183bbe1a20aa251492 data/cfm/recipe/blue_digital_clock.json
 59ddddff6056dd0f112cd1c26c282283e1d45afa data/cfm/recipe/blue_grill.json
 c27d9910e446155c899cb66e43eb05e104a4b6f9 data/cfm/recipe/blue_kitchen_cabinet.json
@@ -1395,6 +1436,7 @@ dd139a860e203f6a553f09c75c01af69ced199e4 data/cfm/recipe/blue_trampoline.json
 dbd3de878aae84d2a1176b3f5022fc2d4e6b4f0e data/cfm/recipe/bread_slice_from_chopping.json
 acb49a53bd98a12145df367a5a83409f6224ab68 data/cfm/recipe/brown_bar_stool.json
 4781a8df179d3d20a313b1255b565b94abfc9342 data/cfm/recipe/brown_cooler.json
+0897cd5404951184cfb205e49a872a0ea3f70962 data/cfm/recipe/brown_curtains.json
 a815b84d368ce94c59f78b82a0e3f917f2649ff8 data/cfm/recipe/brown_digital_clock.json
 efb6ecf445aadc263fce7569b56da2ae99607bf6 data/cfm/recipe/brown_grill.json
 0efaa9c576afe90c0b836453e06488186c49d2a6 data/cfm/recipe/brown_kitchen_cabinet.json
@@ -1439,6 +1481,7 @@ a97a84707a51264a66f1fc2ab775d369ea632326 data/cfm/recipe/crimson_upgraded_gate.j
 3e28062fe9249aca7abf83156bcc42e98d21bb8e data/cfm/recipe/cup.json
 a9b9e6103fb39b1fddfd48ab4e7b10eb2fc19cf9 data/cfm/recipe/cyan_bar_stool.json
 14caa836e862deaf7d2dc68acf910b26d31c5d42 data/cfm/recipe/cyan_cooler.json
+ff375faa02db4bf0f6a5a226f928d536b5a62738 data/cfm/recipe/cyan_curtains.json
 053646697a26b19ff5b72689edc44018c5ab5aa9 data/cfm/recipe/cyan_digital_clock.json
 35f6020ccae4e7ca0b75415a108c9eb58fa5cd6a data/cfm/recipe/cyan_grill.json
 9aa7ff4eb77c254364e0d171a33a423c4d78f2f5 data/cfm/recipe/cyan_kitchen_cabinet.json
@@ -1516,8 +1559,10 @@ c585cfb0a9c3f9650c28bc70717ff79bb568ec80 data/cfm/recipe/fire_alarm.json
 1c458c761d41d24bed8674bd1f5f2918e32cf702 data/cfm/recipe/fridge_dark.json
 083dee31ab0d8d1bd10d97c3687dc440ffbb6244 data/cfm/recipe/fridge_light.json
 b0612a7b0c6be2bb7eb56ff26cf3c99e54021bab data/cfm/recipe/fruit_crush_from_blending.json
+9d3fa9f07c45a62974ab2b7fc932b9edddffbd8d data/cfm/recipe/grand_chair.json
 3ae14f725addc8da706c814b6660c55f1b64a5e6 data/cfm/recipe/gray_bar_stool.json
 6a678e28237898751f1b9ed068f5cb8b22d6e658 data/cfm/recipe/gray_cooler.json
+145482901989d3c842fc8b87deb0a44d9be62203 data/cfm/recipe/gray_curtains.json
 359c8b187932cbd75ac7758c8895c3de17dfcd7a data/cfm/recipe/gray_digital_clock.json
 80bf4cca506a4b64d25f7dd869b66acabb70522d data/cfm/recipe/gray_grill.json
 78ee9aa4b584c01e683780e9ce6cb7af2644c04d data/cfm/recipe/gray_kitchen_cabinet.json
@@ -1535,6 +1580,7 @@ b68e9c85954fd56f46e5c76cecdee43038eaf006 data/cfm/recipe/gray_picket_gate.json
 78f20c36bafbe67dff0e00d65847cc9ed0d2a57e data/cfm/recipe/gray_trampoline.json
 ec3c8953e8c8c49a66ba111bb6cdbb17c226210e data/cfm/recipe/green_bar_stool.json
 bafc95be573a939323f9e9f60392a31eb5d62710 data/cfm/recipe/green_cooler.json
+af7da191a60908f0b14c36a01c2ecba86c8b6fcd data/cfm/recipe/green_curtains.json
 19eb46c3120d198786c4cd4035f9d67d20074763 data/cfm/recipe/green_digital_clock.json
 c17af887803e3f7891397d1434535b081bfcc421 data/cfm/recipe/green_grill.json
 8beed4d77d7fa9de82e980e74b99784a811a7c83 data/cfm/recipe/green_kitchen_cabinet.json
@@ -1573,6 +1619,7 @@ a6de96a58b48d829188e689ab49011d02874f96d data/cfm/recipe/jungle_upgraded_fence.j
 75728d40bc5a5fe8c8d80d433e3b65303b5080fa data/cfm/recipe/knife.json
 549805646f249f45487b6c3fcc6b9627eec23a5b data/cfm/recipe/light_blue_bar_stool.json
 887beac90246dc04964f944c34ba7c51429ff1d0 data/cfm/recipe/light_blue_cooler.json
+214e35b0f80e821f31eb3ac360525a3496b299b7 data/cfm/recipe/light_blue_curtains.json
 b3377c7ef4b7dea30fc9d32d3965af1228ae2308 data/cfm/recipe/light_blue_digital_clock.json
 abe4a04ebc54cb0e86c4770285ca22b4660db3a2 data/cfm/recipe/light_blue_grill.json
 066d2c7b3a2bbae32ba0a53d34750d5998d550a0 data/cfm/recipe/light_blue_kitchen_cabinet.json
@@ -1590,6 +1637,7 @@ c3744b765844f5c6468f13cd7c1b88b0c468d581 data/cfm/recipe/light_blue_present.json
 33ce53a1244087a973a730d8983fda94309035ab data/cfm/recipe/light_blue_trampoline.json
 0eae820748f710aa6892b31f428ad1a39d6617c1 data/cfm/recipe/light_gray_bar_stool.json
 a3568cc2d7a598fd38e28db1204426644b9a0ff3 data/cfm/recipe/light_gray_cooler.json
+33b7aa0b32733746d055bfb1c3e9d61b356a94f3 data/cfm/recipe/light_gray_curtains.json
 3bebb18eb893652d7d3d81711d00124ea034ff2b data/cfm/recipe/light_gray_digital_clock.json
 b6d81b54714830613fe74acf5d7012bef0e6663d data/cfm/recipe/light_gray_grill.json
 5f5a24f302376547ddafd442eb998a7487c6d36c data/cfm/recipe/light_gray_kitchen_cabinet.json
@@ -1608,6 +1656,7 @@ bf73dcfe9578fa7a4efd2f0850ac8deb90810d2c data/cfm/recipe/light_gray_trampoline.j
 7186ca126e50f082c7baddfa56961284af21f09c data/cfm/recipe/light_switch.json
 41ae71a71b765979105b81bb309f29645e0603c6 data/cfm/recipe/lime_bar_stool.json
 b0d5b174a16f14c5ed86b47b16b594de28c02cb6 data/cfm/recipe/lime_cooler.json
+e8e3c967244c4c8b9bcf2575e5f1fab9e668e4e7 data/cfm/recipe/lime_curtains.json
 6abef057794d780bbafb2b1e8df22d4e915091a7 data/cfm/recipe/lime_digital_clock.json
 62a1106faf471d064ffe4c7aaf17bdc48f6846df data/cfm/recipe/lime_grill.json
 1f642a6266f7ce6074d1ff562e8e6629a71fbaa5 data/cfm/recipe/lime_kitchen_cabinet.json
@@ -1625,6 +1674,7 @@ e1d58045bd026bf59747ab0b2cb29ea6faa32e7c data/cfm/recipe/lime_present.json
 256868732443c7edf95b1efc22517fa4ee2c5e61 data/cfm/recipe/lime_trampoline.json
 5efcf829eb2bd5d70d90fe0ce87ff1d8b13d5483 data/cfm/recipe/magenta_bar_stool.json
 9a7be8c3a2015859822833f80bb94ea92d62da54 data/cfm/recipe/magenta_cooler.json
+6a2fbb63a50095776e8a5726a28d90b6cfb5fbf9 data/cfm/recipe/magenta_curtains.json
 d95eb2a6f76855e16e3427addaa97f0a5cfe348b data/cfm/recipe/magenta_digital_clock.json
 590595e32fd14bfb232fc375c77c808db69c59e7 data/cfm/recipe/magenta_grill.json
 635e5242709cb8207b492be05c7d81623b84ac57 data/cfm/recipe/magenta_kitchen_cabinet.json
@@ -1670,6 +1720,7 @@ f5271414a81f6cce85348329f07bf74817156354 data/cfm/recipe/minebay/night_vision_po
 f98cf357fbe000cca3395587ccfffb16e98576c4 data/cfm/recipe/minebay/silk_touch_book.json
 97cee364d1750c3fcea0363c33a134667d345337 data/cfm/recipe/minebay/skeleton_skull.json
 3eb4179c84be225ae6b472b3b1320da9fb6cafb3 data/cfm/recipe/minebay/terracotta.json
+a9553d99d925efdfc6cc94b8dc88eebdf0dfdf1f data/cfm/recipe/mirror.json
 9c10749888023633a271f2db85003dabbe6032ee data/cfm/recipe/modern_chair.json
 546e1bb6513ff6e4552ec1804198ab8a27d3772e data/cfm/recipe/modern_coffee_table.json
 ed037d536ae993adf77a629e3287855845c44cfb data/cfm/recipe/modern_light.json
@@ -1700,6 +1751,7 @@ ba72410fc13bb6205878df10fd02109290fe8431 data/cfm/recipe/oak_park_bench.json
 eff36fbf0940db46bf6d2ead3fbb7e3b157b9eb1 data/cfm/recipe/oak_upgraded_gate.json
 879f63341717ed0c2caf31e31ea264826cd74be0 data/cfm/recipe/orange_bar_stool.json
 34ac05a535b4bca4b5426ed39825a174eb3992ec data/cfm/recipe/orange_cooler.json
+ec12edb2a5c75dc3f8ac598fb85195c9a0404efa data/cfm/recipe/orange_curtains.json
 446b39c28e588ffbdfa4b2f2b75aa6b1935fec34 data/cfm/recipe/orange_digital_clock.json
 b7decd133cd1fdf37e126d1ba612403c5c67d395 data/cfm/recipe/orange_grill.json
 00d55b9a867f1514f002c4d4a134b07cc272d783 data/cfm/recipe/orange_kitchen_cabinet.json
@@ -1718,6 +1770,7 @@ ad327d521605f0601842a0647886e8c3ec71fb48 data/cfm/recipe/orange_picket_fence.jso
 661ab155c1f823bba1193906ef7b2764c4baa423 data/cfm/recipe/oven.json
 77d2ecd3e2d804536ac8da485c33e2adc538f302 data/cfm/recipe/pink_bar_stool.json
 c6c8414adb9e56a2c886a6d07da22ef5ffeebb8a data/cfm/recipe/pink_cooler.json
+36a1a6487379a96e60ee0331f6ec6f09e904a6f6 data/cfm/recipe/pink_curtains.json
 672ddd98e09aa0e4b8122efbfb6560efbc5b1768 data/cfm/recipe/pink_digital_clock.json
 78886064bf31be70ff3626278a526cd09013d489 data/cfm/recipe/pink_grill.json
 3d974702d219747b2ab80e3d9042cc20d9d72175 data/cfm/recipe/pink_kitchen_cabinet.json
@@ -1738,6 +1791,7 @@ c64f26f3b7e0700a58eb68f1c6e358e22fc6fb6b data/cfm/recipe/pink_trampoline.json
 571ccc32ccc7669f6363139e22e6b49c9564badc data/cfm/recipe/printer.json
 c6205e5cee83a83aa2c47bbd2973ad60224093ee data/cfm/recipe/purple_bar_stool.json
 027342ad5696ef41ff7e85eb9ce16fa0766c00d5 data/cfm/recipe/purple_cooler.json
+d7be876b426b02d00d9b105c1749adef5ecf0838 data/cfm/recipe/purple_curtains.json
 611b5215a1362d0d4a217fd71c118666fbe96034 data/cfm/recipe/purple_digital_clock.json
 05adf693570fdc6af915c5464a1832d64a93184e data/cfm/recipe/purple_grill.json
 a449ad08f8f3072efd02e3fa3f995a88fdfcc87e data/cfm/recipe/purple_kitchen_cabinet.json
@@ -1756,6 +1810,7 @@ eef714fa56ac87e4f671f2e9f40acea705d7bda9 data/cfm/recipe/purple_picket_gate.json
 ecfb0af6eab0b493531e98673506fde95ba56844 data/cfm/recipe/range_hood.json
 1d852c11bad4ee8777eaf99bd2546a98759ed4a7 data/cfm/recipe/red_bar_stool.json
 a8122eb12e256d996e3eacbfac45eba7f95eba3e data/cfm/recipe/red_cooler.json
+45e6f6f9ef13bea40be299b37a057280b450e471 data/cfm/recipe/red_curtains.json
 05938dbf8eb7c80db2b850306309c1937052d6bf data/cfm/recipe/red_digital_clock.json
 5ba2973321697f7dd8cec34d73361f225b0fe394 data/cfm/recipe/red_grill.json
 f4997516aabbd8634b6e319126c602c2dad9d256 data/cfm/recipe/red_kitchen_cabinet.json
@@ -1980,6 +2035,7 @@ c0ea45fa8d56f662e10ecd9977dbfe05c4f8b925 data/cfm/recipe/warped_upgraded_gate.js
 a09d60229f7cafca17a7a934494b7a6a225d1c7c data/cfm/recipe/washing_machine.json
 3a56e9e3bc59fcec1767f9a561e621a75fdea2d5 data/cfm/recipe/white_bar_stool.json
 50df55030a19e9bf3e55a8e6b2cce64dd920cd1a data/cfm/recipe/white_cooler.json
+7f5799f9ee5a28b12673a9708f7e1889cca817f7 data/cfm/recipe/white_curtains.json
 5e5dfbd2877d1982941ac224437cd98bf3bcfd27 data/cfm/recipe/white_digital_clock.json
 2500d8d3bf4ce210bb351bcfd2d899f7e91e3c8d data/cfm/recipe/white_grill.json
 8ef1bcc97435cebb672fdf52c31b27b1552fb05b data/cfm/recipe/white_kitchen_cabinet.json
@@ -1998,6 +2054,7 @@ ff81c86f69b275d602b8398c081a1afc178a09df data/cfm/recipe/white_trampoline.json
 6fc7953ec24a566dde398fb213e535ea4882dcf7 data/cfm/recipe/wreath.json
 c57402bd56ae4efc9927e4bfe0680cd5ca6c2be2 data/cfm/recipe/yellow_bar_stool.json
 1397a3d2be78a97036a03454be13f18b6d372497 data/cfm/recipe/yellow_cooler.json
+0509ae3729d306904925021313e2cc669aadd337 data/cfm/recipe/yellow_curtains.json
 1eb698dee664bb3509ca4b05f79275e58e11aa94 data/cfm/recipe/yellow_digital_clock.json
 ced136168ab225c88dc74b67896def11af2c688c data/cfm/recipe/yellow_grill.json
 c92ecb9fa2e3a3dde199eb6afe066593bdfdd0c4 data/cfm/recipe/yellow_kitchen_cabinet.json
