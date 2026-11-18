@@ -7,7 +7,8 @@
     "4": "minecraft:block/lime_concrete",
     "5": "minecraft:block/yellow_concrete",
     "6": "minecraft:block/cyan_concrete",
-    "7": "minecraft:block/black_concrete"
+    "7": "minecraft:block/black_concrete",
+    "particle": "minecraft:block/anvil"
   },
   "display": {
     "gui": {

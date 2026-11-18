@@ -2,7 +2,8 @@
   "textures": {
     "0": "minecraft:block/gray_concrete",
     "1": "minecraft:block/white_concrete",
-    "2": "minecraft:block/light_gray_concrete"
+    "2": "minecraft:block/light_gray_concrete",
+    "particle": "minecraft:block/gray_concrete"
   },
   "display": {
     "gui": {

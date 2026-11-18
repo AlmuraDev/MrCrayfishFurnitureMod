@@ -1,6 +1,7 @@
 {
   "parent": "cfm:item/modern_bed",
   "textures": {
-    "color": "minecraft:block/cyan_wool"
+    "color": "minecraft:block/cyan_wool",
+    "particle": "minecraft:block/gray_concrete"
   }
 }

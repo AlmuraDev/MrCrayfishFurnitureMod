@@ -1,6 +1,7 @@
 {
-    "parent": "cfm:item/fridge_light",
-    "textures": {
-        "base": "minecraft:block/gray_concrete"
-    }
+  "parent": "cfm:item/fridge_light",
+  "textures": {
+    "base": "minecraft:block/gray_concrete",
+    "particle": "minecraft:block/gray_concrete"
+  }
 }

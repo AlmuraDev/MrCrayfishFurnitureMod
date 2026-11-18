@@ -1,8 +1,9 @@
 {
-    "parent": "cfm:item/upgraded_fence",
-    "textures": {
-        "plank": "minecraft:block/stripped_spruce_log",
-        "middle": "minecraft:block/spruce_log",
-        "post": "minecraft:block/stripped_spruce_log"
-    }
+  "parent": "cfm:item/upgraded_fence",
+  "textures": {
+    "plank": "minecraft:block/stripped_spruce_log",
+    "middle": "minecraft:block/spruce_log",
+    "post": "minecraft:block/stripped_spruce_log",
+    "particle": "minecraft:block/stripped_spruce_log"
+  }
 }

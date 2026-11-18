@@ -1,8 +1,9 @@
 {
-    "parent": "cfm:item/upgraded_gate",
-    "textures": {
-        "hinge": "minecraft:block/white_concrete",
-        "pole": "minecraft:block/white_concrete",
-        "plank": "minecraft:block/white_concrete"
-    }
+  "parent": "cfm:item/upgraded_gate",
+  "textures": {
+    "hinge": "minecraft:block/white_concrete",
+    "pole": "minecraft:block/white_concrete",
+    "plank": "minecraft:block/white_concrete",
+    "particle": "minecraft:block/white_concrete"
+  }
 }

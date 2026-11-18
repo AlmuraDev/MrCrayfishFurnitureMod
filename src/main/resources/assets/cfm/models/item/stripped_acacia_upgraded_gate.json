@@ -1,8 +1,9 @@
 {
-    "parent": "cfm:item/stripped_upgraded_gate",
-    "textures": {
-        "hinge": "minecraft:block/acacia_log",
-        "pole": "minecraft:block/acacia_planks",
-        "plank": "minecraft:block/stripped_acacia_log"
-    }
+  "parent": "cfm:item/stripped_upgraded_gate",
+  "textures": {
+    "hinge": "minecraft:block/acacia_log",
+    "pole": "minecraft:block/acacia_planks",
+    "plank": "minecraft:block/stripped_acacia_log",
+    "particle": "minecraft:block/acacia_log"
+  }
 }

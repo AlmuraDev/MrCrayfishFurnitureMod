@@ -1,6 +1,7 @@
 {
-    "parent": "cfm:block/upgraded_gate_pole",
-    "textures": {
-        "pole": "minecraft:block/jungle_log"
-    }
+  "parent": "cfm:block/upgraded_gate_pole",
+  "textures": {
+    "pole": "minecraft:block/jungle_log",
+    "particle": "minecraft:block/jungle_log"
+  }
 }

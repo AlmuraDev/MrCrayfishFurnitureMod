@@ -1,7 +1,8 @@
 {
-    "parent": "cfm:item/upgraded_fence",
-    "textures": {
-        "plank": "minecraft:block/mangrove_planks",
-        "middle": "minecraft:block/mangrove_log"
-    }
+  "parent": "cfm:item/upgraded_fence",
+  "textures": {
+    "plank": "minecraft:block/mangrove_planks",
+    "middle": "minecraft:block/mangrove_log",
+    "particle": "minecraft:block/mangrove_planks"
+  }
 }

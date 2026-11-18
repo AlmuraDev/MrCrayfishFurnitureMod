@@ -2,7 +2,8 @@
   "textures": {
     "0": "minecraft:block/anvil",
     "1": "minecraft:block/white_concrete",
-    "2": "cfm:item/craykea"
+    "2": "cfm:block/knife_craykea",
+    "particle": "minecraft:block/anvil"
   },
   "display": {
     "gui": {

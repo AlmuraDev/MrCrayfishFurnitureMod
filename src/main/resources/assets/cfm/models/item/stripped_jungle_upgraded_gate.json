@@ -1,8 +1,9 @@
 {
-    "parent": "cfm:item/stripped_upgraded_gate",
-    "textures": {
-        "hinge": "minecraft:block/jungle_log",
-        "pole": "minecraft:block/jungle_planks",
-        "plank": "minecraft:block/stripped_jungle_log"
-    }
+  "parent": "cfm:item/stripped_upgraded_gate",
+  "textures": {
+    "hinge": "minecraft:block/jungle_log",
+    "pole": "minecraft:block/jungle_planks",
+    "plank": "minecraft:block/stripped_jungle_log",
+    "particle": "minecraft:block/jungle_log"
+  }
 }

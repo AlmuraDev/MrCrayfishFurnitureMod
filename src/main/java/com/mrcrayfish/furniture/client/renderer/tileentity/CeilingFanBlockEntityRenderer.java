@@ -28,14 +28,12 @@ import org.jspecify.annotations.Nullable;
  */
 public class CeilingFanBlockEntityRenderer implements BlockEntityRenderer<CeilingFanBlockEntity, CeilingFanBlockEntityRenderer.FanRenderState>
 {
-    private static final ItemStack BLADES = new ItemStack(Items.STICK);
-
-    static
-    {
-        BLADES.set(DataComponents.ITEM_MODEL, Identifier.fromNamespaceAndPath(Reference.MOD_ID, "ceiling_fan_blades"));
-    }
+    private static final Identifier BLADES_MODEL = Identifier.fromNamespaceAndPath(Reference.MOD_ID, "ceiling_fan_blades");
 
     private final ItemModelResolver itemModelResolver;
+    // Made on first use: item stacks can't be made while renderers are registered, before item components are bound
+    @Nullable
+    private ItemStack blades;
 
     public CeilingFanBlockEntityRenderer(BlockEntityRendererProvider.Context context)
     {
@@ -53,7 +51,12 @@ public class CeilingFanBlockEntityRenderer implements BlockEntityRenderer<Ceilin
     {
         BlockEntityRenderer.super.extractRenderState(fan, state, partialTicks, cameraPosition, breakProgress);
         state.rotation = fan.getRotation(partialTicks);
-        this.itemModelResolver.updateForTopItem(state.blades, BLADES, ItemDisplayContext.NONE, fan.getLevel(), null, 0);
+        if(this.blades == null)
+        {
+            this.blades = new ItemStack(Items.STICK);
+            this.blades.set(DataComponents.ITEM_MODEL, BLADES_MODEL);
+        }
+        this.itemModelResolver.updateForTopItem(state.blades, this.blades, ItemDisplayContext.NONE, fan.getLevel(), null, 0);
     }
 
     @Override

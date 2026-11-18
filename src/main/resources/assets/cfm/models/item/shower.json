@@ -1,3 +1,6 @@
 {
-  "parent": "cfm:block/shower"
+  "parent": "cfm:block/shower",
+  "textures": {
+    "particle": "minecraft:block/white_concrete"
+  }
 }

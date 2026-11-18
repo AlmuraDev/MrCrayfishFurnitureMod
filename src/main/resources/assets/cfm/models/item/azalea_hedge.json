@@ -1,6 +1,7 @@
 {
-    "parent": "cfm:item/hedge",
-    "textures": {
-        "leaves": "minecraft:block/azalea_leaves"
-    }
+  "parent": "cfm:item/hedge",
+  "textures": {
+    "leaves": "minecraft:block/azalea_leaves",
+    "particle": "minecraft:block/azalea_leaves"
+  }
 }

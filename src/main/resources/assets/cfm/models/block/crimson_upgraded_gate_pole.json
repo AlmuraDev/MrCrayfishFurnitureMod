@@ -1,6 +1,7 @@
 {
-    "parent": "cfm:block/upgraded_gate_pole",
-    "textures": {
-        "pole": "minecraft:block/crimson_stem"
-    }
+  "parent": "cfm:block/upgraded_gate_pole",
+  "textures": {
+    "pole": "minecraft:block/crimson_stem",
+    "particle": "minecraft:block/crimson_stem"
+  }
 }

@@ -1,8 +1,9 @@
 {
-    "parent": "cfm:item/stripped_upgraded_gate",
-    "textures": {
-        "hinge": "minecraft:block/birch_log",
-        "pole": "minecraft:block/birch_planks",
-        "plank": "minecraft:block/stripped_birch_log"
-    }
+  "parent": "cfm:item/stripped_upgraded_gate",
+  "textures": {
+    "hinge": "minecraft:block/birch_log",
+    "pole": "minecraft:block/birch_planks",
+    "plank": "minecraft:block/stripped_birch_log",
+    "particle": "minecraft:block/birch_log"
+  }
 }

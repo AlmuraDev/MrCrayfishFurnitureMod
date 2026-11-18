@@ -1,7 +1,8 @@
 {
-    "parent": "cfm:block/stripped_upgraded_fence_side",
-    "textures": {
-        "plank": "minecraft:block/stripped_oak_log",
-        "middle": "minecraft:block/oak_log"
-    }
+  "parent": "cfm:block/stripped_upgraded_fence_side",
+  "textures": {
+    "plank": "minecraft:block/stripped_oak_log",
+    "middle": "minecraft:block/oak_log",
+    "particle": "minecraft:block/oak_log"
+  }
 }

@@ -1,6 +1,7 @@
 {
-    "parent": "cfm:item/hedge",
-    "textures": {
-        "leaves": "minecraft:block/spruce_leaves"
-    }
+  "parent": "cfm:item/hedge",
+  "textures": {
+    "leaves": "minecraft:block/spruce_leaves",
+    "particle": "minecraft:block/spruce_leaves"
+  }
 }

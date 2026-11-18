@@ -1,7 +1,8 @@
 {
-    "parent": "cfm:item/upgraded_fence",
-    "textures": {
-        "plank": "minecraft:block/white_concrete",
-        "middle": "minecraft:block/white_concrete"
-    }
+  "parent": "cfm:item/upgraded_fence",
+  "textures": {
+    "plank": "minecraft:block/white_concrete",
+    "middle": "minecraft:block/white_concrete",
+    "particle": "minecraft:block/white_concrete"
+  }
 }

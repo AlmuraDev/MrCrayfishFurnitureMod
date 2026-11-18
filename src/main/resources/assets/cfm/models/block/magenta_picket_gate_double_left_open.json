@@ -1,8 +1,9 @@
 {
-    "parent": "cfm:block/upgraded_gate_double_left_open",
-    "textures": {
-        "hinge": "minecraft:block/magenta_concrete",
-        "pole": "minecraft:block/magenta_concrete",
-        "plank": "minecraft:block/magenta_concrete"
-    }
+  "parent": "cfm:block/upgraded_gate_double_left_open",
+  "textures": {
+    "hinge": "minecraft:block/magenta_concrete",
+    "pole": "minecraft:block/magenta_concrete",
+    "plank": "minecraft:block/magenta_concrete",
+    "particle": "minecraft:block/magenta_concrete"
+  }
 }
