@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "I": "#c:ingots/iron",
+    "T": "minecraft:red_terracotta"
+  },
+  "pattern": [
+    "  I",
+    " T ",
+    "I  "
+  ],
+  "result": {
+    "id": "cfm:crowbar"
+  }
+}

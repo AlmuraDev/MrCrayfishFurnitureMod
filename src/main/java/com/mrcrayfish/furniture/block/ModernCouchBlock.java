@@ -2,6 +2,8 @@ package com.mrcrayfish.furniture.block;
 
 import com.mrcrayfish.furniture.Reference;
 import com.mrcrayfish.furniture.entity.SeatEntity;
+import net.minecraft.world.item.Items;
+import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.util.VoxelShapeHelper;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -123,8 +125,18 @@ public class ModernCouchBlock extends FurnitureHorizontalBlock
     @Override
     protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
+        if(heldItem.is(Items.NAME_TAG) && "jeb_".equals(heldItem.getHoverName().getString()) && !state.is(ModBlocks.MODERN_COUCH_JEB.get()))
+        {
+            if(!level.isClientSide())
+            {
+                level.setBlockAndUpdate(pos, ModBlocks.MODERN_COUCH_JEB.get().defaultBlockState().setValue(DIRECTION, state.getValue(DIRECTION)).setValue(TYPE, state.getValue(TYPE)));
+                heldItem.consume(1, player);
+            }
+            return InteractionResult.SUCCESS;
+        }
+
         DyeColor dye = heldItem.get(DataComponents.DYE);
-        if(dye != null && dye != this.color)
+        if(dye != null && (dye != this.color || state.is(ModBlocks.MODERN_COUCH_JEB.get())))
         {
             if(!level.isClientSide())
             {

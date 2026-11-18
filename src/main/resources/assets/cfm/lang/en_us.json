@@ -827,5 +827,10 @@
     "item.cfm.kebab": "Kebab",
     "item.cfm.cooked_kebab": "Cooked Kebab",
     "item.cfm.flesh": "Flesh",
-    "item.cfm.cooked_flesh": "Cooked Flesh"
+    "item.cfm.cooked_flesh": "Cooked Flesh",
+    "block.cfm.jeb_modern_couch": "Jeb Modern Couch",
+    "item.cfm.cool_pack": "Cool Pack",
+    "item.cfm.hammer": "Hammer",
+    "item.cfm.crowbar": "Crowbar",
+    "message.cfm.mail_box_break": "Only the owner of this mail box can break it."
 }

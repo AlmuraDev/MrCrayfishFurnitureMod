@@ -728,6 +728,8 @@ public class ModBlocks
     public static final DeferredBlock<Block> STONE_PATH = register("stone_path", p -> new StonePathBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.STONE).instrument(NoteBlockInstrument.BASEDRUM).strength(0.75F).sound(SoundType.STONE).noOcclusion().pushReaction(PushReaction.POPPED));
 
     // Last of 1.12.2
+    // The rainbow couch a name tag called jeb_ makes (1.12.2); dye turns it back
+    public static final DeferredBlock<Block> MODERN_COUCH_JEB = register("jeb_modern_couch", p -> new ModernCouchBlock(p, DyeColor.WHITE), () -> BlockBehaviour.Properties.of().mapColor(DyeColor.WHITE.getMapColor()).strength(0.5F).sound(SoundType.WOOL).noOcclusion());
     public static final DeferredBlock<Block> CEILING_FAN = register("ceiling_fan", p -> new CeilingFanBlock(p), () -> BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).strength(0.5F).sound(SoundType.WOOD).noOcclusion().ignitedByLava());
 
     private static DeferredBlock<Block> register(String name, Function<BlockBehaviour.Properties, Block> factory, Supplier<BlockBehaviour.Properties> properties)

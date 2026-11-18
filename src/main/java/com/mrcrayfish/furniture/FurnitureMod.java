@@ -2,6 +2,7 @@ package com.mrcrayfish.furniture;
 
 import com.mrcrayfish.furniture.common.CapabilitySetup;
 import com.mrcrayfish.furniture.common.CommonHandler;
+import com.mrcrayfish.furniture.common.ProtectionEvents;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
 import com.mrcrayfish.furniture.core.ModBlocks;
 import com.mrcrayfish.furniture.core.ModContainers;
@@ -49,6 +50,7 @@ public class FurnitureMod
         modBus.addListener(this::onCommonSetup);
         modBus.addListener(CapabilitySetup::onRegisterCapabilities);
         DataSetup.register(modBus);
+        NeoForge.EVENT_BUS.register(new ProtectionEvents());
         // The freezer, oven and microwave screens check their ingredients on the client too, using a toaster or chopping board does, and the computer lists
         // what MineBay sells, so clients get those recipes
         NeoForge.EVENT_BUS.addListener(OnDatapackSyncEvent.class, event -> event.sendRecipes(ModRecipeTypes.FREEZER_SOLIDIFY.get(),

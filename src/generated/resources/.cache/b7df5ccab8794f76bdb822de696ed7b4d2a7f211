@@ -1,4 +1,4 @@
-// 26.3	2026-11-17T20:29:00.6311743	cfm-global/Tags for minecraft:item mod id cfm
+// 26.3	2026-11-17T20:36:02.9892914	cfm-global/Tags for minecraft:item mod id cfm
 8259d7edcfa6a59dd7987c311dcb00a3f58b6e61 data/cfm/tags/item/bedroom.json
 6b2908959be492fad3e31b7c5765e70126a3c68e data/cfm/tags/item/dishwasher_cleanable.json
 214f75cd032a631f1a0d235bcd21e5bcd76b5c82 data/cfm/tags/item/fences/hedge.json
@@ -7,7 +7,7 @@ df801ba9f499d6d7936b85ccd53c2981c42b8a36 data/cfm/tags/item/fences/upgraded.json
 1d77ff0e898da53822781b06790bfb3cefc0c514 data/cfm/tags/item/fence_gates/picket.json
 ed00804745d3a61865d45671dbb3ea514d67d597 data/cfm/tags/item/fence_gates/upgraded.json
 a225db6606236977f69b1cababb940a1ef7a58d6 data/cfm/tags/item/general.json
-0d9b665de31f63826d3a9094aeef4fe0c33f502b data/cfm/tags/item/items.json
+63aebd8ae669f92a6c8e225c0b4ec5a8538e8550 data/cfm/tags/item/items.json
 5c8fe854b65397aa31481158b5d6ea3e8555bded data/cfm/tags/item/kitchen.json
 0264b8db053352a2745776ceffc7d11947a8c296 data/cfm/tags/item/outdoors.json
 72358d3042133735cf9e1254c10f0a13bb638ab7 data/cfm/tags/item/printable.json

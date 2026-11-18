@@ -3,6 +3,7 @@ package com.mrcrayfish.furniture.tileentity;
 import com.mojang.serialization.Codec;
 import com.mrcrayfish.furniture.block.FreezerBlock;
 import com.mrcrayfish.furniture.core.ModBlockEntities;
+import com.mrcrayfish.furniture.core.ModItems;
 import com.mrcrayfish.furniture.core.ModRecipeTypes;
 import com.mrcrayfish.furniture.core.ModSounds;
 import com.mrcrayfish.furniture.event.FreezerFuelTimeEvent;
@@ -199,6 +200,10 @@ public class FreezerBlockEntity extends BasicLootBlockEntity
         else if(stack.is(Items.PACKED_ICE))
         {
             return 18000;
+        }
+        else if(stack.is(ModItems.COOL_PACK.get()))
+        {
+            return 400;
         }
         FreezerFuelTimeEvent event = new FreezerFuelTimeEvent(stack);
         NeoForge.EVENT_BUS.post(event);

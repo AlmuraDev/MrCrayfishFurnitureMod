@@ -1,4 +1,4 @@
-// 26.3	2026-11-17T20:29:00.6321746	Registries for Reloadable (cfm[1]): [minecraft, cfm]
+// 26.3	2026-11-17T20:36:02.9907957	Registries for Reloadable (cfm[1]): [minecraft, cfm]
 dd0a2505af6c271c4aaed3044f7fbfe6e4bacced data/cfm/advancement/recipes/decorations/acacia_bedside_cabinet.json
 1cd0a209bffd9841144595ffb77fd264935ddb6c data/cfm/advancement/recipes/decorations/acacia_blinds.json
 dd9cd67af70567bcf0ef4ec395036616ee7cf39c data/cfm/advancement/recipes/decorations/acacia_cabinet.json
@@ -708,6 +708,7 @@ b7d69132bbe5cb0c590f1dea3527883a6a993f7a data/cfm/advancement/recipes/food/cooke
 4a76e1ce03b15ba71806b9f13545bc3823f2c549 data/cfm/advancement/recipes/food/flesh_from_freezing.json
 b56085e8ac2dee7291d31f686def9b30b0edad6b data/cfm/advancement/recipes/food/kebab.json
 627deb37d45acc58ec80ba416f457b22c6ae1020 data/cfm/advancement/recipes/food/sausage.json
+0760f8a2cf6066a31a98e01d1a109c3260b006de data/cfm/advancement/recipes/misc/cool_pack.json
 c3169b5bd90302ca9b11dc1ddce66230a6271c63 data/cfm/advancement/recipes/misc/cup.json
 d81154451808b78c57199cc3b6dea243fba38c18 data/cfm/advancement/recipes/misc/ink_cartridge.json
 5d3253bce1584049abb3960c6dc0b27f48d5ad60 data/cfm/advancement/recipes/misc/soap.json
@@ -725,6 +726,7 @@ c72eb966be38d389e5e5c0b03d2008da1436a3c2 data/cfm/advancement/recipes/redstone/m
 52f6ffba48a5e394f502345b91958a744acf4818 data/cfm/advancement/recipes/redstone/oak_door_bell.json
 cc62404fcc6592711e0f711c8487adfd4f02a505 data/cfm/advancement/recipes/redstone/spruce_door_bell.json
 0b31e6acfa1f0a1fa52e749217973fb9efb6d1d8 data/cfm/advancement/recipes/redstone/warped_door_bell.json
+bb89c1a55f57fa2748b878112b40cdbd07bf1167 data/cfm/advancement/recipes/tools/crowbar.json
 11edc14d2b6d730da134740996efa9b47258691d data/cfm/advancement/recipes/tools/knife.json
 74feca14badd3dc2ea2d97e70e0351fd467a016f data/cfm/advancement/recipes/tools/spatula.json
 2d365c7fdb9808c5897e87b2120b49550184792b data/cfm/loot_table/blocks/acacia_bedside_cabinet.json
@@ -940,6 +942,7 @@ bf6d1b2d9f3150c4458aad145e7193990f1fe4b5 data/cfm/loot_table/blocks/green_picket
 58653fa26e7da62a331abf23e8872bbe478731a9 data/cfm/loot_table/blocks/green_picket_gate.json
 5f54a3f1d87d747f052c5c8818cbe0bac07b4f43 data/cfm/loot_table/blocks/green_present.json
 6c038824dee3c6701f04e6aae1c5e130ccde2a70 data/cfm/loot_table/blocks/green_sofa.json
+aa7e8b264b4c533c82207289045e679c6e96340e data/cfm/loot_table/blocks/jeb_modern_couch.json
 9e447987bf3fcb8ac564c205c08ca6c262781391 data/cfm/loot_table/blocks/jungle_bedside_cabinet.json
 b14c3070a66cf0a139e1b7cbc133970a26bd980a data/cfm/loot_table/blocks/jungle_blinds.json
 853b94816cd88c770d65366cc1f513ba49766771 data/cfm/loot_table/blocks/jungle_cabinet.json
@@ -1517,6 +1520,7 @@ a9e0eef4a5c776c36c00f8d2bf43c707229434c5 data/cfm/recipe/chopping_board.json
 e4517582426198a09da407bce60d02ac82f081c9 data/cfm/recipe/cooked_sausage_from_grill_cooking.json
 d6b1c03497dc59113e0917be700684c1976c3d97 data/cfm/recipe/cookies_and_cream_milkshake_from_blending.json
 b846bc9db4c5226aaa8c9baee338d6bc89aa515c data/cfm/recipe/cookie_jar.json
+3e332165ca9741487c3f94882b7b2ed435e53223 data/cfm/recipe/cool_pack.json
 a6ab324b0b99c99e362725989296d96f3e5552b8 data/cfm/recipe/crimson_bedside_cabinet.json
 c6bf4311911597b4459737a3cb49748d7edfa5a4 data/cfm/recipe/crimson_blinds.json
 10c92e72f15b06fd5af7de47f2fce25cb3ce3184 data/cfm/recipe/crimson_cabinet.json
@@ -1535,6 +1539,7 @@ b21ec9e70b727e936e359644094106ef332a8230 data/cfm/recipe/crimson_kitchen_sink_li
 5c06a3444233dac6fbc7424ab59426cc9c5644b5 data/cfm/recipe/crimson_table.json
 3f5286769e0e6df7c70af8842e14c799c1a0ffa9 data/cfm/recipe/crimson_upgraded_fence.json
 a97a84707a51264a66f1fc2ab775d369ea632326 data/cfm/recipe/crimson_upgraded_gate.json
+6ac46acc8931895473333b1da30848e74fb90c8f data/cfm/recipe/crowbar.json
 3e28062fe9249aca7abf83156bcc42e98d21bb8e data/cfm/recipe/cup.json
 a9b9e6103fb39b1fddfd48ab4e7b10eb2fc19cf9 data/cfm/recipe/cyan_bar_stool.json
 14caa836e862deaf7d2dc68acf910b26d31c5d42 data/cfm/recipe/cyan_cooler.json

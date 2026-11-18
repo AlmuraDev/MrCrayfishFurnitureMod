@@ -48,6 +48,12 @@ public class ModItems
     public static final DeferredItem<Item> COOKED_KEBAB = REGISTER.registerItem("cooked_kebab", Item::new, () -> new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).build()));
     public static final DeferredItem<Item> FLESH = REGISTER.registerItem("flesh", Item::new, () -> new Item.Properties().food(new FoodProperties.Builder().nutrition(1).saturationModifier(0.1F).build()));
     public static final DeferredItem<Item> COOKED_FLESH = REGISTER.registerItem("cooked_flesh", Item::new, () -> new Item.Properties().food(new FoodProperties.Builder().nutrition(4).saturationModifier(0.6F).build()));
+    // Freezer fuel (1.12.2)
+    public static final DeferredItem<Item> COOL_PACK = REGISTER.registerItem("cool_pack", Item::new, Item.Properties::new);
+    // In creative, breaks other players' mail boxes (1.12.2)
+    public static final DeferredItem<Item> HAMMER = REGISTER.registerItem("hammer", Item::new, () -> new Item.Properties().stacksTo(1));
+    // Lets an operator pry open a locked crate (1.12.2 opened sealed crates with it)
+    public static final DeferredItem<Item> CROWBAR = REGISTER.registerItem("crowbar", Item::new, () -> new Item.Properties().stacksTo(1));
     public static final DeferredItem<Item> SOAP = REGISTER.registerItem("soap", Item::new, Item.Properties::new);
     // Runs the dishwasher and washing machine, which use it up (the bucket comes back when it is crafted from a water bucket); the super
     // kind cleans more than twice as fast

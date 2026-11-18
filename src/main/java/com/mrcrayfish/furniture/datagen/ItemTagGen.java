@@ -425,7 +425,10 @@ public class ItemTagGen extends BlockTagCopyingItemTagProvider
                 .add(ModItems.KEBAB.key())
                 .add(ModItems.COOKED_KEBAB.key())
                 .add(ModItems.FLESH.key())
-                .add(ModItems.COOKED_FLESH.key());
+                .add(ModItems.COOKED_FLESH.key())
+                .add(ModItems.COOL_PACK.key())
+                .add(ModItems.CROWBAR.key())
+                .add(ModItems.HAMMER.key());
         this.tag(ModTags.Items.GENERAL)
                 .add(item(ModBlocks.BIN))
                 .add(item(ModBlocks.MIRROR))

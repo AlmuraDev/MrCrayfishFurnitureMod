@@ -1802,6 +1802,24 @@ public class RecipeGen extends RecipeProvider
         SimpleCookingRecipeBuilder.generic(Ingredient.of(ModItems.FLESH.get()), RecipeCategory.FOOD, CookingBookCategory.FOOD, ModItems.COOKED_FLESH.get(), 0.35F, 200, OvenBakingRecipe::new).unlockedBy("has_flesh", this.has(ModItems.FLESH.get())).save(this.output, "cfm:cooked_flesh_from_oven_baking");
         SimpleCookingRecipeBuilder.generic(Ingredient.of(Items.ROTTEN_FLESH), RecipeCategory.FOOD, CookingBookCategory.FOOD, ModItems.FLESH.get(), 0.1F, 1000, FreezerSolidifyRecipe::new).unlockedBy("has_rotten_flesh", this.has(Items.ROTTEN_FLESH)).save(this.output, "cfm:flesh_from_freezing");
 
+        // Cool pack and crowbar (1.12.2); the hammer is for creative mode, so it has no recipe
+        this.shaped(RecipeCategory.MISC, ModItems.COOL_PACK.get(), 2)
+                .pattern("GGG")
+                .pattern("GWG")
+                .pattern("GGG")
+                .define('G', Tags.Items.GLASS_BLOCKS_COLORLESS)
+                .define('W', Items.WATER_BUCKET)
+                .unlockedBy("has_water_bucket", this.has(Items.WATER_BUCKET))
+                .save(this.output);
+        this.shaped(RecipeCategory.TOOLS, ModItems.CROWBAR.get())
+                .pattern("  I")
+                .pattern(" T ")
+                .pattern("I  ")
+                .define('I', Tags.Items.INGOTS_IRON)
+                .define('T', Blocks.DYED_TERRACOTTA.pick(DyeColor.RED))
+                .unlockedBy("has_iron", this.has(Tags.Items.INGOTS_IRON))
+                .save(this.output);
+
         // Cooking Recipes
         this.cookingRecipesForMethod("grill_cooking", GrillCookingRecipe::new, 600);
         this.cookingRecipesForMethod("oven_baking", OvenBakingRecipe::new, 200);

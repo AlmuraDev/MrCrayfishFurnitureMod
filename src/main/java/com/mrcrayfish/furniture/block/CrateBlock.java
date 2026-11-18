@@ -1,5 +1,9 @@
 package com.mrcrayfish.furniture.block;
 
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.server.permissions.Permissions;
+import com.mrcrayfish.furniture.core.ModItems;
 import org.jspecify.annotations.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
@@ -104,6 +108,18 @@ public class CrateBlock extends FurnitureHorizontalBlock implements IPortableInv
     @Override
     protected InteractionResult useItemOn(ItemStack heldItem, BlockState state, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult result)
     {
+        if(heldItem.is(ModItems.CROWBAR.get()) && level.getBlockEntity(pos) instanceof CrateBlockEntity crate && crate.isLocked()
+                && player.permissions().hasPermission(Permissions.COMMANDS_GAMEMASTER))
+        {
+            // An operator pries the crate open: it breaks, and what is in it spills out
+            if(!level.isClientSide())
+            {
+                level.playSound(null, pos, SoundEvents.ZOMBIE_BREAK_WOODEN_DOOR, SoundSource.BLOCKS, 1.0F, 1.0F);
+                level.destroyBlock(pos, true, player);
+            }
+            return InteractionResult.SUCCESS;
+        }
+
         if(!level.isClientSide())
         {
             if(level.getBlockEntity(pos) instanceof CrateBlockEntity blockEntity)
